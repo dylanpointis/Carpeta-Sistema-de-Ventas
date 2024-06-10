@@ -1,0 +1,56 @@
+﻿using BE;
+using BLL;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Carpeta_Sistema_de_Ventas
+{
+    public partial class frmRegistrarCliente : Form
+    {
+        public frmRegistrarCliente()
+        {
+            InitializeComponent();
+        }
+        BLLCliente bllCliente = new BLLCliente();
+        private void btnRegistrarCliente_Click(object sender, EventArgs e)
+        {
+            if (ValidarDatos())
+            {
+                BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, txtDireccion.Text); 
+                try
+                {
+                    bllCliente.RegistrarCliente(cliente);
+                    MessageBox.Show("Cliente registrado");
+                }catch(Exception ex) { MessageBox.Show("Error al registrar al cliente"); }
+            }
+            else { MessageBox.Show("Ingrese de vuelta los campos"); }
+        }
+
+        private bool ValidarDatos()
+        {
+            if (txtDNI.Text == "" && txtNombre.Text == "" && txtApellido.Text == "" && txtMail.Text == "" && txtDireccion.Text == "")
+            {
+                return false;
+            }
+            if (!Regex.IsMatch(txtDNI.Text, @"^\d{7,9}$"))
+            {
+                MessageBox.Show("El DNI debe contener solo números y tener entre 7 y 9 dígitos.");
+                return false;
+            }
+            if (!Regex.IsMatch(txtMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("El formato del correo electrónico no es válido.");
+                return false;
+            }
+            return true;
+        }
+    }
+}
