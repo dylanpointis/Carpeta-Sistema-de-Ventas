@@ -1,0 +1,23 @@
+{
+  "label2": "User Management",
+  "btnActualizar": "Refresh",
+  "btnAgregar": "Add",
+  "btnModificar": "Edit",
+  "btnEliminar": "Delete",
+  "btnDesbloquear": "Unlock",
+  "btnResetearClave": "Reset Password",
+  "btnAplicar": "Apply",
+  "btnCancelar": "Cancel",
+  "label5": "DNI",
+  "label6": "Username",
+  "label3": "First Name",
+  "label7": "Email",
+  "label4": "Last Name",
+  "label8": "Role",
+  "label10": "Active",
+  "lblMensaje": "Message: Query Mode",
+  "modoAñadir": "Message: Add Mode",
+  "modoEliminar": "Message: Delete Mode",
+  "modoModificar": "Message: Edit Mode",
+  "modoDesbloquear": "Message: Unlock Mode"
+}

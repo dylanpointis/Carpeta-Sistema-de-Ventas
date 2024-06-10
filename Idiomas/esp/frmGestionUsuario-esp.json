@@ -1,0 +1,23 @@
+{
+  "label2": "Gestión de usuario",
+  "btnActualizar": "Actualizar",
+  "btnAgregar": "Agregar",
+  "btnModificar": "Modificar",
+  "btnEliminar": "Eliminar",
+  "btnDesbloquear": "Desbloquear",
+  "btnResetearClave": "Resetear clave",
+  "btnAplicar": "Aplicar",
+  "btnCancelar": "Cancelar",
+  "label5": "DNI",
+  "label6": "Nombre de usuario",
+  "label3": "Nombre",
+  "label7": "Email",
+  "label4": "Apellido",
+  "label8": "Rol",
+  "label10": "Activo",
+  "lblMensaje": "Mensaje: Modo Consulta",
+  "modoAñadir": "Mensaje: Modo Añadir",
+  "modoEliminar": "Mensaje: Modo Eliminar",
+  "modoModificar": "Mensaje: Modo Modificar",
+  "modoDesbloquear": "Mensaje: Modo Desbloquear"
+}
