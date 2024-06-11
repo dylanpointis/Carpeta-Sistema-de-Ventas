@@ -39,7 +39,10 @@ namespace Carpeta_Sistema_de_Ventas
             if (formActivo != null)
             {
                 formActivo.Close();
-                IdiomaManager.GetInstance().Quitar(formActivo as IObserver);
+                if (formActivo is IObserver observer)
+                {
+                    IdiomaManager.GetInstance().Quitar(observer);
+                }
             }
             formActivo = form;
             formActivo.MdiParent = this;
@@ -73,6 +76,15 @@ namespace Carpeta_Sistema_de_Ventas
             frmCambiarIdioma frmCambiarIdioma = new frmCambiarIdioma();
             AbrirForm(frmCambiarIdioma);
         }
+
+
+
+        private void gestiónDePerfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGestionRoles frmCambiarIdioma = new frmGestionRoles();
+            AbrirForm(frmCambiarIdioma);
+        }
+
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Desea cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -98,6 +110,5 @@ namespace Carpeta_Sistema_de_Ventas
             }
             else { this.Close(); }
         }
-
     }
 }

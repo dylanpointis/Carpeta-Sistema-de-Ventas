@@ -61,11 +61,11 @@
     <Compile Include="frmCambiarIdioma.Designer.cs">
       <DependentUpon>frmCambiarIdioma.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGestionarRoles.cs">
+    <Compile Include="frmGestionRoles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGestionarRoles.Designer.cs">
-      <DependentUpon>frmGestionarRoles.cs</DependentUpon>
+    <Compile Include="frmGestionRoles.Designer.cs">
+      <DependentUpon>frmGestionRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGestionUsuario.cs">
       <SubType>Form</SubType>
@@ -118,8 +118,8 @@
     <EmbeddedResource Include="frmCambiarIdioma.resx">
       <DependentUpon>frmCambiarIdioma.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGestionarRoles.resx">
-      <DependentUpon>frmGestionarRoles.cs</DependentUpon>
+    <EmbeddedResource Include="frmGestionRoles.resx">
+      <DependentUpon>frmGestionRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGestionUsuario.resx">
       <DependentUpon>frmGestionUsuario.cs</DependentUpon>

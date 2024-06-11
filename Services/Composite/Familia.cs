@@ -10,7 +10,7 @@ namespace Services.Composite
     {
         private List<PermisoCompuesto> listaHijos;
 
-        public Familia(string nombre) : base(nombre)
+        public Familia(int id, string nombre) : base(id,nombre)
         {
             listaHijos = new List<PermisoCompuesto>();
         }

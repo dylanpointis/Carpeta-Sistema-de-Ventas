@@ -44,7 +44,9 @@
     <Compile Include="DALCliente.cs" />
     <Compile Include="DALConexion.cs" />
     <Compile Include="DALFactura.cs" />
+    <Compile Include="DALPermiso.cs" />
     <Compile Include="DALProducto.cs" />
+    <Compile Include="DALRol.cs" />
     <Compile Include="DALUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

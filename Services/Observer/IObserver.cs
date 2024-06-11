@@ -8,6 +8,6 @@ namespace Services.Observer
 {
     public interface IObserver
     {
-        void ActualizarIdioma();
+        void ActualizarObserver();
     }
 }

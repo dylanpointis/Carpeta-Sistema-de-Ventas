@@ -1,6 +1,6 @@
 ﻿namespace Carpeta_Sistema_de_Ventas
 {
-    partial class frmGestionarRoles
+    partial class frmGestionRoles
     {
         /// <summary>
         /// Required designer variable.
@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBoxPermisos = new System.Windows.Forms.ListBox();
+            this.listBoxRoles = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -68,21 +68,21 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Rol";
             // 
-            // listBox1
+            // listBoxPermisos
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(24, 73);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(144, 238);
-            this.listBox1.TabIndex = 4;
+            this.listBoxPermisos.FormattingEnabled = true;
+            this.listBoxPermisos.Location = new System.Drawing.Point(24, 73);
+            this.listBoxPermisos.Name = "listBoxPermisos";
+            this.listBoxPermisos.Size = new System.Drawing.Size(144, 238);
+            this.listBoxPermisos.TabIndex = 4;
             // 
-            // listBox2
+            // listBoxRoles
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(503, 112);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(144, 199);
-            this.listBox2.TabIndex = 5;
+            this.listBoxRoles.FormattingEnabled = true;
+            this.listBoxRoles.Location = new System.Drawing.Point(503, 112);
+            this.listBoxRoles.Name = "listBoxRoles";
+            this.listBoxRoles.Size = new System.Drawing.Size(144, 199);
+            this.listBoxRoles.TabIndex = 5;
             // 
             // button1
             // 
@@ -139,7 +139,7 @@
             this.button5.Text = "Aplicar";
             this.button5.UseVisualStyleBackColor = false;
             // 
-            // frmGestionarRoles
+            // frmGestionRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -150,13 +150,14 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxRoles);
+            this.Controls.Add(this.listBoxPermisos);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
-            this.Name = "frmGestionarRoles";
-            this.Text = "frmGestionarRoles";
+            this.Name = "frmGestionRoles";
+            this.Text = "frmGestionRoles";
+            this.Load += new System.EventHandler(this.frmGestionRoles_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,8 +168,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxPermisos;
+        private System.Windows.Forms.ListBox listBoxRoles;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;

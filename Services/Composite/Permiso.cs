@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Services.Composite
 {
-    public class Patente: PermisoCompuesto
+    public class Permiso: PermisoCompuesto
     {
 
-        public Patente(string nombre) : base(nombre)
+        public Permiso(int id, string nombre) : base(id, nombre)
         {
 
         }

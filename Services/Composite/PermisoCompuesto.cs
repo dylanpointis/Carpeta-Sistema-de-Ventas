@@ -8,9 +8,12 @@ namespace Services.Composite
 {
     public abstract class PermisoCompuesto
     {
+        public int Id { get; set; }
         public string Nombre { get; set; }
-        public PermisoCompuesto(string nombre)
+        
+        public PermisoCompuesto(int id, string nombre)
         {
+            Id = id;
             Nombre = nombre;
         }
         public abstract void AgregarHijo(PermisoCompuesto comp);

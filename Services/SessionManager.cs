@@ -58,7 +58,7 @@ namespace Services
             set
             {
                 _idiomaActual = value;
-                IdiomaManager.GetInstance().CargarIdioma();
+                IdiomaManager.GetInstance().CargarIdiomaEnDiccionario();
                 IdiomaManager.GetInstance().Notificar();
             }
         }

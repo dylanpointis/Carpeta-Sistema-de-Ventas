@@ -1,4 +1,6 @@
 ﻿using BE;
+using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,11 @@ namespace Carpeta_Sistema_de_Ventas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            IdiomaManager.GetInstance().archivoActual = "frmLogin";
+            SessionManager.IdiomaActual = "esp";
             Application.Run(new frmLogin());
+
         }
     }
 }

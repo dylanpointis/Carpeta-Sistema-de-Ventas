@@ -19,12 +19,23 @@ namespace Carpeta_Sistema_de_Ventas
         public frmLogin()
         {
             InitializeComponent();
-            IdiomaManager.GetInstance().Agregar(this);
-            IdiomaManager.GetInstance().archivoActual = "frmLogin";
-            SessionManager.IdiomaActual = "esp";
+
+        }
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            txtNombreUsuario.Text = "Admin";
+            txtClave.Text = "clave123";
         }
 
-        public void ActualizarIdioma()
+        //Cuando carga por primera vez y cuando se vuelve a mostrar con el Metodo CerrandoFormulario() carga el archivo actual y lo agrega al sujeto
+        private void frmLogin_VisibleChanged(object sender, EventArgs e)
+        {
+            IdiomaManager.GetInstance().archivoActual = "frmLogin";
+            IdiomaManager.GetInstance().Agregar(this);
+        }
+
+
+        public void ActualizarObserver()
         {
             FormIdiomas.ActualizarControles(this);
         }
@@ -79,27 +90,15 @@ namespace Carpeta_Sistema_de_Ventas
 
 
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-            txtNombreUsuario.Text = "Admin";
-            txtClave.Text = "clave123";
-        }
+        
 
 
         private void CerrandoFormulario(object sender, FormClosingEventArgs e)
         {
+            SessionManager.GetInstance.LogOut();
             this.Show();
         }
 
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            if (SessionManager.GetInstance.ObtenerUsuario() != null)
-            {
-                SessionManager.GetInstance.LogOut();
-                MessageBox.Show("Se cerró la sesión");
-            }
-            else { MessageBox.Show("No hay una sesión iniciada"); }
-        }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -123,6 +122,11 @@ namespace Carpeta_Sistema_de_Ventas
                 oculto =true;
                 btnMostrarClave.BackgroundImage = Properties.Resources.visible;
             }
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            IdiomaManager.GetInstance().Quitar(this);
         }
 
     }

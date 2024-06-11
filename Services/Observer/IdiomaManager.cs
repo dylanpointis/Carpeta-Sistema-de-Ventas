@@ -33,6 +33,8 @@ namespace Services.Observer
         public void Agregar(IObserver observer)
         {
             observersForms.Add(observer);
+            CargarIdiomaEnDiccionario();
+            Notificar();
         }
         public void Quitar(IObserver observer)
         {
@@ -43,13 +45,13 @@ namespace Services.Observer
         {
             foreach (IObserver observer in observersForms)
             {
-                observer.ActualizarIdioma();
+                observer.ActualizarObserver();
             }
         }
 
 
         /*Carga el idioma en el diccionario "textosDiccionario" con el archivo json*/
-        public void CargarIdioma()
+        public void CargarIdiomaEnDiccionario()
         {
             textosDiccionario = new Dictionary<string, string>();
             textosDiccionario.Clear();

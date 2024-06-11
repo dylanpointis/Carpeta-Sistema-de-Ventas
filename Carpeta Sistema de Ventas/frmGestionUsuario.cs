@@ -20,18 +20,12 @@ namespace Carpeta_Sistema_de_Ventas
         public frmGestionUsuario()
         {
             InitializeComponent();
-            IdiomaManager.GetInstance().Agregar(this);
             IdiomaManager.GetInstance().archivoActual = "frmGestionUsuario";
+            IdiomaManager.GetInstance().Agregar(this);
 
-            /*
-             * 
-             * CON ESTO FUNCIONA PERO NO ME CONVENCE
-             * 
-            IdiomaManager.GetInstance().CargarIdioma();
-            IdiomaManager.GetInstance().Notificar();*/
         }
 
-        public void ActualizarIdioma()
+        public void ActualizarObserver()
         {
             FormIdiomas.ActualizarControles(this);
         }

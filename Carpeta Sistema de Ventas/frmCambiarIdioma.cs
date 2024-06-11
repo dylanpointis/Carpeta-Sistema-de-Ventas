@@ -17,11 +17,12 @@ namespace Carpeta_Sistema_de_Ventas
         public frmCambiarIdioma()
         {
             InitializeComponent();
-            IdiomaManager.GetInstance().Agregar(this);
+
             IdiomaManager.GetInstance().archivoActual = "frmCambiarIdioma";
+            IdiomaManager.GetInstance().Agregar(this);
         }
 
-        public void ActualizarIdioma()
+        public void ActualizarObserver()
         {
             FormIdiomas.ActualizarControles(this);
         }
@@ -36,11 +37,19 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 SessionManager.IdiomaActual = "eng";
             }
+            CargarComboBox();
         }
 
         private void frmCambiarIdioma_Load(object sender, EventArgs e)
         {
+            CargarComboBox();
+        }
 
+        private void CargarComboBox()
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add(IdiomaManager.GetInstance().ConseguirTexto("esp"));
+            comboBox1.Items.Add(IdiomaManager.GetInstance().ConseguirTexto("eng"));
         }
     }
 }

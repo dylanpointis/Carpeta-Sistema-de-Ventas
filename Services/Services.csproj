@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Composite\Familia.cs" />
-    <Compile Include="Composite\Patente.cs" />
+    <Compile Include="Composite\Permiso.cs" />
     <Compile Include="Composite\PermisoCompuesto.cs" />
     <Compile Include="Encriptador.cs" />
     <Compile Include="Observer\IdiomaManager.cs" />
