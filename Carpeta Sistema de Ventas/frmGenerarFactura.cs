@@ -161,10 +161,10 @@ namespace Carpeta_Sistema_de_Ventas
                 _factura.Fecha = DateTime.Now;
                 int id = bllFactura.RegistrarFactura(_factura);
                 _factura.NumFactura = id;
-                MessageBox.Show(id.ToString());
 
                 frmCobrarVenta form = new frmCobrarVenta(_factura);
                 form.ShowDialog();
+                this.Enabled = false;
             }
             else { MessageBox.Show("Debe seleccionar al menos un producto y un cliente"); }
         }

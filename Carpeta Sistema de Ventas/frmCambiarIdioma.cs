@@ -29,15 +29,20 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnCambiarIdioma_Click(object sender, EventArgs e)
         {
-            if (SessionManager.IdiomaActual == "eng")
+            if(cmbIdioma.SelectedItem != null)
             {
-                SessionManager.IdiomaActual = "esp";
+                if (cmbIdioma.Text == IdiomaManager.GetInstance().ConseguirTexto("esp"))
+                {
+                    SessionManager.IdiomaActual = "esp";
+                }
+                else
+                {
+                    SessionManager.IdiomaActual = "eng";
+                }
+
+                CargarComboBox();
             }
-            else
-            {
-                SessionManager.IdiomaActual = "eng";
-            }
-            CargarComboBox();
+            else { MessageBox.Show("Seleccione un idioma"); }
         }
 
         private void frmCambiarIdioma_Load(object sender, EventArgs e)
@@ -47,9 +52,9 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void CargarComboBox()
         {
-            comboBox1.Items.Clear();
-            comboBox1.Items.Add(IdiomaManager.GetInstance().ConseguirTexto("esp"));
-            comboBox1.Items.Add(IdiomaManager.GetInstance().ConseguirTexto("eng"));
+            cmbIdioma.Items.Clear();
+            cmbIdioma.Items.Add(IdiomaManager.GetInstance().ConseguirTexto("esp"));
+            cmbIdioma.Items.Add(IdiomaManager.GetInstance().ConseguirTexto("eng"));
         }
     }
 }

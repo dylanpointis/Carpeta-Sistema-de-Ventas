@@ -26,9 +26,9 @@ namespace Carpeta_Sistema_de_Ventas
             }
         }
 
-        public static string ConseguirTexto(string key)
+        public static string ConseguirTexto(string control)
         {
-            return IdiomaManager.GetInstance().ConseguirTexto(key);
+            return IdiomaManager.GetInstance().ConseguirTexto(control);
         }
     }
 }

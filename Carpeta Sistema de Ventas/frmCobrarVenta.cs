@@ -61,7 +61,6 @@ namespace Carpeta_Sistema_de_Ventas
                 bllFactura.RegistrarItemFactura(_factura); //registra cada item de la factura
 
 
-                //FALTA REDUCIR STOCK
                 foreach (var item in _factura.listaProductosAgregados)
                 {
                     BEProducto prod = item.Item1;
@@ -71,6 +70,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
 
                 MessageBox.Show("Venta cobrada");
+                this.Close();
             }
             else { MessageBox.Show("Complete los campos"); }
            
@@ -78,11 +78,6 @@ namespace Carpeta_Sistema_de_Ventas
 
         private bool ValidarCampos()
         {
-            if (!Regex.IsMatch(txtNumTarjeta.Text, @"^\d{14,16}$"))
-            {
-                MessageBox.Show("El DNI debe contener solo números y tener entre 14 y 16 dígitos.");
-                return false;
-            }
 
             /*Si el metodo de pago es Mercado pago debe solamente poner el aliasMp, no los datos de la tarejeta.*/
             if (cmbMetodoPago.Text != "") 
@@ -98,6 +93,12 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if(txtNumTarjeta.Text == "0" || cmbMarcaTarjeta.Text == "" || txtCantCuotas.Text == "")
                     {
+                        return false;
+                    }
+
+                    if (!Regex.IsMatch(txtNumTarjeta.Text, @"^\d{14,16}$"))
+                    {
+                        MessageBox.Show("El numero de tarjeta debe contener solo números y tener entre 14 y 16 dígitos.");
                         return false;
                     }
                 }

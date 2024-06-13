@@ -60,9 +60,16 @@ namespace Services.Observer
             textosDiccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
         }
 
-        public string ConseguirTexto(string key) //lee el diccionario y devuelve el texto segun la key (nombre del control)
+        public string ConseguirTexto(string nombreControl) //lee el diccionario y devuelve el texto segun la key (nombre del control)
         {
-            return textosDiccionario.ContainsKey(key) ? textosDiccionario[key] : key;
+            if (textosDiccionario.ContainsKey(nombreControl))
+            {
+                return textosDiccionario[nombreControl];
+            }
+            else
+            {
+                return nombreControl;
+            }
         }
 
 

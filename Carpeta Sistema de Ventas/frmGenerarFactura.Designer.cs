@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.btnFinalizar = new System.Windows.Forms.Button();
             this.lblIVA = new System.Windows.Forms.Label();
             this.lblNeto = new System.Windows.Forms.Label();
             this.btnRegistrarCliente = new System.Windows.Forms.Button();
@@ -82,9 +81,9 @@
             // 
             // btnCobrarVenta
             // 
-            this.btnCobrarVenta.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCobrarVenta.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnCobrarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCobrarVenta.ForeColor = System.Drawing.Color.Black;
+            this.btnCobrarVenta.ForeColor = System.Drawing.Color.White;
             this.btnCobrarVenta.Location = new System.Drawing.Point(41, 465);
             this.btnCobrarVenta.Name = "btnCobrarVenta";
             this.btnCobrarVenta.Size = new System.Drawing.Size(132, 52);
@@ -122,19 +121,6 @@
             this.lblTotal.Size = new System.Drawing.Size(51, 16);
             this.lblTotal.TabIndex = 35;
             this.lblTotal.Text = "Total: ";
-            // 
-            // btnFinalizar
-            // 
-            this.btnFinalizar.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFinalizar.ForeColor = System.Drawing.Color.White;
-            this.btnFinalizar.Location = new System.Drawing.Point(196, 465);
-            this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(132, 52);
-            this.btnFinalizar.TabIndex = 36;
-            this.btnFinalizar.Text = "Finalizar";
-            this.btnFinalizar.UseVisualStyleBackColor = false;
-            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // lblIVA
             // 
@@ -319,7 +305,6 @@
             this.ClientSize = new System.Drawing.Size(1025, 529);
             this.Controls.Add(this.lblIVA);
             this.Controls.Add(this.lblNeto);
-            this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -347,7 +332,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.Label lblIVA;
         private System.Windows.Forms.Label lblNeto;
         private System.Windows.Forms.Button btnRegistrarCliente;

@@ -152,7 +152,7 @@ END
 GO
 
 /*Solo registra la fecha. Luego se le modifica los datos del pago. Devuelve el ID NumFactura generado*/
-ALTER PROCEDURE RegistrarFactura
+CREATE PROCEDURE RegistrarFactura
 	@DNICliente int,
     @Fecha varchar(50)
 AS
