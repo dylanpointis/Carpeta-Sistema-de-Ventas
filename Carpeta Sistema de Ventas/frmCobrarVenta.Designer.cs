@@ -48,6 +48,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lblNumeroFactura = new System.Windows.Forms.Label();
             this.txtNumTarjeta = new System.Windows.Forms.NumericUpDown();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantCuotas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumTarjeta)).BeginInit();
             this.SuspendLayout();
@@ -265,11 +266,28 @@
             this.txtNumTarjeta.Size = new System.Drawing.Size(144, 20);
             this.txtNumTarjeta.TabIndex = 38;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.Black;
+            this.btnCancelar.Location = new System.Drawing.Point(527, 328);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnCancelar.Size = new System.Drawing.Size(145, 43);
+            this.btnCancelar.TabIndex = 39;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // frmCobrarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 412);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtNumTarjeta);
             this.Controls.Add(this.lblNumeroFactura);
             this.Controls.Add(this.txtNumTransaccion);
@@ -323,5 +341,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblNumeroFactura;
         private System.Windows.Forms.NumericUpDown txtNumTarjeta;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

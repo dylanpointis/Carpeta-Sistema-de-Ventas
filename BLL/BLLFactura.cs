@@ -2,6 +2,7 @@
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,19 +12,21 @@ namespace BLL
     public class BLLFactura
     {
         DALFactura dalFac = new DALFactura();
-        public int RegistrarFactura(BEFactura factura)
+        public void RegistrarFactura(BEFactura factura)
         {
-            return dalFac.RegistrarFactura(factura);
+            dalFac.RegistrarFactura(factura);
         }
 
-        public void RegistrarDatosPago(BEFactura factura)
-        {
-            dalFac.RegistrarDatosPago(factura);
-        }
+
 
         public void RegistrarItemFactura(BEFactura factura)
         {
             dalFac.RegistrarItemFactura(factura);
+        }
+
+        public int TraerUltimoIDFactura()
+        {
+            return dalFac.TraerUltimoIDFactura();
         }
     }
 }

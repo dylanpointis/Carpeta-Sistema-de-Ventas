@@ -50,6 +50,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnFinalizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProductosAgregados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -81,9 +82,9 @@
             // 
             // btnCobrarVenta
             // 
-            this.btnCobrarVenta.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnCobrarVenta.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCobrarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCobrarVenta.ForeColor = System.Drawing.Color.White;
+            this.btnCobrarVenta.ForeColor = System.Drawing.Color.Black;
             this.btnCobrarVenta.Location = new System.Drawing.Point(41, 465);
             this.btnCobrarVenta.Name = "btnCobrarVenta";
             this.btnCobrarVenta.Size = new System.Drawing.Size(132, 52);
@@ -297,12 +298,27 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Producto";
             // 
+            // btnFinalizar
+            // 
+            this.btnFinalizar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnFinalizar.Enabled = false;
+            this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalizar.ForeColor = System.Drawing.Color.White;
+            this.btnFinalizar.Location = new System.Drawing.Point(179, 465);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(132, 52);
+            this.btnFinalizar.TabIndex = 40;
+            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.UseVisualStyleBackColor = false;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click_1);
+            // 
             // frmGenerarFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCyan;
             this.ClientSize = new System.Drawing.Size(1025, 529);
+            this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.lblIVA);
             this.Controls.Add(this.lblNeto);
             this.Controls.Add(this.lblTotal);
@@ -348,5 +364,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnFinalizar;
     }
 }

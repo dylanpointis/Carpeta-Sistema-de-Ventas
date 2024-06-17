@@ -9,16 +9,12 @@ namespace BE
     public class BEFactura
     {
         public int NumFactura { get; set; }
-        public int NumTransaccionBancaria { get; set; }
         public DateTime Fecha { get; set; }
-        public EnumMetodoPago MetodoPago { get; set; }
-        public string AliasMP { get; set; } //puede ser Null
         public double MontoTotal { get; set; }
         public double Impuesto { get; set; }
-        public string MarcaTarjeta { get; set; }
-        public string NumTarjeta { get; set; } //encriptada reversiblemente
-        public int CantCuotas { get; set; }
-        public string ComentarioAdicional { get; set; } //puede ser Null
+
+        public Cobro cobro { get; set; } 
+ 
 
 
         public List<(BEProducto, int)> listaProductosAgregados{ get; set; }

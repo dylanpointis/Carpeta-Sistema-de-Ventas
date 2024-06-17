@@ -20,9 +20,11 @@ namespace Carpeta_Sistema_de_Ventas
     {
         BLLProducto bllProductos = new BLLProducto();
         BEFactura _factura;
+        public List<(BEProducto, int)> listaProductosInicial;
         public frmSeleccionarProducto(BEFactura factura)
         {
             _factura = factura;
+            listaProductosInicial = new List<(BEProducto,int)>(_factura.listaProductosAgregados); // hace una copia de la lista incial al entrar al form
             InitializeComponent();
         }
 
@@ -137,6 +139,11 @@ namespace Carpeta_Sistema_de_Ventas
                 }
             }
 
+            ActualizarLabelsTotal();
+        }
+
+        private void ActualizarLabelsTotal()
+        {
             double neto = _factura.CalcularMonto();
             double impuesto = neto * 0.21;
 
@@ -151,9 +158,8 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            _factura.listaProductosAgregados.Clear();
-            _factura.MontoTotal = 0;
-            _factura.Impuesto = 0;
+            _factura.listaProductosAgregados = listaProductosInicial; //Si cancela resetea la lista de productos a como estaba
+            ActualizarLabelsTotal();
             this.Close();
         }
     }

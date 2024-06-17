@@ -151,6 +151,14 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE TraerUltimoIDFactura
+AS
+BEGIN
+SELECT IDENT_CURRENT( 'Facturas' )  
+END 
+GO
+
+/*
 /*Solo registra la fecha. Luego se le modifica los datos del pago. Devuelve el ID NumFactura generado*/
 CREATE PROCEDURE RegistrarFactura
 	@DNICliente int,
@@ -160,12 +168,13 @@ BEGIN
     INSERT INTO Facturas VALUES (@DNICliente,null,null,null,@Fecha,null,null,null,null,null, null);
 	SELECT SCOPE_IDENTITY() 
 END
-GO
-CREATE PROCEDURE RegistrarDatosPago
-	@NumFactura int,
+GO*/
+CREATE PROCEDURE RegistrarFactura
+	@DNICliente int,
     @NumTransaccion int,
 	@MontoTotal float,
 	@Impuesto float,
+    @Fecha varchar(50),
 	@MetodoPago varchar(50),
 	@MarcaTarjeta varchar(50),
 	@NumTarjeta varchar(100),
@@ -174,7 +183,7 @@ CREATE PROCEDURE RegistrarDatosPago
 	@ComentarioAdicional varchar(100) NULL
 AS
 BEGIN
-    UPDATE Facturas SET NumeroTransaccion= @NumTransaccion, MontoTotal = @MontoTotal, Impuesto = @Impuesto, MetodoPago = @MetodoPago, MarcaTarjeta =@MarcaTarjeta, NumTarjeta = @NumTarjeta, CantCuotas = @CantCuotas, AliasMP = @AliasMP, ComentarioAdicional = @ComentarioAdicional where NumFactura = @NumFactura;
+    INSERT INTO Facturas VALUES (@DNICliente, @NumTransaccion, @MontoTotal, @Impuesto, @Fecha, @MetodoPago, @MarcaTarjeta, @NumTarjeta, @CantCuotas, @AliasMP, @ComentarioAdicional);
 END
 GO
 

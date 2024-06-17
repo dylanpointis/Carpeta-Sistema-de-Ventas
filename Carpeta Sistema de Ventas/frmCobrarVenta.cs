@@ -20,6 +20,7 @@ namespace Carpeta_Sistema_de_Ventas
         BLLFactura bllFactura = new BLLFactura();
         BLLProducto bllProducto = new BLLProducto();
         BEFactura _factura;
+        public Cobro cobroDatos = new Cobro();
         public frmCobrarVenta(BEFactura factura)
         {
             InitializeComponent();
@@ -42,33 +43,24 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (ValidarCampos())
             {
-                _factura.NumTransaccionBancaria = _factura.NumFactura;
-                _factura.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedItem.ToString());
-                _factura.ComentarioAdicional = txtComentarioAdicional.Text;
-                _factura.CantCuotas = 1;
-                if (_factura.MetodoPago == EnumMetodoPago.MercadoPago)
+                cobroDatos.NumTransaccionBancaria = _factura.NumFactura;
+                cobroDatos.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedItem.ToString());
+                cobroDatos.ComentarioAdicional = txtComentarioAdicional.Text;
+                cobroDatos.CantCuotas = 1;
+                if (cobroDatos.MetodoPago == EnumMetodoPago.MercadoPago)
                 {
-                    _factura.AliasMP = txtAliasMP.Text;
+                    cobroDatos.AliasMP = txtAliasMP.Text;
                 }
                 else
                 {
-                    _factura.AliasMP = null;
-                    _factura.NumTarjeta = Encriptador.EncriptarAES(txtNumTarjeta.Text); //TIENE QUE ENCRIPTARSE REVERSIBLEMENTE
-                    _factura.MarcaTarjeta = cmbMarcaTarjeta.Text;
-                    _factura.CantCuotas = Convert.ToInt16(txtCantCuotas.Text);
+                    cobroDatos.AliasMP = null;
+                    cobroDatos.NumTarjeta = Encriptador.EncriptarAES(txtNumTarjeta.Text); //TIENE QUE ENCRIPTARSE REVERSIBLEMENTE
+                    cobroDatos.MarcaTarjeta = cmbMarcaTarjeta.Text;
+                    cobroDatos.CantCuotas = Convert.ToInt16(txtCantCuotas.Text);
                 }
-                bllFactura.RegistrarDatosPago(_factura);
-                bllFactura.RegistrarItemFactura(_factura); //registra cada item de la factura
+               
 
-
-                foreach (var item in _factura.listaProductosAgregados)
-                {
-                    BEProducto prod = item.Item1;
-                    int cantidad = item.Item2;
-
-                    bllProducto.ModificarStock(prod, prod.Stock - cantidad);
-                }
-
+                _factura.cobro = cobroDatos;
                 MessageBox.Show("Venta cobrada");
                 this.Close();
             }
@@ -141,6 +133,11 @@ namespace Carpeta_Sistema_de_Ventas
                 cmbMarcaTarjeta.Enabled = true;
                 txtCantCuotas.Enabled = true;
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="BEFactura.cs" />
     <Compile Include="BEProducto.cs" />
     <Compile Include="BEUsuario.cs" />
+    <Compile Include="Cobro.cs" />
     <Compile Include="EnumMetodoPago.cs" />
     <Compile Include="EnumModoAplicar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

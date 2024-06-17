@@ -15,8 +15,9 @@ namespace Carpeta_Sistema_de_Ventas
     public partial class frmGenerarFactura : Form
     {
         private BLLCliente bllCliente = new BLLCliente();
-        private BEFactura _factura;
+        public BEFactura _factura;
         private BLLFactura bllFactura = new BLLFactura();
+        private BLLProducto bllProducto = new BLLProducto();
         public frmGenerarFactura()
         {
             InitializeComponent();
@@ -43,25 +44,6 @@ namespace Carpeta_Sistema_de_Ventas
             ActualizarGrillaProductos();
         }
 
-
-        /*
-        private void btnEliminarProducto_Click(object sender, EventArgs e)
-        {
-            if (grillaProductosAgregados.SelectedRows.Count > 0)
-            {
-                int codigoProducto = Convert.ToInt32(grillaProductosAgregados.CurrentRow.Cells[0].Value);
-                var productoAEliminar = _factura.listaProductosAgregados.FirstOrDefault(p => p.Item1.CodigoProducto == codigoProducto);
-
-                _factura.listaProductosAgregados.Remove(productoAEliminar);
-                ActualizarGrillaProductos();
-
-               
-                
-                _factura.MontoTotal = _factura.CalcularTotal();
-                lblTotal.Text = "Total: $" + _factura.MontoTotal;
-            }
-
-        }*/
 
 
         private void ActualizarGrillaProductos()
@@ -159,18 +141,46 @@ namespace Carpeta_Sistema_de_Ventas
             if(_factura.listaProductosAgregados.Count > 0 && _factura.clienteFactura != null)
             {
                 _factura.Fecha = DateTime.Now;
-                int id = bllFactura.RegistrarFactura(_factura);
-                _factura.NumFactura = id;
+                _factura.NumFactura = bllFactura.TraerUltimoIDFactura() + 1;
 
                 frmCobrarVenta form = new frmCobrarVenta(_factura);
                 form.ShowDialog();
-                this.Enabled = false;
+
+                if (_factura.cobro != null)
+                {
+                    btnFinalizar.Enabled = true;
+                }
             }
             else { MessageBox.Show("Debe seleccionar al menos un producto y un cliente"); }
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnFinalizar_Click_1(object sender, EventArgs e)
+        {
+            if(_factura.listaProductosAgregados.Count >0 && _factura.clienteFactura!= null && _factura.cobro != null)
+            {
+                DialogResult resultado = MessageBox.Show($"¿Desea finalizar la venta?", "Finalizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    bllFactura.RegistrarFactura(_factura);
+                    bllFactura.RegistrarItemFactura(_factura); //registra cada item de la factura
+
+
+                    foreach (var item in _factura.listaProductosAgregados)
+                    {
+                        BEProducto prod = item.Item1;
+                        int cantidad = item.Item2;
+
+                        bllProducto.ModificarStock(prod, prod.Stock - cantidad);
+                    }
+                    MessageBox.Show("Venta Finalizada");
+                    this.Enabled = false; // deshabilita los botones
+                }
+            }
         }
     }
 }
