@@ -141,9 +141,8 @@ namespace Carpeta_Sistema_de_Ventas
                 BEUsuario user = bllUsuario.ValidarUsuario("",Convert.ToInt32(txtDNI.Text), "");
                 if (user == null)
                 {
-                    BloquearBotones("Agregar");
-
                     modoOperacion = EnumModoAplicar.Añadir;
+                    BloquearBotones();
                     lblMensaje.Text = FormIdiomas.ConseguirTexto("modoAñadir");
                 }
                 else
@@ -167,8 +166,8 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(grillaUsuarios.SelectedRows.Count > 0)
             {
-                BloquearBotones("Modificar");
                 modoOperacion = EnumModoAplicar.Modificar;
+                BloquearBotones();
 
                 lblMensaje.Text = FormIdiomas.ConseguirTexto("modoModificar")+ $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 txtDNI.Focus();
@@ -185,8 +184,8 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                BloquearBotones("Eliminar");
                 modoOperacion = EnumModoAplicar.Eliminar;
+                BloquearBotones();
                 lblMensaje.Text = FormIdiomas.ConseguirTexto("modoEliminar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
             }
             else { MessageBox.Show("Seleccione un usuario para eliminar"); }
@@ -199,7 +198,7 @@ namespace Carpeta_Sistema_de_Ventas
                 if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[7].Value))
                 {
                     modoOperacion = EnumModoAplicar.Desbloquear;
-                    BloquearBotones("Desbloquear");
+                    BloquearBotones();
                     lblMensaje.Text = FormIdiomas.ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 }
                 else { MessageBox.Show("El usuario seleccionado no está bloqueado"); }
@@ -225,27 +224,27 @@ namespace Carpeta_Sistema_de_Ventas
             btnCancelar.Enabled = false;
         }
 
-        private void BloquearBotones(string Modo)
+        private void BloquearBotones()
         {
             btnResetearClave.Enabled = false;
-            if(Modo == "Agregar")
+            if(modoOperacion == EnumModoAplicar.Añadir)
             {
                 btnAgregar.Enabled = false;btnModificar.Enabled = false; btnEliminar.Enabled = false; btnDesbloquear.Enabled = false; cmbActivo.Enabled = false;
                 btnCancelar.Enabled = true;
             }
-            else if(Modo == "Modificar") 
+            else if(modoOperacion == EnumModoAplicar.Modificar) 
             {
                 btnAgregar.Enabled = false; btnEliminar.Enabled = false; btnDesbloquear.Enabled = false; btnModificar.Enabled = false;
                 btnCancelar.Enabled = true;
             }
-            else if(Modo == "Eliminar")
+            else if(modoOperacion == EnumModoAplicar.Eliminar)
             {
                 btnCancelar.Enabled = true; btnAgregar.Enabled = false; btnModificar.Enabled = false; btnDesbloquear.Enabled = false; cmbActivo.Enabled = false;
                 btnEliminar.Enabled = false;
 
                 txtDNI.Enabled = false; txtNombre.Enabled = false; txtNombreUsuario.Enabled = false; txtEmail.Enabled = false; txtApellido.Enabled = false; cmbRol.Enabled = false; cmbActivo.Enabled = false;
             }
-            else if(Modo == "Desbloquear")
+            else if(modoOperacion == EnumModoAplicar.Desbloquear)
             {
                 btnDesbloquear.Enabled = false; btnEliminar.Enabled = false; btnDesbloquear.Enabled = false; btnModificar.Enabled = false; btnAgregar.Enabled = false;
                 btnCancelar.Enabled = true;
@@ -320,17 +319,17 @@ namespace Carpeta_Sistema_de_Ventas
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
                     LlenarCamposConDatos();
-                    lblMensaje.Text = $"Mensaje: Modo Modificar DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoModificar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 }
                 else if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
-                    lblMensaje.Text = $"Mensaje: Modo Eliminar DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoEliminar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 }
                 else if (modoOperacion == EnumModoAplicar.Desbloquear)
                 {
                     if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[7].Value))
                     {
-                        lblMensaje.Text = $"Mensaje: Modo Desbloquear DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                        lblMensaje.Text = FormIdiomas.ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                     }
                     else 
                     { 

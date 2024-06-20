@@ -25,13 +25,16 @@ Mail varchar(100) NOT NULL,
 Direccion varchar(150) NOT NULL
 )
 
+
+
 CREATE TABLE Productos(
 CodigoProducto INT PRIMARY KEY NOT NULL,
+Modelo varchar(50) NOT NULL,
 Descripcion varchar(100) NOT NULL,
 Marca varchar(50) NOT NULL,
 Color varchar(50) NOT NULL,
 Precio float NOT NULL,
-Stock int NOT NULL,
+Stock smallint NOT NULL,
 Almacenamiento smallint NOT NULL
 )
 
@@ -71,9 +74,6 @@ BEGIN
     SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario OR DNI = @DNI OR Mail = @Email;
 END
 GO
-
-
-
 
 
 CREATE PROCEDURE ModificarBloquearUsuario
@@ -207,10 +207,52 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE RegistrarProducto
+	@CodigoProducto int,
+	@Modelo varchar(50),
+	@Descripcion varchar(50),
+	@Marca varchar(50),
+	@Color varchar(50),
+	@Precio float,
+	@Stock smallint,
+	@Almacenamiento smallint
+
+AS
+BEGIN
+    INSERT INTO Productos VALUES (@CodigoProducto,@Modelo,@Descripcion,@Marca,@Color,@Precio,@Stock, @Almacenamiento)
+END
+GO
+
+CREATE PROCEDURE EliminarProducto
+	@CodigoProducto int
+AS
+BEGIN
+    DELETE FROM Productos WHERE CodigoProducto = @CodigoProducto;
+END
+GO
+
+CREATE PROCEDURE ModificarProducto
+	@CodigoProducto int,
+	@Modelo varchar(50),
+	@Descripcion varchar(50),
+	@Marca varchar(50),
+	@Color varchar(50),
+	@Precio float,
+	@Stock smallint,
+	@Almacenamiento smallint
+
+AS
+BEGIN
+    UPDATE Productos SET Modelo = @Modelo, Descripcion = @Descripcion, Marca = @Marca, Color = @Color, Precio = @Precio, Stock = @Stock, Almacenamiento = @Almacenamiento where CodigoProducto = @CodigoProducto
+END
+GO
+
+
 
 /*CLAVE clave123*/
 INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 'Admin', 0, 1);
-INSERT INTO Productos VALUES (123, 'Iphone 15 Pro', 'Apple', 'Blanco', 1100, 20, 256);
-INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra', 'Samsung', 'Negro', 1300, 26, 512);
+INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256);
+INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512);
 INSERT INTO Clientes VALUES (34789332, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Jose Paz 678');
 INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', 'Av. Olivos 222');
+

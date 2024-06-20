@@ -32,14 +32,21 @@ namespace Carpeta_Sistema_de_Ventas
         {
             grillaCarrito.ColumnCount = 5;
             grillaCarrito.Columns[0].Name = "Codigo producto";
-            grillaCarrito.Columns[1].Name = "Descripcion";
+            grillaCarrito.Columns[1].Name = "Modelo";
             grillaCarrito.Columns[2].Name = "Cantidad";
             grillaCarrito.Columns[3].Name = "Precio";
             grillaCarrito.Columns[4].Name = "Subtotal";
-           
+            grillaCarrito.Columns[2].Width = 55;
+
             ActualizarGrilla();
 
-            if(_factura.listaProductosAgregados.Count == 0) { btnConfirmar.Enabled = false; }
+            grillaProductos.Columns[0].Width = 45;
+            grillaProductos.Columns[3].Width = 30;
+            grillaProductos.Columns[4].Width = 40;
+            grillaProductos.Columns[5].Width = 35;
+            grillaProductos.Columns[6].Width = 35;
+            grillaProductos.Columns[7].Width = 35;
+            if (_factura.listaProductosAgregados.Count == 0) { btnConfirmar.Enabled = false; }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -49,7 +56,7 @@ namespace Carpeta_Sistema_de_Ventas
                 int cantStock = Convert.ToInt32(grillaProductos.CurrentRow.Cells[5].Value);
                 if (cantStock > 0)
                 {
-                    BEProducto producto = new BEProducto(Convert.ToInt32(grillaProductos.CurrentRow.Cells[0].Value), grillaProductos.CurrentRow.Cells[1].Value.ToString(), grillaProductos.CurrentRow.Cells[2].Value.ToString(), grillaProductos.CurrentRow.Cells[3].Value.ToString(), Convert.ToDouble(grillaProductos.CurrentRow.Cells[4].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[5].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value));
+                    BEProducto producto = new BEProducto(Convert.ToInt32(grillaProductos.CurrentRow.Cells[0].Value), grillaProductos.CurrentRow.Cells[1].Value.ToString(), grillaProductos.CurrentRow.Cells[2].Value.ToString(), grillaProductos.CurrentRow.Cells[3].Value.ToString(), grillaProductos.CurrentRow.Cells[4].Value.ToString(), Convert.ToDouble(grillaProductos.CurrentRow.Cells[5].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[7].Value));
                     string cantComprada = Interaction.InputBox("Ingrese la cantidad a vender");
                     if (Regex.IsMatch(cantComprada.ToString(), @"^\d+$"))  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO
                     { 
@@ -107,7 +114,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             /*Crea una lista con los productos encontrados. Concatena el codigo, descripcion y marca y luego con el metodo Contain se fija si contiene las letras de la consulta*/
             lstProdEncontrados = lstProductos
-            .Where(p => (p.CodigoProducto.ToString() + p.Descripcion.ToLower() + p.Marca.ToLower()).Contains(consulta))
+            .Where(p => (p.CodigoProducto.ToString() + p.Modelo.ToLower() + p.Marca.ToLower()).Contains(consulta))
             .ToList();
 
             if(lstProdEncontrados.Count > 0)
@@ -135,7 +142,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BEProducto prod = item.Item1;
                     int cantidad = item.Item2;
 
-                    grillaCarrito.Rows.Add(prod.CodigoProducto, prod.Descripcion, cantidad, prod.Precio, cantidad * prod.Precio);
+                    grillaCarrito.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
                 }
             }
 

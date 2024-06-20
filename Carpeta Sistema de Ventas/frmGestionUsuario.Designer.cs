@@ -66,7 +66,6 @@
             this.grillaUsuarios.ReadOnly = true;
             this.grillaUsuarios.Size = new System.Drawing.Size(847, 255);
             this.grillaUsuarios.TabIndex = 0;
-            this.grillaUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grillaUsuarios_CellClick);
             // 
             // label2
             // 

@@ -85,6 +85,18 @@ namespace Carpeta_Sistema_de_Ventas
             AbrirForm(frmCambiarIdioma);
         }
 
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMaestroProducto frmMaestroProducto = new frmMaestroProducto();
+            AbrirForm(frmMaestroProducto);
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMaestroClientes frmMaestroClientes = new frmMaestroClientes();
+            AbrirForm(frmMaestroClientes);
+        }
+
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Desea cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

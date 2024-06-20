@@ -28,6 +28,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             grillaProductosAgregados.ColumnCount = 5;
             grillaProductosAgregados.Columns[0].Name = "Codigo producto";
+            grillaProductosAgregados.Columns[2].Width = 58;
             grillaProductosAgregados.Columns[1].Name = "Descripcion";
             grillaProductosAgregados.Columns[2].Name = "Cantidad";
             grillaProductosAgregados.Columns[3].Name = "Precio";
@@ -56,7 +57,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BEProducto prod = item.Item1;
                     int cantidad = item.Item2;
 
-                    grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Descripcion, cantidad, prod.Precio, cantidad * prod.Precio);
+                    grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
                 }
             }
 

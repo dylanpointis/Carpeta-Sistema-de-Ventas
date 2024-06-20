@@ -79,6 +79,18 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMaestroClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaestroClientes.Designer.cs">
+      <DependentUpon>frmMaestroClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaestroProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaestroProducto.Designer.cs">
+      <DependentUpon>frmMaestroProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaestroProducto.resx">
+      <DependentUpon>frmMaestroProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>

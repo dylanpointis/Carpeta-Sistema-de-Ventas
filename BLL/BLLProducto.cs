@@ -1,6 +1,7 @@
 ﻿using BE;
 using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace BLL
 
             foreach (DataRow row in tabla.Rows)
             {
-                BEProducto producto = new BEProducto(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToDouble(row[4]), Convert.ToInt32(row[5]), Convert.ToInt32(row[6]));
+                BEProducto producto = new BEProducto(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), Convert.ToDouble(row[5]), Convert.ToInt32(row[6]), Convert.ToInt32(row[7]));
                 lista.Add(producto);
             }
             return lista;
@@ -30,6 +31,21 @@ namespace BLL
         public void ModificarStock(BEProducto produto, int stock)
         {
             dalProd.ModificarStock(produto, stock);
+        }
+
+        public void RegistrarProducto(BEProducto prod)
+        {
+            dalProd.RegistrarProducto(prod);
+        }
+
+        public void EliminarProducto(int idProd)
+        {
+            dalProd.EliminarProducto(idProd);
+        }
+
+        public void ModificarProducto(BEProducto prod)
+        {
+            dalProd.ModificarProducto(prod);
         }
     }
 }

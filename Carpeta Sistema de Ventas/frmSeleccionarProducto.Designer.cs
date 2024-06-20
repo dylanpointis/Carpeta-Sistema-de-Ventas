@@ -50,7 +50,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(339, 322);
+            this.label4.Location = new System.Drawing.Point(365, 322);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 19;
@@ -58,7 +58,7 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(342, 338);
+            this.txtBuscar.Location = new System.Drawing.Point(368, 338);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(132, 20);
             this.txtBuscar.TabIndex = 18;
@@ -67,7 +67,7 @@
             // 
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(481, 335);
+            this.btnBuscar.Location = new System.Drawing.Point(516, 335);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 17;
@@ -79,7 +79,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(28, 12);
+            this.label2.Location = new System.Drawing.Point(17, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 20);
             this.label2.TabIndex = 16;
@@ -90,7 +90,7 @@
             this.btnAgregar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Location = new System.Drawing.Point(32, 328);
+            this.btnAgregar.Location = new System.Drawing.Point(21, 328);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(99, 30);
             this.btnAgregar.TabIndex = 15;
@@ -102,11 +102,11 @@
             // 
             this.grillaProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaProductos.Location = new System.Drawing.Point(32, 35);
+            this.grillaProductos.Location = new System.Drawing.Point(21, 35);
             this.grillaProductos.MultiSelect = false;
             this.grillaProductos.Name = "grillaProductos";
             this.grillaProductos.ReadOnly = true;
-            this.grillaProductos.Size = new System.Drawing.Size(524, 283);
+            this.grillaProductos.Size = new System.Drawing.Size(570, 283);
             this.grillaProductos.TabIndex = 14;
             // 
             // lblTotal
@@ -122,11 +122,11 @@
             // grillaCarrito
             // 
             this.grillaCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaCarrito.Location = new System.Drawing.Point(607, 35);
+            this.grillaCarrito.Location = new System.Drawing.Point(632, 35);
             this.grillaCarrito.MultiSelect = false;
             this.grillaCarrito.Name = "grillaCarrito";
             this.grillaCarrito.ReadOnly = true;
-            this.grillaCarrito.Size = new System.Drawing.Size(518, 283);
+            this.grillaCarrito.Size = new System.Drawing.Size(493, 283);
             this.grillaCarrito.TabIndex = 23;
             // 
             // btnConfirmar
@@ -135,7 +135,7 @@
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmar.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmar.Location = new System.Drawing.Point(32, 418);
+            this.btnConfirmar.Location = new System.Drawing.Point(21, 418);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(167, 40);
             this.btnConfirmar.TabIndex = 22;
@@ -148,7 +148,7 @@
             this.btnQuitar.BackColor = System.Drawing.Color.Firebrick;
             this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitar.ForeColor = System.Drawing.Color.White;
-            this.btnQuitar.Location = new System.Drawing.Point(607, 328);
+            this.btnQuitar.Location = new System.Drawing.Point(632, 328);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(99, 30);
             this.btnQuitar.TabIndex = 21;
@@ -160,7 +160,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(603, 12);
+            this.label1.Location = new System.Drawing.Point(628, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(180, 20);
             this.label1.TabIndex = 20;
@@ -170,7 +170,7 @@
             // 
             this.btnActualizar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Location = new System.Drawing.Point(481, 9);
+            this.btnActualizar.Location = new System.Drawing.Point(516, 9);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 25;
