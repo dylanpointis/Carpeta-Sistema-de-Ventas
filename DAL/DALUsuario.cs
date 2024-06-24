@@ -36,7 +36,6 @@ namespace DAL
                 new SqlParameter("@NombreUsuario", user.NombreUsuario),
                 new SqlParameter("@Rol", user.Rol),
                 new SqlParameter("@Bloqueo", user.Bloqueado),
-                new SqlParameter("@Activo", user.Activo),
                 new SqlParameter("@UltimoDNI", ultimoDNICliente)
             };
             dalCon.EjecutarProcAlmacenado("ModificarUsuario", parametros);

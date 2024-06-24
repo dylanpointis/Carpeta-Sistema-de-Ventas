@@ -48,8 +48,6 @@
             this.btnDesbloquear = new System.Windows.Forms.Button();
             this.btnAplicar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cmbActivo = new System.Windows.Forms.ComboBox();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnResetearClave = new System.Windows.Forms.Button();
@@ -264,29 +262,6 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(599, 328);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(44, 16);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "Activo";
-            // 
-            // cmbActivo
-            // 
-            this.cmbActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbActivo.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmbActivo.FormattingEnabled = true;
-            this.cmbActivo.Items.AddRange(new object[] {
-            "Activo",
-            "No activo"});
-            this.cmbActivo.Location = new System.Drawing.Point(602, 350);
-            this.cmbActivo.Name = "cmbActivo";
-            this.cmbActivo.Size = new System.Drawing.Size(143, 21);
-            this.cmbActivo.TabIndex = 26;
-            // 
             // lblMensaje
             // 
             this.lblMensaje.AutoSize = true;
@@ -330,8 +305,6 @@
             this.Controls.Add(this.btnResetearClave);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.lblMensaje);
-            this.Controls.Add(this.cmbActivo);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAplicar);
             this.Controls.Add(this.btnDesbloquear);
@@ -384,8 +357,6 @@
         private System.Windows.Forms.Button btnDesbloquear;
         private System.Windows.Forms.Button btnAplicar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cmbActivo;
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnResetearClave;
