@@ -13,6 +13,16 @@ namespace BLL
     {
         DALCliente dalCliente = new DALCliente();
 
+        public void EliminarCliente(int dniCliente)
+        {
+            dalCliente.EliminarCliente(dniCliente);
+        }
+
+        public void ModificarCliente(BECliente cliente)
+        {
+            dalCliente.ModificarCliente(cliente);
+        }
+
         public void RegistrarCliente(BECliente cliente)
         {
             dalCliente.RegistrarCliente(cliente);

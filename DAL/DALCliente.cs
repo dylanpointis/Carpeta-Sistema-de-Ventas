@@ -14,6 +14,28 @@ namespace DAL
     {
         DALConexion dalCon = new DALConexion();
 
+        public void EliminarCliente(int dniCliente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DNI", dniCliente)
+            };
+            dalCon.EjecutarProcAlmacenado("EliminarCliente", parametros);
+        }
+
+        public void ModificarCliente(BECliente cliente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+             {
+                new SqlParameter("@DNI", cliente.DniCliente),
+                new SqlParameter("@Nombre", cliente.Nombre),
+                new SqlParameter("@Apellido", cliente.Apellido),
+                new SqlParameter("@Mail", cliente.Mail),
+                new SqlParameter("@Direccion", cliente.Direccion)
+             };
+            dalCon.EjecutarProcAlmacenado("ModificarCliente", parametros);
+        }
+
         public void RegistrarCliente(BECliente cliente)
         {
             SqlParameter[] parametros = new SqlParameter[]

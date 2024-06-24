@@ -50,7 +50,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (txtCodigoProducto.Text != "" && txtCodigoProducto.Text != "0" && txtCodigoProducto.Text.Length <= 13)
             {
-                BEProducto prodEncontrado = listaProd.FirstOrDefault(p => p.CodigoProducto == Convert.ToInt32(txtCodigoProducto.Text));
+                BEProducto prodEncontrado = listaProd.FirstOrDefault(p => p.CodigoProducto == Convert.ToInt64(txtCodigoProducto.Text));
                 if (prodEncontrado == null)
                 {
                     modoOperacion = EnumModoAplicar.Añadir;
@@ -107,14 +107,14 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (ValidarCampos())
                     {
-                        BEProducto prodEncontrado = listaProd.FirstOrDefault(p => p.CodigoProducto == Convert.ToInt32(txtCodigoProducto.Text));
+                        BEProducto prodEncontrado = listaProd.FirstOrDefault(p => p.CodigoProducto == Convert.ToInt64(txtCodigoProducto.Text));
                         if (prodEncontrado != null)
                         {
                             MessageBox.Show("Ya existe un Producto con ese Codigo");
                         }
                         else
                         {
-                            BEProducto prod = new BEProducto(Convert.ToInt32(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text));
+                            BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text));
                             bllProducto.RegistrarProducto(prod);
                             MessageBox.Show("Producto registrado exitosamente");
                         }
@@ -129,20 +129,20 @@ namespace Carpeta_Sistema_de_Ventas
 
                         if (resultado == DialogResult.Yes)
                         {
-                            int idProd = Convert.ToInt32(grillaProductos.CurrentRow.Cells[0].Value);
+                            long idProd = Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value);
                             bllProducto.EliminarProducto(idProd);
                             MessageBox.Show("Producto eliminado");
                         }
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar)
                     {
-                        BEProducto prod = new BEProducto(Convert.ToInt32(txtCodigoProducto.Text),txtModelo.Text,txtDescripcion.Text,cmbMarca.Text,txtColor.Text, Convert.ToDouble(txtPrecio.Text),Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text));
+                        BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text),txtModelo.Text,txtDescripcion.Text,cmbMarca.Text,txtColor.Text, Convert.ToDouble(txtPrecio.Text),Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text));
                         bllProducto.ModificarProducto(prod);
                         MessageBox.Show("Producto modificado");
                     }
-                    ResetearBotones();
-                    ActualizarGrilla();
                 }
+                ResetearBotones();
+                ActualizarGrilla();
             }
 
         }
@@ -184,7 +184,20 @@ namespace Carpeta_Sistema_de_Ventas
             btnEliminar.Enabled = false;
             btnCancelar.Enabled = true;
             if(modoOperacion == EnumModoAplicar.Modificar)
-                txtCodigoProducto.Enabled=false;
+            {
+                txtCodigoProducto.Enabled = false;
+            }
+            if (modoOperacion == EnumModoAplicar.Eliminar)
+            {
+                txtCodigoProducto.Enabled = false;
+                txtModelo.Enabled = false;
+                txtDescripcion.Enabled = false;
+                txtPrecio.Enabled = false;
+                txtStock.Enabled = false;
+                txtAlmacenamiento.Enabled = false;
+                cmbMarca.Enabled = false; 
+                txtColor.Enabled = false;
+            }
         }
 
        
@@ -203,6 +216,15 @@ namespace Carpeta_Sistema_de_Ventas
             cmbMarca.SelectedItem = null;
 
             txtCodigoProducto.Enabled = true;
+            txtModelo.Enabled = true;
+            txtDescripcion.Enabled = true;
+            txtPrecio.Enabled = true;
+            txtStock.Enabled = true;
+            txtAlmacenamiento.Enabled = true;
+            cmbMarca.Enabled = true;
+            txtColor.Enabled = true;
+
+
             btnModificar.Enabled = true;
             btnAgregar.Enabled = true;
             btnEliminar.Enabled = true;

@@ -103,5 +103,14 @@ namespace DAL
           };
             dalCon.EjecutarProcAlmacenado("CambiarClaveUsuario", parametros);
         }
+
+        public void ActivarUsuario(int DNICliente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DNI", DNICliente)
+            };
+            dalCon.EjecutarProcAlmacenado("ActivarUsuario", parametros);
+        }
     }
 }

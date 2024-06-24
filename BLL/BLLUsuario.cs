@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -57,6 +58,11 @@ namespace BLL
         public void CambiarClave(int DNICliente, string clave)
         {
             dalUsuario.CambiarClave(DNICliente, clave);
+        }
+
+        public void ActivarUsuario(int DNICliente)
+        {
+            dalUsuario.ActivarUsuario(DNICliente);
         }
     }
 }

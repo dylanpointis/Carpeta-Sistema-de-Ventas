@@ -139,6 +139,9 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMaestroClientes.resx">
+      <DependentUpon>frmMaestroClientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMaestroProducto.resx">
       <DependentUpon>frmMaestroProducto.cs</DependentUpon>
     </EmbeddedResource>

@@ -32,7 +32,7 @@ namespace DAL
             };
             dalCon.EjecutarProcAlmacenado("RegistrarProducto", parametros);
         }
-        public void EliminarProducto(int idProd)
+        public void EliminarProducto(long idProd)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {

@@ -46,9 +46,15 @@ namespace Carpeta_Sistema_de_Ventas
                 cobroDatos.NumTransaccionBancaria = _factura.NumFactura;
                 cobroDatos.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedItem.ToString());
                 cobroDatos.ComentarioAdicional = txtComentarioAdicional.Text;
-                cobroDatos.CantCuotas = 1;
+                
+                if(cobroDatos.MetodoPago == EnumMetodoPago.Debito) /*si es debito es una cuota*/
+                {
+                    cobroDatos.CantCuotas = 1;
+                }
+
                 if (cobroDatos.MetodoPago == EnumMetodoPago.MercadoPago)
                 {
+                    cobroDatos.CantCuotas = 1;
                     cobroDatos.AliasMP = txtAliasMP.Text;
                 }
                 else
@@ -125,6 +131,7 @@ namespace Carpeta_Sistema_de_Ventas
                 txtNumTarjeta.Enabled = false;
                 cmbMarcaTarjeta.Enabled = false;
                 txtCantCuotas.Enabled = false;
+                txtCantCuotas.Text = "1";
             }
             else
             {
@@ -133,11 +140,55 @@ namespace Carpeta_Sistema_de_Ventas
                 cmbMarcaTarjeta.Enabled = true;
                 txtCantCuotas.Enabled = true;
             }
+
+            if (cmbMetodoPago.Text == EnumMetodoPago.Debito.ToString()) //si es debito no se puede pagar con cuotas
+            {
+                txtCantCuotas.Text = "1";
+                txtCantCuotas.Enabled = false;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        /*Evento para que no escriba mas de 16 digitos*/
+        private void txtNumTarjeta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericUpDown numUpDown = sender as NumericUpDown;
+
+            if (numUpDown != null)
+            {
+                if (!char.IsControl(e.KeyChar))
+                {
+                    string currentText = numUpDown.Text;
+
+                    if (currentText.Length >= 16)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+        /*Evento para que no escriba mas de 2 digitos*/
+        private void txtCantCuotas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericUpDown numUpDown = sender as NumericUpDown;
+
+            if (numUpDown != null)
+            {
+                if (!char.IsControl(e.KeyChar))
+                {
+                    string currentText = numUpDown.Text;
+
+                    if (currentText.Length >= 2)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+
     }
 }

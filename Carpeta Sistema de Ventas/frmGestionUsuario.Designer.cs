@@ -66,6 +66,7 @@
             this.grillaUsuarios.ReadOnly = true;
             this.grillaUsuarios.Size = new System.Drawing.Size(847, 255);
             this.grillaUsuarios.TabIndex = 0;
+            this.grillaUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grillaUsuarios_CellClick_1);
             // 
             // label2
             // 
@@ -122,6 +123,7 @@
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(142, 20);
             this.txtDNI.TabIndex = 7;
+            this.txtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNI_KeyPress);
             // 
             // label5
             // 

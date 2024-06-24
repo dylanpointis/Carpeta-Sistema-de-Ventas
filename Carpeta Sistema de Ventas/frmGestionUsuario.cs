@@ -59,78 +59,85 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 grillaUsuarios.DataSource = lstConsulta;
             }
-            else if (modoOperacion == EnumModoAplicar.Añadir)
+            else
             {
-                if (ValidarCampos())
+                if (modoOperacion == EnumModoAplicar.Añadir)
                 {
-                    BEUsuario usuarioEncontrado = bllUsuario.ValidarUsuario(txtNombreUsuario.Text, Convert.ToInt32(txtDNI.Text), txtEmail.Text);
-                    if (usuarioEncontrado != null)
+                    if (ValidarCampos())
                     {
-                        MessageBox.Show("Ya existe un usuario con ese DNI, NombreUsuario o Email");
+                        BEUsuario usuarioEncontrado = bllUsuario.ValidarUsuario(txtNombreUsuario.Text, Convert.ToInt32(txtDNI.Text), txtEmail.Text);
+                        if (usuarioEncontrado != null)
+                        {
+                            MessageBox.Show("Ya existe un usuario con ese DNI, NombreUsuario o Email");
+                        }
+                        else
+                        {
+                            string clave = txtDNI.Text + txtApellido.Text; // CLAVE COMBINA DNI + APELLIDO
+                            BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, Encriptador.EncriptarSHA256(clave), cmbRol.Text, false, true);
+                            bllUsuario.RegistrarUsuario(user);
+                            MessageBox.Show("Usuario registrado exitosamente");
+                        }
                     }
-                    else
+                    else { MessageBox.Show("Llene los campos"); return; }
+                }
+                else if (modoOperacion == EnumModoAplicar.Modificar)
+                {
+                    if (ValidarCampos())
                     {
-                        string clave = txtDNI.Text + txtApellido.Text; // CLAVE COMBINA DNI + APELLIDO
-                        BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, Encriptador.EncriptarSHA256(clave), cmbRol.Text, false, true);
-                        bllUsuario.RegistrarUsuario(user);
-                        MessageBox.Show("Usuario registrado exitosamente");
-                        ResetearBotones();
+                        /*Busca si esta bloqueado*/
+                        int ultimoDNICliente = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
+                        bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == ultimoDNICliente).Bloqueado;
+                        bool activo = true;
+                        if (cmbActivo.Text == "No activo")
+                        {
+                            activo = false;
+                        }
+                        BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, cmbRol.Text, bloqueado, activo);
+
+                        /*Actualiza en la bd buscando segun su ultimoDNI, esto por si quiere modificar su DNI actual*/
+                        bllUsuario.ModificarUsuario(user, ultimoDNICliente);
+                        MessageBox.Show("Usuario modificado exitosamente");
+                    }
+                    else { MessageBox.Show("Llene los campos"); }
+                }
+                else if (modoOperacion == EnumModoAplicar.Eliminar)
+                {
+                    DialogResult resultado = MessageBox.Show($"¿Está seguro que desea eliminar al usuario DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        bllUsuario.EliminarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
+                        MessageBox.Show("Usuario eliminado exitosamente");
                     }
                 }
-                else { MessageBox.Show("Llene los campos"); }
-            }
-            else if (modoOperacion == EnumModoAplicar.Modificar)
-            {
-                if (ValidarCampos())
+                else if (modoOperacion == EnumModoAplicar.Activar)
                 {
-                    /*Busca si esta bloqueado*/
-                    int ultimoDNICliente = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
-                    bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == ultimoDNICliente).Bloqueado;
-                    bool activo = true;
-                    if (cmbActivo.Text == "No activo")
+                    DialogResult resultado = MessageBox.Show($"¿Está seguro que desea activar al usuario DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
                     {
-                        activo = false;
+                        bllUsuario.ActivarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
+                        MessageBox.Show("Usuario activado exitosamente");
                     }
-                    BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, cmbRol.Text, bloqueado, activo);
-
-                    /*Actualiza en la bd buscando segun su ultimoDNI, esto por si quiere modificar su DNI actual*/
-                    bllUsuario.ModificarUsuario(user, ultimoDNICliente);
-                    MessageBox.Show("Usuario modificado exitosamente");
-                    ResetearBotones();
                 }
-                else { MessageBox.Show("Llene los campos"); }
-            }
-            else if (modoOperacion == EnumModoAplicar.Eliminar)
-            {
-                DialogResult resultado = MessageBox.Show($"¿Está seguro que desea eliminar al usuario DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}?", "Eliminar usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.Yes)
+                else if (modoOperacion == EnumModoAplicar.Desbloquear)
                 {
-                    bllUsuario.EliminarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
-                    Actualizar();
-                    MessageBox.Show("Usuario eliminado exitosamente");
+                    DialogResult resultado = MessageBox.Show($"¿Está seguro que desea desbloquear al usuario DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        int DNI = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
+                        bllUsuario.ModificarBloqueo(DNI, false);
+                        //Cuando bloquea un usuario porque se olvido la clave, al desbloquearlo se le reseta a la clave por defecto
+                        string apellido = grillaUsuarios.CurrentRow.Cells[2].Value.ToString();
+                        string clave = DNI + apellido; // CLAVE COMBINA DNI + APELLIDO
+                        bllUsuario.CambiarClave(DNI, Encriptador.EncriptarSHA256(clave));
+                        MessageBox.Show("Usuario desbloqueado exitosamente exitosamente");
+                    }
                 }
                 ResetearBotones();
             }
-            else if (modoOperacion == EnumModoAplicar.Desbloquear)
-            {
-                DialogResult resultado = MessageBox.Show($"¿Está seguro que desea desbloquear al usuario DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}?", "Eliminar usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.Yes)
-                {
-                    int DNI = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
-                    bllUsuario.ModificarBloqueo(DNI, false);
-                    //Cuando bloquea un usuario porque se olvido la clave, al desbloquearlo se le reseta a la clave por defecto
-                    string apellido = grillaUsuarios.CurrentRow.Cells[2].Value.ToString();
-                    string clave = DNI + apellido; // CLAVE COMBINA DNI + APELLIDO
-                    bllUsuario.CambiarClave(DNI, Encriptador.EncriptarSHA256(clave));
-
-                    Actualizar();
-                    MessageBox.Show("Usuario desbloqueado exitosamente exitosamente");
-                }
-                ResetearBotones();
-
-            }
+           
         }
 
 
@@ -179,14 +186,23 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
 
-
+        /*Este boton sirve tanto para Eliminar como para Activar*/
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                modoOperacion = EnumModoAplicar.Eliminar;
-                BloquearBotones();
-                lblMensaje.Text = FormIdiomas.ConseguirTexto("modoEliminar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                if(Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[8].Value) == true) //en caso de que este activo
+                {
+                    modoOperacion = EnumModoAplicar.Eliminar;
+                    BloquearBotones();
+                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoEliminar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                }
+                else //en caso de que este desactivado (quiere activarlo)
+                {
+                    modoOperacion = EnumModoAplicar.Activar;
+                    BloquearBotones();
+                    lblMensaje.Text = $"Activar DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                }
             }
             else { MessageBox.Show("Seleccione un usuario para eliminar"); }
         }
@@ -237,7 +253,7 @@ namespace Carpeta_Sistema_de_Ventas
                 btnAgregar.Enabled = false; btnEliminar.Enabled = false; btnDesbloquear.Enabled = false; btnModificar.Enabled = false;
                 btnCancelar.Enabled = true;
             }
-            else if(modoOperacion == EnumModoAplicar.Eliminar)
+            else if(modoOperacion == EnumModoAplicar.Eliminar || modoOperacion == EnumModoAplicar.Activar)
             {
                 btnCancelar.Enabled = true; btnAgregar.Enabled = false; btnModificar.Enabled = false; btnDesbloquear.Enabled = false; cmbActivo.Enabled = false;
                 btnEliminar.Enabled = false;
@@ -294,6 +310,7 @@ namespace Carpeta_Sistema_de_Ventas
             if(!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase))
             {
                 MessageBox.Show("Formato del mail incorrecto");
+                txtEmail.Focus();
                 return false;
             }
             return true;
@@ -312,10 +329,16 @@ namespace Carpeta_Sistema_de_Ventas
 
 
         /*Esto es para cuando cambia de seleccion en el gridview antes de darle a aplicar */
-        private void grillaUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void grillaUsuarios_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
+                if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[8].Value) == false)
+                {
+                    btnEliminar.Text = "Activar";
+                }
+                else { btnEliminar.Text = "Eliminar"; }
+
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
                     LlenarCamposConDatos();
@@ -331,15 +354,14 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         lblMensaje.Text = FormIdiomas.ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                     }
-                    else 
-                    { 
+                    else
+                    {
                         MessageBox.Show("El usuario seleccionado no está bloqueado");
                         ResetearBotones();
                     }
                 }
             }
         }
-
 
         private void LlenarCamposConDatos()
         {
@@ -374,6 +396,24 @@ namespace Carpeta_Sistema_de_Ventas
                         MessageBox.Show("Clave restablecida con exito");
                     }
                     catch (Exception ex) { MessageBox.Show("Error al modificar la clave"); }
+                }
+            }
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericUpDown numUpDown = sender as NumericUpDown;
+
+            if (numUpDown != null)
+            {
+                if (!char.IsControl(e.KeyChar))
+                {
+                    string currentText = numUpDown.Text;
+
+                    if (currentText.Length >= 9)
+                    {
+                        e.Handled = true;
+                    }
                 }
             }
         }

@@ -12,6 +12,7 @@ namespace BE
         Añadir,
         Modificar,
         Eliminar,
-        Desbloquear
+        Desbloquear,
+        Activar
     }
 }

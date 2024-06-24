@@ -123,6 +123,7 @@
             0,
             0,
             0});
+            this.txtCantCuotas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantCuotas_KeyPress);
             // 
             // label4
             // 
@@ -265,6 +266,7 @@
             this.txtNumTarjeta.Name = "txtNumTarjeta";
             this.txtNumTarjeta.Size = new System.Drawing.Size(144, 20);
             this.txtNumTarjeta.TabIndex = 38;
+            this.txtNumTarjeta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTarjeta_KeyPress);
             // 
             // btnCancelar
             // 

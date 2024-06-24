@@ -52,5 +52,29 @@ namespace Carpeta_Sistema_de_Ventas
             }
             return true;
         }
+
+        /*Evento para que no escriba mas de 9 digitos*/
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
+            {
+                if (!char.IsControl(e.KeyChar))
+                {
+                    string currentText = textBox.Text;
+
+                    if (currentText.Length >= 9)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
