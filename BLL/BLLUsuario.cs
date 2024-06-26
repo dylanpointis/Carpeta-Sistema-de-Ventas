@@ -45,9 +45,9 @@ namespace BLL
             dalUsuario.RegistrarUsuario(user);
         }
 
-        public void ModificarUsuario(BEUsuario user, int ultimoDNICliente)
+        public void ModificarUsuario(BEUsuario user)
         {
-            dalUsuario.ModificarUsuario(user, ultimoDNICliente);
+            dalUsuario.ModificarUsuario(user);
         }
 
         public void EliminarUsuario(int DNICliente)

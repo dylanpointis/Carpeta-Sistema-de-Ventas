@@ -25,7 +25,7 @@ namespace DAL
             dalCon.EjecutarProcAlmacenado("ModificarBloquearUsuario", parametros);
         }
 
-        public void ModificarUsuario(BEUsuario user, int ultimoDNICliente)
+        public void ModificarUsuario(BEUsuario user)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
@@ -35,8 +35,7 @@ namespace DAL
                 new SqlParameter("@Mail", user.Email),
                 new SqlParameter("@NombreUsuario", user.NombreUsuario),
                 new SqlParameter("@Rol", user.Rol),
-                new SqlParameter("@Bloqueo", user.Bloqueado),
-                new SqlParameter("@UltimoDNI", ultimoDNICliente)
+                new SqlParameter("@Bloqueo", user.Bloqueado)
             };
             dalCon.EjecutarProcAlmacenado("ModificarUsuario", parametros);
         }

@@ -17,8 +17,6 @@ namespace Carpeta_Sistema_de_Ventas
 {
     public partial class frmCobrarVenta : Form
     {
-        BLLFactura bllFactura = new BLLFactura();
-        BLLProducto bllProducto = new BLLProducto();
         BEFactura _factura;
         public Cobro cobroDatos = new Cobro();
         public frmCobrarVenta(BEFactura factura)

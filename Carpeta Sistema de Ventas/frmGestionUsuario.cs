@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Services.Observer;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Carpeta_Sistema_de_Ventas
 {
@@ -87,19 +88,27 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[8].Value) == true) //en caso de que este activo
                         {
-                            /*Busca si esta bloqueado*/
-                            int ultimoDNICliente = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
-                            bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == ultimoDNICliente).Bloqueado;
+                            int dni = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
+                            bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == dni).Bloqueado;
 
-                            BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, cmbRol.Text, bloqueado, true);
+                            List<BEUsuario> lstUsers = bllUsuario.TraerListaUsuarios();
+                            BEUsuario usuarioEncontrado = lstUsers.FirstOrDefault(u => u.DNI != dni && (u.NombreUsuario == txtNombreUsuario.Text || u.Email == txtEmail.Text));
+                            if (usuarioEncontrado != null) //busca si existe un usuario con ese  email o nombre de usuario
+                            {
+                                MessageBox.Show(FormIdiomas.ConseguirTexto("yaExisteMailUser"));
+                                return;
+                            }
+                            else
+                            {
+                                BEUsuario user = new BEUsuario(dni, txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, cmbRol.Text, bloqueado, true);
+                                bllUsuario.ModificarUsuario(user);
+                                MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
+                            }
 
-                            /*Actualiza en la bd buscando segun su ultimoDNI, esto por si quiere modificar su DNI actual*/
-                            bllUsuario.ModificarUsuario(user, ultimoDNICliente);
-                            MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
                         }
                         else { MessageBox.Show(FormIdiomas.ConseguirTexto("noPuedeModificarse")); } //no puede modificarse un usuario inactivo
                     }
-                    else { MessageBox.Show(FormIdiomas.ConseguirTexto("llenarCampos")); }
+                    else { MessageBox.Show(FormIdiomas.ConseguirTexto("llenarCampos")); return; }
                 }
                 else if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
@@ -144,7 +153,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if(txtDNI.Text != "" && txtDNI.Text.Length <= 9)
+            if(txtDNI.Text != "" && txtDNI.Text != "0" && txtDNI.Text.Length >= 7 && txtDNI.Text.Length <= 9)
             {
                 BEUsuario user = bllUsuario.ValidarUsuario("",Convert.ToInt32(txtDNI.Text), "");
                 if (user == null)
@@ -256,7 +265,7 @@ namespace Carpeta_Sistema_de_Ventas
             else if(modoOperacion == EnumModoAplicar.Modificar) 
             {
                 btnAgregar.Enabled = false; btnEliminar.Enabled = false; btnDesbloquear.Enabled = false; btnModificar.Enabled = false;
-                btnCancelar.Enabled = true;
+                btnCancelar.Enabled = true; txtDNI.Enabled = false;
             }
             else if(modoOperacion == EnumModoAplicar.Eliminar || modoOperacion == EnumModoAplicar.Activar)
             {

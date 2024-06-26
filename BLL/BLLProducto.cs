@@ -26,7 +26,10 @@ namespace BLL
             return lista;
         }
 
-
+        public void ConsultarStock(BEProducto produto)
+        {
+            //dalProd.ModificarStock(produto, stock);
+        }
 
         public void ModificarStock(BEProducto produto, int stock)
         {

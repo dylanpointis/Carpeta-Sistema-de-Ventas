@@ -110,11 +110,10 @@ CREATE PROCEDURE ModificarUsuario
 	@Mail varchar(50),
 	@NombreUsuario varchar(50),
 	@Rol varchar(50),
-	@Bloqueo bit,
-	@UltimoDNI int
+	@Bloqueo bit
 AS
 BEGIN
-    UPDATE  Usuarios SET DNI=@DNI, Nombre = @Nombre, Apellido = @Apellido, Mail = @Mail, NombreUsuario = @NombreUsuario, Rol = @Rol, Bloqueo = @Bloqueo where DNI = @UltimoDNI;
+    UPDATE  Usuarios SET Nombre = @Nombre, Apellido = @Apellido, Mail = @Mail, NombreUsuario = @NombreUsuario, Rol = @Rol, Bloqueo = @Bloqueo where DNI = @DNI
 END
 GO
 
@@ -276,8 +275,10 @@ GO
 
 /*CLAVE clave123*/
 INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 'Admin', 0, 1);
+INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 'Vendedor', 0, 1);
+
+
 INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256);
 INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512);
 INSERT INTO Clientes VALUES (34789332, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Jose Paz 678');
 INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', 'Av. Olivos 222');
-

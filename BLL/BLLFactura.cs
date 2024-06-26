@@ -24,7 +24,7 @@ namespace BLL
             dalFac.RegistrarItemFactura(factura);
         }
 
-        public int TraerUltimoIDFactura()
+        public int TraerUltimoNumTransaccion()
         {
             return dalFac.TraerUltimoIDFactura();
         }
