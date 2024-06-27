@@ -50,7 +50,7 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (Regex.IsMatch(txtDNI.Text, @"^\d{7,9}$"))
                 {
-                    BECliente clienteEncontrado = listaClientes.FirstOrDefault(p => p.DniCliente == Convert.ToInt32(txtDNI.Text));
+                    BECliente clienteEncontrado = bllCliente.VerificarCliente(Convert.ToInt32(txtDNI.Text));
                     if (clienteEncontrado == null)
                     {
                         modoOperacion = EnumModoAplicar.Añadir;
@@ -60,7 +60,7 @@ namespace Carpeta_Sistema_de_Ventas
                     }
                     else
                     {
-                        MessageBox.Show("Ya existe cliente con ese DNI");
+                        MessageBox.Show("Ya existe un cliente con el DNI ingresado");
                         txtDNI.Focus();
                     }
 
@@ -114,10 +114,10 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (ValidarCampos())
                     {
-                        BECliente prodEncontrado = listaClientes.FirstOrDefault(p => p.DniCliente == Convert.ToInt32(txtDNI.Text));
-                        if (prodEncontrado != null)
+                        BECliente clienteEncontrado = bllCliente.VerificarCliente(Convert.ToInt32(txtDNI.Text));
+                        if (clienteEncontrado != null)
                         {
-                            MessageBox.Show("Ya existe un Cliente con ese DNI");
+                            MessageBox.Show("Ya existe un cliente con el DNI ingresado"); return;
                         }
                         else
                         {
@@ -137,8 +137,13 @@ namespace Carpeta_Sistema_de_Ventas
                         if (resultado == DialogResult.Yes)
                         {
                             int dniCliente = Convert.ToInt32(grillaClientes.CurrentRow.Cells[0].Value);
-                            bllCliente.EliminarCliente(dniCliente);
-                            MessageBox.Show("Cliente eliminado");
+
+                            if(bllCliente.VerificarSiClienteTieneFacturas(dniCliente) == false)
+                            {
+                                bllCliente.EliminarCliente(dniCliente);
+                                MessageBox.Show("Cliente eliminado");
+                            }
+                            else { MessageBox.Show("El cliente no puede eliminarse porque tiene facturas registradas a su nombre"); }
                         }
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar)
@@ -276,6 +281,12 @@ namespace Carpeta_Sistema_de_Ventas
                     string currentText = numUpDown.Text;
 
                     if (currentText.Length >= 9)
+                    {
+                        e.Handled = true;
+                    }
+
+                    /*no puede escribir . - ,*/
+                    if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
                     {
                         e.Handled = true;
                     }

@@ -41,7 +41,15 @@ namespace BLL
             return lista;
         }
 
+        public BECliente VerificarCliente(int dniCliente)
+        {
+            return dalCliente.VerificarCliente(dniCliente);
+        }
 
-        /*VERIFICAR CLIENTE*/
+
+        public bool VerificarSiClienteTieneFacturas(int dniCliente)
+        {
+            return dalCliente.VerificarSiClienteTieneFacturas(dniCliente);
+        }
     }
 }

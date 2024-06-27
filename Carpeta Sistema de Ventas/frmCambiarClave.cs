@@ -22,6 +22,10 @@ namespace Carpeta_Sistema_de_Ventas
             usuarioActual = SessionManager.GetInstance.ObtenerUsuario();
             _frmParent = frmParent;
             InitializeComponent();
+
+            txtClaveActual.KeyPress += textbox_KeyPress;
+            txtNuevaClave.KeyPress += textbox_KeyPress;
+            txtConfirmar.KeyPress += textbox_KeyPress;
         }
 
         BLLUsuario bllUsuario = new BLLUsuario();
@@ -40,28 +44,34 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (usuarioActual != null)
                 {
-                    if (Encriptador.EncriptarSHA256(txtClaveActual.Text) == usuarioActual.Clave)
+                    if(txtNuevaClave.Text.Length >= 8 && txtConfirmar.Text.Length >= 8)
                     {
-                        if (txtNuevaClave.Text == txtConfirmar.Text)
+                        if (Encriptador.EncriptarSHA256(txtClaveActual.Text) == usuarioActual.Clave)
                         {
-                            try
+                            if (txtNuevaClave.Text == txtConfirmar.Text)
                             {
-                                bllUsuario.CambiarClave(usuarioActual.DNI, Encriptador.EncriptarSHA256(txtNuevaClave.Text));
-                                MessageBox.Show("Clave cambiada con exito");
+                                try
+                                {
+                                    bllUsuario.CambiarClave(usuarioActual.DNI, Encriptador.EncriptarSHA256(txtNuevaClave.Text));
+                                    MessageBox.Show("Clave cambiada con exito");
 
-                                //Cierra sesion automaticamente
-                                SessionManager.GetInstance.LogOut();
-                                this.Close();
-                                _frmParent.Close();
-                            }catch(Exception ex) { MessageBox.Show("Error al cambiar la clave "); }
+                                    //Cierra sesion automaticamente
+                                    SessionManager.GetInstance.LogOut();
+                                    this.Close();
+                                    _frmParent.Close();
+                                }
+                                catch (Exception ex) { MessageBox.Show("Error al cambiar la clave "); }
 
+                            }
+                            else { MessageBox.Show("Confirme la nueva clave"); }
                         }
-                        else { MessageBox.Show("Confirme la nueva clave"); }
+                        else
+                        {
+                            MessageBox.Show("La clave actual ingresada no es correcta");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("La clave actual ingresada no es correcta");
-                    }
+                    else { MessageBox.Show("La clave debe tener al menos 8 carácteres"); }
+                   
                 }
                 else { MessageBox.Show("Debe iniciar una sesión en el sistema"); }
             }
@@ -105,5 +115,25 @@ namespace Carpeta_Sistema_de_Ventas
             }
         }
 
+
+        private void textbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
+            {
+                if (!char.IsControl(e.KeyChar))
+                {
+                    string texto = textBox.Text;
+
+                    if (texto.Length >= 40)
+                    {
+                        e.Handled = true;
+                        MessageBox.Show("Máximo de 40 cáracteres alcanzado");
+                    }
+                }
+
+            }
+        }
     }
 }

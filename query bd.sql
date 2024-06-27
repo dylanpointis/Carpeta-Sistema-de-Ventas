@@ -176,6 +176,30 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE VerificarCliente
+    @DNI int
+AS
+BEGIN
+    SELECT * FROM Clientes WHERE DNICliente = @DNI;
+END
+GO
+
+CREATE PROCEDURE VerificarSiClienteTieneFacturas
+    @DNI int
+AS
+BEGIN
+    SELECT * FROM Facturas WHERE DNICliente = @DNI;
+END
+GO
+
+CREATE PROCEDURE VerificarSiProductoTieneFacturas
+    @CodigoProducto varchar(14)
+AS
+BEGIN
+    SELECT * FROM Item_Factura WHERE CodigoProducto =  @CodigoProducto;
+END
+GO
+
 
 CREATE PROCEDURE TraerUltimoIDFactura
 AS

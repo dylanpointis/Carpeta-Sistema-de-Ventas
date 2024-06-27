@@ -25,11 +25,18 @@ namespace Carpeta_Sistema_de_Ventas
             if (ValidarDatos())
             {
                 BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, txtDireccion.Text); 
-                try
+                
+                BECliente clienteEncontrado = bllCliente.VerificarCliente(cliente.DniCliente);
+                if(clienteEncontrado == null)
                 {
-                    bllCliente.RegistrarCliente(cliente);
-                    MessageBox.Show("Cliente registrado");
-                }catch(Exception ex) { MessageBox.Show("Error al registrar al cliente"); }
+                    try
+                    {
+                        bllCliente.RegistrarCliente(cliente);
+                        MessageBox.Show("Cliente registrado");
+                    }
+                    catch (Exception ex) { MessageBox.Show("Error al registrar al cliente"); }
+                }
+                else { MessageBox.Show("Ya existe un cliente con el DNI ingresado"); }
             }
             else { MessageBox.Show("Ingrese de vuelta los campos"); }
         }
@@ -53,18 +60,23 @@ namespace Carpeta_Sistema_de_Ventas
             return true;
         }
 
-        /*Evento para que no escriba mas de 9 digitos*/
+        /*Evento para que no escriba mas de 9 digitos y solo Numeros*/
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox textBox = sender as TextBox;
 
             if (textBox != null)
             {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    
+                    e.Handled = true;
+                }
                 if (!char.IsControl(e.KeyChar))
                 {
-                    string currentText = textBox.Text;
+                    string texto = textBox.Text;
 
-                    if (currentText.Length >= 9)
+                    if (texto.Length >= 9)
                     {
                         e.Handled = true;
                     }

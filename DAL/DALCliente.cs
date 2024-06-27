@@ -54,5 +54,37 @@ namespace DAL
             DataTable tabla = dalCon.TraerTabla("Clientes");
             return tabla;
         }
+
+        public BECliente VerificarCliente(int dniCliente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DNI", dniCliente)
+            };
+            DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarCliente", parametros);
+
+            BECliente cliente = null;
+            foreach(DataRow row in tabla.Rows) 
+            {
+                cliente = new BECliente(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString());
+                break;
+            }
+            return cliente;
+        }
+
+        public bool VerificarSiClienteTieneFacturas(int dniCliente)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@DNI", dniCliente)
+            };
+            DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarSiClienteTieneFacturas", parametros);
+
+            if(tabla.Rows.Count > 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
     }
 }

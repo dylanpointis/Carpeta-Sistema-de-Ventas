@@ -50,5 +50,10 @@ namespace BLL
         {
             dalProd.ModificarProducto(prod);
         }
+
+        public bool VerificarSiProductoTieneFacturas(long codigoProducto)
+        {
+            return dalProd.VerificarSiProductoTieneFacturas(codigoProducto);
+        }
     }
 }

@@ -53,24 +53,26 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(grillaProductos.SelectedRows.Count > 0)
             {
-                int cantStock = Convert.ToInt32(grillaProductos.CurrentRow.Cells[5].Value);
+                int cantStock = Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value);
                 if (cantStock > 0)
                 {
                     BEProducto producto = new BEProducto(Convert.ToInt32(grillaProductos.CurrentRow.Cells[0].Value), grillaProductos.CurrentRow.Cells[1].Value.ToString(), grillaProductos.CurrentRow.Cells[2].Value.ToString(), grillaProductos.CurrentRow.Cells[3].Value.ToString(), grillaProductos.CurrentRow.Cells[4].Value.ToString(), Convert.ToDouble(grillaProductos.CurrentRow.Cells[5].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[7].Value));
-                    string cantComprada = Interaction.InputBox("Ingrese la cantidad a vender");
-                    if (Regex.IsMatch(cantComprada.ToString(), @"^\d+$"))  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO
-                    { 
-
-                        if(cantStock - Convert.ToInt32(cantComprada) >= 0)
+                    string cantIngresada = Interaction.InputBox("Ingrese la cantidad a vender");
+                    if (Regex.IsMatch(cantIngresada.ToString(), @"^\d{1,3}$") && (Convert.ToInt64(cantIngresada) > 0) )  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 3 CIFRAS
+                    {
+                        int cantTotalCompradaDelProducto = ObtenerCantTotalComprada(producto.CodigoProducto);
+                        if((cantStock - Convert.ToInt32(cantIngresada) >= 0) && ((cantTotalCompradaDelProducto + Convert.ToInt32(cantIngresada)) <= cantStock))
                         {
-                            _factura.listaProductosAgregados.Add((producto, Convert.ToInt32(cantComprada)));
+                            //chequea si no ingreso una cantidad mayor al stock disponible.
+                            //Y recorre la lista de prod agregados y obtiene el total de cant comprada del producto para ver si no supera el stock
+                            _factura.listaProductosAgregados.Add((producto, Convert.ToInt32(cantIngresada)));
                             ActualizarGrilla();
                             btnConfirmar.Enabled = true;
                         }
-                        else { MessageBox.Show("La cantidad ingresada supera al stock disponbile"); }
+                        else { MessageBox.Show("La cantidad ingresada supera al stock disponbile del producto"); }
 
                     }
-                    else{ MessageBox.Show("Ingrese un número entero para la cantidad"); }
+                    else{ MessageBox.Show("Ingrese un número entero para la cantidad, menor a 3 cifras"); }
                 }
                 else { MessageBox.Show("No hay stock disponible del producto seleccionado"); }
             }
@@ -168,6 +170,22 @@ namespace Carpeta_Sistema_de_Ventas
             _factura.listaProductosAgregados = listaProductosInicial; //Si cancela resetea la lista de productos a como estaba
             ActualizarLabelsTotal();
             this.Close();
+        }
+
+        private int ObtenerCantTotalComprada(long codigoProducto)
+        {
+            int cantStockTotal = 0;
+
+            foreach (var item in _factura.listaProductosAgregados)
+            {
+                BEProducto prod = item.Item1;
+                int cantidad = item.Item2;
+                if(prod.CodigoProducto == codigoProducto)
+                {
+                    cantStockTotal += cantidad;
+                }
+            }
+            return cantStockTotal;
         }
     }
 }

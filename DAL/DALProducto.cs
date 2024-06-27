@@ -74,5 +74,20 @@ namespace DAL
             };
             dalCon.EjecutarProcAlmacenado("ModificarProducto", parametros);
         }
+
+        public bool VerificarSiProductoTieneFacturas(long codigoProducto)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@CodigoProducto", codigoProducto)
+            };
+            DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarSiProductoTieneFacturas", parametros);
+
+            if (tabla.Rows.Count > 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
     }
 }

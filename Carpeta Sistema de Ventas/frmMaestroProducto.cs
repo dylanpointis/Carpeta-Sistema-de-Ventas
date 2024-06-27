@@ -110,7 +110,7 @@ namespace Carpeta_Sistema_de_Ventas
                         BEProducto prodEncontrado = listaProd.FirstOrDefault(p => p.CodigoProducto == Convert.ToInt64(txtCodigoProducto.Text));
                         if (prodEncontrado != null)
                         {
-                            MessageBox.Show("Ya existe un Producto con ese Codigo");
+                            MessageBox.Show("Ya existe un Producto con ese Codigo") ; return;
                         }
                         else
                         {
@@ -130,8 +130,12 @@ namespace Carpeta_Sistema_de_Ventas
                         if (resultado == DialogResult.Yes)
                         {
                             long idProd = Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value);
-                            bllProducto.EliminarProducto(idProd);
-                            MessageBox.Show("Producto eliminado");
+                            if (bllProducto.VerificarSiProductoTieneFacturas(idProd) == false)
+                            {
+                                bllProducto.EliminarProducto(idProd);
+                                MessageBox.Show("Producto eliminado");
+                            }
+                            else { MessageBox.Show("El producto no puede eliminarse porque está asociado a Facturas"); }
                         }
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar)
@@ -275,6 +279,32 @@ namespace Carpeta_Sistema_de_Ventas
                     LlenarCampos();
                     lblMensaje.Text = $"Modificar producto Código: {grillaProductos.CurrentRow.Cells[0].Value}";
                 }
+            }
+        }
+
+
+        //evento para que no pueda escribir . , -
+        private void txtCodigoProducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.' || e.KeyChar == '-')
+            {
+                e.Handled = true;
             }
         }
     }

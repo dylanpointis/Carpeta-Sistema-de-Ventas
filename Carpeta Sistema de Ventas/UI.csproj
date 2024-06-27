@@ -202,6 +202,9 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="icons\invisible.png" />
+    <None Include="icons\logo.png" />
+    <None Include="icons\logopng.png" />
+    <Content Include="icons\logo2png.ico" />
     <Content Include="icons\logotransparente.png" />
     <Content Include="icons\visible.png" />
   </ItemGroup>

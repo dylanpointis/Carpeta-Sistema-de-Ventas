@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.btnMostrarClave = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnMostrarClave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtNombreUsuario
@@ -97,18 +98,6 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // btnMostrarClave
-            // 
-            this.btnMostrarClave.BackgroundImage = global::Carpeta_Sistema_de_Ventas.Properties.Resources.visible;
-            this.btnMostrarClave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnMostrarClave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMostrarClave.Location = new System.Drawing.Point(269, 122);
-            this.btnMostrarClave.Name = "btnMostrarClave";
-            this.btnMostrarClave.Size = new System.Drawing.Size(37, 36);
-            this.btnMostrarClave.TabIndex = 31;
-            this.btnMostrarClave.UseVisualStyleBackColor = true;
-            this.btnMostrarClave.Click += new System.EventHandler(this.btnMostrarClave_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -118,6 +107,18 @@
             this.label3.Size = new System.Drawing.Size(115, 20);
             this.label3.TabIndex = 32;
             this.label3.Text = "Iniciar sesión";
+            // 
+            // btnMostrarClave
+            // 
+            this.btnMostrarClave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMostrarClave.BackgroundImage")));
+            this.btnMostrarClave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnMostrarClave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMostrarClave.Location = new System.Drawing.Point(269, 122);
+            this.btnMostrarClave.Name = "btnMostrarClave";
+            this.btnMostrarClave.Size = new System.Drawing.Size(37, 36);
+            this.btnMostrarClave.TabIndex = 31;
+            this.btnMostrarClave.UseVisualStyleBackColor = true;
+            this.btnMostrarClave.Click += new System.EventHandler(this.btnMostrarClave_Click);
             // 
             // frmLogin
             // 
@@ -132,6 +133,7 @@
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.txtNombreUsuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

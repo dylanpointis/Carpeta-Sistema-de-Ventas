@@ -160,12 +160,17 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (!char.IsControl(e.KeyChar))
                 {
-                    string currentText = numUpDown.Text;
+                    string texto = numUpDown.Text;
 
-                    if (currentText.Length >= 16)
+                    if (texto.Length >= 16)
                     {
                         e.Handled = true;
                     }
+                }
+                //para que no pueda ecribir , o .
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
                 }
             }
         }
@@ -178,13 +183,19 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (!char.IsControl(e.KeyChar))
                 {
-                    string currentText = numUpDown.Text;
+                    string texto = numUpDown.Text;
 
-                    if (currentText.Length >= 2)
+                    if (texto.Length >= 2)
                     {
                         e.Handled = true;
                     }
                 }
+                //para que no pueda ecribir , o .
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
             }
         }
 

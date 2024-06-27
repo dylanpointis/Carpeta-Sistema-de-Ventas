@@ -416,9 +416,15 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (!char.IsControl(e.KeyChar))
                 {
-                    string currentText = numUpDown.Text;
+                    string texto = numUpDown.Text;
 
-                    if (currentText.Length >= 9)
+                    if (texto.Length >= 9)
+                    {
+                        e.Handled = true;
+                    }
+
+                    /*no puede escribir . - ,*/
+                    if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
                     {
                         e.Handled = true;
                     }
