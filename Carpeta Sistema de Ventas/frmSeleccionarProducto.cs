@@ -57,22 +57,25 @@ namespace Carpeta_Sistema_de_Ventas
                 if (cantStock > 0)
                 {
                     BEProducto producto = new BEProducto(Convert.ToInt32(grillaProductos.CurrentRow.Cells[0].Value), grillaProductos.CurrentRow.Cells[1].Value.ToString(), grillaProductos.CurrentRow.Cells[2].Value.ToString(), grillaProductos.CurrentRow.Cells[3].Value.ToString(), grillaProductos.CurrentRow.Cells[4].Value.ToString(), Convert.ToDouble(grillaProductos.CurrentRow.Cells[5].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[7].Value));
-                    string cantIngresada = Interaction.InputBox("Ingrese la cantidad a vender");
-                    if (Regex.IsMatch(cantIngresada.ToString(), @"^\d{1,3}$") && (Convert.ToInt64(cantIngresada) > 0) )  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 3 CIFRAS
+                   
+                    if(YaEstaElProductoAgregado(producto.CodigoProducto) == false)
                     {
-                        int cantTotalCompradaDelProducto = ObtenerCantTotalComprada(producto.CodigoProducto);
-                        if((cantStock - Convert.ToInt32(cantIngresada) >= 0) && ((cantTotalCompradaDelProducto + Convert.ToInt32(cantIngresada)) <= cantStock))
+                        string cantIngresada = Interaction.InputBox("Ingrese la cantidad a vender");
+                        if (Regex.IsMatch(cantIngresada.ToString(), @"^\d{1,3}$") && (Convert.ToInt64(cantIngresada) > 0))  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 3 CIFRAS
                         {
-                            //chequea si no ingreso una cantidad mayor al stock disponible.
-                            //Y recorre la lista de prod agregados y obtiene el total de cant comprada del producto para ver si no supera el stock
-                            _factura.listaProductosAgregados.Add((producto, Convert.ToInt32(cantIngresada)));
-                            ActualizarGrilla();
-                            btnConfirmar.Enabled = true;
-                        }
-                        else { MessageBox.Show("La cantidad ingresada supera al stock disponbile del producto"); }
+                            if ((cantStock - Convert.ToInt32(cantIngresada) >= 0))
+                            {
+                                //chequea si no ingreso una cantidad mayor al stock disponible.
+                                _factura.listaProductosAgregados.Add((producto, Convert.ToInt32(cantIngresada)));
+                                ActualizarGrilla();
+                                btnConfirmar.Enabled = true;
+                            }
+                            else { MessageBox.Show("La cantidad ingresada supera al stock disponbile del producto"); }
 
+                        }
+                        else { MessageBox.Show("Ingrese un número entero para la cantidad, menor a 3 cifras"); }
                     }
-                    else{ MessageBox.Show("Ingrese un número entero para la cantidad, menor a 3 cifras"); }
+                    else { MessageBox.Show("El producto ya está agregado"); }
                 }
                 else { MessageBox.Show("No hay stock disponible del producto seleccionado"); }
             }
@@ -171,7 +174,25 @@ namespace Carpeta_Sistema_de_Ventas
             ActualizarLabelsTotal();
             this.Close();
         }
+        
 
+        private bool YaEstaElProductoAgregado(long idProd)
+        {
+            foreach (var item in _factura.listaProductosAgregados)
+            {
+                BEProducto prod = item.Item1;
+                int cantidad = item.Item2;
+                if (prod.CodigoProducto == idProd)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+        /*
         private int ObtenerCantTotalComprada(long codigoProducto)
         {
             int cantStockTotal = 0;
@@ -186,6 +207,6 @@ namespace Carpeta_Sistema_de_Ventas
                 }
             }
             return cantStockTotal;
-        }
+        }*/
     }
 }
