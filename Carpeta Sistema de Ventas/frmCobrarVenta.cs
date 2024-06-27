@@ -18,7 +18,7 @@ namespace Carpeta_Sistema_de_Ventas
     public partial class frmCobrarVenta : Form
     {
         BEFactura _factura;
-        public Cobro cobroDatos = new Cobro();
+        public BECobro cobroDatos = new BECobro();
         public frmCobrarVenta(BEFactura factura)
         {
             InitializeComponent();

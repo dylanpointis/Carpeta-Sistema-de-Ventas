@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Cobro
+    public class BECobro
     {
         public int NumTransaccionBancaria { get; set; }
         public string MarcaTarjeta { get; set; }

@@ -13,7 +13,7 @@ namespace BE
         public double MontoTotal { get; set; }
         public double Impuesto { get; set; }
 
-        public Cobro cobro { get; set; } 
+        public BECobro cobro { get; set; } 
  
 
 

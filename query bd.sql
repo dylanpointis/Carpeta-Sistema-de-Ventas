@@ -306,3 +306,5 @@ INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 
 INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512);
 INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Jose Paz 678');
 INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', 'Av. Olivos 222');
+INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,null,1,'marcos','')
+INSERT INTO Item_Factura VALUES (1,123,1,1100)
