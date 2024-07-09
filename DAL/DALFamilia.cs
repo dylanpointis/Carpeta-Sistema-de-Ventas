@@ -139,14 +139,6 @@ namespace DAL
             dalCon.EjecutarProcAlmacenado("EliminarPermisosRol", parametros);
         }
 
-        public void EliminarPermisosRolPorPermiso(int idPermiso)
-        {
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@CodPermiso", idPermiso)
-            };
-            dalCon.EjecutarProcAlmacenado("EliminarPermisosRolPorPermiso", parametros);
-        }
 
         public void EliminarRol(int idRol)
         {

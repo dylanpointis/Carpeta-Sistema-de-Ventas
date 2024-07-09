@@ -1,8 +1,10 @@
 ﻿using BE;
+using BE.Composite;
 using BLL;
 using Services;
 using Services.Observer;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,18 +23,53 @@ namespace Carpeta_Sistema_de_Ventas
             InitializeComponent();
         }
 
-        class producto
-        {
-            public string nombre { get; set; }
-            public float precio { get; set; }
-        };
 
+        BLLFamilia bllFamilia = new BLLFamilia();
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
             BEUsuario user = SessionManager.GetInstance.ObtenerUsuario();
             btnSesion.Text = $"Sesión: {user.NombreUsuario}";
+
+
+            //Deshabilita los controles
+            Admin.Enabled = false; Maestros.Enabled = false;Usuarios.Enabled = false;  Ventas.Enabled = false;Compras.Enabled = false; Reportes.Enabled = false; Ayuda.Enabled = false;
+
+            /*Se fija los permisos del usuario*/
+            List<Componente> listaHijosFamilia = new List<Componente>();
+            foreach (Componente componente in user.listaPermisosRol)
+            {
+                if (componente is Permiso) //si es un permiso simple deshabilita el bootn
+                {
+                    foreach (ToolStripMenuItem control in this.menuStrip1.Items)
+                    {
+                        if (control.Name == componente.Nombre)
+                        {
+                            control.Enabled = true;
+                        }
+                    }
+                }
+
+                if (componente is Familia) // si es familia recorre sus hijos y deshabilita los botones
+                {
+                    listaHijosFamilia = bllFamilia.TraerListaHijos(componente.Id);
+
+                    foreach (Componente hijo in listaHijosFamilia)
+                    {
+                        foreach (ToolStripMenuItem control in this.menuStrip1.Items)
+                        {
+                            if (control.Name == hijo.Nombre)
+                            {
+                                control.Enabled = true;
+                            }
+                        }
+                    }
+                }
+            }
+
         }
+
+
         Form formActivo = new Form();
         private void AbrirForm(Form form) //FUNCION PARA ABRIR FORMS DENTRO DEL MDIPARENT
         {

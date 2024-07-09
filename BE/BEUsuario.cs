@@ -23,7 +23,7 @@ namespace BE
         public bool Activo { get; set; }
 
 
-
+        public List<Componente> listaPermisosRol = new List<Componente>();
         public Familia Rol { get; set; }
 
 

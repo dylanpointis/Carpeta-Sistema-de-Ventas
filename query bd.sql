@@ -416,13 +416,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE EliminarPermisosRolPorPermiso
-    @CodPermiso int
-AS
-BEGIN
-    DELETE FROM Rol_Permiso WHERE CodPermiso = @CodPermiso;
-END
-GO
+
 
 CREATE PROCEDURE EliminarRol
     @CodRol int
@@ -527,7 +521,3 @@ INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com
 INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==');
 INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)
-
-
-select * from Permisos
-select * from Rol_Permiso

@@ -182,9 +182,6 @@
             this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRol.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbRol.FormattingEnabled = true;
-            this.cmbRol.Items.AddRange(new object[] {
-            "Vendedor",
-            "Admin"});
             this.cmbRol.Location = new System.Drawing.Point(484, 416);
             this.cmbRol.Name = "cmbRol";
             this.cmbRol.Size = new System.Drawing.Size(162, 21);

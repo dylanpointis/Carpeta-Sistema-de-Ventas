@@ -30,20 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Admin = new System.Windows.Forms.ToolStripMenuItem();
             this.gestiónDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestiónDePerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.maestrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Maestros = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Usuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Ventas = new System.Windows.Forms.ToolStripMenuItem();
             this.generarFacturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Compras = new System.Windows.Forms.ToolStripMenuItem();
+            this.Reportes = new System.Windows.Forms.ToolStripMenuItem();
+            this.Ayuda = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.btnSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,29 +57,29 @@
             this.menuStrip1.AutoSize = false;
             this.menuStrip1.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.adminToolStripMenuItem,
-            this.maestrosToolStripMenuItem,
-            this.usuariosToolStripMenuItem,
-            this.ventasToolStripMenuItem,
-            this.comprasToolStripMenuItem,
-            this.reporteToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
+            this.Admin,
+            this.Maestros,
+            this.Usuarios,
+            this.Ventas,
+            this.Compras,
+            this.Reportes,
+            this.Ayuda});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1025, 44);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // adminToolStripMenuItem
+            // Admin
             // 
-            this.adminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Admin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestiónDeUsuariosToolStripMenuItem,
             this.gestiónDePerfilesToolStripMenuItem});
-            this.adminToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.adminToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(73, 40);
-            this.adminToolStripMenuItem.Text = "Admin";
+            this.Admin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.Admin.ForeColor = System.Drawing.Color.White;
+            this.Admin.Name = "Admin";
+            this.Admin.Size = new System.Drawing.Size(73, 40);
+            this.Admin.Text = "Admin";
             // 
             // gestiónDeUsuariosToolStripMenuItem
             // 
@@ -97,22 +97,22 @@
             this.gestiónDePerfilesToolStripMenuItem.Text = "Gestión de Perfiles";
             this.gestiónDePerfilesToolStripMenuItem.Click += new System.EventHandler(this.gestiónDePerfilesToolStripMenuItem_Click);
             // 
-            // maestrosToolStripMenuItem
+            // Maestros
             // 
-            this.maestrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Maestros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.productosToolStripMenuItem,
             this.clientesToolStripMenuItem});
-            this.maestrosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.maestrosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.maestrosToolStripMenuItem.Name = "maestrosToolStripMenuItem";
-            this.maestrosToolStripMenuItem.Size = new System.Drawing.Size(91, 40);
-            this.maestrosToolStripMenuItem.Text = "Maestros";
+            this.Maestros.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.Maestros.ForeColor = System.Drawing.Color.White;
+            this.Maestros.Name = "Maestros";
+            this.Maestros.Size = new System.Drawing.Size(91, 40);
+            this.Maestros.Text = "Maestros";
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
@@ -120,20 +120,20 @@
             // 
             this.clientesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
-            // usuariosToolStripMenuItem
+            // Usuarios
             // 
-            this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Usuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cambiarClaveToolStripMenuItem,
             this.cambiarIdiomaToolStripMenuItem});
-            this.usuariosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.usuariosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(88, 40);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.Usuarios.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.Usuarios.ForeColor = System.Drawing.Color.White;
+            this.Usuarios.Name = "Usuarios";
+            this.Usuarios.Size = new System.Drawing.Size(88, 40);
+            this.Usuarios.Text = "Usuarios";
             // 
             // cambiarClaveToolStripMenuItem
             // 
@@ -151,15 +151,15 @@
             this.cambiarIdiomaToolStripMenuItem.Text = "Cambiar Idioma";
             this.cambiarIdiomaToolStripMenuItem.Click += new System.EventHandler(this.cambiarIdiomaToolStripMenuItem_Click);
             // 
-            // ventasToolStripMenuItem
+            // Ventas
             // 
-            this.ventasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Ventas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.generarFacturaToolStripMenuItem});
-            this.ventasToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.ventasToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
-            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(73, 40);
-            this.ventasToolStripMenuItem.Text = "Ventas";
+            this.Ventas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.Ventas.ForeColor = System.Drawing.Color.White;
+            this.Ventas.Name = "Ventas";
+            this.Ventas.Size = new System.Drawing.Size(73, 40);
+            this.Ventas.Text = "Ventas";
             // 
             // generarFacturaToolStripMenuItem
             // 
@@ -169,29 +169,29 @@
             this.generarFacturaToolStripMenuItem.Text = "Generar factura";
             this.generarFacturaToolStripMenuItem.Click += new System.EventHandler(this.generarFacturaToolStripMenuItem_Click);
             // 
-            // comprasToolStripMenuItem
+            // Compras
             // 
-            this.comprasToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.comprasToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(89, 40);
-            this.comprasToolStripMenuItem.Text = "Compras";
+            this.Compras.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.Compras.ForeColor = System.Drawing.Color.White;
+            this.Compras.Name = "Compras";
+            this.Compras.Size = new System.Drawing.Size(89, 40);
+            this.Compras.Text = "Compras";
             // 
-            // reporteToolStripMenuItem
+            // Reportes
             // 
-            this.reporteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.reporteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
-            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(89, 40);
-            this.reporteToolStripMenuItem.Text = "Reportes";
+            this.Reportes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.Reportes.ForeColor = System.Drawing.Color.White;
+            this.Reportes.Name = "Reportes";
+            this.Reportes.Size = new System.Drawing.Size(89, 40);
+            this.Reportes.Text = "Reportes";
             // 
-            // ayudaToolStripMenuItem
+            // Ayuda
             // 
-            this.ayudaToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.ayudaToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(71, 40);
-            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            this.Ayuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.Ayuda.ForeColor = System.Drawing.Color.White;
+            this.Ayuda.Name = "Ayuda";
+            this.Ayuda.Size = new System.Drawing.Size(71, 40);
+            this.Ayuda.Text = "Ayuda";
             // 
             // menuStrip2
             // 
@@ -255,13 +255,13 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem maestrosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem comprasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Admin;
+        private System.Windows.Forms.ToolStripMenuItem Maestros;
+        private System.Windows.Forms.ToolStripMenuItem Usuarios;
+        private System.Windows.Forms.ToolStripMenuItem Ventas;
+        private System.Windows.Forms.ToolStripMenuItem Compras;
+        private System.Windows.Forms.ToolStripMenuItem Reportes;
+        private System.Windows.Forms.ToolStripMenuItem Ayuda;
         private System.Windows.Forms.ToolStripMenuItem gestiónDeUsuariosToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem btnSesion;

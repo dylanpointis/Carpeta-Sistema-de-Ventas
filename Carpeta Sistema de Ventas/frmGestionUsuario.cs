@@ -27,14 +27,14 @@ namespace Carpeta_Sistema_de_Ventas
 
 
 
-            grillaUsuarios.Columns.Add("DNI", "DNI");
-            grillaUsuarios.Columns.Add("Nombre", "Nombre");
-            grillaUsuarios.Columns.Add("Apellido", "Apellido");
-            grillaUsuarios.Columns.Add("Mail", "Email");
-            grillaUsuarios.Columns.Add("NombreUsuario", "Nombre de Usuario");
-            grillaUsuarios.Columns.Add("Rol", "Rol");
-            grillaUsuarios.Columns.Add("Bloqueo", "Bloqueado");
-            grillaUsuarios.Columns.Add("Activo", "Activo");
+            grillaUsuarios.Columns.Add("DNI", FormIdiomas.ConseguirTexto("gridViewDNI"));
+            grillaUsuarios.Columns.Add("Nombre", FormIdiomas.ConseguirTexto("gridViewNombre"));
+            grillaUsuarios.Columns.Add("Apellido", FormIdiomas.ConseguirTexto("gridViewApellido"));
+            grillaUsuarios.Columns.Add("Mail", FormIdiomas.ConseguirTexto("gridViewMail"));
+            grillaUsuarios.Columns.Add("NombreUsuario", FormIdiomas.ConseguirTexto("gridViewNombreUsuario"));
+            grillaUsuarios.Columns.Add("Rol", FormIdiomas.ConseguirTexto("gridViewRol"));
+            grillaUsuarios.Columns.Add("Bloqueo", FormIdiomas.ConseguirTexto("gridViewBloqueo"));
+            grillaUsuarios.Columns.Add("Activo", FormIdiomas.ConseguirTexto("gridViewActivo"));
         }
 
         public void ActualizarObserver()
@@ -43,7 +43,6 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
 
-        BEUsuario usuarioAModificar;
         BLLUsuario bllUsuario = new BLLUsuario();
         BLLFamilia bllFamilia = new BLLFamilia();
 
@@ -201,7 +200,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != "False") //en caso de que este activo
+                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != FormIdiomas.ConseguirTexto("false")) //en caso de que este activo
                 {
                     modoOperacion = EnumModoAplicar.Modificar;
                     BloquearBotones();
@@ -223,7 +222,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if(grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != "False") //en caso de que este activo
+                if(grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != FormIdiomas.ConseguirTexto("false")) //en caso de que este activo
                 {
                     modoOperacion = EnumModoAplicar.Eliminar;
                     BloquearBotones();
@@ -243,7 +242,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != "False")
+                if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != FormIdiomas.ConseguirTexto("false"))
                 {
                     modoOperacion = EnumModoAplicar.Desbloquear;
                     BloquearBotones();
@@ -311,38 +310,43 @@ namespace Carpeta_Sistema_de_Ventas
         {
             grillaUsuarios.Rows.Clear();
             lstUsuarios = bllUsuario.TraerListaUsuarios();
+            string boolActivo = "";
+            string boolBloqueado = "";
+
             foreach(var u in lstUsuarios)
             {
-                grillaUsuarios.Rows.Add(u.DNI,u.Nombre,u.Apellido,u.Email,u.NombreUsuario,u.Rol.Nombre,u.Bloqueado,u.Activo);
+                if(u.Activo == true)
+                {
+                    boolActivo = FormIdiomas.ConseguirTexto("true");
+                }
+                else { boolActivo = FormIdiomas.ConseguirTexto("false"); }
+
+                if (u.Bloqueado == true)
+                {
+                    boolBloqueado = FormIdiomas.ConseguirTexto("true");
+                }
+                else { boolBloqueado = FormIdiomas.ConseguirTexto("false"); }
+
+
+                grillaUsuarios.Rows.Add(u.DNI, u.Nombre, u.Apellido, u.Email, u.NombreUsuario, u.Rol.Nombre, boolBloqueado, boolActivo);
+
             }
-
-            /*
-            lstUsuarios = bllUsuario.TraerListaUsuarios();
-            grillaUsuarios.DataSource = lstUsuarios;
-
-
-            foreach(DataGridViewRow fila in grillaUsuarios.Rows)
-            {
-                int id = Convert.ToInt32(fila.Cells["codRol"].Value);
-                Familia rol = bllFamilia.TraerListaRoles().FirstOrDefault(r => r.Id == id);
-                fila.Cells["Rol"].Value = rol.Nombre;
-
-            }*/
-
-
-
-
-           // grillaUsuarios.Columns["codRol"].Visible = false;
-            //grillaUsuarios.Columns["Clave"].Visible = false; //quita la columna clave
-           
            
             grillaUsuarios.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN ROJO A LOS NO ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW
             foreach (DataGridViewRow row in grillaUsuarios.Rows)
             {
-                if (row.Cells[7].Value != null && row.Cells[7].Value.ToString() == "False")
+                if (row.Cells[7].Value != null && row.Cells[7].Value.ToString() == FormIdiomas.ConseguirTexto("false"))
                 {
                     row.DefaultCellStyle.BackColor = Color.Crimson; //pone en rojo el background
                 }
+            }
+
+
+            //llena el combobox de Roles
+            List<Familia> roles = bllFamilia.TraerListaRoles();
+            foreach (var rol in roles)
+            {
+                cmbRol.Items.Add(rol.Nombre);
             }
         }
 
@@ -386,7 +390,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() == "False")
+                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() == FormIdiomas.ConseguirTexto("false"))
                 {
                     btnEliminar.Text = FormIdiomas.ConseguirTexto("btnActivar");
                 }
@@ -403,7 +407,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 else if (modoOperacion == EnumModoAplicar.Desbloquear)
                 {
-                    if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != "False")
+                    if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != FormIdiomas.ConseguirTexto("false"))
                     {
                         lblMensaje.Text = FormIdiomas.ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                     }

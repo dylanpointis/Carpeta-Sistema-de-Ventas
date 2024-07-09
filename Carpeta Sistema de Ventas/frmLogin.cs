@@ -1,4 +1,5 @@
 ﻿using BE;
+using BE.Composite;
 using BLL;
 using Services;
 using Services.Observer;
@@ -41,6 +42,7 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
         BLLUsuario bllUsuario = new BLLUsuario();
+        BLLFamilia bllFamilia = new BLLFamilia();
         int contClaveIncorrecta = 0;
 
 
@@ -56,9 +58,12 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         if (user.Clave == Encriptador.EncriptarSHA256(txtClave.Text))
                         {
+                            //trae los permisos segun su rol
+                            List<Componente> listaPermisos = bllFamilia.TraerListaPermisosRol(user.codRol);
+                            user.listaPermisosRol = listaPermisos;
+
+
                             SessionManager.GetInstance.LogIn(user);
-
-
                             contClaveIncorrecta = 0;
                             this.Hide(); //oculta el formulario actual
                             frmMenu frmMenu = new frmMenu();
