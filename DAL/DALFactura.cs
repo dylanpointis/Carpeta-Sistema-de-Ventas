@@ -23,7 +23,6 @@ namespace DAL
                 new SqlParameter("@Fecha", factura.Fecha.ToString("yyyy-MM-dd HH:mm")),
                 new SqlParameter("@MetodoPago", factura.cobro.MetodoPago.ToString()),
                 new SqlParameter("@MarcaTarjeta", factura.cobro.MarcaTarjeta),
-                new SqlParameter("@NumTarjeta", factura.cobro.NumTarjeta),
                 new SqlParameter("@CantCuotas", factura.cobro.CantCuotas),
                 new SqlParameter("@AliasMP", factura.cobro.AliasMP),
                 new SqlParameter("@ComentarioAdicional", factura.cobro.ComentarioAdicional),

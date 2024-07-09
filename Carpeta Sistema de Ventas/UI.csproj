@@ -61,6 +61,12 @@
     <Compile Include="frmCambiarIdioma.Designer.cs">
       <DependentUpon>frmCambiarIdioma.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGestionFamilias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionFamilias.Designer.cs">
+      <DependentUpon>frmGestionFamilias.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGestionRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCambiarIdioma.resx">
       <DependentUpon>frmCambiarIdioma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionFamilias.resx">
+      <DependentUpon>frmGestionFamilias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGestionRoles.resx">
       <DependentUpon>frmGestionRoles.cs</DependentUpon>

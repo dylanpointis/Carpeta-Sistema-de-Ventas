@@ -1,5 +1,6 @@
 ﻿using BE;
 using DAL;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,7 +36,7 @@ namespace BLL
 
             foreach (DataRow row in tabla.Rows)
             {
-                BECliente cliente = new BECliente(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString());
+                BECliente cliente = new BECliente(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString(), Encriptador.DesencriptarAES(row[4].ToString()));
                 lista.Add(cliente);
             }
             return lista;

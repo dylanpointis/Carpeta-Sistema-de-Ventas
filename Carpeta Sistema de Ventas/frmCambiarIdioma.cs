@@ -42,7 +42,7 @@ namespace Carpeta_Sistema_de_Ventas
 
                 CargarComboBox();
             }
-            else { MessageBox.Show("Seleccione un idioma"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionarIdioma")); }
         }
 
         private void frmCambiarIdioma_Load(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using BE;
 using BLL;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (ValidarDatos())
             {
-                BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, txtDireccion.Text); 
+                BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text)); 
                 
                 BECliente clienteEncontrado = bllCliente.VerificarCliente(cliente.DniCliente);
                 if(clienteEncontrado == null)

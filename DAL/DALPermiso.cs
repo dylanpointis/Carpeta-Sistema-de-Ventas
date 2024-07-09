@@ -10,6 +10,7 @@ namespace DAL
     public class DALPermiso
     {
         DALConexion dalCon = new DALConexion();
+
         public DataTable TraerListaPermisos()
         {
             DataTable tabla = dalCon.TraerTabla("Permisos");

@@ -10,7 +10,6 @@ namespace BE
     {
         public int NumTransaccionBancaria { get; set; }
         public string MarcaTarjeta { get; set; }
-        public string NumTarjeta { get; set; } //encriptada reversiblemente
         public int CantCuotas { get; set; }
         public string ComentarioAdicional { get; set; } //puede ser Null
         public EnumMetodoPago MetodoPago { get; set; }

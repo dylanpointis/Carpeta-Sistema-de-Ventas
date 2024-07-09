@@ -34,7 +34,7 @@ namespace DAL
                 new SqlParameter("@Apellido", user.Apellido),
                 new SqlParameter("@Mail", user.Email),
                 new SqlParameter("@NombreUsuario", user.NombreUsuario),
-                new SqlParameter("@Rol", user.Rol),
+                new SqlParameter("@Rol", user.codRol),
                 new SqlParameter("@Bloqueo", user.Bloqueado)
             };
             dalCon.EjecutarProcAlmacenado("ModificarUsuario", parametros);
@@ -59,7 +59,7 @@ namespace DAL
                 new SqlParameter("@Mail", user.Email),
                 new SqlParameter("@NombreUsuario", user.NombreUsuario),
                 new SqlParameter("@Clave", user.Clave),
-                new SqlParameter("@Rol", user.Rol)
+                new SqlParameter("@Rol", user.codRol)
             };
             dalCon.EjecutarProcAlmacenado("RegistrarUsuario", parametros);
         }
@@ -85,7 +85,7 @@ namespace DAL
             BEUsuario user = null;
             foreach (DataRow dr in tabla.Rows)
             {
-                user = new BEUsuario(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), Convert.ToBoolean(dr[7]), Convert.ToBoolean(dr[8]));
+                user = new BEUsuario(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), Convert.ToInt32(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToBoolean(dr[8]));
                 break;
                 //Solo agarra el primer registro que coincida nombreusuario
             }

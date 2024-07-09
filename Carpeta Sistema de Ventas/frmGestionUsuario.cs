@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Services.Observer;
 using Microsoft.VisualBasic.ApplicationServices;
+using BE.Composite;
 
 namespace Carpeta_Sistema_de_Ventas
 {
@@ -24,6 +25,16 @@ namespace Carpeta_Sistema_de_Ventas
             IdiomaManager.GetInstance().archivoActual = "frmGestionUsuario";
             IdiomaManager.GetInstance().Agregar(this);
 
+
+
+            grillaUsuarios.Columns.Add("DNI", "DNI");
+            grillaUsuarios.Columns.Add("Nombre", "Nombre");
+            grillaUsuarios.Columns.Add("Apellido", "Apellido");
+            grillaUsuarios.Columns.Add("Mail", "Email");
+            grillaUsuarios.Columns.Add("NombreUsuario", "Nombre de Usuario");
+            grillaUsuarios.Columns.Add("Rol", "Rol");
+            grillaUsuarios.Columns.Add("Bloqueo", "Bloqueado");
+            grillaUsuarios.Columns.Add("Activo", "Activo");
         }
 
         public void ActualizarObserver()
@@ -32,14 +43,18 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
 
-
+        BEUsuario usuarioAModificar;
         BLLUsuario bllUsuario = new BLLUsuario();
+        BLLFamilia bllFamilia = new BLLFamilia();
+
+        List<Familia> listaRoles = new List<Familia>();
         List<BEUsuario> lstUsuarios = null;
         EnumModoAplicar modoOperacion;
 
 
         private void frmCrearUsuario_Load(object sender, EventArgs e)
         {
+            listaRoles = bllFamilia.TraerListaRoles();
             btnCancelar.Enabled = false;
             modoOperacion = EnumModoAplicar.Consulta;
             txtDNI.Text = "";
@@ -50,15 +65,14 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (modoOperacion == EnumModoAplicar.Consulta)
             {
-                List<BEUsuario> lstConsulta = new List<BEUsuario>();
-                foreach (BEUsuario user in lstUsuarios)
+                grillaUsuarios.Rows.Clear();
+                foreach (BEUsuario u in lstUsuarios)
                 {
-                    if (user.DNI.ToString() == txtDNI.Text || user.Nombre.ToLower() == txtNombre.Text.ToLower() || user.Apellido.ToLower() == txtApellido.Text.ToLower() || user.NombreUsuario.ToLower() == txtNombreUsuario.Text.ToLower() || user.Email == txtEmail.Text.ToLower() || user.Rol == cmbRol.Text)
+                    if (u.DNI.ToString() == txtDNI.Text || u.Nombre.ToLower() == txtNombre.Text.ToLower() || u.Apellido.ToLower() == txtApellido.Text.ToLower() || u.NombreUsuario.ToLower() == txtNombreUsuario.Text.ToLower() || u.Email == txtEmail.Text.ToLower() || u.Rol.Nombre == cmbRol.Text)
                     {
-                        lstConsulta.Add(user);
+                        grillaUsuarios.Rows.Add(u.DNI, u.Nombre, u.Apellido, u.Email, u.NombreUsuario, u.Rol.Nombre, u.Bloqueado, u.Activo);
                     }
                 }
-                grillaUsuarios.DataSource = lstConsulta;
             }
             else
             {
@@ -74,8 +88,10 @@ namespace Carpeta_Sistema_de_Ventas
                         }
                         else
                         {
+                            Familia rol = listaRoles.FirstOrDefault(r => r.Nombre == cmbRol.Text); //BUSCA EL ROL
                             string clave = txtDNI.Text + txtApellido.Text; // CLAVE COMBINA DNI + APELLIDO
-                            BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, Encriptador.EncriptarSHA256(clave), cmbRol.Text, false, true);
+
+                            BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, Encriptador.EncriptarSHA256(clave), rol.Id, false, true);
                             bllUsuario.RegistrarUsuario(user);
                             MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
                         }
@@ -86,27 +102,29 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (ValidarCampos())
                     {
-                        if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[8].Value) == true) //en caso de que este activo
-                        {
-                            int dni = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
-                            bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == dni).Bloqueado;
-
-                            List<BEUsuario> lstUsers = bllUsuario.TraerListaUsuarios();
-                            BEUsuario usuarioEncontrado = lstUsers.FirstOrDefault(u => u.DNI != dni && (u.NombreUsuario == txtNombreUsuario.Text || u.Email == txtEmail.Text));
-                            if (usuarioEncontrado != null) //busca si existe un usuario con ese  email o nombre de usuario
+                            if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != "False") //en caso de que este activo
                             {
-                                MessageBox.Show(FormIdiomas.ConseguirTexto("yaExisteMailUser"));
-                                return;
-                            }
-                            else
-                            {
-                                BEUsuario user = new BEUsuario(dni, txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, cmbRol.Text, bloqueado, true);
-                                bllUsuario.ModificarUsuario(user);
-                                MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
-                            }
+                                int dni = Convert.ToInt32(txtDNI.Text);
+                                bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == dni).Bloqueado;
 
-                        }
-                        else { MessageBox.Show(FormIdiomas.ConseguirTexto("noPuedeModificarse")); } //no puede modificarse un usuario inactivo
+                                List<BEUsuario> lstUsers = bllUsuario.TraerListaUsuarios();
+                                BEUsuario usuarioEncontrado = lstUsers.FirstOrDefault(u => u.DNI != dni && (u.NombreUsuario == txtNombreUsuario.Text || u.Email == txtEmail.Text));
+                                if (usuarioEncontrado != null) //busca si existe un usuario con ese  email o nombre de usuario
+                                {
+                                    MessageBox.Show(FormIdiomas.ConseguirTexto("yaExisteMailUser"));
+                                    return;
+                                }
+                                else
+                                {
+                                    Familia rol = listaRoles.FirstOrDefault(r => r.Nombre == cmbRol.Text); //BUSCA EL ROL
+
+                                    BEUsuario user = new BEUsuario(dni, txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, rol.Id, bloqueado, true);
+                                    bllUsuario.ModificarUsuario(user);
+                                    MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
+                                }
+
+                            }
+                            else { MessageBox.Show(FormIdiomas.ConseguirTexto("noPuedeModificarse")); } //no puede modificarse un usuario inactivo                                             
                     }
                     else { MessageBox.Show(FormIdiomas.ConseguirTexto("llenarCampos")); return; }
                 }
@@ -183,7 +201,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[8].Value) == true) //en caso de que este activo
+                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != "False") //en caso de que este activo
                 {
                     modoOperacion = EnumModoAplicar.Modificar;
                     BloquearBotones();
@@ -205,7 +223,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if(Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[8].Value) == true) //en caso de que este activo
+                if(grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != "False") //en caso de que este activo
                 {
                     modoOperacion = EnumModoAplicar.Eliminar;
                     BloquearBotones();
@@ -225,7 +243,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[7].Value))
+                if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != "False")
                 {
                     modoOperacion = EnumModoAplicar.Desbloquear;
                     BloquearBotones();
@@ -291,15 +309,37 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void Actualizar()
         {
+            grillaUsuarios.Rows.Clear();
+            lstUsuarios = bllUsuario.TraerListaUsuarios();
+            foreach(var u in lstUsuarios)
+            {
+                grillaUsuarios.Rows.Add(u.DNI,u.Nombre,u.Apellido,u.Email,u.NombreUsuario,u.Rol.Nombre,u.Bloqueado,u.Activo);
+            }
+
+            /*
             lstUsuarios = bllUsuario.TraerListaUsuarios();
             grillaUsuarios.DataSource = lstUsuarios;
 
-            grillaUsuarios.Columns["Clave"].Visible = false; //quita la columna clave
 
-            grillaUsuarios.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN ROJO A LOS NO ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW*/
+            foreach(DataGridViewRow fila in grillaUsuarios.Rows)
+            {
+                int id = Convert.ToInt32(fila.Cells["codRol"].Value);
+                Familia rol = bllFamilia.TraerListaRoles().FirstOrDefault(r => r.Id == id);
+                fila.Cells["Rol"].Value = rol.Nombre;
+
+            }*/
+
+
+
+
+           // grillaUsuarios.Columns["codRol"].Visible = false;
+            //grillaUsuarios.Columns["Clave"].Visible = false; //quita la columna clave
+           
+           
+            grillaUsuarios.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN ROJO A LOS NO ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW
             foreach (DataGridViewRow row in grillaUsuarios.Rows)
             {
-                if (Convert.ToBoolean(row.Cells[8].Value) == false)
+                if (row.Cells[7].Value != null && row.Cells[7].Value.ToString() == "False")
                 {
                     row.DefaultCellStyle.BackColor = Color.Crimson; //pone en rojo el background
                 }
@@ -346,7 +386,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[8].Value) == false)
+                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() == "False")
                 {
                     btnEliminar.Text = FormIdiomas.ConseguirTexto("btnActivar");
                 }
@@ -363,7 +403,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 else if (modoOperacion == EnumModoAplicar.Desbloquear)
                 {
-                    if (Convert.ToBoolean(grillaUsuarios.CurrentRow.Cells[7].Value))
+                    if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != "False")
                     {
                         lblMensaje.Text = FormIdiomas.ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                     }
@@ -383,8 +423,9 @@ namespace Carpeta_Sistema_de_Ventas
             txtApellido.Text = grillaUsuarios.CurrentRow.Cells[2].Value.ToString();
             txtEmail.Text = grillaUsuarios.CurrentRow.Cells[3].Value.ToString();
             txtNombreUsuario.Text = grillaUsuarios.CurrentRow.Cells[4].Value.ToString();
-            cmbRol.SelectedItem = grillaUsuarios.CurrentRow.Cells[6].Value.ToString();
+            cmbRol.SelectedItem = grillaUsuarios.CurrentRow.Cells[5].Value.ToString();
 
+            Familia rol = bllFamilia.TraerListaFamilias().FirstOrDefault(r => r.Nombre == cmbRol.Text);
         }
 
         private void btnResetearClave_Click(object sender, EventArgs e)

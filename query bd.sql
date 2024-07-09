@@ -4,17 +4,6 @@ USE CarpetaIngSoftware
 GO
 
 
-CREATE TABLE Usuarios(
-DNI INT PRIMARY KEY NOT NULL,
-Nombre varchar(50) NOT NULL,
-Apellido varchar(50) NOT NULL,
-Mail varchar(100) NOT NULL,
-NombreUsuario varchar(50) NOT NULL,
-Clave varchar(100) NOT NULL,
-Rol varchar(50) NOT NULL,
-Bloqueo bit,
-Activo bit
-);
 
 
 CREATE TABLE Clientes(
@@ -38,6 +27,7 @@ Stock smallint NOT NULL,
 Almacenamiento smallint NOT NULL
 )
 
+
 CREATE TABLE Facturas(
 NumFactura INT PRIMARY KEY IDENTITY(1,1),
 DNICliente INT FOREIGN KEY REFERENCES Clientes(DNICliente),
@@ -47,7 +37,6 @@ Impuesto float,
 Fecha varchar(50),
 MetodoPago varchar(50),
 MarcaTarjeta varchar(50),
-NumTarjeta varchar(100), /*Se encripta*/
 CantCuotas smallint,
 AliasMP varchar(50) NULL,
 ComentarioAdicional varchar(100) NULL
@@ -227,13 +216,12 @@ CREATE PROCEDURE RegistrarFactura
     @Fecha varchar(50),
 	@MetodoPago varchar(50),
 	@MarcaTarjeta varchar(50),
-	@NumTarjeta varchar(100),
 	@CantCuotas smallint,
 	@AliasMP varchar(50) NULL,
 	@ComentarioAdicional varchar(100) NULL
 AS
 BEGIN
-    INSERT INTO Facturas VALUES (@DNICliente, @NumTransaccion, @MontoTotal, @Impuesto, @Fecha, @MetodoPago, @MarcaTarjeta, @NumTarjeta, @CantCuotas, @AliasMP, @ComentarioAdicional);
+    INSERT INTO Facturas VALUES (@DNICliente, @NumTransaccion, @MontoTotal, @Impuesto, @Fecha, @MetodoPago, @MarcaTarjeta, @CantCuotas, @AliasMP, @ComentarioAdicional);
 END
 GO
 
@@ -297,14 +285,249 @@ BEGIN
 END
 GO
 
+
+
+
+
+
+/*COMPOSITE*/
+
+
+CREATE TABLE Permisos
+(
+CodPermiso INT PRIMARY KEY IDENTITY(1,1),
+Nombre VARCHAR(50),
+Tipo bit
+)
+GO
+
+CREATE TABLE Permiso_Componente
+(
+PermisoPadre INT  FOREIGN KEY REFERENCES Permisos(CodPermiso),
+PermisoHijo INT FOREIGN KEY REFERENCES Permisos(CodPermiso),
+PRIMARY KEY (PermisoPadre, PermisoHijo)
+)
+GO
+
+CREATE TABLE Roles
+(
+CodRol INT PRIMARY KEY IDENTITY(1,1),
+Nombre VARCHAR(50)
+)
+GO
+
+CREATE TABLE Rol_Permiso
+(
+CodRol INT FOREIGN KEY REFERENCES Roles(CodRol),
+CodPermiso INT FOREIGN KEY REFERENCES Permisos(CodPermiso)
+)
+GO
+
+
+
+
+
+
+
+
+CREATE PROCEDURE CrearFamilia
+    @NombreFamilia varchar(50)
+AS
+BEGIN
+    INSERT INTO Permisos VALUES(@NombreFamilia, 1);
+	SELECT SCOPE_IDENTITY()
+END
+GO
+
+CREATE PROCEDURE ModificarFamilia
+ @CodPermiso int,
+ @NombreFamilia varchar(50)
+AS
+BEGIN
+    UPDATE Permisos SET Nombre = @NombreFamilia WHERE CodPermiso = @CodPermiso;
+END
+GO
+
+CREATE PROCEDURE EliminarFamilia
+ @CodFamilia int
+AS
+BEGIN
+    DELETE FROM Permisos WHERE CodPermiso = @CodFamilia;
+END
+GO
+
+
+
+CREATE PROCEDURE RegistrarHijosFamilia
+    @PermisoPadre int,
+	@PermisoHijo int
+AS
+BEGIN
+
+    INSERT INTO Permiso_Componente VALUES(@PermisoPadre,@PermisoHijo);
+END
+GO
+
+
+CREATE PROCEDURE EliminarHijos
+    @PermisoPadre int
+AS
+BEGIN
+
+    DELETE FROM Permiso_Componente WHERE PermisoPadre =@PermisoPadre;
+END
+GO
+
+
+
+CREATE PROCEDURE TraerListaHijos 
+@codPermisoPadre INT
+AS
+BEGIN
+    SELECT PC.PermisoPadre, PC.PermisoHijo, P.Nombre, P.Tipo FROM Permiso_Componente AS PC INNER JOIN Permisos AS P ON PC.PermisoHijo = P.CodPermiso WHERE PermisoPadre = @codPermisoPadre;
+END
+GO
+
+
+CREATE PROCEDURE CrearRol
+    @NombreRol varchar(50)
+AS
+BEGIN
+    INSERT INTO Roles VALUES(@NombreRol);
+	SELECT SCOPE_IDENTITY()
+END
+GO
+
+CREATE PROCEDURE RegistrarRolPermiso
+    @CodRol int,
+	@codPermiso int
+AS
+BEGIN
+
+    INSERT INTO Rol_Permiso VALUES(@CodRol,@codPermiso);
+END
+GO
+
+CREATE PROCEDURE EliminarPermisosRol
+    @CodRol int
+AS
+BEGIN
+    DELETE FROM Rol_Permiso WHERE CodRol = @CodRol;
+END
+GO
+
+CREATE PROCEDURE EliminarPermisosRolPorPermiso
+    @CodPermiso int
+AS
+BEGIN
+    DELETE FROM Rol_Permiso WHERE CodPermiso = @CodPermiso;
+END
+GO
+
+CREATE PROCEDURE EliminarRol
+    @CodRol int
+AS
+BEGIN
+    DELETE FROM Roles WHERE CodRol = @CodRol;
+END
+GO
+
+CREATE PROCEDURE TraerListaPermisosRol 
+@CodRol INT
+AS
+BEGIN
+    SELECT PC.CodRol, PC.CodPermiso, P.Nombre, P.Tipo FROM Rol_Permiso AS PC INNER JOIN Permisos AS P ON PC.CodPermiso = P.CodPermiso WHERE CodRol = @CodRol;
+END
+GO
+
+CREATE PROCEDURE TraerListaPermisosRolSegunPermiso 
+@CodPermiso INT
+AS
+BEGIN
+    SELECT PC.CodRol, PC.CodPermiso, P.Nombre, P.Tipo FROM Rol_Permiso AS PC INNER JOIN Permisos AS P ON PC.CodPermiso = P.CodPermiso WHERE PC.CodPermiso = @CodPermiso;
+END
+GO
+
+
+CREATE PROCEDURE ModificarRol
+    @CodRol int,
+	@Nombre varchar(50)
+AS
+BEGIN
+    UPDATE Roles SET Nombre = @Nombre WHERE CodRol = @CodRol;
+END
+GO
+
+
+CREATE PROCEDURE VerificarSiEstaEnFamilia 
+@idHijo INT
+AS
+BEGIN
+    SELECT PC.PermisoPadre, PC.PermisoHijo, P.Nombre, P.Tipo FROM Permiso_Componente AS PC INNER JOIN Permisos AS P ON PC.PermisoPadre = P.CodPermiso WHERE PermisoHijo = @idHijo;
+END
+GO
+
+
+
+
+
+
+
+
+INSERT INTO Permisos VALUES('Admin',0)
+INSERT INTO Permisos VALUES('Maestros',0)
+INSERT INTO Permisos VALUES('Usuarios',0)
+INSERT INTO Permisos VALUES('Ventas',0)
+INSERT INTO Permisos VALUES('Compras',0)
+INSERT INTO Permisos VALUES('Reportes',0)
+INSERT INTO Permisos VALUES('Ayuda',0)
+
+INSERT INTO Permisos VALUES('FamiliaAdmin',1)
+Insert into Permiso_Componente VALUES(8, 1)
+Insert into Permiso_Componente VALUES(8, 2)
+Insert into Permiso_Componente VALUES(8, 3)
+Insert into Permiso_Componente VALUES(8, 4)
+Insert into Permiso_Componente VALUES(8, 5)
+Insert into Permiso_Componente VALUES(8, 6)
+Insert into Permiso_Componente VALUES(8, 7)
+
+
+INSERT INTO Roles VALUES('Admin')
+INSERT INTO Rol_Permiso VALUES (1,8)
+
+
+
+
+
+
+
+CREATE TABLE Usuarios(
+DNI INT PRIMARY KEY NOT NULL,
+Nombre varchar(50) NOT NULL,
+Apellido varchar(50) NOT NULL,
+Mail varchar(100) NOT NULL,
+NombreUsuario varchar(50) NOT NULL,
+Clave varchar(100) NOT NULL,
+Rol INT FOREIGN KEY REFERENCES Roles(CodRol),
+Bloqueo bit,
+Activo bit
+);
+
+
 /*CLAVE clave123*/
-INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 'Admin', 0, 1);
-INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 'Vendedor', 0, 1);
+INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1);
+--INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 'Vendedor', 0, 1);
+
+
 
 
 INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256);
 INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512);
-INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Jose Paz 678');
-INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', 'Av. Olivos 222');
-INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,null,1,'marcos','')
+INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==');
+INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==');
+INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)
+
+
+select * from Permisos
+select * from Rol_Permiso

@@ -1,5 +1,6 @@
 ﻿using BE;
 using BLL;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -121,7 +122,7 @@ namespace Carpeta_Sistema_de_Ventas
                         }
                         else
                         {
-                            BECliente cli = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, txtDireccion.Text);
+                            BECliente cli = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
                             bllCliente.RegistrarCliente(cli);
                             MessageBox.Show("Cliente registrado exitosamente");
                         }
@@ -148,7 +149,7 @@ namespace Carpeta_Sistema_de_Ventas
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar)
                     {
-                        BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, txtDireccion.Text);
+                        BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
                         bllCliente.ModificarCliente(cliente);
                         MessageBox.Show("Cliente modificado");
                     }

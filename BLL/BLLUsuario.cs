@@ -1,4 +1,5 @@
 ﻿using BE;
+using BE.Composite;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,19 @@ namespace BLL
         public List<BEUsuario> TraerListaUsuarios()
         {
             List<BEUsuario> listaUsuario = new List<BEUsuario>();
+           
+            BLLFamilia bLLFamilia = new BLLFamilia();
+            List<Familia> listaRoles = bLLFamilia.TraerListaRoles();
+
 
             DataTable tabla = dalUsuario.TraerListaUsuario();
             
             foreach (DataRow dr in tabla.Rows)
             {
-                BEUsuario user = new BEUsuario(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), Convert.ToBoolean(dr[7]), Convert.ToBoolean(dr[8]));
+                Familia rolEncontrado = listaRoles.FirstOrDefault(r => r.Id == Convert.ToInt32(dr[6]));
+
+                BEUsuario user = new BEUsuario(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), rolEncontrado.Id, Convert.ToBoolean(dr[7]), Convert.ToBoolean(dr[8]));
+                user.Rol = rolEncontrado;
                 listaUsuario.Add(user);
             }
             return listaUsuario;

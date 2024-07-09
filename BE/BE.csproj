@@ -46,6 +46,9 @@
     <Compile Include="BEProducto.cs" />
     <Compile Include="BEUsuario.cs" />
     <Compile Include="BECobro.cs" />
+    <Compile Include="Composite\Componente.cs" />
+    <Compile Include="Composite\Familia.cs" />
+    <Compile Include="Composite\Permiso.cs" />
     <Compile Include="EnumMetodoPago.cs" />
     <Compile Include="EnumModoAplicar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

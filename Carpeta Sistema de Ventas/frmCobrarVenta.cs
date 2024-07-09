@@ -58,7 +58,6 @@ namespace Carpeta_Sistema_de_Ventas
                 else
                 {
                     cobroDatos.AliasMP = null;
-                    cobroDatos.NumTarjeta = Encriptador.EncriptarAES(txtNumTarjeta.Text); //TIENE QUE ENCRIPTARSE REVERSIBLEMENTE
                     cobroDatos.MarcaTarjeta = cmbMarcaTarjeta.Text;
                     cobroDatos.CantCuotas = Convert.ToInt16(txtCantCuotas.Text);
                 }
@@ -87,14 +86,8 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 else 
                 {
-                    if(txtNumTarjeta.Text == "0" || cmbMarcaTarjeta.Text == "" || txtCantCuotas.Text == "")
+                    if( cmbMarcaTarjeta.Text == "" || txtCantCuotas.Text == "")
                     {
-                        return false;
-                    }
-
-                    if (!Regex.IsMatch(txtNumTarjeta.Text, @"^\d{14,16}$"))
-                    {
-                        MessageBox.Show("El numero de tarjeta debe contener solo números y tener entre 14 y 16 dígitos.");
                         return false;
                     }
                 }
@@ -111,7 +104,6 @@ namespace Carpeta_Sistema_de_Ventas
         { 
             txtNumTransaccion.Text = _factura.NumFactura.ToString();
             cmbMetodoPago.Enabled = true;
-            txtNumTarjeta.Enabled = true;
             txtAliasMP.Enabled = true;
             cmbMarcaTarjeta.Enabled = true;
             txtCantCuotas.Enabled = true;
@@ -126,7 +118,6 @@ namespace Carpeta_Sistema_de_Ventas
             if (cmbMetodoPago.Text == EnumMetodoPago.MercadoPago.ToString())
             {
                 txtAliasMP.Enabled = true;
-                txtNumTarjeta.Enabled = false;
                 cmbMarcaTarjeta.Enabled = false;
                 txtCantCuotas.Enabled = false;
                 txtCantCuotas.Text = "1";
@@ -134,7 +125,6 @@ namespace Carpeta_Sistema_de_Ventas
             else
             {
                 txtAliasMP.Enabled = false;
-                txtNumTarjeta.Enabled = true;
                 cmbMarcaTarjeta.Enabled = true;
                 txtCantCuotas.Enabled = true;
             }

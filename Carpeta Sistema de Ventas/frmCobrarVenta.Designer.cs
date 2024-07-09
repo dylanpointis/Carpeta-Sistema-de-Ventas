@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbMarcaTarjeta = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtCantCuotas = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCobrarVenta = new System.Windows.Forms.Button();
@@ -47,10 +46,8 @@
             this.txtNumTransaccion = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.lblNumeroFactura = new System.Windows.Forms.Label();
-            this.txtNumTarjeta = new System.Windows.Forms.NumericUpDown();
             this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantCuotas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNumTarjeta)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbMetodoPago
@@ -97,19 +94,10 @@
             this.cmbMarcaTarjeta.Size = new System.Drawing.Size(145, 21);
             this.cmbMarcaTarjeta.TabIndex = 3;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(260, 228);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Número de tarjeta";
-            // 
             // txtCantCuotas
             // 
             this.txtCantCuotas.Enabled = false;
-            this.txtCantCuotas.Location = new System.Drawing.Point(465, 245);
+            this.txtCantCuotas.Location = new System.Drawing.Point(263, 245);
             this.txtCantCuotas.Minimum = new decimal(new int[] {
             1,
             0,
@@ -128,7 +116,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(462, 228);
+            this.label4.Location = new System.Drawing.Point(260, 228);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 7;
@@ -155,7 +143,7 @@
             this.txtComentarioAdicional.Location = new System.Drawing.Point(465, 93);
             this.txtComentarioAdicional.Multiline = true;
             this.txtComentarioAdicional.Name = "txtComentarioAdicional";
-            this.txtComentarioAdicional.Size = new System.Drawing.Size(207, 78);
+            this.txtComentarioAdicional.Size = new System.Drawing.Size(207, 128);
             this.txtComentarioAdicional.TabIndex = 26;
             // 
             // label5
@@ -254,20 +242,6 @@
             this.lblNumeroFactura.TabIndex = 37;
             this.lblNumeroFactura.Text = "Número factura: ";
             // 
-            // txtNumTarjeta
-            // 
-            this.txtNumTarjeta.Enabled = false;
-            this.txtNumTarjeta.Location = new System.Drawing.Point(263, 245);
-            this.txtNumTarjeta.Maximum = new decimal(new int[] {
-            1569325055,
-            23283064,
-            0,
-            0});
-            this.txtNumTarjeta.Name = "txtNumTarjeta";
-            this.txtNumTarjeta.Size = new System.Drawing.Size(144, 20);
-            this.txtNumTarjeta.TabIndex = 38;
-            this.txtNumTarjeta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTarjeta_KeyPress);
-            // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -290,7 +264,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 412);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.txtNumTarjeta);
             this.Controls.Add(this.lblNumeroFactura);
             this.Controls.Add(this.txtNumTransaccion);
             this.Controls.Add(this.label10);
@@ -305,7 +278,6 @@
             this.Controls.Add(this.btnCobrarVenta);
             this.Controls.Add(this.txtCantCuotas);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbMarcaTarjeta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -315,7 +287,6 @@
             this.Text = "frmRegistrarFactura";
             this.Load += new System.EventHandler(this.frmCobrarVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtCantCuotas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNumTarjeta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,7 +298,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbMarcaTarjeta;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown txtCantCuotas;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCobrarVenta;
@@ -342,7 +312,6 @@
         private System.Windows.Forms.TextBox txtNumTransaccion;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblNumeroFactura;
-        private System.Windows.Forms.NumericUpDown txtNumTarjeta;
         private System.Windows.Forms.Button btnCancelar;
     }
 }

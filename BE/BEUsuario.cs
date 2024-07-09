@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BE.Composite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,18 @@ namespace BE
         public string Email { get; set; }
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
-        public string Rol { get; set; }
+
+        public int codRol { get; set; }
 
         public bool Bloqueado { get; set; }
         public bool Activo { get; set; }
 
 
-        public BEUsuario(int dni, string nombre, string apellido, string email, string nombreusuario, string clave, string rol, bool bloqueado, bool activo) 
+
+        public Familia Rol { get; set; }
+
+
+        public BEUsuario(int dni, string nombre, string apellido, string email, string nombreusuario, string clave, int rol, bool bloqueado, bool activo) 
         { 
             this.DNI = dni;
             this.Nombre = nombre;
@@ -29,7 +35,7 @@ namespace BE
             this.Email = email;
             this.NombreUsuario = nombreusuario;
             this.Clave = clave;
-            this.Rol = rol;
+            this.codRol = rol;
             this.Bloqueado = bloqueado;
             this.Activo = activo;
         }
