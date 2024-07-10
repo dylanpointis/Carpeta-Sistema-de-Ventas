@@ -2,6 +2,7 @@
   "label3": "Generate Invoice",
   "btnSeleccionarProducto": "Select",
   "label2": "List of Added Products",
+  "label6": "Products",
   "lblNeto": "Net:",
   "lblIVA": "VAT",
   "lblTotal": "Total",
@@ -39,8 +40,8 @@
 
 
 
-  "cerrar": "Cerrar sesión",
-  "deseaCerrar": "¿Desea cerrar sesión?",
-  "noHaySesion": "No hay una sesión iniciada",
-  "haySesion": "Ya hay una sesión iniciada"
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
 }

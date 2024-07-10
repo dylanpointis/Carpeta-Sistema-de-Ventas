@@ -1,0 +1,23 @@
+{
+  "label6": "Cobrar venta",
+  "btnConectar": "Conectar",
+  "label1": "Método de pago",
+  "label2": "Marca tarjeta",
+  "label10": "Número de transacción",
+  "label9": "Alias Mercado Pago",
+  "label4": "Cantidad cuotas",
+  "label5": "Comentario adicional",
+  "btnCancelar": "Cancelar",
+  "btnCobrarVenta": "Registrar datos de pago",
+  "lblNumeroFactura": "Número de factura: ",
+  "lblMontoTotal": "Monto total: ",
+  "lblImpuesto": "Impuesto: ",
+  "ventaCobrada": "Venta cobrada con exito",
+  "llene": "Complete los campos",
+  "seleccioneMetodo": "Seleccione un metodo de pago",
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

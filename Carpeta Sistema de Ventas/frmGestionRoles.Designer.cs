@@ -43,7 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAgregarFamilia = new System.Windows.Forms.Button();
-            this.btnQuitarPermiso = new System.Windows.Forms.Button();
+            this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregarPermiso = new System.Windows.Forms.Button();
             this.listBoxRol = new System.Windows.Forms.ListBox();
             this.listBoxFamilias = new System.Windows.Forms.ListBox();
@@ -209,17 +209,17 @@
             this.btnAgregarFamilia.UseVisualStyleBackColor = false;
             this.btnAgregarFamilia.Click += new System.EventHandler(this.btnAgregarFamilia_Click);
             // 
-            // btnQuitarPermiso
+            // btnQuitar
             // 
-            this.btnQuitarPermiso.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnQuitarPermiso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuitarPermiso.Location = new System.Drawing.Point(496, 148);
-            this.btnQuitarPermiso.Name = "btnQuitarPermiso";
-            this.btnQuitarPermiso.Size = new System.Drawing.Size(80, 30);
-            this.btnQuitarPermiso.TabIndex = 69;
-            this.btnQuitarPermiso.Text = "Quitar <<";
-            this.btnQuitarPermiso.UseVisualStyleBackColor = false;
-            this.btnQuitarPermiso.Click += new System.EventHandler(this.btnQuitarPermiso_Click);
+            this.btnQuitar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitar.Location = new System.Drawing.Point(496, 148);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(80, 30);
+            this.btnQuitar.TabIndex = 69;
+            this.btnQuitar.Text = "Quitar <<";
+            this.btnQuitar.UseVisualStyleBackColor = false;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitarPermiso_Click);
             // 
             // btnAgregarPermiso
             // 
@@ -304,7 +304,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAgregarFamilia);
-            this.Controls.Add(this.btnQuitarPermiso);
+            this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.btnAgregarPermiso);
             this.Controls.Add(this.listBoxRol);
             this.Controls.Add(this.listBoxFamilias);
@@ -334,7 +334,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAgregarFamilia;
-        private System.Windows.Forms.Button btnQuitarPermiso;
+        private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Button btnAgregarPermiso;
         private System.Windows.Forms.ListBox listBoxRol;
         private System.Windows.Forms.ListBox listBoxFamilias;

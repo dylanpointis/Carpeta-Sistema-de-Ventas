@@ -10,14 +10,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Services.Observer;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmGestionFamilias : Form
+    public partial class frmGestionFamilias : Form, IObserver
     {
         public frmGestionFamilias()
         {
             InitializeComponent();
+            IdiomaManager.GetInstance().archivoActual = "frmGestionFamilias";
+            IdiomaManager.GetInstance().Agregar(this);
+        }
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
         }
 
         private BLLPermiso bllPermiso = new BLLPermiso();
@@ -30,7 +38,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void frmGestionFamilias_Load(object sender, EventArgs e)
         {
             modoOperacion = EnumModoAplicar.Consulta;
-            lblModoOperacion.Text = "Modo operación: Consulta";
+            lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("lblModoOperacion");
             ActualizarListBoxPermisos();
             ActualizarComboBox();
         }
@@ -71,7 +79,7 @@ namespace Carpeta_Sistema_de_Ventas
                 ActualizarListBoxFamilia();
 
             }
-            else { MessageBox.Show("Seleccione un permiso para agregar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionePermiso")); }
         }
 
         private void btnQuitarPermiso_Click(object sender, EventArgs e)
@@ -83,7 +91,7 @@ namespace Carpeta_Sistema_de_Ventas
                 FamiliaConfigurada.QuitarHijo(permisoSeleccionado);
                 ActualizarListBoxFamilia();
             }
-            else { MessageBox.Show("Seleccione un permiso del Rol configurado para quitar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneQuitar")); }
 
         }
 
@@ -117,11 +125,11 @@ namespace Carpeta_Sistema_de_Ventas
             if (txtNombreFamilia.Text != "")
             {
                 modoOperacion = EnumModoAplicar.Añadir;
-                lblModoOperacion.Text = "Modo operación: Crear nueva Familia";
+                lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
 
                 BloquearBotones();
             }
-            else { MessageBox.Show("Ingrese un nombre para la familia nueva"); txtNombreFamilia.Focus(); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreFamilia.Focus(); }
 
         }
 
@@ -147,12 +155,12 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 if (yaEstaAsignado != null)
                 {
-                    MessageBox.Show("La familia ya esta en un Rol asignado a un Usuario, no puede modificarse");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaEstaAsignadoModificar"));
                 }
                 else
                 {
                     modoOperacion = EnumModoAplicar.Modificar;
-                    lblModoOperacion.Text = $"Modo operación: Modificar Familia ID: {id}";
+                    lblModoOperacion.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")} {id}";
                     BloquearBotones();
                 }
             }
@@ -176,12 +184,12 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 if (yaEstaAsignado != null)
                 {
-                    MessageBox.Show("La familia ya esta en un Rol asignado a un Usuario, no puede eliminarse");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaEstaAsignadoEliminar"));
                 }
                 else
                 {
                     modoOperacion = EnumModoAplicar.Eliminar;
-                    lblModoOperacion.Text = $"Modo operación: Eliminar Familia ID: {id}";
+                    lblModoOperacion.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")} {id}";
                     BloquearBotones();
                 }
             }
@@ -192,13 +200,13 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (modoOperacion == EnumModoAplicar.Eliminar)
             {
-                DialogResult resultado = MessageBox.Show($"¿Está seguro que desea eliminar la familia ID: {FamiliaConfigurada.Id}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("estaSeguro")} {FamiliaConfigurada.Id}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
                     bllFamilia.EliminarHijos(FamiliaConfigurada.Id); //primero elimina sus hijos y luego la familia
                     bllFamilia.EliminarFamilia(FamiliaConfigurada.Id);
-                    MessageBox.Show("Familia eliminada");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                 }
 
             }
@@ -215,9 +223,9 @@ namespace Carpeta_Sistema_de_Ventas
                             {
                                 bllFamilia.RegistrarHijos(idFamiliaCreada, permiso.Id);
                             }
-                            MessageBox.Show("Familia creada con exito");
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
-                        else { MessageBox.Show("Ingrese un nombre para la familia nueva"); txtNombreFamilia.Focus(); }
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreFamilia.Focus(); }
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar) //modificar
                     {
@@ -230,10 +238,10 @@ namespace Carpeta_Sistema_de_Ventas
                             bllFamilia.RegistrarHijos(FamiliaConfigurada.Id, hijo.Id);
                         }
 
-                        MessageBox.Show("Familia modificada con exito");
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
                 }
-                else { MessageBox.Show("Seleccione al menos un permiso"); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("alMenosUno")); }
             }
             FamiliaConfigurada.ObtenerHijos().Clear();
             ActualizarListBoxFamilia();
@@ -286,7 +294,7 @@ namespace Carpeta_Sistema_de_Ventas
             cmbFamilia.SelectedItem = null;
             modoOperacion = EnumModoAplicar.Consulta;
 
-            lblModoOperacion.Text = "Modo operación: Consulta";
+            lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("lblModoOperacion");
         }
     }
 }

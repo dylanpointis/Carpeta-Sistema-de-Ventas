@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL;
 using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,21 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmRegistrarCliente : Form
+    public partial class frmRegistrarCliente : Form, IObserver
     {
         public frmRegistrarCliente()
         {
             InitializeComponent();
+            IdiomaManager.GetInstance().archivoActual = "frmRegistrarCliente";
+            IdiomaManager.GetInstance().Agregar(this);
         }
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
+        }
+
+
+
         BLLCliente bllCliente = new BLLCliente();
         private void btnRegistrarCliente_Click(object sender, EventArgs e)
         {
@@ -33,29 +43,29 @@ namespace Carpeta_Sistema_de_Ventas
                     try
                     {
                         bllCliente.RegistrarCliente(cliente);
-                        MessageBox.Show("Cliente registrado");
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
-                    catch (Exception ex) { MessageBox.Show("Error al registrar al cliente"); }
+                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error")); }
                 }
-                else { MessageBox.Show("Ya existe un cliente con el DNI ingresado"); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste")); }
             }
-            else { MessageBox.Show("Ingrese de vuelta los campos"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseCampos")); }
         }
 
         private bool ValidarDatos()
         {
-            if (txtDNI.Text == "" && txtNombre.Text == "" && txtApellido.Text == "" && txtMail.Text == "" && txtDireccion.Text == "")
+            if (txtDNI.Text == "" || txtNombre.Text == "" || txtApellido.Text == "" || txtMail.Text == "" || txtDireccion.Text == "")
             {
                 return false;
             }
             if (!Regex.IsMatch(txtDNI.Text, @"^\d{7,9}$"))
             {
-                MessageBox.Show("El DNI debe contener solo números y tener entre 7 y 9 dígitos.");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("dni7y9"));
                 return false;
             }
             if (!Regex.IsMatch(txtMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase))
             {
-                MessageBox.Show("El formato del correo electrónico no es válido.");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("formato"));
                 return false;
             }
             return true;

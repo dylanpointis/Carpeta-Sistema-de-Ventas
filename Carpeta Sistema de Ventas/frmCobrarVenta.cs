@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL;
 using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmCobrarVenta : Form
+    public partial class frmCobrarVenta : Form, IObserver
     {
         BEFactura _factura;
         public BECobro cobroDatos = new BECobro();
@@ -23,6 +24,15 @@ namespace Carpeta_Sistema_de_Ventas
         {
             InitializeComponent();
             _factura = factura;
+
+
+            IdiomaManager.GetInstance().archivoActual = "frmCobrarVenta";
+            IdiomaManager.GetInstance().Agregar(this);
+        }
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
         }
 
         private void frmCobrarVenta_Load(object sender, EventArgs e)
@@ -32,9 +42,9 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 cmbMetodoPago.Items.Add(valor);
             }
-            lblMontoTotal.Text = "Monto total: " + _factura.MontoTotal.ToString();
-            lblImpuesto.Text = "Impuesto: " + _factura.Impuesto.ToString();
-            lblNumeroFactura.Text = "Número de factura: " + _factura.NumFactura.ToString();
+            lblMontoTotal.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMontoTotal") + _factura.MontoTotal.ToString();
+            lblImpuesto.Text = IdiomaManager.GetInstance().ConseguirTexto("lblImpuesto") + _factura.Impuesto.ToString();
+            lblNumeroFactura.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNumeroFactura") + _factura.NumFactura.ToString();
         }
 
         private void btnCobrarVenta_Click(object sender, EventArgs e)
@@ -64,10 +74,10 @@ namespace Carpeta_Sistema_de_Ventas
                
 
                 _factura.cobro = cobroDatos;
-                MessageBox.Show("Venta cobrada");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaCobrada"));
                 this.Close();
             }
-            else { MessageBox.Show("Complete los campos"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene")); }
            
         }
 
@@ -94,7 +104,7 @@ namespace Carpeta_Sistema_de_Ventas
             }
             else
             {
-                MessageBox.Show("Seleccione un metodo de pago");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneMetodo"));
                 return false;
             }
             return true; 
@@ -188,6 +198,5 @@ namespace Carpeta_Sistema_de_Ventas
 
             }
         }
-
     }
 }

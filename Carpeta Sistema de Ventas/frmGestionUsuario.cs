@@ -343,6 +343,7 @@ namespace Carpeta_Sistema_de_Ventas
 
 
             //llena el combobox de Roles
+            cmbRol.Items.Clear();
             List<Familia> roles = bllFamilia.TraerListaRoles();
             foreach (var rol in roles)
             {

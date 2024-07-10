@@ -130,8 +130,8 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void gestiónDePerfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGestionRoles frmCambiarIdioma = new frmGestionRoles();
-            AbrirForm(frmCambiarIdioma);
+            frmGestionRoles frmRoles = new frmGestionRoles();
+            AbrirForm(frmRoles);
         }
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)

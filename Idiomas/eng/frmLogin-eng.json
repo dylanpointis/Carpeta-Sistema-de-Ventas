@@ -4,5 +4,11 @@
   "label1": "Username",
   "label2": "Password",
   "label3": "Log in",
-  "btnMostrarClave": ""
+  "btnMostrarClave": "",
+  "incorrecta": "Incorrect password, please try again",
+  "seBloqueo": "Your user has been blocked, please contact the administrator",
+  "estaBloqueado": "The user is blocked or disabled, please contact the administrator",
+  "noSeEncontro": "The entered user was not found",
+  "yaInicio": "There is already a session started",
+  "llene": "Fill in the fields"
 }

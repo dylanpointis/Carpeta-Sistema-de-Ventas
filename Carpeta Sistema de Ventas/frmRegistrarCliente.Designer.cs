@@ -185,7 +185,6 @@
             this.MinimizeBox = false;
             this.Name = "frmRegistrarCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmRegistrarCliente";
             this.ResumeLayout(false);
             this.PerformLayout();
 

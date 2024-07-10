@@ -1,0 +1,23 @@
+{
+  "label6": "Register Client",
+  "label1": "Client DNI:",
+  "label2": "First Name:",
+  "label3": "Last Name:",
+  "label4": "Email:",
+  "label5": "Address:",
+  "btnCancelar": "Cancel",
+  "btnCobrarVenta": "Register Payment Data",
+  "btnRegistrarCliente": "Register Client",
+  "exito": "Client successfully registered",
+  "error": "Error registering client",
+  "yaExiste": "A client with the entered DNI already exists",
+  "ingreseCampos": "Fill in the fields",
+  "dni7y9": "The DNI must contain only numbers and be between 7 and 9 digits",
+  "formato": "The email format is not valid",
+
+
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
+}

@@ -1,0 +1,23 @@
+{
+  "label6": "Registrar cliente",
+  "label1": "DNI Cliente:",
+  "label2": "Nombre:",
+  "label3": "Apellido:",
+  "label4": "Email:",
+  "label5": "Dirección:",
+  "btnCancelar": "Cancelar",
+  "btnCobrarVenta": "Registrar datos de pago",
+  "btnRegistrarCliente": "Registrar cliente",
+  "exito": "Cliente registrado con éxito",
+  "error": "Error al registrar al cliente",
+  "yaExiste": "Ya existe un cliente con el DNI ingresado",
+  "ingreseCampos": "Complete los campos",
+  "dni7y9": "El DNI debe contener solo números y tener entre 7 y 9 dígitos",
+  "formato": "El formato del correo electrónico no es válido",
+
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

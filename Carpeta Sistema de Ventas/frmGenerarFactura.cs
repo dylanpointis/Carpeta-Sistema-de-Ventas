@@ -48,6 +48,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaClientes.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewApellido");
             grillaClientes.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMail");
             grillaClientes.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion");
+            grillaClientes.Columns[0].Width = 63;
 
             ActualizarGrillaProductos();
             ActualizarGrillaClientes();
@@ -159,13 +160,14 @@ namespace Carpeta_Sistema_de_Ventas
         {
             frmRegistrarCliente form = new frmRegistrarCliente();
             form.ShowDialog();
+
+
+            //vuelve a cargar el idioma
+            IdiomaManager.GetInstance().archivoActual = "frmGenerarFactura";
+            IdiomaManager.GetInstance().Agregar(this);
+
             ActualizarGrillaClientes();
         }
-        /*
-        private void btnActualizarGrillaCliente_Click(object sender, EventArgs e)
-        {
-            ActualizarGrillaClientes();
-        }*/
 
         private void btnCobrarVenta_Click(object sender, EventArgs e)
         {
@@ -181,6 +183,11 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     btnFinalizar.Enabled = true;
                 }
+
+                //vuelve a cargar el idioma
+                IdiomaManager.GetInstance().archivoActual = "frmGenerarFactura";
+                IdiomaManager.GetInstance().Agregar(this);
+
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeSeleccionar")); }
         }

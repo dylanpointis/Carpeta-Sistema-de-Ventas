@@ -4,5 +4,11 @@
   "label1": "Nombre de usuario",
   "label2": "Clave",
   "label3": "Iniciar sesión",
-  "btnMostrarClave": ""
+  "btnMostrarClave": "",
+  "incorrecta": "Clave incorrecta, vuelva a intentarlo",
+  "seBloqueo": "Se ha bloqueado su usuario, comuníquese con el administrador",
+  "estaBloqueado": "El usuario se encuentra Bloqueado o Desactivado, comuniquese con el administrador",
+  "noSeEncontro": "No se encontró al usuario ingresado",
+  "yaInicio": "Ya hay una sesión iniciada",
+  "llene": "LLene los campos"
 }

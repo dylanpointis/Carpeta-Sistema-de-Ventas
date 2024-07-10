@@ -1,6 +1,7 @@
 ﻿using BE;
 using BE.Composite;
 using BLL;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,21 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmGestionRoles : Form
+    public partial class frmGestionRoles : Form, IObserver
     {
         public frmGestionRoles()
         {
             InitializeComponent();
+            IdiomaManager.GetInstance().archivoActual = "frmGestionRoles";
+            IdiomaManager.GetInstance().Agregar(this);
         }
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
+        }
+
+
         BLLPermiso bllPermiso = new BLLPermiso();
         BLLFamilia bllFamilia = new BLLFamilia();
         BLLUsuario bllUsuario = new BLLUsuario();
@@ -31,7 +41,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void frmGestionRoles_Load(object sender, EventArgs e)
         {
             modoOperacion = EnumModoAplicar.Consulta;
-            lblModoOperacion.Text = "Modo operación: Consulta";
+            lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("lblModoOperacion");
             ActualizarListBoxPermisosYFamilias();
             ActualizarComboBox();
         }
@@ -47,7 +57,7 @@ namespace Carpeta_Sistema_de_Ventas
                     ActualizarListBoxRol();
                 }
             }
-            else { MessageBox.Show("Seleccione un permiso para agregar"); }
+            else { MessageBox.Show(lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("seleccionePermiso")); }
         }
 
         private void btnAgregarFamilia_Click(object sender, EventArgs e)
@@ -61,7 +71,7 @@ namespace Carpeta_Sistema_de_Ventas
                     ActualizarListBoxRol();
                 }
             }
-            else { MessageBox.Show("Seleccione una familia para agregar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneFamilia")); }
         }
 
         private void btnQuitarPermiso_Click(object sender, EventArgs e)
@@ -73,7 +83,7 @@ namespace Carpeta_Sistema_de_Ventas
                 RolConfigurado.QuitarHijo(permisoSeleccionado);
                 ActualizarListBoxRol();
             }
-            else { MessageBox.Show("Seleccione un permiso del Rol configurado para quitar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneQuitar")); }
         }
 
 
@@ -103,7 +113,7 @@ namespace Carpeta_Sistema_de_Ventas
                     Componente yaEstaEnElRol = RolConfigurado.ObtenerHijos().FirstOrDefault(p => p.Id == comp.Id);
                     if (yaEstaEnElRol != null)
                     {
-                        MessageBox.Show($"El permiso ya esta en la familia {comp.Id}");
+                        MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("yaEstaEnFamilia")} {comp.Id}");
                         return true;
                     }
                 }
@@ -117,7 +127,7 @@ namespace Carpeta_Sistema_de_Ventas
                     Componente yaEstaEnElRol = RolConfigurado.ObtenerHijos().FirstOrDefault(p => p.Id == hijo.Id);
                     if (yaEstaEnElRol != null)
                     {
-                        MessageBox.Show($"La familia seleccionada tiene al permiso {hijo.Id} ya seleccionado");
+                        MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("yaTienePermiso")} {hijo.Id} {IdiomaManager.GetInstance().ConseguirTexto("yaSeleccionado")}");
                         return true;
                     }
                 }
@@ -146,11 +156,11 @@ namespace Carpeta_Sistema_de_Ventas
             if (txtNombreRol.Text != "")
             {
                 modoOperacion = EnumModoAplicar.Añadir;
-                lblModoOperacion.Text = "Modo operación: Crear nuevo Rol";
+                lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
 
                 BloquearBotones();
             }
-            else { MessageBox.Show("Ingrese un nombre para el rol nuevo"); txtNombreRol.Focus(); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreRol.Focus(); }
         }
 
         private void btnAplicar_Click(object sender, EventArgs e)
@@ -158,14 +168,14 @@ namespace Carpeta_Sistema_de_Ventas
 
             if (modoOperacion == EnumModoAplicar.Eliminar)
             {
-                DialogResult resultado = MessageBox.Show($"¿Está seguro que desea eliminar el rol ID: {rolAModifcarOEliminar.Id}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("estaSeguro")} {rolAModifcarOEliminar.Id}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
                     bllFamilia.EliminarPermisosRol(rolAModifcarOEliminar.Id);
                     bllFamilia.EliminarRol(rolAModifcarOEliminar.Id);
 
-                    MessageBox.Show("Rol eliminado");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                 }
             }
             if (RolConfigurado.ObtenerHijos().Count() > 0)
@@ -179,9 +189,9 @@ namespace Carpeta_Sistema_de_Ventas
                         {
                             bllFamilia.RegistrarPermisosRol(idRolCreado, permiso.Id);
                         }
-                        MessageBox.Show("Rol creado con exito");
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
-                    else { MessageBox.Show("Ingrese un nombre para el Rol nueva"); txtNombreRol.Focus(); }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreRol.Focus(); }
                 }
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
@@ -192,7 +202,7 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         bllFamilia.RegistrarPermisosRol(rolAModifcarOEliminar.Id, permiso.Id); //Registra de vuelta los permisos del rol
                     }
-                    MessageBox.Show("Rol modificado");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                 }
             }
             RolConfigurado.ObtenerHijos().Clear();
@@ -215,17 +225,17 @@ namespace Carpeta_Sistema_de_Ventas
                 BEUsuario yaEstaAsignado = listaUsuarios.FirstOrDefault(u => u.Rol.Id == rolAModifcarOEliminar.Id); //Se fija si el rol ya fue asignado a un usuario
                 if (yaEstaAsignado != null)
                 {
-                    MessageBox.Show("El rol ya esta asignado a un usuario");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaEstaAsignadoModificar"));
                 }
                 else
                 {
                     if (txtNombreRol.Text != "")
                     {
                         modoOperacion = EnumModoAplicar.Modificar;
-                        lblModoOperacion.Text = $"Modo operación: Modificar Rol ID: {id}";
+                        lblModoOperacion.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")} {id}";
                         BloquearBotones();
                     }
-                    else { MessageBox.Show("Ingrese un nombre para el rol"); txtNombreRol.Focus(); }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreRol.Focus(); }
                 }
             }
             else { MessageBox.Show("Seleccione un Rol en el comboBox"); }
@@ -245,16 +255,16 @@ namespace Carpeta_Sistema_de_Ventas
                 BEUsuario yaEstaAsignado = listaUsuarios.FirstOrDefault(u => u.Rol.Id == rolAModifcarOEliminar.Id); //Se fija si el rol ya fue asignado a un usuario
                 if (yaEstaAsignado != null)
                 {
-                    MessageBox.Show("El rol ya esta asignado a un Usuario, no puede eliminarse");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaEstaAsignadoEliminar"));
                 }
                 else
                 {
                     modoOperacion = EnumModoAplicar.Eliminar;
-                    lblModoOperacion.Text = $"Modo operación: Eliminar Rol ID: {id}";
+                    lblModoOperacion.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")} {id}";
                     BloquearBotones();
                 }
             }
-            else { MessageBox.Show("Seleccione un Rol en el comboBox"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneComboBox")); }
 
         }
 
@@ -267,7 +277,7 @@ namespace Carpeta_Sistema_de_Ventas
             cmbRoles.SelectedItem = null;
             modoOperacion = EnumModoAplicar.Consulta;
 
-            lblModoOperacion.Text = "Modo operación: Consulta";
+            lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("lblModoOperacion");
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -1,0 +1,24 @@
+{
+  "label6": "Charge Sale",
+  "btnConectar": "Connect",
+  "label1": "Payment Method",
+  "label2": "Card Brand",
+  "label10": "Transaction Number",
+  "label9": "Mercado Pago Alias",
+  "label4": "Installments",
+  "label5": "Additional comment",
+  "btnCancelar": "Cancel",
+  "btnCobrarVenta": "Register Payment Data",
+  "lblNumeroFactura": "Invoice Number: ",
+  "lblMontoTotal": "Total Amount: ",
+  "lblImpuesto": "Tax: ",
+  "ventaCobrada": "Sale successfully charged",
+  "llene": "Fill in all fields",
+  "seleccioneMetodo": "Select a payment method",
+
+  "cerrar": "Log Out",
+  "deseaCerrar": "Do you want to log out?",
+  "noHaySesion": "No session started",
+  "haySesion": "A session is already established"
+}
+

@@ -234,7 +234,6 @@
             this.Controls.Add(this.grillaProductos);
             this.Name = "frmSeleccionarProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmRealizarVenta";
             this.Load += new System.EventHandler(this.frmSeleccionarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProductosAgregados)).EndInit();

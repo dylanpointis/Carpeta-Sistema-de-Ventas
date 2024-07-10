@@ -48,6 +48,12 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+
+            if(txtNombreUsuario.Text == "" || txtClave.Text == "")
+            {
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene"));
+                return;
+            }
             if (SessionManager.GetInstance.ObtenerUsuario() == null)
             {
                 BEUsuario user = bllUsuario.ValidarUsuario(txtNombreUsuario.Text, 0, ""); //verifica si existe el usuario por el username
@@ -75,21 +81,21 @@ namespace Carpeta_Sistema_de_Ventas
                         else
                         {
                             contClaveIncorrecta++;
-                            MessageBox.Show("Clave incorrecta, vuelva a intentarlo");
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"));
                             if (contClaveIncorrecta == 3)
                             {
-                                MessageBox.Show("Se ha bloqueado su usuario, comuníquese con el administrador");
+                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seBloqueo"));
                                 bllUsuario.ModificarBloqueo(user.DNI, true);
                             }
                         }
                     }
-                    else { MessageBox.Show("El usuario se encuentra Bloqueado o Desactivado, comuniquese con el administrador"); }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("estaBloqueado")); }
                    
                     
                 }
-                else { MessageBox.Show("No se encontró al usuario ingresado"); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro")); }
             }
-            else { MessageBox.Show("Ya hay una sesión iniciada"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaInicio")); }
         }
 
 
