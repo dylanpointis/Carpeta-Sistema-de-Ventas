@@ -77,7 +77,7 @@
             // 
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(618, 467);
+            this.btnBuscar.Location = new System.Drawing.Point(554, 467);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(104, 30);
             this.btnBuscar.TabIndex = 23;
@@ -88,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(456, 461);
+            this.label2.Location = new System.Drawing.Point(392, 461);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 69;
@@ -96,7 +96,7 @@
             // 
             // txtNumFactura
             // 
-            this.txtNumFactura.Location = new System.Drawing.Point(459, 477);
+            this.txtNumFactura.Location = new System.Drawing.Point(395, 477);
             this.txtNumFactura.Name = "txtNumFactura";
             this.txtNumFactura.Size = new System.Drawing.Size(134, 20);
             this.txtNumFactura.TabIndex = 70;
