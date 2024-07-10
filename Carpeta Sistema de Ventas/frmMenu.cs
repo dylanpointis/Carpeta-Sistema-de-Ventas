@@ -16,11 +16,14 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmMenu : Form
+    public partial class frmMenu : Form, IObserver
     {
         public frmMenu()
         {
             InitializeComponent();
+            IdiomaManager.GetInstance().archivoActual = "frmMenu";
+            IdiomaManager.GetInstance().Agregar(this);
+            IdiomaManager.GetInstance().PrimeraVez = false;
         }
 
 
@@ -29,7 +32,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void frmMenu_Load(object sender, EventArgs e)
         {
             BEUsuario user = SessionManager.GetInstance.ObtenerUsuario();
-            btnSesion.Text = $"Sesión: {user.NombreUsuario}";
+            btnSesion.Text += ": "+ user.NombreUsuario;
 
 
             //Deshabilita los controles
@@ -68,6 +71,15 @@ namespace Carpeta_Sistema_de_Ventas
             }
 
         }
+
+
+
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
+        }
+
 
 
         Form formActivo = new Form();
@@ -136,7 +148,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("¿Desea cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaCerrar"), IdiomaManager.GetInstance().ConseguirTexto("cerrar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
             {
@@ -145,7 +157,7 @@ namespace Carpeta_Sistema_de_Ventas
                     SessionManager.GetInstance.LogOut();
                     this.Close();
                 }
-                else { MessageBox.Show("No hay una sesion iniciada"); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noHaySesion")); }
             }
 
         }
@@ -155,9 +167,10 @@ namespace Carpeta_Sistema_de_Ventas
             BEUsuario user = SessionManager.GetInstance.ObtenerUsuario();
             if (user != null) 
             {
-                MessageBox.Show("Ya hay una sesión iniciada");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("haySesion"));
             }
             else { this.Close(); }
         }
+
     }
 }

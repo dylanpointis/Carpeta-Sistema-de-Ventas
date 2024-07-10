@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace Services.Observer
 {
@@ -69,6 +70,59 @@ namespace Services.Observer
             else
             {
                 return nombreControl;
+            }
+        }
+
+
+        public bool PrimeraVez; //esto es para que solo actualice el menustrip la priemra vez
+
+        public static void ActualizarControles(Control frm)
+        {
+            foreach (Control control in frm.Controls)
+            {
+                if (control is Button || control is Label)
+                {
+                    control.Text = IdiomaManager.GetInstance().ConseguirTexto(control.Name);
+                }
+
+
+                if (control is MenuStrip m && IdiomaManager.GetInstance().PrimeraVez == true) //solo cambia el menustrip la primera vez o cuando cambia el idioma
+                {
+                    foreach (ToolStripMenuItem item in m.Items)
+                    {
+                        if (item is ToolStripMenuItem toolStripMenuItem)
+                        {
+                            item.Text = IdiomaManager.GetInstance().ConseguirTexto(item.Name);
+
+                            //al boton sesion le concatena el nombre del usuario
+                            if (item.Name == "btnSesion") { item.Text = IdiomaManager.GetInstance().ConseguirTexto(item.Name) + ": " + SessionManager.GetInstance.ObtenerUsuario().NombreUsuario; }
+
+
+                            CambiarIdiomaMenuStrip(toolStripMenuItem.DropDownItems, frm);
+                        }
+                    }
+                }
+
+
+
+
+                if (control.Controls.Count > 0)
+                {
+                    ActualizarControles(control);
+                }
+            }
+        }
+
+        private static void CambiarIdiomaMenuStrip(ToolStripItemCollection items, Control frm)
+        {
+            foreach (ToolStripItem item in items)
+            {
+                if (item is ToolStripMenuItem item1)
+                {
+                    item.Text = IdiomaManager.GetInstance().ConseguirTexto(item.Name);
+
+                    CambiarIdiomaMenuStrip(item1.DropDownItems, frm);
+                }
             }
         }
 

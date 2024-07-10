@@ -46,5 +46,11 @@
   "gridViewNombreUsuario": "Username",
   "gridViewRol": "Role",
   "gridViewBloqueo": "Blocked",
-  "gridViewActivo": "Active"
+  "gridViewActivo": "Active",
+
+
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
 }

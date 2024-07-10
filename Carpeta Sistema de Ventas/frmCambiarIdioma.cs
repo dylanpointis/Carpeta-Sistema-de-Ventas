@@ -24,7 +24,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         public void ActualizarObserver()
         {
-            FormIdiomas.ActualizarControles(this);
+            IdiomaManager.ActualizarControles(this);
         }
 
         private void btnCambiarIdioma_Click(object sender, EventArgs e)
@@ -33,11 +33,15 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (cmbIdioma.Text == IdiomaManager.GetInstance().ConseguirTexto("esp"))
                 {
+                    IdiomaManager.GetInstance().PrimeraVez = true; //esto es para que traduzca el menuStrip
                     SessionManager.IdiomaActual = "esp";
+                    IdiomaManager.GetInstance().PrimeraVez = false;  //una vez traducido lo pone en false asi no se traduce de vuelta al cambiar de form
                 }
                 else
                 {
+                    IdiomaManager.GetInstance().PrimeraVez = true;
                     SessionManager.IdiomaActual = "eng";
+                    IdiomaManager.GetInstance().PrimeraVez = false;
                 }
 
                 CargarComboBox();

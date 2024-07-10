@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormIdiomas.cs" />
     <Compile Include="frmCambiarClave.cs">
       <SubType>Form</SubType>
     </Compile>

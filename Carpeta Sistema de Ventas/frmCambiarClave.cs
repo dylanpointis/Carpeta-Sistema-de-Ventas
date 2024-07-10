@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL;
 using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmCambiarClave : Form
+    public partial class frmCambiarClave : Form, IObserver
     {
         BEUsuario usuarioActual;
         frmMenu _frmParent;
@@ -26,15 +27,27 @@ namespace Carpeta_Sistema_de_Ventas
             txtClaveActual.KeyPress += textbox_KeyPress;
             txtNuevaClave.KeyPress += textbox_KeyPress;
             txtConfirmar.KeyPress += textbox_KeyPress;
+
+            IdiomaManager.GetInstance().archivoActual = "frmCambiarClave";
+            IdiomaManager.GetInstance().Agregar(this);
+
+            btnMostrarClaveActual.Text = "";
+            btnMostrarClaveNueva.Text = "";
+            btnMostrarConfirmarClave.Text = "";
         }
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
+        }
+
 
         BLLUsuario bllUsuario = new BLLUsuario();
 
 
-
         private void frmCambiarClave_Load(object sender, EventArgs e)
         {
-            lblNombreUsuario.Text = "Nombre de usuario: " + usuarioActual.NombreUsuario;
+            lblNombreUsuario.Text += " " + usuarioActual.NombreUsuario;
         }
 
         private void btnCambiarClave_Click(object sender, EventArgs e)
@@ -53,29 +66,29 @@ namespace Carpeta_Sistema_de_Ventas
                                 try
                                 {
                                     bllUsuario.CambiarClave(usuarioActual.DNI, Encriptador.EncriptarSHA256(txtNuevaClave.Text));
-                                    MessageBox.Show("Clave cambiada con exito");
+                                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
 
                                     //Cierra sesion automaticamente
                                     SessionManager.GetInstance.LogOut();
                                     this.Close();
                                     _frmParent.Close();
                                 }
-                                catch (Exception ex) { MessageBox.Show("Error al cambiar la clave "); }
+                                catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error")); }
 
                             }
-                            else { MessageBox.Show("Confirme la nueva clave"); }
+                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("confirme")); }
                         }
                         else
                         {
-                            MessageBox.Show("La clave actual ingresada no es correcta");
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"));
                         }
                     }
-                    else { MessageBox.Show("La clave debe tener al menos 8 carácteres"); }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("masde8")); }
                    
                 }
-                else { MessageBox.Show("Debe iniciar una sesión en el sistema"); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeIniciar")); }
             }
-            else { MessageBox.Show("Complete los campos"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("completar")); }
         }
 
 

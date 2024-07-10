@@ -264,6 +264,7 @@ namespace Carpeta_Sistema_de_Ventas
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
 
+            cmbRoles.SelectedItem = null;
             modoOperacion = EnumModoAplicar.Consulta;
 
             lblModoOperacion.Text = "Modo operación: Consulta";

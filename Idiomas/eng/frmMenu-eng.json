@@ -1,14 +1,4 @@
 {
-  "label1": "Change language",
-  "label2": "Language",
-  "btnCambiarIdioma": "Change language",
-  "esp": "Spanish",
-  "eng": "English",
-  "seleccionarIdioma": "Select a language",
-
-
-
-
   "Admin": "Admin",
   "Maestros": "Masters",
   "Usuarios": "Users",

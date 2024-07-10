@@ -38,7 +38,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         public void ActualizarObserver()
         {
-            FormIdiomas.ActualizarControles(this);
+            IdiomaManager.ActualizarControles(this);
         }
 
         BLLUsuario bllUsuario = new BLLUsuario();

@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BE;
 using BLL;
+using Services.Observer;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmGenerarFactura : Form
+    public partial class frmGenerarFactura : Form, IObserver
     {
         private BLLCliente bllCliente = new BLLCliente();
         public BEFactura _factura;
@@ -22,17 +23,31 @@ namespace Carpeta_Sistema_de_Ventas
         {
             InitializeComponent();
             _factura = new BEFactura();
+            IdiomaManager.GetInstance().archivoActual = "frmGenerarFactura";
+            IdiomaManager.GetInstance().Agregar(this);
+        }
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
         }
 
         private void frmGenerarFactura_Load(object sender, EventArgs e)
         {
             grillaProductosAgregados.ColumnCount = 5;
-            grillaProductosAgregados.Columns[0].Name = "Codigo producto";
+            grillaProductosAgregados.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
             grillaProductosAgregados.Columns[2].Width = 58;
-            grillaProductosAgregados.Columns[1].Name = "Descripcion";
-            grillaProductosAgregados.Columns[2].Name = "Cantidad";
-            grillaProductosAgregados.Columns[3].Name = "Precio";
-            grillaProductosAgregados.Columns[4].Name = "Subtotal";
+            grillaProductosAgregados.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDescripcion");
+            grillaProductosAgregados.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCantidad");
+            grillaProductosAgregados.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
+            grillaProductosAgregados.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSubtotal");
+
+
+            grillaClientes.ColumnCount = 5;
+            grillaClientes.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDNI");
+            grillaClientes.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre");
+            grillaClientes.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewApellido");
+            grillaClientes.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMail");
+            grillaClientes.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion");
 
             ActualizarGrillaProductos();
             ActualizarGrillaClientes();
@@ -42,6 +57,11 @@ namespace Carpeta_Sistema_de_Ventas
         {
             frmSeleccionarProducto form = new frmSeleccionarProducto(_factura);
             form.ShowDialog();
+
+            //vuelve a cargar el idioma
+            IdiomaManager.GetInstance().archivoActual = "frmGenerarFactura";
+            IdiomaManager.GetInstance().Agregar(this);
+
             ActualizarGrillaProductos();
         }
 
@@ -61,16 +81,22 @@ namespace Carpeta_Sistema_de_Ventas
                 }
             }
 
-            lblNeto.Text = "Neto: $" + _factura.CalcularMonto();
-            lblIVA.Text = "I.V.A.: $" + _factura.Impuesto;
-            lblTotal.Text = "Total: $" + _factura.MontoTotal;
+            lblNeto.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNeto")} $" + _factura.CalcularMonto();
+            lblIVA.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblIVA")}: $" + _factura.Impuesto;
+            lblTotal.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblTotal")}: $" + _factura.MontoTotal;
         }
 
         /*SECCION CLIENTE*/
 
         private void ActualizarGrillaClientes()
         { 
-            grillaClientes.DataSource = bllCliente.TraerListaCliente();
+            List<BECliente> list= bllCliente.TraerListaCliente();
+            
+            grillaClientes.Rows.Clear();
+            foreach(BECliente c  in list)
+            {
+                grillaClientes.Rows.Add(c.DniCliente,c.Nombre,c.Apellido,c.Mail,c.Direccion);
+            }
         }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
@@ -78,15 +104,15 @@ namespace Carpeta_Sistema_de_Ventas
             if(grillaClientes.SelectedRows.Count > 0)
             {
                 BECliente cliente = new BECliente(Convert.ToInt32(grillaClientes.CurrentRow.Cells[0].Value), grillaClientes.CurrentRow.Cells[1].Value.ToString(), grillaClientes.CurrentRow.Cells[2].Value.ToString(), grillaClientes.CurrentRow.Cells[3].Value.ToString(), grillaClientes.CurrentRow.Cells[4].Value.ToString());
-                lblNombreCliente.Text = "Nombre: " + cliente.Nombre;
-                lblApellidoCliente.Text = "Apellido: " + cliente.Apellido;
-                lblMailCliente.Text = "Mail: " + cliente.Mail;
-                lblDNICliente.Text = "DNI: " + cliente.DniCliente.ToString();
+                lblNombreCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNombreCliente")} " + cliente.Nombre;
+                lblApellidoCliente.Text = $"{ IdiomaManager.GetInstance().ConseguirTexto("lblApellidoCliente")}: " + cliente.Apellido;
+                lblMailCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblMailCliente")}: " + cliente.Mail;
+                lblDNICliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblDNICliente")}: " + cliente.DniCliente.ToString();
 
                 _factura.clienteFactura = cliente;
-                MessageBox.Show("Cliente agregado a la factura");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("clienteAgregado"));
             }
-            else { MessageBox.Show("Seleccione un cliente para agregarlo a la factura"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneCliente")); }
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -100,29 +126,33 @@ namespace Carpeta_Sistema_de_Ventas
             .Where(c => (c.DniCliente.ToString() + c.Nombre.ToLower() + c.Apellido.ToLower()).Contains(consulta))
             .ToList();
 
+            grillaClientes.Rows.Clear();
             if (lstClientesEncontrados.Count > 0)
             {
-                grillaClientes.DataSource = lstClientesEncontrados;
+                foreach (BECliente c in lstClientesEncontrados)
+                {
+                    grillaClientes.Rows.Add(c.DniCliente, c.Nombre, c.Apellido, c.Mail, c.Direccion);
+                }
             }
-            else { MessageBox.Show("No se encontraron productos que coincidan con la búsqueda"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontraron")); ActualizarGrillaClientes(); }
         }
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
             if (_factura.clienteFactura != null)
             {
-                DialogResult resultado = MessageBox.Show($"¿Desea quitar el cliente seleccionado?", "Quitar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaCliente"), IdiomaManager.GetInstance().ConseguirTexto("quitarCliente"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
                     _factura.clienteFactura = null;
-                    lblNombreCliente.Text = "Nombre: ";
-                    lblApellidoCliente.Text = "Apellido: ";
-                    lblMailCliente.Text = "Mail: ";
-                    lblDNICliente.Text = "DNI: ";
+                    lblNombreCliente.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNombreCliente");
+                    lblApellidoCliente.Text = IdiomaManager.GetInstance().ConseguirTexto("lblApellidoCliente");
+                    lblMailCliente.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMailCliente");
+                    lblDNICliente.Text = IdiomaManager.GetInstance().ConseguirTexto("lblDNICliente");
                 }
             }
-            else { MessageBox.Show("No hay un cliente agreado a la factura"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noHayCliente")); }
         }
 
         private void btnRegistrarCliente_Click(object sender, EventArgs e)
@@ -152,7 +182,7 @@ namespace Carpeta_Sistema_de_Ventas
                     btnFinalizar.Enabled = true;
                 }
             }
-            else { MessageBox.Show("Debe seleccionar al menos un producto y un cliente"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeSeleccionar")); }
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
@@ -163,7 +193,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(_factura.listaProductosAgregados.Count >0 && _factura.clienteFactura!= null && _factura.cobro != null)
             {
-                DialogResult resultado = MessageBox.Show($"¿Desea finalizar la venta?", "Finalizar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaFinalizar"), IdiomaManager.GetInstance().ConseguirTexto("btnFinalizar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
@@ -178,10 +208,11 @@ namespace Carpeta_Sistema_de_Ventas
 
                         bllProducto.ModificarStock(prod, prod.Stock - cantidad);
                     }
-                    MessageBox.Show("Venta Finalizada");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"));
                     this.Enabled = false; // deshabilita los botones
                 }
             }
         }
+
     }
 }

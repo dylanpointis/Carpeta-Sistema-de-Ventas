@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL;
 using Microsoft.VisualBasic;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmSeleccionarProducto : Form
+    public partial class frmSeleccionarProducto : Form, IObserver
     {
         BLLProducto bllProductos = new BLLProducto();
         BEFactura _factura;
@@ -26,26 +27,52 @@ namespace Carpeta_Sistema_de_Ventas
             _factura = factura;
             listaProductosInicial = new List<(BEProducto,int)>(_factura.listaProductosAgregados); // hace una copia de la lista incial al entrar al form
             InitializeComponent();
+
+
+            IdiomaManager.GetInstance().archivoActual = "frmSeleccionarProducto";
+            IdiomaManager.GetInstance().Agregar(this);
+        }
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this); ;
         }
 
         private void frmSeleccionarProducto_Load(object sender, EventArgs e)
         {
-            grillaCarrito.ColumnCount = 5;
-            grillaCarrito.Columns[0].Name = "Codigo producto";
-            grillaCarrito.Columns[1].Name = "Modelo";
-            grillaCarrito.Columns[2].Name = "Cantidad";
-            grillaCarrito.Columns[3].Name = "Precio";
-            grillaCarrito.Columns[4].Name = "Subtotal";
-            grillaCarrito.Columns[2].Width = 55;
+            grillaProductosAgregados.ColumnCount = 5;
+            grillaProductosAgregados.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
+            grillaProductosAgregados.Columns[2].Width = 58;
+            grillaProductosAgregados.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
+            grillaProductosAgregados.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCantidad");
+            grillaProductosAgregados.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
+            grillaProductosAgregados.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSubtotal");
 
-            ActualizarGrilla();
+
+
+            grillaProductos.ColumnCount = 8;
+            grillaProductos.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
+            grillaProductos.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
+            grillaProductos.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDescripcion");
+            grillaProductos.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMarca");
+            grillaProductos.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewColor");
+            grillaProductos.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
+            grillaProductos.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewStock");
+            grillaProductos.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewAlmacenamiento");
+
 
             grillaProductos.Columns[0].Width = 45;
+            grillaProductosAgregados.Columns[2].Width = 58;
             grillaProductos.Columns[3].Width = 30;
             grillaProductos.Columns[4].Width = 40;
             grillaProductos.Columns[5].Width = 35;
             grillaProductos.Columns[6].Width = 35;
             grillaProductos.Columns[7].Width = 35;
+
+
+
+            ActualizarGrilla();
+
             if (_factura.listaProductosAgregados.Count == 0) { btnConfirmar.Enabled = false; }
         }
 
@@ -60,7 +87,7 @@ namespace Carpeta_Sistema_de_Ventas
                    
                     if(YaEstaElProductoAgregado(producto.CodigoProducto) == false)
                     {
-                        string cantIngresada = Interaction.InputBox("Ingrese la cantidad a vender");
+                        string cantIngresada = Interaction.InputBox(IdiomaManager.GetInstance().ConseguirTexto("ingreseCant"));
                         if (Regex.IsMatch(cantIngresada.ToString(), @"^\d{1,3}$") && (Convert.ToInt64(cantIngresada) > 0))  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 3 CIFRAS
                         {
                             if ((cantStock - Convert.ToInt32(cantIngresada) >= 0))
@@ -70,22 +97,22 @@ namespace Carpeta_Sistema_de_Ventas
                                 ActualizarGrilla();
                                 btnConfirmar.Enabled = true;
                             }
-                            else { MessageBox.Show("La cantidad ingresada supera al stock disponbile del producto"); }
+                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("superaStock")); }
 
                         }
-                        else { MessageBox.Show("Ingrese un número entero para la cantidad, menor a 3 cifras"); }
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numEntero")); }
                     }
-                    else { MessageBox.Show("El producto ya está agregado"); }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaEsta")); }
                 }
-                else { MessageBox.Show("No hay stock disponible del producto seleccionado"); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noHayStock")); }
             }
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            if (grillaCarrito.SelectedRows.Count > 0)
+            if (grillaProductosAgregados.SelectedRows.Count > 0)
             {
-                int codigoProducto = Convert.ToInt32(grillaCarrito.CurrentRow.Cells[0].Value);
+                int codigoProducto = Convert.ToInt32(grillaProductosAgregados.CurrentRow.Cells[0].Value);
                 var productoAEliminar = _factura.listaProductosAgregados.FirstOrDefault(p => p.Item1.CodigoProducto == codigoProducto);
 
                 _factura.listaProductosAgregados.Remove(productoAEliminar);
@@ -100,14 +127,14 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(_factura.listaProductosAgregados.Count > 0)
             {
-                DialogResult resultado = MessageBox.Show($"¿Desea confirmar los productos seleccionados?", "Confirmar productos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaConfirmar"), IdiomaManager.GetInstance().ConseguirTexto("confirmarProductos"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
                     this.Close();
                 }
             }
-            else { MessageBox.Show("No hay productos seleccionados"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noHayProdSeleccionados")); }
         }
 
 
@@ -119,14 +146,18 @@ namespace Carpeta_Sistema_de_Ventas
 
             /*Crea una lista con los productos encontrados. Concatena el codigo, descripcion y marca y luego con el metodo Contain se fija si contiene las letras de la consulta*/
             lstProdEncontrados = lstProductos
-            .Where(p => (p.CodigoProducto.ToString() + p.Modelo.ToLower() + p.Marca.ToLower()).Contains(consulta))
+            .Where(p => p.CodigoProducto.ToString() == consulta || (p.Modelo.ToLower() + p.Marca.ToLower()).Contains(consulta))
             .ToList();
 
-            if(lstProdEncontrados.Count > 0)
+            grillaProductos.Rows.Clear();
+            if (lstProdEncontrados.Count > 0)
             {
-                grillaProductos.DataSource = lstProdEncontrados;
+                foreach (BEProducto p in lstProdEncontrados)
+                {
+                    grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento);
+                }
             }
-            else { MessageBox.Show("No se encontraron productos que coincidan con la búsqueda"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontraron")); ActualizarGrilla(); }
           
         }
 
@@ -137,9 +168,16 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void ActualizarGrilla()
         {
-            grillaProductos.DataSource = bllProductos.TraerListaProductos();
+            grillaProductos.Rows.Clear();
+            List<BEProducto> listprod = bllProductos.TraerListaProductos();
+            foreach(BEProducto p in listprod)
+            {
+                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento);
+            }
 
-            grillaCarrito.Rows.Clear();
+
+
+            grillaProductosAgregados.Rows.Clear();
             if (_factura.listaProductosAgregados.Count() > 0)
             {
                 foreach (var item in _factura.listaProductosAgregados)
@@ -147,7 +185,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BEProducto prod = item.Item1;
                     int cantidad = item.Item2;
 
-                    grillaCarrito.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
+                    grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
                 }
             }
 
@@ -163,9 +201,10 @@ namespace Carpeta_Sistema_de_Ventas
             _factura.Impuesto = impuesto;
 
 
-            lblNeto.Text = "Neto: $" + neto;
-            lblIVA.Text = "I.V.A.: $" + impuesto;
-            lblTotal.Text = "Total: $" + (neto + impuesto);
+
+            lblNeto.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNeto")} $" + neto;
+            lblIVA.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblIVA")}: $" + impuesto;
+            lblTotal.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblTotal")}: $" + (neto + impuesto);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -174,7 +213,7 @@ namespace Carpeta_Sistema_de_Ventas
             ActualizarLabelsTotal();
             this.Close();
         }
-        
+
 
         private bool YaEstaElProductoAgregado(long idProd)
         {
@@ -189,24 +228,5 @@ namespace Carpeta_Sistema_de_Ventas
             }
             return false;
         }
-
-
-
-        /*
-        private int ObtenerCantTotalComprada(long codigoProducto)
-        {
-            int cantStockTotal = 0;
-
-            foreach (var item in _factura.listaProductosAgregados)
-            {
-                BEProducto prod = item.Item1;
-                int cantidad = item.Item2;
-                if(prod.CodigoProducto == codigoProducto)
-                {
-                    cantStockTotal += cantidad;
-                }
-            }
-            return cantStockTotal;
-        }*/
     }
 }

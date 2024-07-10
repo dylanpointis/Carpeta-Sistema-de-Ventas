@@ -1,0 +1,23 @@
+{
+  "label2": "Cambiar clave",
+  "lblNombreUsuario": "Nombre de usuario:",
+  "label3": "Clave actual",
+  "label4": "Nueva clave",
+  "label5": "Confirmar clave",
+  "btnCambiarClave": "Cambiar clave",
+  "exito": "Clave cambiada con éxito",
+  "error": "Error al cambiar la clave",
+  "confirme": "Confirme la nueva clave",
+  "incorrecta": "La clave actual ingresada no es correcta",
+  "masde8": "La clave nueva debe tener al menos 8 carácteres",
+  "completar": "Complete todos los campos",
+  "debeIniciar": "Debe iniciar una sesión en el sistema",
+  "max40": "Máximo de 40 cáracteres alcanzado",
+
+
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

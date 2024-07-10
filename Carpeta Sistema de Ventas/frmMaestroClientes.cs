@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL;
 using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,18 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmMaestroClientes : Form
+    public partial class frmMaestroClientes : Form, IObserver
     {
         public frmMaestroClientes()
         {
             InitializeComponent();
+            IdiomaManager.GetInstance().archivoActual = "frmMaestroClientes";
+            IdiomaManager.GetInstance().Agregar(this);
+        }
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
         }
 
         List<BECliente> listaClientes = new List<BECliente>();
@@ -28,16 +36,30 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void frmMaestroClientes_Load(object sender, EventArgs e)
         {
+
+            grillaClientes.ColumnCount = 5;
+            grillaClientes.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDNI");
+            grillaClientes.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre");
+            grillaClientes.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewApellido");
+            grillaClientes.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMail");
+            grillaClientes.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion");
+
+
             modoOperacion = EnumModoAplicar.Consulta;
             ActualizarGrilla();
             ResetearBotones();
         }
 
 
+
         private void ActualizarGrilla()
         {
             listaClientes = bllCliente.TraerListaCliente();
-            grillaClientes.DataSource = listaClientes;
+            grillaClientes.Rows.Clear();
+            foreach (BECliente c in listaClientes)
+            {
+                grillaClientes.Rows.Add(c.DniCliente, c.Nombre, c.Apellido, c.Mail, c.Direccion);
+            }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -56,19 +78,18 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         modoOperacion = EnumModoAplicar.Añadir;
                         BloquearBotones();
-                        lblMensaje.Text = "Mensaje: Modo Añadir";
-                        //lblMensaje.Text = FormIdiomas.ConseguirTexto("modoAñadir");
+                        lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
                     }
                     else
                     {
-                        MessageBox.Show("Ya existe un cliente con el DNI ingresado");
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
                         txtDNI.Focus();
                     }
 
                 }
-                else { MessageBox.Show("El DNI debe contener solo números y tener entre 7 y 9 dígitos."); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("dni7y9")); }
             }
-            else { MessageBox.Show("Ingrese el DNI del cliente para agregarlo"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseDNI")); }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -78,9 +99,9 @@ namespace Carpeta_Sistema_de_Ventas
                 LlenarCampos();
                 modoOperacion = EnumModoAplicar.Modificar;
                 BloquearBotones();
-                lblMensaje.Text = $"Modificar cliente DNI: {grillaClientes.CurrentRow.Cells[0].Value}";
+                lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
             }
-            else { MessageBox.Show("Seleccione un Cliente para modificar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
 
         private void LlenarCampos()
@@ -98,9 +119,9 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 modoOperacion = EnumModoAplicar.Eliminar;
                 BloquearBotones();
-                lblMensaje.Text = $"Eliminar cliente DNI: {grillaClientes.CurrentRow.Cells[0].Value}";
+                lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
             }
-            else { MessageBox.Show("Seleccione un Cliente para eliminar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
 
         private void btnAplicar_Click(object sender, EventArgs e)
@@ -118,22 +139,22 @@ namespace Carpeta_Sistema_de_Ventas
                         BECliente clienteEncontrado = bllCliente.VerificarCliente(Convert.ToInt32(txtDNI.Text));
                         if (clienteEncontrado != null)
                         {
-                            MessageBox.Show("Ya existe un cliente con el DNI ingresado"); return;
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste")); return;
                         }
                         else
                         {
                             BECliente cli = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
                             bllCliente.RegistrarCliente(cli);
-                            MessageBox.Show("Cliente registrado exitosamente");
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                     }
-                    else { MessageBox.Show("Llene los campos"); return; }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
                 }
                 else
                 {
                     if (modoOperacion == EnumModoAplicar.Eliminar)
                     {
-                        DialogResult resultado = MessageBox.Show($"¿Está seguro que desea eliminar al cliente DNI: {grillaClientes.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("estaSeguro") + " " + grillaClientes.CurrentRow.Cells[0].Value + " ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (resultado == DialogResult.Yes)
                         {
@@ -142,16 +163,16 @@ namespace Carpeta_Sistema_de_Ventas
                             if(bllCliente.VerificarSiClienteTieneFacturas(dniCliente) == false)
                             {
                                 bllCliente.EliminarCliente(dniCliente);
-                                MessageBox.Show("Cliente eliminado");
+                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                             }
-                            else { MessageBox.Show("El cliente no puede eliminarse porque tiene facturas registradas a su nombre"); }
+                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("tieneFacturas")); }
                         }
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar)
                     {
                         BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
                         bllCliente.ModificarCliente(cliente);
-                        MessageBox.Show("Cliente modificado");
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
                 }
 
@@ -168,7 +189,7 @@ namespace Carpeta_Sistema_de_Ventas
             }
             if (!Regex.IsMatch(txtMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase))
             {
-                MessageBox.Show("El formato del correo electrónico no es válido.");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("formato"));
                 txtMail.Focus();
                 return false;
             }
@@ -207,7 +228,12 @@ namespace Carpeta_Sistema_de_Ventas
                     }
                 }
             }
-            grillaClientes.DataSource = lstConsulta;
+
+            grillaClientes.Rows.Clear();
+            foreach(BECliente c in lstConsulta)
+            {
+                grillaClientes.Rows.Add(c.DniCliente, c.Nombre, c.Apellido, c.Mail, c.Direccion);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -237,7 +263,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void ResetearBotones()
         {
             modoOperacion = EnumModoAplicar.Consulta;
-            lblMensaje.Text = "Mensaje: Modo Consulta";
+            lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMensaje");
             txtDNI.Text = "";
             txtNombre.Text = "";
             txtApellido.Text = "";
@@ -260,12 +286,12 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
-                    lblMensaje.Text = $"Eliminar Cliente DNI: {grillaClientes.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
                 }
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
                     LlenarCampos();
-                    lblMensaje.Text = $"Modificar Cliente DNI: {grillaClientes.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
                 }
             }
         }
@@ -279,9 +305,9 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (!char.IsControl(e.KeyChar))
                 {
-                    string currentText = numUpDown.Text;
+                    string texto = numUpDown.Text;
 
-                    if (currentText.Length >= 9)
+                    if (texto.Length >= 9)
                     {
                         e.Handled = true;
                     }

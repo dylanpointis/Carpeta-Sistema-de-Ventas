@@ -27,19 +27,19 @@ namespace Carpeta_Sistema_de_Ventas
 
 
 
-            grillaUsuarios.Columns.Add("DNI", FormIdiomas.ConseguirTexto("gridViewDNI"));
-            grillaUsuarios.Columns.Add("Nombre", FormIdiomas.ConseguirTexto("gridViewNombre"));
-            grillaUsuarios.Columns.Add("Apellido", FormIdiomas.ConseguirTexto("gridViewApellido"));
-            grillaUsuarios.Columns.Add("Mail", FormIdiomas.ConseguirTexto("gridViewMail"));
-            grillaUsuarios.Columns.Add("NombreUsuario", FormIdiomas.ConseguirTexto("gridViewNombreUsuario"));
-            grillaUsuarios.Columns.Add("Rol", FormIdiomas.ConseguirTexto("gridViewRol"));
-            grillaUsuarios.Columns.Add("Bloqueo", FormIdiomas.ConseguirTexto("gridViewBloqueo"));
-            grillaUsuarios.Columns.Add("Activo", FormIdiomas.ConseguirTexto("gridViewActivo"));
+            grillaUsuarios.Columns.Add("DNI", IdiomaManager.GetInstance().ConseguirTexto("gridViewDNI"));
+            grillaUsuarios.Columns.Add("Nombre", IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre"));
+            grillaUsuarios.Columns.Add("Apellido", IdiomaManager.GetInstance().ConseguirTexto("gridViewApellido"));
+            grillaUsuarios.Columns.Add("Mail", IdiomaManager.GetInstance().ConseguirTexto("gridViewMail"));
+            grillaUsuarios.Columns.Add("NombreUsuario", IdiomaManager.GetInstance().ConseguirTexto("gridViewNombreUsuario"));
+            grillaUsuarios.Columns.Add("Rol", IdiomaManager.GetInstance().ConseguirTexto("gridViewRol"));
+            grillaUsuarios.Columns.Add("Bloqueo", IdiomaManager.GetInstance().ConseguirTexto("gridViewBloqueo"));
+            grillaUsuarios.Columns.Add("Activo", IdiomaManager.GetInstance().ConseguirTexto("gridViewActivo"));
         }
 
         public void ActualizarObserver()
         {
-            FormIdiomas.ActualizarControles(this);
+            IdiomaManager.ActualizarControles(this);
         }
 
 
@@ -82,7 +82,7 @@ namespace Carpeta_Sistema_de_Ventas
                         BEUsuario usuarioEncontrado = bllUsuario.ValidarUsuario(txtNombreUsuario.Text, Convert.ToInt32(txtDNI.Text), txtEmail.Text);
                         if (usuarioEncontrado != null) //busca si existe un usuario con ese dni, email o nombre de usuario
                         {
-                            MessageBox.Show(FormIdiomas.ConseguirTexto("yaExiste"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
                             return;
                         }
                         else
@@ -92,10 +92,10 @@ namespace Carpeta_Sistema_de_Ventas
 
                             BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, Encriptador.EncriptarSHA256(clave), rol.Id, false, true);
                             bllUsuario.RegistrarUsuario(user);
-                            MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                         }
                     }
-                    else { MessageBox.Show(FormIdiomas.ConseguirTexto("llenarCampos")); return; }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
                 }
                 else if (modoOperacion == EnumModoAplicar.Modificar)
                 {
@@ -110,7 +110,7 @@ namespace Carpeta_Sistema_de_Ventas
                                 BEUsuario usuarioEncontrado = lstUsers.FirstOrDefault(u => u.DNI != dni && (u.NombreUsuario == txtNombreUsuario.Text || u.Email == txtEmail.Text));
                                 if (usuarioEncontrado != null) //busca si existe un usuario con ese  email o nombre de usuario
                                 {
-                                    MessageBox.Show(FormIdiomas.ConseguirTexto("yaExisteMailUser"));
+                                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExisteMailUser"));
                                     return;
                                 }
                                 else
@@ -119,37 +119,37 @@ namespace Carpeta_Sistema_de_Ventas
 
                                     BEUsuario user = new BEUsuario(dni, txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, rol.Id, bloqueado, true);
                                     bllUsuario.ModificarUsuario(user);
-                                    MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
+                                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                                 }
 
                             }
-                            else { MessageBox.Show(FormIdiomas.ConseguirTexto("noPuedeModificarse")); } //no puede modificarse un usuario inactivo                                             
+                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noPuedeModificarse")); } //no puede modificarse un usuario inactivo                                             
                     }
-                    else { MessageBox.Show(FormIdiomas.ConseguirTexto("llenarCampos")); return; }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
                 }
                 else if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
-                    DialogResult resultado = MessageBox.Show($"{FormIdiomas.ConseguirTexto("estaSeguroEliminar")} {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("estaSeguroEliminar")} {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
                         bllUsuario.EliminarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
-                        MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
                 else if (modoOperacion == EnumModoAplicar.Activar)
                 {
-                    DialogResult resultado = MessageBox.Show($"{FormIdiomas.ConseguirTexto("estaSeguroActivar")} {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("estaSeguroActivar")} {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
                         bllUsuario.ActivarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
-                        MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
                 else if (modoOperacion == EnumModoAplicar.Desbloquear)
                 {
-                    DialogResult resultado = MessageBox.Show($"{FormIdiomas.ConseguirTexto("estaSeguroDesbloquear")} {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("estaSeguroDesbloquear")} {grillaUsuarios.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
@@ -159,7 +159,7 @@ namespace Carpeta_Sistema_de_Ventas
                         string apellido = grillaUsuarios.CurrentRow.Cells[2].Value.ToString();
                         string clave = DNI + apellido; // CLAVE COMBINA DNI + APELLIDO
                         bllUsuario.CambiarClave(DNI, Encriptador.EncriptarSHA256(clave));
-                        MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
                 ResetearBotones();
@@ -177,17 +177,17 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     modoOperacion = EnumModoAplicar.Añadir;
                     BloquearBotones();
-                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoAñadir");
+                    lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
                 }
                 else
                 {
-                    MessageBox.Show(FormIdiomas.ConseguirTexto("yaExisteDNI"));
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExisteDNI"));
                     txtDNI.Focus();
                 }
             }
             else
             {
-                MessageBox.Show(FormIdiomas.ConseguirTexto("ingreseDNI"));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseDNI"));
                 txtDNI.Focus();
             }
         }
@@ -200,20 +200,20 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != FormIdiomas.ConseguirTexto("false")) //en caso de que este activo
+                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != IdiomaManager.GetInstance().ConseguirTexto("false")) //en caso de que este activo
                 {
                     modoOperacion = EnumModoAplicar.Modificar;
                     BloquearBotones();
 
-                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoModificar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoModificar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                     txtDNI.Focus();
                     LlenarCamposConDatos();
 
                     btnModificar.Enabled = false;
                 }
-                else { MessageBox.Show(FormIdiomas.ConseguirTexto("noPuedeModificarse")); } //si esta inactivo no se puede modificar
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noPuedeModificarse")); } //si esta inactivo no se puede modificar
             }
-            else { MessageBox.Show(FormIdiomas.ConseguirTexto("seleccionarUsuario")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionarUsuario")); }
         }
 
 
@@ -222,35 +222,35 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if(grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != FormIdiomas.ConseguirTexto("false")) //en caso de que este activo
+                if(grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != IdiomaManager.GetInstance().ConseguirTexto("false")) //en caso de que este activo
                 {
                     modoOperacion = EnumModoAplicar.Eliminar;
                     BloquearBotones();
-                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoEliminar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoEliminar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 }
                 else //en caso de que este desactivado (quiere activarlo)
                 {
                     modoOperacion = EnumModoAplicar.Activar;
                     BloquearBotones();
-                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoActivar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoActivar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 }
             }
-            else { MessageBox.Show(FormIdiomas.ConseguirTexto("seleccionarUsuario")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionarUsuario")); }
         }
 
         private void btnDesbloquear_Click(object sender, EventArgs e)
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != FormIdiomas.ConseguirTexto("false"))
+                if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != IdiomaManager.GetInstance().ConseguirTexto("false"))
                 {
                     modoOperacion = EnumModoAplicar.Desbloquear;
                     BloquearBotones();
-                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 }
-                else { MessageBox.Show(FormIdiomas.ConseguirTexto("noEstaBloqueado")); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noEstaBloqueado")); }
             }
-            else { MessageBox.Show(FormIdiomas.ConseguirTexto("seleccionarUsuario")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionarUsuario")); }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -262,7 +262,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             btnModificar.Enabled = true; btnEliminar.Enabled = true; btnDesbloquear.Enabled = true; btnAgregar.Enabled = true; btnResetearClave.Enabled = true;
             modoOperacion = EnumModoAplicar.Consulta;
-            lblMensaje.Text = FormIdiomas.ConseguirTexto("lblMensaje");
+            lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMensaje");
             txtDNI.Enabled = true; txtNombre.Enabled = true; txtNombreUsuario.Enabled = true; txtEmail.Enabled = true; txtApellido.Enabled = true; cmbRol.Enabled = true;
             
             Actualizar();
@@ -317,15 +317,15 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if(u.Activo == true)
                 {
-                    boolActivo = FormIdiomas.ConseguirTexto("true");
+                    boolActivo = IdiomaManager.GetInstance().ConseguirTexto("true");
                 }
-                else { boolActivo = FormIdiomas.ConseguirTexto("false"); }
+                else { boolActivo = IdiomaManager.GetInstance().ConseguirTexto("false"); }
 
                 if (u.Bloqueado == true)
                 {
-                    boolBloqueado = FormIdiomas.ConseguirTexto("true");
+                    boolBloqueado = IdiomaManager.GetInstance().ConseguirTexto("true");
                 }
-                else { boolBloqueado = FormIdiomas.ConseguirTexto("false"); }
+                else { boolBloqueado = IdiomaManager.GetInstance().ConseguirTexto("false"); }
 
 
                 grillaUsuarios.Rows.Add(u.DNI, u.Nombre, u.Apellido, u.Email, u.NombreUsuario, u.Rol.Nombre, boolBloqueado, boolActivo);
@@ -335,7 +335,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaUsuarios.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN ROJO A LOS NO ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW
             foreach (DataGridViewRow row in grillaUsuarios.Rows)
             {
-                if (row.Cells[7].Value != null && row.Cells[7].Value.ToString() == FormIdiomas.ConseguirTexto("false"))
+                if (row.Cells[7].Value != null && row.Cells[7].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("false"))
                 {
                     row.DefaultCellStyle.BackColor = Color.Crimson; //pone en rojo el background
                 }
@@ -356,7 +356,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             if (!Regex.IsMatch(txtDNI.Text, @"^\d{7,9}$"))
             {
-                MessageBox.Show(FormIdiomas.ConseguirTexto("errorDNI"));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorDNI"));
                 return false;
             }
             /*Se fija si se llenaron los campos*/
@@ -367,7 +367,7 @@ namespace Carpeta_Sistema_de_Ventas
                 /*Se fija el formato del mail con una expresion regular*/
             if(!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase))
             {
-                MessageBox.Show(FormIdiomas.ConseguirTexto("errorMail"));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorMail"));
                 txtEmail.Focus();
                 return false;
             }
@@ -390,30 +390,30 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
-                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() == FormIdiomas.ConseguirTexto("false"))
+                if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("false"))
                 {
-                    btnEliminar.Text = FormIdiomas.ConseguirTexto("btnActivar");
+                    btnEliminar.Text = IdiomaManager.GetInstance().ConseguirTexto("btnActivar");
                 }
-                else { btnEliminar.Text = FormIdiomas.ConseguirTexto("btnEliminar"); }
+                else { btnEliminar.Text = IdiomaManager.GetInstance().ConseguirTexto("btnEliminar"); }
 
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
                     LlenarCamposConDatos();
-                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoModificar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoModificar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 }
                 else if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
-                    lblMensaje.Text = FormIdiomas.ConseguirTexto("modoEliminar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoEliminar") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                 }
                 else if (modoOperacion == EnumModoAplicar.Desbloquear)
                 {
-                    if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != FormIdiomas.ConseguirTexto("false"))
+                    if (grillaUsuarios.CurrentRow.Cells[6].Value.ToString() != IdiomaManager.GetInstance().ConseguirTexto("false"))
                     {
-                        lblMensaje.Text = FormIdiomas.ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
+                        lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoDesbloquear") + $" DNI: {grillaUsuarios.CurrentRow.Cells[0].Value}";
                     }
                     else
                     {
-                        MessageBox.Show(FormIdiomas.ConseguirTexto("noEstaBloqueado"));
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noEstaBloqueado"));
                         ResetearBotones();
                     }
                 }
@@ -440,13 +440,13 @@ namespace Carpeta_Sistema_de_Ventas
                 string apellido = grillaUsuarios.CurrentRow.Cells[2].Value.ToString();
                 string clave = DNI + apellido;
 
-                DialogResult resultado = MessageBox.Show($"{FormIdiomas.ConseguirTexto("estaSeguroClave")} {DNI}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("estaSeguroClave")} {DNI}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado == DialogResult.Yes)
                 {
                     try
                     {
                         bllUsuario.CambiarClave(DNI, Encriptador.EncriptarSHA256(clave));
-                        MessageBox.Show(FormIdiomas.ConseguirTexto("operacionExitosa"));
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                     catch (Exception ex) { MessageBox.Show("Error al modificar la clave"); }
                 }

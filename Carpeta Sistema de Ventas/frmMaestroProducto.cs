@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL;
 using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmMaestroProducto : Form
+    public partial class frmMaestroProducto : Form, IObserver
     {
         List<BEProducto> listaProd = new List<BEProducto> ();
         BLLProducto bllProducto = new BLLProducto();
@@ -21,13 +22,36 @@ namespace Carpeta_Sistema_de_Ventas
         public frmMaestroProducto()
         {
             InitializeComponent();
+            IdiomaManager.GetInstance().archivoActual = "frmMaestroProducto";
+            IdiomaManager.GetInstance().Agregar(this);
+        }
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
         }
 
         private void frmMaestroProducto_Load(object sender, EventArgs e)
         {
             modoOperacion = EnumModoAplicar.Consulta;
+
+            grillaProductos.ColumnCount = 8;
+            grillaProductos.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
+            grillaProductos.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
+            grillaProductos.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDescripcion");
+            grillaProductos.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMarca");
+            grillaProductos.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewColor");
+            grillaProductos.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
+            grillaProductos.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewStock");
+            grillaProductos.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewAlmacenamiento");
+
+
+
+
+
             ActualizarGrilla();
             ResetearBotones();
+            grillaProductos.Columns[0].Width = 57;
             grillaProductos.Columns[3].Width = 55;
             grillaProductos.Columns[4].Width = 55;
             grillaProductos.Columns[5].Width = 55;
@@ -37,8 +61,12 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void ActualizarGrilla()
         {
+            grillaProductos.Rows.Clear();
             listaProd = bllProducto.TraerListaProductos();
-            grillaProductos.DataSource = listaProd;
+            foreach (BEProducto p in listaProd)
+            {
+                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento);
+            }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -55,18 +83,18 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     modoOperacion = EnumModoAplicar.Añadir;
                     BloquearBotones();
-                    lblMensaje.Text = "Mensaje: Modo Añadir";
+                    lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
                     //lblMensaje.Text = FormIdiomas.ConseguirTexto("modoAñadir");
                 }
                 else
                 {
-                    MessageBox.Show("Ya existe un producto con ese codigo");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
                     txtCodigoProducto.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("Ingrese un Codigo para el producto, menor a 13 caracteres");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseCodigo"));
                 txtCodigoProducto.Focus();
             }
         }
@@ -78,9 +106,9 @@ namespace Carpeta_Sistema_de_Ventas
                 LlenarCampos();
                 modoOperacion = EnumModoAplicar.Modificar;
                 BloquearBotones();
-                lblMensaje.Text = $"Modificar producto Código: {grillaProductos.CurrentRow.Cells[0].Value}";
+                lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
             }
-            else { MessageBox.Show("Seleccione un producto para modificar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
 
 
@@ -90,9 +118,9 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 modoOperacion = EnumModoAplicar.Eliminar;
                 BloquearBotones();
-                lblMensaje.Text = $"Eliminar producto Código: {grillaProductos.CurrentRow.Cells[0].Value}";
+                lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
             }
-            else { MessageBox.Show("Seleccione un producto para eliminar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
 
         private void btnAplicar_Click(object sender, EventArgs e)
@@ -110,22 +138,22 @@ namespace Carpeta_Sistema_de_Ventas
                         BEProducto prodEncontrado = listaProd.FirstOrDefault(p => p.CodigoProducto == Convert.ToInt64(txtCodigoProducto.Text));
                         if (prodEncontrado != null)
                         {
-                            MessageBox.Show("Ya existe un Producto con ese Codigo") ; return;
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste")) ; return;
                         }
                         else
                         {
                             BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text));
                             bllProducto.RegistrarProducto(prod);
-                            MessageBox.Show("Producto registrado exitosamente");
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                     }
-                    else { MessageBox.Show("Llene los campos"); return; }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
                 }
                 else
                 {
                     if (modoOperacion == EnumModoAplicar.Eliminar)
                     {
-                        DialogResult resultado = MessageBox.Show($"¿Está seguro que desea eliminar al producto Código: {grillaProductos.CurrentRow.Cells[0].Value}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("estaSeguro") + " " + grillaProductos.CurrentRow.Cells[0].Value + " ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (resultado == DialogResult.Yes)
                         {
@@ -133,16 +161,16 @@ namespace Carpeta_Sistema_de_Ventas
                             if (bllProducto.VerificarSiProductoTieneFacturas(idProd) == false)
                             {
                                 bllProducto.EliminarProducto(idProd);
-                                MessageBox.Show("Producto eliminado");
+                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                             }
-                            else { MessageBox.Show("El producto no puede eliminarse porque está asociado a Facturas"); }
+                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("tieneFacturas")); }
                         }
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar)
                     {
                         BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text),txtModelo.Text,txtDescripcion.Text,cmbMarca.Text,txtColor.Text, Convert.ToDouble(txtPrecio.Text),Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text));
                         bllProducto.ModificarProducto(prod);
-                        MessageBox.Show("Producto modificado");
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
                 }
                 ResetearBotones();
@@ -153,7 +181,6 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void ConsultarProductos()
         {
-            grillaProductos.DataSource = null;
             List<BEProducto> lstConsulta = new List<BEProducto>();
             foreach (BEProducto prod in listaProd)
             {
@@ -177,8 +204,12 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                
             }
+            grillaProductos.Rows.Clear();
 
-            grillaProductos.DataSource = lstConsulta;
+            foreach (BEProducto p in lstConsulta)
+            {
+                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento);
+            }
         }
 
         private void BloquearBotones()
@@ -209,7 +240,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void ResetearBotones()
         {
             modoOperacion = EnumModoAplicar.Consulta;
-            lblMensaje.Text = "Mensaje: Modo Consulta";
+            lblMensaje.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMensaje");
             txtCodigoProducto.Text = "";
             txtModelo.Text = "";
             txtDescripcion.Text = "";
@@ -239,7 +270,7 @@ namespace Carpeta_Sistema_de_Ventas
             double precio = Convert.ToDouble(txtPrecio.Text);
             if(precio <= 0) 
             {
-                MessageBox.Show("El precio debe ser mayor a 0");
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("precio"));
                 return false;
             }
             if(txtCodigoProducto.Text == "" || txtModelo.Text == "" || txtDescripcion.Text == "" || txtColor.Text == "" || txtPrecio.Text == "" || txtStock.Text == "" || txtAlmacenamiento.Text == "" || cmbMarca.Text == "")
@@ -272,12 +303,12 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
-                    lblMensaje.Text = $"Eliminar producto Código: {grillaProductos.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
                 }
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
                     LlenarCampos();
-                    lblMensaje.Text = $"Modificar producto Código: {grillaProductos.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
                 }
             }
         }
@@ -286,9 +317,23 @@ namespace Carpeta_Sistema_de_Ventas
         //evento para que no pueda escribir . , -
         private void txtCodigoProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+            NumericUpDown numUpDown = sender as NumericUpDown;
+     
+
+            if (!char.IsControl(e.KeyChar))
             {
-                e.Handled = true;
+                string texto = numUpDown.Text;
+
+                if (texto.Length >= 13)
+                {
+                    e.Handled = true;
+                }
+
+                /*no puede escribir . - ,*/
+                if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+                {
+                    e.Handled = true;
+                }
             }
         }
 

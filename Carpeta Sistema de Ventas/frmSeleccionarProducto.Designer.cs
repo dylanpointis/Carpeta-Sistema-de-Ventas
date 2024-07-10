@@ -35,7 +35,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.grillaProductos = new System.Windows.Forms.DataGridView();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.grillaCarrito = new System.Windows.Forms.DataGridView();
+            this.grillaProductosAgregados = new System.Windows.Forms.DataGridView();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             this.lblNeto = new System.Windows.Forms.Label();
             this.lblIVA = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProductos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grillaCarrito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaProductosAgregados)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -60,14 +60,14 @@
             // 
             this.txtBuscar.Location = new System.Drawing.Point(368, 338);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(132, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(144, 20);
             this.txtBuscar.TabIndex = 18;
             // 
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(516, 335);
+            this.btnBuscar.Location = new System.Drawing.Point(531, 335);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 17;
@@ -106,7 +106,7 @@
             this.grillaProductos.MultiSelect = false;
             this.grillaProductos.Name = "grillaProductos";
             this.grillaProductos.ReadOnly = true;
-            this.grillaProductos.Size = new System.Drawing.Size(570, 283);
+            this.grillaProductos.Size = new System.Drawing.Size(585, 283);
             this.grillaProductos.TabIndex = 14;
             // 
             // lblTotal
@@ -119,15 +119,15 @@
             this.lblTotal.TabIndex = 24;
             this.lblTotal.Text = "Total: ";
             // 
-            // grillaCarrito
+            // grillaProductosAgregados
             // 
-            this.grillaCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaCarrito.Location = new System.Drawing.Point(632, 35);
-            this.grillaCarrito.MultiSelect = false;
-            this.grillaCarrito.Name = "grillaCarrito";
-            this.grillaCarrito.ReadOnly = true;
-            this.grillaCarrito.Size = new System.Drawing.Size(493, 283);
-            this.grillaCarrito.TabIndex = 23;
+            this.grillaProductosAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaProductosAgregados.Location = new System.Drawing.Point(632, 35);
+            this.grillaProductosAgregados.MultiSelect = false;
+            this.grillaProductosAgregados.Name = "grillaProductosAgregados";
+            this.grillaProductosAgregados.ReadOnly = true;
+            this.grillaProductosAgregados.Size = new System.Drawing.Size(493, 283);
+            this.grillaProductosAgregados.TabIndex = 23;
             // 
             // btnConfirmar
             // 
@@ -170,7 +170,7 @@
             // 
             this.btnActualizar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Location = new System.Drawing.Point(516, 9);
+            this.btnActualizar.Location = new System.Drawing.Point(531, 9);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 25;
@@ -222,7 +222,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.grillaCarrito);
+            this.Controls.Add(this.grillaProductosAgregados);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.label1);
@@ -237,7 +237,7 @@
             this.Text = "frmRealizarVenta";
             this.Load += new System.EventHandler(this.frmSeleccionarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaProductos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grillaCarrito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaProductosAgregados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,7 +252,7 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridView grillaProductos;
         private System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.DataGridView grillaCarrito;
+        private System.Windows.Forms.DataGridView grillaProductosAgregados;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Label label1;

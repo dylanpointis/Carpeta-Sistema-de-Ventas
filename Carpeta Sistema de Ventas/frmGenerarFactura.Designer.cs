@@ -286,7 +286,6 @@
             this.groupBox1.Size = new System.Drawing.Size(420, 511);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Cliente";
             // 
             // groupBox2
             // 
@@ -296,7 +295,6 @@
             this.groupBox2.Size = new System.Drawing.Size(195, 72);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Producto";
             // 
             // btnFinalizar
             // 

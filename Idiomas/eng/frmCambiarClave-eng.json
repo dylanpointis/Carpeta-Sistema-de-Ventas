@@ -1,0 +1,21 @@
+{
+  "label2": "Change Password",
+  "lblNombreUsuario": "Username:",
+  "label3": "Current Password",
+  "label4": "New Password",
+  "label5": "Confirm Password",
+  "btnCambiarClave": "Change Password",
+  "exito": "Password successfully changed",
+  "error": "Error changing password",
+  "confirme": "Confirm new password",
+  "incorrecta": "The current password entered is incorrect",
+  "masde8": "The new password must be at least 8 characters long",
+  "completar": "Complete all fields",
+  "debeIniciar": "You must log in to the system",
+  "max40": "Maximum of 40 characters reached",
+
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
+}
