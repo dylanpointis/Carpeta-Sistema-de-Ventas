@@ -14,6 +14,7 @@
   "dgvImpuesto": "Tax",
   "dgvFecha": "Date",
   "dgvMetodo": "Payment Method",
+  "dgvMarca": "Card brand",
   "dgvCantCuotas": "Installments",
   "dgvAlias": "MP Alias",
   "dgvNombre": "First Name",
