@@ -48,6 +48,7 @@
             this.btnSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarReporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -112,7 +113,7 @@
             // 
             this.productosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
@@ -120,7 +121,7 @@
             // 
             this.clientesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -179,6 +180,8 @@
             // 
             // Reportes
             // 
+            this.Reportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generarReporteToolStripMenuItem});
             this.Reportes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Reportes.ForeColor = System.Drawing.Color.White;
             this.Reportes.Name = "Reportes";
@@ -227,6 +230,14 @@
             this.iniciarSesiónToolStripMenuItem.Text = "Iniciar sesión";
             this.iniciarSesiónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesiónToolStripMenuItem_Click);
             // 
+            // generarReporteToolStripMenuItem
+            // 
+            this.generarReporteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generarReporteToolStripMenuItem.Name = "generarReporteToolStripMenuItem";
+            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
+            this.generarReporteToolStripMenuItem.Text = "Generar reporte";
+            this.generarReporteToolStripMenuItem.Click += new System.EventHandler(this.generarReporteToolStripMenuItem_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,6 +284,7 @@
         private System.Windows.Forms.ToolStripMenuItem gestiónDePerfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generarReporteToolStripMenuItem;
     }
 }
 

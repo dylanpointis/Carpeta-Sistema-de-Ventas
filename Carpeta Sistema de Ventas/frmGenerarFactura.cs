@@ -50,9 +50,19 @@ namespace Carpeta_Sistema_de_Ventas
             grillaClientes.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion");
             grillaClientes.Columns[0].Width = 63;
 
+
+
             ActualizarGrillaProductos();
             ActualizarGrillaClientes();
         }
+
+        private void ActualizarLabels()
+        {
+            lblNeto.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNeto")} $" + _factura.CalcularMonto();
+            lblIVA.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblIVA")}: $" + _factura.Impuesto;
+            lblTotal.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblTotal")}: $" + _factura.MontoTotal;
+        }
+
 
         private void btnSeleccionarProducto_Click(object sender, EventArgs e)
         {
@@ -82,9 +92,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
             }
 
-            lblNeto.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNeto")} $" + _factura.CalcularMonto();
-            lblIVA.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblIVA")}: $" + _factura.Impuesto;
-            lblTotal.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblTotal")}: $" + _factura.MontoTotal;
+            ActualizarLabels();
         }
 
         /*SECCION CLIENTE*/
@@ -167,6 +175,7 @@ namespace Carpeta_Sistema_de_Ventas
             IdiomaManager.GetInstance().Agregar(this);
 
             ActualizarGrillaClientes();
+            ActualizarLabels();
         }
 
         private void btnCobrarVenta_Click(object sender, EventArgs e)
@@ -187,6 +196,8 @@ namespace Carpeta_Sistema_de_Ventas
                 //vuelve a cargar el idioma
                 IdiomaManager.GetInstance().archivoActual = "frmGenerarFactura";
                 IdiomaManager.GetInstance().Agregar(this);
+
+                ActualizarLabels();
 
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeSeleccionar")); }

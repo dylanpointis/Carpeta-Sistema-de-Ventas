@@ -28,5 +28,20 @@ namespace BLL
         {
             return dalFac.TraerUltimoIDFactura();
         }
+
+        public List<BEFactura> TraerFacturas()
+        {
+            List<BEFactura> listaFac = dalFac.TraerFacturas();
+
+
+
+
+            return listaFac;
+        }
+
+        public BEFactura TraerItemsFactura(BEFactura fac)
+        {
+            return dalFac.TraerItemsFactura(fac);
+        }
     }
 }

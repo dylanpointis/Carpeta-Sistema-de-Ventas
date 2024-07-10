@@ -22,6 +22,7 @@
   "cambiarClaveToolStripMenuItem": "Cambiar clave",
   "cambiarIdiomaToolStripMenuItem": "Cambiar idioma",
   "generarFacturaToolStripMenuItem": "Generar factura",
+  "generarReporteToolStripMenuItem": "Generar reporte",
   "btnSesion": "Sesión",
   "iniciarSesiónToolStripMenuItem": "Iniciar sesión",
   "cerrarSesionToolStripMenuItem": "Cerrar sesión",

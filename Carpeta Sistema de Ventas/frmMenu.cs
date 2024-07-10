@@ -146,6 +146,14 @@ namespace Carpeta_Sistema_de_Ventas
             AbrirForm(frmMaestroClientes);
         }
 
+
+        private void generarReporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReportes frm = new frmReportes();
+            AbrirForm(frm);
+        }
+
+
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaCerrar"), IdiomaManager.GetInstance().ConseguirTexto("cerrar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -171,6 +179,5 @@ namespace Carpeta_Sistema_de_Ventas
             }
             else { this.Close(); }
         }
-
     }
 }

@@ -14,5 +14,7 @@ namespace BE
         public string ComentarioAdicional { get; set; } //puede ser Null
         public EnumMetodoPago MetodoPago { get; set; }
         public string AliasMP { get; set; } //puede ser Null
+    
+        public string stringMetodoPago { get; set; }
     }
 }

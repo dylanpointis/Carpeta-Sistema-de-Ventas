@@ -1,0 +1,35 @@
+{
+  "label1": "Facturas",
+  "btnActualizar": "Actualizar",
+  "btnGenerarPDF": "Generar PDF",
+  "lblProductos": "Productos vendidos",
+  "label2": "Número de Factura",
+  "btnBuscar": "Buscar",
+  "ingrese": "Ingrese el número de Factura",
+  "seleccione": "Seleccione una factura para generar el archivo PDF",
+  "dgvNumFactura": "Número factura",
+  "dgvDNI": "DNI cliente",
+  "dgvTran": "Número transacción",
+  "dgvTotal": "Total",
+  "dgvImpuesto": "Impuesto",
+  "dgvFecha": "Fecha",
+  "dgvMetodo": "Método pago",
+  "dgvCantCuotas": "Cantidad cuotas",
+  "dgvAlias": "Alias MP",
+  "dgvNombre": "Nombre",
+  "dgvApellido": "Apellido",
+  "dgvEmail": "Email",
+  "dgvDireccion": "Dirección",
+
+  "dgvCodigo": "Código producto",
+  "dgvModelo": "Modelo",
+  "dgvCantidad": "Cantidad",
+  "dgvPrecio": "Precio",
+  "dgvSubtotal": "Subtotal",
+
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

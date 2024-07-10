@@ -286,8 +286,21 @@ END
 GO
 
 
+CREATE PROCEDURE TraerFacturas
+AS
+BEGIN
+     SELECT * FROM Facturas F INNER JOIN Clientes C ON C.DNICliente = F.DNICliente;
+END
+GO
 
 
+CREATE PROCEDURE TraerItemFactura
+@NumFactura int
+AS
+BEGIN
+	SELECT * FROM Item_Factura I INNER JOIN Productos P ON I.CodigoProducto = P.CodigoProducto WHERE I.NumFactura = @NumFactura;
+END
+GO
 
 
 /*COMPOSITE*/

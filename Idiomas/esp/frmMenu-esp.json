@@ -16,6 +16,7 @@
   "btnSesion": "Sesión",
   "iniciarSesiónToolStripMenuItem": "Iniciar sesión",
   "cerrarSesionToolStripMenuItem": "Cerrar sesión",
+  "generarReporteToolStripMenuItem": "Generar reporte",
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",
