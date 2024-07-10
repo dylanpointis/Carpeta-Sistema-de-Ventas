@@ -291,20 +291,16 @@ namespace Carpeta_Sistema_de_Ventas
 
 
 
-
-
-
-
-
-
-
-
-
         private void btnGestionarFamilias_Click(object sender, EventArgs e)
         {
 
             frmGestionFamilias form = new frmGestionFamilias();
             form.ShowDialog();
+
+            //vuelve a cargar el idioma
+            IdiomaManager.GetInstance().archivoActual = "frmGestionRoles";
+            IdiomaManager.GetInstance().Agregar(this);
+
             ActualizarListBoxPermisosYFamilias();
         }
 

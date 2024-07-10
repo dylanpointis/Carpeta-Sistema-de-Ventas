@@ -97,7 +97,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(txtNumFactura.Text != "")
             {
-                BEFactura fac = bllFactura.TraerFacturas().FirstOrDefault(f => f.NumFactura == Convert.ToInt32(txtNumFactura.Text));
+                BEFactura fac = bllFactura.TraerFacturas().FirstOrDefault(f => f.NumFactura == Convert.ToInt64(txtNumFactura.Text));
 
                 grillaFacturas.Rows.Clear();
 
