@@ -106,6 +106,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void CerrandoFormulario(object sender, FormClosingEventArgs e)
         {
+            IdiomaManager.GetInstance().PrimeraVez = true;
             SessionManager.GetInstance.LogOut();
             this.Show();
         }

@@ -32,7 +32,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void frmMenu_Load(object sender, EventArgs e)
         {
             BEUsuario user = SessionManager.GetInstance.ObtenerUsuario();
-            btnSesion.Text += ": "+ user.NombreUsuario;
+            btnSesion.Text = IdiomaManager.GetInstance().ConseguirTexto("btnSesion") + ": " + SessionManager.GetInstance.ObtenerUsuario().NombreUsuario;
 
 
             //Deshabilita los controles
@@ -153,6 +153,11 @@ namespace Carpeta_Sistema_de_Ventas
             AbrirForm(frm);
         }
 
+        private void Ayuda_Click(object sender, EventArgs e)
+        {
+            frmAyuda ayuda = new frmAyuda();
+            AbrirForm(ayuda);
+        }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -179,5 +184,6 @@ namespace Carpeta_Sistema_de_Ventas
             }
             else { this.Close(); }
         }
+
     }
 }

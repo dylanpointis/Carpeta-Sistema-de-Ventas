@@ -95,8 +95,13 @@ namespace Services.Observer
                             item.Text = IdiomaManager.GetInstance().ConseguirTexto(item.Name);
 
                             //al boton sesion le concatena el nombre del usuario
-                            if (item.Name == "btnSesion") { item.Text = IdiomaManager.GetInstance().ConseguirTexto(item.Name) + ": " + SessionManager.GetInstance.ObtenerUsuario().NombreUsuario; }
-
+                            if(SessionManager.GetInstance.ObtenerUsuario() != null)
+                            {
+                                if (item.Name == "btnSesion") 
+                                {
+                                    item.Text = $"{IdiomaManager.GetInstance().ConseguirTexto(item.Name)}: {SessionManager.GetInstance.ObtenerUsuario().NombreUsuario}"; 
+                                }
+                            }
 
                             CambiarIdiomaMenuStrip(toolStripMenuItem.DropDownItems, frm);
                         }
