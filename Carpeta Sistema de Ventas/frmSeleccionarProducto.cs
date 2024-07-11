@@ -83,7 +83,7 @@ namespace Carpeta_Sistema_de_Ventas
                 int cantStock = Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value);
                 if (cantStock > 0)
                 {
-                    BEProducto producto = new BEProducto(Convert.ToInt32(grillaProductos.CurrentRow.Cells[0].Value), grillaProductos.CurrentRow.Cells[1].Value.ToString(), grillaProductos.CurrentRow.Cells[2].Value.ToString(), grillaProductos.CurrentRow.Cells[3].Value.ToString(), grillaProductos.CurrentRow.Cells[4].Value.ToString(), Convert.ToDouble(grillaProductos.CurrentRow.Cells[5].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[7].Value));
+                    BEProducto producto = new BEProducto(Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value), grillaProductos.CurrentRow.Cells[1].Value.ToString(), grillaProductos.CurrentRow.Cells[2].Value.ToString(), grillaProductos.CurrentRow.Cells[3].Value.ToString(), grillaProductos.CurrentRow.Cells[4].Value.ToString(), Convert.ToDouble(grillaProductos.CurrentRow.Cells[5].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[7].Value));
                    
                     if(YaEstaElProductoAgregado(producto.CodigoProducto) == false)
                     {
@@ -112,7 +112,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaProductosAgregados.SelectedRows.Count > 0)
             {
-                int codigoProducto = Convert.ToInt32(grillaProductosAgregados.CurrentRow.Cells[0].Value);
+                long codigoProducto = Convert.ToInt64(grillaProductosAgregados.CurrentRow.Cells[0].Value);
                 var productoAEliminar = _factura.listaProductosAgregados.FirstOrDefault(p => p.Item1.CodigoProducto == codigoProducto);
 
                 _factura.listaProductosAgregados.Remove(productoAEliminar);
