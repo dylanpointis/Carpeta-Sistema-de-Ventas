@@ -27,6 +27,14 @@
   "dgvPrecio": "Price",
   "dgvSubtotal": "Subtotal",
 
+  "htmlFechaVenta": "Date of sale",
+  "htmlDetalleCliente": "Customer details:",
+  "htmlDetalleProductos": "Product details:",
+  "htmlDetallePago": "Payment details:",
+  "htmlMontoTotal": "Total amount:",
+  "htmlAlias": "Mercado Pago Alias",
+  "htmlNeto": "Net amount",
+  "htmlIVA": "I.V.A",
 
   "cerrar": "Log out",
   "deseaCerrar": "Are you sure you want to Log Out?",

@@ -29,6 +29,17 @@
   "dgvSubtotal": "Subtotal",
 
 
+  "htmlFechaVenta": "Fecha venta",
+  "htmlDetalleCliente": "Detalle cliente:",
+  "htmlDetalleProductos": "Detalle productos:",
+  "htmlDetallePago": "Detalle pago:",
+  "htmlMontoTotal": "Monto Total:",
+  "htmlAlias": "Alias Mercado Pago",
+  "htmlNeto": "Monto neto",
+  "htmlIVA": "I.V.A",
+
+
+
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",
