@@ -10,5 +10,29 @@
   "estaBloqueado": "The user is blocked or disabled, please contact the administrator",
   "noSeEncontro": "The entered user was not found",
   "yaInicio": "There is already a session started",
-  "llene": "Fill in the fields"
+  "llene": "Fill in the fields",
+
+
+  "Admin": "Admin",
+  "Maestros": "Masters",
+  "Usuarios": "Users",
+  "Ventas": "Sales",
+  "Compras": "Purchases",
+  "Reportes": "Reports",
+  "Ayuda": "Help",
+  "gestiónDeUsuariosToolStripMenuItem": "User Management",
+  "gestiónDePerfilesToolStripMenuItem": "Profile Management",
+  "productosToolStripMenuItem": "Products",
+  "clientesToolStripMenuItem": "Clients",
+  "cambiarClaveToolStripMenuItem": "Change Password",
+  "cambiarIdiomaToolStripMenuItem": "Change Language",
+  "generarFacturaToolStripMenuItem": "Generate Invoice",
+  "generarReporteToolStripMenuItem": "Generate report",
+  "btnSesion": "Session",
+  "iniciarSesiónToolStripMenuItem": "Log In",
+  "cerrarSesionToolStripMenuItem": "Log Out",
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
 }

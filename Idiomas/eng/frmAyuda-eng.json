@@ -1,0 +1,10 @@
+{
+  "label1": "System designed for selling cell phones, allowing employees and administrators to perform their daily tasks, persisting \nthe information in the database\n\nAdmin Menu: Allows managing system users and their profiles (roles). The administrator can create, delete, or modify users, assigning a role\n to each one. They can also create, modify, or delete roles (a set of permissions and families) and families (a set of permissions).\n\nMasters: allows managing products and customers, enabling the creation, modification, or deletion of them.\n\nUsers: Allows users to perform basic tasks such as changing their password or language.\n\nSales: Allows users assigned to sales to register a new invoice in the system, loading the selected products, selecting or registering \nthe customer, and recording the payment details.\n\nReports: Allows viewing the invoices of the sales made, seeing payment, customer, and purchased product information. It also\n allows generating a PDF file for the same.",
+
+
+
+  "cerrar": "Log Out",
+  "deseaCerrar": "Do you want to log out?",
+  "noHaySesion": "No session started",
+  "haySesion": "A session is already established"
+}
