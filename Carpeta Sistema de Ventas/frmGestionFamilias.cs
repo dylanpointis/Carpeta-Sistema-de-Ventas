@@ -124,10 +124,15 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (txtNombreFamilia.Text != "")
             {
-                modoOperacion = EnumModoAplicar.Añadir;
-                lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
+                Familia familia = bllFamilia.TraerListaFamilias().FirstOrDefault(r => r.Nombre == txtNombreFamilia.Text);
+                if (familia == null)
+                {
+                    modoOperacion = EnumModoAplicar.Añadir;
+                    lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
 
-                BloquearBotones();
+                    BloquearBotones();
+                }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreFamilia.Focus(); }
 
@@ -218,12 +223,17 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         if (txtNombreFamilia.Text != "")
                         {
-                            int idFamiliaCreada = bllFamilia.CrearFamilia(txtNombreFamilia.Text);
-                            foreach (var permiso in FamiliaConfigurada.ObtenerHijos())
+                            Familia familia = bllFamilia.TraerListaFamilias().FirstOrDefault(r => r.Nombre == txtNombreFamilia.Text);
+                            if (familia == null)
                             {
-                                bllFamilia.RegistrarHijos(idFamiliaCreada, permiso.Id);
+                                int idFamiliaCreada = bllFamilia.CrearFamilia(txtNombreFamilia.Text);
+                                foreach (var permiso in FamiliaConfigurada.ObtenerHijos())
+                                {
+                                    bllFamilia.RegistrarHijos(idFamiliaCreada, permiso.Id);
+                                }
+                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                             }
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
                         }
                         else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreFamilia.Focus(); }
                     }

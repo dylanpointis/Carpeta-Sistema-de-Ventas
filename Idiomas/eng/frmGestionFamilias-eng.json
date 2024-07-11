@@ -28,7 +28,7 @@
   "modoAñadir": "Message: Create New Family Mode",
   "modoEliminar": "Message: Delete Family Code Mode:",
   "modoModificar": "Message: Modify Family Code Mode:",
-
+  "yaOcupado": "The family name entered is already taken",
 
   "cerrar": "Log Out",
   "deseaCerrar": "Do you want to log out?",

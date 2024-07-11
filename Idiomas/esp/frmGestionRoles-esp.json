@@ -30,6 +30,8 @@
   "modoAñadir": "Mensaje: Modo Crear nuevo rol",
   "modoEliminar": "Mensaje: Eliminar Rol Código:",
   "modoModificar": "Mensaje: Modificar Rol Código:",
+  "alMenosUno": "Seleccione al menos un permiso o familia para el Rol",
+  "yaOcupado": "El nombre del rol ingresado ya está ocupado",
 
 
   "cerrar": "Cerrar sesión",

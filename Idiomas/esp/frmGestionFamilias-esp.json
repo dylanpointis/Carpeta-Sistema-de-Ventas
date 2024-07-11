@@ -28,6 +28,7 @@
   "modoAñadir": "Mensaje: Modo Crear nueva Familia",
   "modoEliminar": "Mensaje: Eliminar Familia Código:",
   "modoModificar": "Mensaje: Modificar Famila Código:",
+  "yaOcupado": "El nombre de la familia ingresada ya está ocupado",
 
 
   "cerrar": "Cerrar sesión",

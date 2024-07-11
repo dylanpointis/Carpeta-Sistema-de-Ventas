@@ -30,6 +30,9 @@
   "modoAñadir": "Message: Create New Role Mode",
   "modoEliminar": "Message: Delete Mode Role Code:",
   "modoModificar": "Message: Modify Mode Role Code:",
+  "yaOcupado": "The Role name entered is already taken",
+  "alMenosUno": "Select at least one permission or family for the role",
+
 
 
   "cerrar": "Log Out",

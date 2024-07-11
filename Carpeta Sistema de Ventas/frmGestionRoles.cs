@@ -155,10 +155,15 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (txtNombreRol.Text != "")
             {
-                modoOperacion = EnumModoAplicar.Añadir;
-                lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
+                Familia rol = bllFamilia.TraerListaRoles().FirstOrDefault(r => r.Nombre == txtNombreRol.Text);
+                if(rol == null)
+                {
+                    modoOperacion = EnumModoAplicar.Añadir;
+                    lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("modoAñadir");
 
-                BloquearBotones();
+                    BloquearBotones();
+                }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreRol.Focus(); }
         }
@@ -184,12 +189,18 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (txtNombreRol.Text != "")
                     {
-                        int idRolCreado = bllFamilia.CrearRol(txtNombreRol.Text);
-                        foreach (var permiso in RolConfigurado.ObtenerHijos())
+                        Familia rol = bllFamilia.TraerListaRoles().FirstOrDefault(r => r.Nombre == txtNombreRol.Text);
+                        if (rol == null)
                         {
-                            bllFamilia.RegistrarPermisosRol(idRolCreado, permiso.Id);
+                            int idRolCreado = bllFamilia.CrearRol(txtNombreRol.Text);
+                            foreach (var permiso in RolConfigurado.ObtenerHijos())
+                            {
+                                bllFamilia.RegistrarPermisosRol(idRolCreado, permiso.Id);
+                            }
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
-                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
+
                     }
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreRol.Focus(); }
                 }
@@ -205,6 +216,7 @@ namespace Carpeta_Sistema_de_Ventas
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                 }
             }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("alMenosUno")); }
             RolConfigurado.ObtenerHijos().Clear();
             ActualizarListBoxRol();
             ActualizarComboBox();
