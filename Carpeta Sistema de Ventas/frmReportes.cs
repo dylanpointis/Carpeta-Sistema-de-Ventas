@@ -11,6 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Carpeta_Sistema_de_Ventas
 {
@@ -98,6 +103,117 @@ namespace Carpeta_Sistema_de_Ventas
                     MontoTotal = Convert.ToDouble(grillaFacturas.CurrentRow.Cells[3].Value),
                     Impuesto = Convert.ToDouble(grillaFacturas.CurrentRow.Cells[4].Value),
                 };
+
+                //busca y carga los items en la factura
+                fac = bllFactura.TraerItemsFactura(fac);
+
+
+
+                SaveFileDialog guardarArchivo = new SaveFileDialog();
+                guardarArchivo.FileName = fac.NumFactura + "-" +DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
+
+
+                string paginahtml = Properties.Resources.htmlfactura.ToString();
+
+
+                paginahtml = paginahtml.Replace("@NroFactura", fac.NumFactura.ToString());
+                paginahtml = paginahtml.Replace("@Fecha", fac.Fecha.ToString("dd/MM/yyyy HH:mm"));
+
+                paginahtml = paginahtml.Replace("@DNI", fac.clienteFactura.DniCliente.ToString());
+                paginahtml = paginahtml.Replace("@Nombre", fac.clienteFactura.Nombre);
+                paginahtml = paginahtml.Replace("@Apellido", fac.clienteFactura.Apellido);
+                paginahtml = paginahtml.Replace("@Email", fac.clienteFactura.Mail);
+                paginahtml = paginahtml.Replace("@Direccion", fac.clienteFactura.Direccion);
+
+
+                string filas = "";
+                double subtotalfactura = 0;
+                foreach (var item in fac.listaProductosAgregados)
+                {
+                    BEProducto prod = item.Item1;
+                    int cantidad = item.Item2;
+                    double subtotal = cantidad * prod.Precio;
+                    subtotalfactura += subtotal;
+
+                    filas += "<tr>";
+                    filas += "<td>" + prod.CodigoProducto.ToString() + "</td>";
+                    filas += "<td>" + prod.Modelo + "</td>";
+                    filas += "<td>" + prod.Precio.ToString() + "</td>";
+                    filas += "<td>" + cantidad.ToString() + "</td>";
+                    filas += "<td>" + subtotal.ToString() + "</td>";
+                    filas += "</tr>";
+                }
+
+                paginahtml = paginahtml.Replace("@FILAS", filas);
+                paginahtml = paginahtml.Replace("@Neto", subtotalfactura.ToString());
+                paginahtml = paginahtml.Replace("@Iva", fac.Impuesto.ToString());
+                paginahtml = paginahtml.Replace("@Total", fac.MontoTotal.ToString());
+                paginahtml = paginahtml.Replace("@Metodo", fac.cobro.stringMetodoPago);
+                paginahtml = paginahtml.Replace("@Marca", fac.cobro.MarcaTarjeta.ToString());
+                paginahtml = paginahtml.Replace("@CantCuotas", fac.cobro.CantCuotas.ToString());
+
+
+                if(fac.cobro.AliasMP.ToString() != "")
+                {
+                    paginahtml = paginahtml.Replace("@Alias", fac.cobro.AliasMP.ToString());
+                }
+                else { paginahtml = paginahtml.Replace("@Alias", "-"); }
+
+
+                //traducciones
+                paginahtml = paginahtml.Replace("@textoDNI", IdiomaManager.GetInstance().ConseguirTexto("dgvDNI"));
+                paginahtml = paginahtml.Replace("@textoNombre", IdiomaManager.GetInstance().ConseguirTexto("dgvNombre"));
+                paginahtml = paginahtml.Replace("@textoApellido", IdiomaManager.GetInstance().ConseguirTexto("dgvApellido"));
+                paginahtml = paginahtml.Replace("@textoEmail", IdiomaManager.GetInstance().ConseguirTexto("dgvEmail"));
+                paginahtml = paginahtml.Replace("@textoDireccion", IdiomaManager.GetInstance().ConseguirTexto("dgvDireccion"));
+                paginahtml = paginahtml.Replace("@textoCodigoproducto", IdiomaManager.GetInstance().ConseguirTexto("dgvCodigo"));
+                paginahtml = paginahtml.Replace("@textoModelo", IdiomaManager.GetInstance().ConseguirTexto("dgvModelo"));
+                paginahtml = paginahtml.Replace("@textoPrecio", IdiomaManager.GetInstance().ConseguirTexto("dgvPrecio"));
+                paginahtml = paginahtml.Replace("@textoCantidad", IdiomaManager.GetInstance().ConseguirTexto("dgvCantidad"));
+                paginahtml = paginahtml.Replace("@textoSubTotal", IdiomaManager.GetInstance().ConseguirTexto("dgvSubtotal"));
+                paginahtml = paginahtml.Replace("@textoFactura", IdiomaManager.GetInstance().ConseguirTexto("dgvNumFactura"));
+                paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("htmlFechaVenta"));
+                paginahtml = paginahtml.Replace("@textoDetalleCliente", IdiomaManager.GetInstance().ConseguirTexto("htmlDetalleCliente"));
+                paginahtml = paginahtml.Replace("@textoDetalleProductos", IdiomaManager.GetInstance().ConseguirTexto("htmlDetalleProductos"));
+                paginahtml = paginahtml.Replace("@textoDetallePago", IdiomaManager.GetInstance().ConseguirTexto("htmlDetallePago"));
+
+
+                paginahtml = paginahtml.Replace("@textoNeto", IdiomaManager.GetInstance().ConseguirTexto("htmlNeto"));
+                paginahtml = paginahtml.Replace("@textoIVA", IdiomaManager.GetInstance().ConseguirTexto("htmlIVA"));
+                paginahtml = paginahtml.Replace("@textoMontoTotal", IdiomaManager.GetInstance().ConseguirTexto("htmlMontoTotal"));
+                paginahtml = paginahtml.Replace("@textoMetodo", IdiomaManager.GetInstance().ConseguirTexto("dgvMetodo"));
+                paginahtml = paginahtml.Replace("@textoMarca", IdiomaManager.GetInstance().ConseguirTexto("dgvMarca"));
+                paginahtml = paginahtml.Replace("@textoAlias", IdiomaManager.GetInstance().ConseguirTexto("htmlAlias"));
+                paginahtml = paginahtml.Replace("@textoCantCuotas", IdiomaManager.GetInstance().ConseguirTexto("dgvCantCuotas"));
+
+
+                if (guardarArchivo.ShowDialog()== DialogResult.OK)
+                {
+                    using(FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
+                    {
+                        Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                        PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
+
+                        pdf.Open();
+                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.logo, System.Drawing.Imaging.ImageFormat.Png);
+                        img.ScaleToFit(80, 60);
+                        img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                        img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
+                        pdf.Add(img);
+
+                        using (StringReader lector = new StringReader(paginahtml))
+                        {
+                            XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf,lector);
+                        }
+
+
+                        pdf.Close();
+                        stream.Close();
+                    }
+                }
+
+
             }
             else
             {

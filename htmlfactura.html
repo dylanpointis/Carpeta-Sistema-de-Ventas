@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online HTML Editor</title>
+</head>
+<body>
+    
+    <div style="width: 100%; background-color:lightskyblue; padding: 10px">
+        <h1 style="color: white">Alta Gama</h1>
+    </div>
+    
+    <table style="width: 100%">
+        <tr>
+            <td style="font-size: 20px">Factura número: @NroFactura</td>
+            <td style="font-size: 20px">Fecha venta: @Fecha</td>
+        </tr>
+    </table>
+
+<h2>Detalle cliente:</h2>
+<table border="1" style="width: 100%">
+    <tr>
+        <td>DNI</td>
+        <td>Nombre</td>
+        <td>Apellido</td>
+        <td>Email</td>
+        <td>Dirección</td>
+    </tr>
+</table>
+
+<h2>Detalle productos:</h2>
+<table border="1" style="width: 100%">
+    <thead>
+        <th>Código producto</th>
+        <th>Modelo</th>
+        <th>Precio unit.</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+    </thead>
+    <tr>
+        <td style="border: 0px">@CodProducto</td>
+        <td style="border: 0px">@Modelo</td>
+        <td style="border: 0px">@Precio</td>
+        <td style="border: 0px">@Cant</td>
+        <td style="border: 0px">@Subtotal</td>
+    </tr>
+</table>
+
+<hr style="margin-top: 60px">
+<h2>Detalle pago:</h2>
+<h3>Monto neto: @Neto</h3>
+<h3>I.V.A: @Iva</h3>
+<h3>Monto total: @Total</h3>
+<h3>Método de pago: @Metodo</h3>
+<h3>Marca Tarjeta: @Marca</h3>
+<h3>Alias Mercado Pago: @Alias</h3>
+<h3>Cantidad de cuotas: @CantCuotas</h3>
+</body>
+<footer style="width: 100%; background-color:lightskyblue; height:60px"></footer>
+</html>

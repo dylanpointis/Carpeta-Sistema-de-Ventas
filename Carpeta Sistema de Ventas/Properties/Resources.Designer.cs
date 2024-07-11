@@ -61,6 +61,34 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///&lt;title&gt;Online HTML Editor&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    
+        ///    &lt;div style=&quot;width: 100%; background-color:lightskyblue; padding: 10px&quot;&gt;
+        ///        &lt;h1 style=&quot;color: white&quot;&gt;Alta Gama&lt;/h1&gt;
+        ///    &lt;/div&gt;
+        ///    
+        ///    &lt;table style=&quot;width: 100%&quot;&gt;
+        ///        &lt;tr&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;Factura número: @NroFactura&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;Fecha venta: @Fecha&lt;/td&gt;
+        ///        &lt;/tr&gt;
+        ///    &lt;/table&gt;
+        ///
+        ///&lt;h2&gt;Detalle cliente:&lt;/h2&gt;
+        ///&lt;table border=&quot;1&quot; style=&quot;width:  [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string htmlfactura {
+            get {
+                return ResourceManager.GetString("htmlfactura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap invisible {
