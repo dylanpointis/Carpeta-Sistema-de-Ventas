@@ -48,6 +48,7 @@
             this.fechaInicio = new System.Windows.Forms.DateTimePicker();
             this.fechaFin = new System.Windows.Forms.DateTimePicker();
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
+            this.lblDNI = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaEventos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +66,7 @@
             // 
             // grillaEventos
             // 
+            this.grillaEventos.AllowUserToAddRows = false;
             this.grillaEventos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaEventos.Location = new System.Drawing.Point(71, 84);
@@ -83,12 +85,12 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 20);
             this.label2.TabIndex = 58;
-            this.label2.Text = "Auditoria eventos";
+            this.label2.Text = "Auditoría eventos";
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(68, 358);
+            this.lblNombre.Location = new System.Drawing.Point(253, 358);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 59;
@@ -97,7 +99,7 @@
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Location = new System.Drawing.Point(253, 358);
+            this.lblApellido.Location = new System.Drawing.Point(451, 358);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(47, 13);
             this.lblApellido.TabIndex = 60;
@@ -185,7 +187,9 @@
             this.txtCriticidad.Items.AddRange(new object[] {
             "1",
             "2",
-            "3"});
+            "3",
+            "4",
+            "5"});
             this.txtCriticidad.Location = new System.Drawing.Point(454, 480);
             this.txtCriticidad.Name = "txtCriticidad";
             this.txtCriticidad.Size = new System.Drawing.Size(143, 21);
@@ -236,6 +240,7 @@
             this.fechaInicio.Size = new System.Drawing.Size(143, 20);
             this.fechaInicio.TabIndex = 76;
             this.fechaInicio.Value = new System.DateTime(2024, 8, 20, 0, 0, 0, 0);
+            this.fechaInicio.ValueChanged += new System.EventHandler(this.fechaInicio_ValueChanged);
             // 
             // fechaFin
             // 
@@ -246,6 +251,7 @@
             this.fechaFin.Size = new System.Drawing.Size(143, 20);
             this.fechaFin.TabIndex = 77;
             this.fechaFin.Value = new System.DateTime(2024, 8, 20, 0, 0, 0, 0);
+            this.fechaFin.ValueChanged += new System.EventHandler(this.fechaFin_ValueChanged);
             // 
             // txtNombreUsuario
             // 
@@ -254,11 +260,21 @@
             this.txtNombreUsuario.Size = new System.Drawing.Size(140, 20);
             this.txtNombreUsuario.TabIndex = 78;
             // 
+            // lblDNI
+            // 
+            this.lblDNI.AutoSize = true;
+            this.lblDNI.Location = new System.Drawing.Point(68, 358);
+            this.lblDNI.Name = "lblDNI";
+            this.lblDNI.Size = new System.Drawing.Size(29, 13);
+            this.lblDNI.TabIndex = 79;
+            this.lblDNI.Text = "DNI:";
+            // 
             // frmAuditoriaEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 535);
+            this.Controls.Add(this.lblDNI);
             this.Controls.Add(this.txtNombreUsuario);
             this.Controls.Add(this.fechaFin);
             this.Controls.Add(this.fechaInicio);
@@ -310,5 +326,6 @@
         private System.Windows.Forms.DateTimePicker fechaInicio;
         private System.Windows.Forms.DateTimePicker fechaFin;
         private System.Windows.Forms.TextBox txtNombreUsuario;
+        private System.Windows.Forms.Label lblDNI;
     }
 }

@@ -247,6 +247,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="icons\invisible.png" />
+    <None Include="Resources\htmlauditoriaevento.html" />
     <None Include="Resources\htmlfactura.html" />
     <None Include="icons\logo.png" />
     <None Include="icons\logopng.png" />

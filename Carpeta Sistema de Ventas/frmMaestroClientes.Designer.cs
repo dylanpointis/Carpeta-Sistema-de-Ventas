@@ -222,6 +222,7 @@
             // 
             // grillaClientes
             // 
+            this.grillaClientes.AllowUserToAddRows = false;
             this.grillaClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaClientes.Location = new System.Drawing.Point(12, 55);

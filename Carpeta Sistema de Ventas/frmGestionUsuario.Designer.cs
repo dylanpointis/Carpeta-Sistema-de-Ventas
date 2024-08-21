@@ -57,6 +57,7 @@
             // 
             // grillaUsuarios
             // 
+            this.grillaUsuarios.AllowUserToAddRows = false;
             this.grillaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaUsuarios.Location = new System.Drawing.Point(36, 58);
             this.grillaUsuarios.MultiSelect = false;

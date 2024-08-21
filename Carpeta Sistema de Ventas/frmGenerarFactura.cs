@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BE;
 using BLL;
+using Services;
 using Services.Observer;
 
 namespace Carpeta_Sistema_de_Ventas
@@ -226,6 +227,11 @@ namespace Carpeta_Sistema_de_Ventas
 
                         bllProducto.ModificarStock(prod, prod.Stock - cantidad);
                     }
+
+                    //registra en la bitacora de eventos
+                    BLLEvento bLLEvento = new BLLEvento();
+                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Factura generada", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"));
                     this.Enabled = false; // deshabilita los botones
                 }

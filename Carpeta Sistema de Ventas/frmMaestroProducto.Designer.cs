@@ -251,6 +251,7 @@
             // 
             // grillaProductos
             // 
+            this.grillaProductos.AllowUserToAddRows = false;
             this.grillaProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaProductos.Location = new System.Drawing.Point(12, 67);
