@@ -37,6 +37,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             //Deshabilita los controles
             Admin.Enabled = false; Maestros.Enabled = false;Usuarios.Enabled = false;  Ventas.Enabled = false;Compras.Enabled = false; Reportes.Enabled = false; Ayuda.Enabled = false;
+ 
 
             /*Se fija los permisos del usuario*/
             List<Componente> listaHijosFamilia = new List<Componente>();
@@ -64,6 +65,13 @@ namespace Carpeta_Sistema_de_Ventas
                             if (control.Name == hijo.Nombre)
                             {
                                 control.Enabled = true;
+                            }
+                            foreach (ToolStripMenuItem item in control.DropDownItems)
+                            {
+                                if (item.Name == hijo.Nombre)
+                                {
+                                    item.Enabled = true;
+                                }
                             }
                         }
                     }
@@ -158,6 +166,16 @@ namespace Carpeta_Sistema_de_Ventas
             frmAyuda ayuda = new frmAyuda();
             AbrirForm(ayuda);
         }
+        private void eventosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAuditoriaEventos frm = new frmAuditoriaEventos();
+            AbrirForm(frm);
+        }
+
+        private void respaldosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -167,6 +185,8 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (SessionManager.GetInstance.ObtenerUsuario() != null)
                 {
+                    BLLEvento bLLEvento = new BLLEvento();
+                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Login", "Cierre sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                     SessionManager.GetInstance.LogOut();
                     this.Close();
                 }

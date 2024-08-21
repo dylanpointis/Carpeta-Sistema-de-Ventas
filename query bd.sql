@@ -332,7 +332,8 @@ GO
 CREATE TABLE Rol_Permiso
 (
 CodRol INT FOREIGN KEY REFERENCES Roles(CodRol),
-CodPermiso INT FOREIGN KEY REFERENCES Permisos(CodPermiso)
+CodPermiso INT FOREIGN KEY REFERENCES Permisos(CodPermiso),
+PRIMARY KEY (CodRol, CodPermiso)
 )
 GO
 
@@ -503,6 +504,15 @@ INSERT INTO Roles VALUES('Admin')
 INSERT INTO Rol_Permiso VALUES (1,8)
 
 
+INSERT INTO Permisos VALUES('FamiliaVendedor',1)
+Insert into Permiso_Componente VALUES(9, 2)
+Insert into Permiso_Componente VALUES(9, 3)
+Insert into Permiso_Componente VALUES(9, 4)
+Insert into Permiso_Componente VALUES(9, 6)
+Insert into Permiso_Componente VALUES(9, 7)
+
+INSERT INTO Roles VALUES('Vendedor')
+INSERT INTO Rol_Permiso VALUES (2,9)
 
 
 
@@ -513,20 +523,65 @@ DNI INT PRIMARY KEY NOT NULL,
 Nombre varchar(50) NOT NULL,
 Apellido varchar(50) NOT NULL,
 Mail varchar(100) NOT NULL,
-NombreUsuario varchar(50) NOT NULL,
+NombreUsuario varchar(50) NOT NULL UNIQUE,
 Clave varchar(100) NOT NULL,
 Rol INT FOREIGN KEY REFERENCES Roles(CodRol),
 Bloqueo bit,
 Activo bit
 );
 
+CREATE TABLE Eventos(
+IdEvento INT PRIMARY KEY IDENTITY(1,1),
+NombreUsuario varchar(50) FOREIGN KEY REFERENCES Usuarios(NombreUsuario),
+Modulo varchar(50),
+Evento varchar(100),
+Criticiad smallint,
+Fecha varchar(11),
+Hora varchar(5),
+)
+GO
+
+
+CREATE PROCEDURE TraerEventosUltimos3Dias
+AS
+BEGIN
+	SELECT * FROM Eventos WHERE CONVERT(DATE, Fecha, 120) >= DATEADD(DAY, -3, GETDATE());
+END
+GO
+
+CREATE PROCEDURE RegistrarEvento
+    @NombreUsuario varchar(50),
+	@Modulo varchar(50),
+	@Evento varchar(100),
+	@Criticidad smallint,
+	@Fecha varchar(11),
+	@Hora varchar(5)
+AS
+BEGIN
+    INSERT INTO Eventos VALUES (@NombreUsuario, @Modulo, @Evento, @Criticidad, @Fecha, @Hora)
+END
+GO
+
+
+CREATE PROCEDURE FiltrarEvento
+    @NombreUsuario varchar(50),
+	@Modulo varchar(50),
+	@Evento varchar(100),
+	@Criticidad varchar(2),
+	@FechaInicio varchar(11),
+	@FechaFin varchar(11)
+AS
+BEGIN
+    SELECT * FROM Eventos where NombreUsuario LIKE @NombreUsuario + '%' AND Modulo LIKE @Modulo + '%' 
+	AND Evento LIKE @Evento + '%' AND Criticiad LIKE @Criticidad + '%' AND (Fecha >= @FechaInicio AND Fecha <= @FechaFin)
+END
+GO
+
 
 /*CLAVE clave123*/
 INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1);
---INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 'Vendedor', 0, 1);
-
-
-
+--Clave 41256789Rodriguez
+INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 2, 0, 1);
 
 INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256);
 INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512);

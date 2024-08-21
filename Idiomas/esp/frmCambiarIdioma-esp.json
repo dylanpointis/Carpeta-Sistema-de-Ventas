@@ -23,6 +23,9 @@
   "cambiarIdiomaToolStripMenuItem": "Cambiar idioma",
   "generarFacturaToolStripMenuItem": "Generar factura",
   "generarReporteToolStripMenuItem": "Generar reporte",
+  "eventosToolStripMenuItem": "Eventos",
+  "respaldosToolStripMenuItem": "Respaldos",
+
   "btnSesion": "Sesión",
   "iniciarSesiónToolStripMenuItem": "Iniciar sesión",
   "cerrarSesionToolStripMenuItem": "Cerrar sesión",

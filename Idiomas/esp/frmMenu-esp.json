@@ -13,10 +13,14 @@
   "cambiarClaveToolStripMenuItem": "Cambiar clave",
   "cambiarIdiomaToolStripMenuItem": "Cambiar idioma",
   "generarFacturaToolStripMenuItem": "Generar factura",
+
   "btnSesion": "Sesión",
   "iniciarSesiónToolStripMenuItem": "Iniciar sesión",
   "cerrarSesionToolStripMenuItem": "Cerrar sesión",
   "generarReporteToolStripMenuItem": "Generar reporte",
+  "eventosToolStripMenuItem": "Eventos",
+  "respaldosToolStripMenuItem": "Respaldos",
+
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

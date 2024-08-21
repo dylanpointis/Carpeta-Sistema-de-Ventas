@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLCliente.cs" />
+    <Compile Include="BLLEvento.cs" />
     <Compile Include="BLLFactura.cs" />
     <Compile Include="BLLFamilia.cs" />
     <Compile Include="BLLPermiso.cs" />

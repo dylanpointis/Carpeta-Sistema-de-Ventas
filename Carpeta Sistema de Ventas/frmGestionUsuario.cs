@@ -89,7 +89,6 @@ namespace Carpeta_Sistema_de_Ventas
                         {
                             Familia rol = listaRoles.FirstOrDefault(r => r.Nombre == cmbRol.Text); //BUSCA EL ROL
                             string clave = txtDNI.Text + txtApellido.Text; // CLAVE COMBINA DNI + APELLIDO
-
                             BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, Encriptador.EncriptarSHA256(clave), rol.Id, false, true);
                             bllUsuario.RegistrarUsuario(user);
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));

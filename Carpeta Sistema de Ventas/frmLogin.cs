@@ -43,6 +43,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         BLLUsuario bllUsuario = new BLLUsuario();
         BLLFamilia bllFamilia = new BLLFamilia();
+        BLLEvento bllEvento = new BLLEvento();
         int contClaveIncorrecta = 0;
 
 
@@ -71,6 +72,9 @@ namespace Carpeta_Sistema_de_Ventas
 
                             SessionManager.GetInstance.LogIn(user);
                             contClaveIncorrecta = 0;
+
+                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Login", "Inicio sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+
                             this.Hide(); //oculta el formulario actual
                             frmMenu frmMenu = new frmMenu();
                             frmMenu.Show();

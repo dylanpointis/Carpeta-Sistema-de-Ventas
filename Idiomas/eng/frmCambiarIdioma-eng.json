@@ -24,6 +24,8 @@
   "cambiarIdiomaToolStripMenuItem": "Change Language",
   "generarFacturaToolStripMenuItem": "Generate Invoice",
   "generarReporteToolStripMenuItem": "Generate report",
+  "eventosToolStripMenuItem": "Events",
+  "respaldosToolStripMenuItem": "Backups",
   "btnSesion": "Session",
   "iniciarSesiónToolStripMenuItem": "Log In",
   "cerrarSesionToolStripMenuItem": "Log Out",
