@@ -169,6 +169,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BloquearBotones();
                 }
             }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneComboBox")); }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -198,6 +199,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BloquearBotones();
                 }
             }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneComboBox")); }
 
         }
 
@@ -239,16 +241,21 @@ namespace Carpeta_Sistema_de_Ventas
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar) //modificar
                     {
-                        FamiliaConfigurada.Nombre = txtNombreFamilia.Text;
-                        bllFamilia.ModificarFamilia(FamiliaConfigurada); // cambia el nombre de la familia
-                        bllFamilia.EliminarHijos(FamiliaConfigurada.Id); //elimina los hijos de la familia
-
-                        foreach (var hijo in FamiliaConfigurada.ObtenerHijos())
+                        Familia rol = bllFamilia.TraerListaFamilias().FirstOrDefault(r => r.Nombre == txtNombreFamilia.Text && r.Nombre != FamiliaConfigurada.Nombre);
+                        if (rol == null)
                         {
-                            bllFamilia.RegistrarHijos(FamiliaConfigurada.Id, hijo.Id);
-                        }
+                            FamiliaConfigurada.Nombre = txtNombreFamilia.Text;
+                            bllFamilia.ModificarFamilia(FamiliaConfigurada); // cambia el nombre de la familia
+                            bllFamilia.EliminarHijos(FamiliaConfigurada.Id); //elimina los hijos de la familia
 
-                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            foreach (var hijo in FamiliaConfigurada.ObtenerHijos())
+                            {
+                                bllFamilia.RegistrarHijos(FamiliaConfigurada.Id, hijo.Id);
+                            }
+
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                        }
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
                     }
                 }
                 else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("alMenosUno")); }

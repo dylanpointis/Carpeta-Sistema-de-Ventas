@@ -23,7 +23,7 @@
   "exito": "Operation successful",
   "yaEstaAsignadoModificar": "The family is already in a Role assigned to a User, it cannot be modified",
   "yaEstaAsignadoEliminar": "The family is already in a Role assigned to a User, it cannot be deleted",
-  "seleccioneComboBox": "Select a Role from the dropdown list",
+  "seleccioneComboBox": "Select a family from the dropdown list",
   "lblModoOperacion": "Operation Mode: Consultation",
   "modoAñadir": "Message: Create New Family Mode",
   "modoEliminar": "Message: Delete Family Code Mode:",

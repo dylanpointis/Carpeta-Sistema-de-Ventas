@@ -23,7 +23,7 @@
   "exito": "Operación exitosa",
   "yaEstaAsignadoModificar": "La familia ya esta en un Rol asignado a un Usuario, no puede Modificarse",
   "yaEstaAsignadoEliminar": "La familia ya esta en un Rol asignado a un Usuario, no puede Eliminarse",
-  "seleccioneComboBox": "Seleccione un Rol en la lista desplegable",
+  "seleccioneComboBox": "Seleccione una familia en la lista desplegable",
   "lblModoOperacion": "Modo operación: Consulta",
   "modoAñadir": "Mensaje: Modo Crear nueva Familia",
   "modoEliminar": "Mensaje: Eliminar Familia Código:",

@@ -316,9 +316,9 @@ GO
 
 CREATE TABLE Permiso_Componente
 (
+CodPermisoComponente INT PRIMARY KEY IDENTITY(1,1),
 PermisoPadre INT  FOREIGN KEY REFERENCES Permisos(CodPermiso),
-PermisoHijo INT FOREIGN KEY REFERENCES Permisos(CodPermiso),
-PRIMARY KEY (PermisoPadre, PermisoHijo)
+PermisoHijo INT FOREIGN KEY REFERENCES Permisos(CodPermiso)
 )
 GO
 
@@ -331,9 +331,9 @@ GO
 
 CREATE TABLE Rol_Permiso
 (
+CodRolPermiso INT PRIMARY KEY IDENTITY(1,1),
 CodRol INT FOREIGN KEY REFERENCES Roles(CodRol),
-CodPermiso INT FOREIGN KEY REFERENCES Permisos(CodPermiso),
-PRIMARY KEY (CodRol, CodPermiso)
+CodPermiso INT FOREIGN KEY REFERENCES Permisos(CodPermiso)
 )
 GO
 
@@ -504,7 +504,7 @@ INSERT INTO Roles VALUES('Admin')
 INSERT INTO Rol_Permiso VALUES (1,8)
 
 
-INSERT INTO Permisos VALUES('FamiliaVendedor',1)
+INSERT INTO Permisos VALUES('FamiliaVentas',1)
 Insert into Permiso_Componente VALUES(9, 2)
 Insert into Permiso_Componente VALUES(9, 3)
 Insert into Permiso_Componente VALUES(9, 4)

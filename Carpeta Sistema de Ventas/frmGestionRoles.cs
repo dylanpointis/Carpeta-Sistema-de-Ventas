@@ -206,14 +206,19 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
-                    rolAModifcarOEliminar.Nombre = txtNombreRol.Text;
-                    bllFamilia.EliminarPermisosRol(rolAModifcarOEliminar.Id); /*Elima los permisos hijos del Rol*/
-                    bllFamilia.ModificarRol(rolAModifcarOEliminar); //le cambia el nombre al Rol
-                    foreach (var permiso in RolConfigurado.ObtenerHijos())
+                    Familia rol = bllFamilia.TraerListaRoles().FirstOrDefault(r => r.Nombre == txtNombreRol.Text && r.Nombre != rolAModifcarOEliminar.Nombre);
+                    if (rol == null)
                     {
-                        bllFamilia.RegistrarPermisosRol(rolAModifcarOEliminar.Id, permiso.Id); //Registra de vuelta los permisos del rol
+                        rolAModifcarOEliminar.Nombre = txtNombreRol.Text;
+                        bllFamilia.EliminarPermisosRol(rolAModifcarOEliminar.Id); /*Elima los permisos hijos del Rol*/
+                        bllFamilia.ModificarRol(rolAModifcarOEliminar); //le cambia el nombre al Rol
+                        foreach (var permiso in RolConfigurado.ObtenerHijos())
+                        {
+                            bllFamilia.RegistrarPermisosRol(rolAModifcarOEliminar.Id, permiso.Id); //Registra de vuelta los permisos del rol
+                        }
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
                 }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("alMenosUno")); }
@@ -231,7 +236,7 @@ namespace Carpeta_Sistema_de_Ventas
                 string nombre = partes[1].Trim();
                 txtNombreRol.Text = nombre;
 
-                rolAModifcarOEliminar.Id = id;
+                rolAModifcarOEliminar.Id = id; rolAModifcarOEliminar.Nombre = nombre;
 
                 List<BEUsuario> listaUsuarios = bllUsuario.TraerListaUsuarios(); //Busca la lista de usuarios
                 BEUsuario yaEstaAsignado = listaUsuarios.FirstOrDefault(u => u.Rol.Id == rolAModifcarOEliminar.Id); //Se fija si el rol ya fue asignado a un usuario
@@ -250,7 +255,7 @@ namespace Carpeta_Sistema_de_Ventas
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseNombre")); txtNombreRol.Focus(); }
                 }
             }
-            else { MessageBox.Show("Seleccione un Rol en el comboBox"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneComboBox")); }
 
         }
 
