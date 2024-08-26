@@ -66,10 +66,6 @@ namespace BLL
             dalFamilia.EliminarFamilia(idFamilia);
         }
 
-        public Componente VerificarSiEstaEnFamilia(int idHijo)
-        {
-            return dalFamilia.VerificarSiEstaEnFamilia(idHijo);
-        }
 
         #endregion
 

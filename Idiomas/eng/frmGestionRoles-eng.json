@@ -17,8 +17,6 @@
   "seleccionePermiso": "Select a permission to add",
   "seleccioneFamilia": "Select a family to add",
   "seleccioneQuitar": "Select a permission from the configured Role to remove",
-  "yaEstaEnFamilia": "The permission is already in the family: ",
-  "yaTienePermiso": "The selected family already has the permission",
   "yaSeleccionado": "already selected",
   "ingreseNombre": "Enter a name for the new role",
   "estaSeguro": "Are you sure you want to delete the role ID:",
@@ -33,7 +31,9 @@
   "yaOcupado": "The Role name entered is already taken",
   "alMenosUno": "Select at least one permission or family for the role",
 
-
+  "yaEstaEnFamilia": "The selected permission is already in the family: ",
+  "familiarepitefamilia": "The selected family repeats permissions from the family",
+  "familiayatiene": "The selected family already has the permission",
 
   "cerrar": "Log Out",
   "deseaCerrar": "Do you want to log out?",

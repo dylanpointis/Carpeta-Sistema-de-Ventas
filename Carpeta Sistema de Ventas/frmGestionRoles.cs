@@ -104,31 +104,54 @@ namespace Carpeta_Sistema_de_Ventas
 
         private bool ExisteConflicto(Componente permisoSeleccionado)
         {
-            if (permisoSeleccionado is Permiso) // si es simple
+            List<Componente> listaHijosRolConfigurado = RolConfigurado.ObtenerHijos();
+            if (permisoSeleccionado is Permiso) // si el permiso seleccionado es simple
             {
-                Componente comp = bllFamilia.VerificarSiEstaEnFamilia(permisoSeleccionado.Id);
-                if (comp != null)
+                foreach(Componente compConfigurado in listaHijosRolConfigurado) //recorre los permisos seleccionados del RolConfigurado
                 {
-                    //logica pra saber si el permiso ya esta en una familia seleccionada
-                    Componente yaEstaEnElRol = RolConfigurado.ObtenerHijos().FirstOrDefault(p => p.Id == comp.Id);
-                    if (yaEstaEnElRol != null)
+                //logica pra saber si el permiso seleccionado ya esta en una familia ya seleccionada
+                    if (compConfigurado is Familia)
                     {
-                        MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("yaEstaEnFamilia")} {comp.Id}");
-                        return true;
+                        List<Componente> listaHijos = bllFamilia.TraerListaHijos(compConfigurado.Id);
+                        Componente yaEstaEnElRol = listaHijos.FirstOrDefault(f => f.Id == permisoSeleccionado.Id);
+                        if (yaEstaEnElRol != null)
+                        {
+                            //El permiso seleccionado ya está en la familia: {id}
+                            MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("yaEstaEnFamilia")} {compConfigurado.Id}");
+                            return true;
+                        }
                     }
                 }
             }
-            else// si es familia
+            else// si el permiso seleccionado es familia
             {
                 //logica para saber si la familia seleccionada tiene algun permiso  que ya se selecciono
                 List<Componente> listaHijos = bllFamilia.TraerListaHijos(permisoSeleccionado.Id);
+                
                 foreach (var hijo in listaHijos)
                 {
-                    Componente yaEstaEnElRol = RolConfigurado.ObtenerHijos().FirstOrDefault(p => p.Id == hijo.Id);
-                    if (yaEstaEnElRol != null)
+                    foreach (Componente compConfigurado in listaHijosRolConfigurado)
                     {
-                        MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("yaTienePermiso")} {hijo.Id} {IdiomaManager.GetInstance().ConseguirTexto("yaSeleccionado")}");
-                        return true;
+                        if (compConfigurado is Familia)
+                        {
+                            List<Componente> listaHijosFamiliaConfigurada = bllFamilia.TraerListaHijos(compConfigurado.Id);
+                            Componente yaEstaEnElRol = listaHijosFamiliaConfigurada.FirstOrDefault(f => f.Id == hijo.Id);
+                            if (yaEstaEnElRol != null)
+                            {
+                                //La familia seleccionada repite permisos de la familia {id}
+                                MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("familiarepitefamilia")} {compConfigurado.Id}");
+                                return true;
+                            }
+                        }
+                        else if(compConfigurado is Permiso)
+                        {
+                            if (hijo.Id == compConfigurado.Id)
+                            {
+                                //La familia ya tiene al permiso {id}
+                                MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("familiayatiene")} {compConfigurado.Id}");
+                                return true;
+                            }
+                        }
                     }
                 }
 

@@ -317,8 +317,8 @@ GO
 CREATE TABLE Permiso_Componente
 (
 CodPermisoComponente INT PRIMARY KEY IDENTITY(1,1),
-PermisoPadre INT  FOREIGN KEY REFERENCES Permisos(CodPermiso),
-PermisoHijo INT FOREIGN KEY REFERENCES Permisos(CodPermiso)
+CodPadre INT  FOREIGN KEY REFERENCES Permisos(CodPermiso),
+CodHijo INT FOREIGN KEY REFERENCES Permisos(CodPermiso)
 )
 GO
 
@@ -373,32 +373,32 @@ GO
 
 
 CREATE PROCEDURE RegistrarHijosFamilia
-    @PermisoPadre int,
-	@PermisoHijo int
+    @CodPadre int,
+	@CodHijo int
 AS
 BEGIN
 
-    INSERT INTO Permiso_Componente VALUES(@PermisoPadre,@PermisoHijo);
+    INSERT INTO Permiso_Componente VALUES(@CodPadre,@CodHijo);
 END
 GO
 
 
 CREATE PROCEDURE EliminarHijos
-    @PermisoPadre int
+    @CodPadre int
 AS
 BEGIN
 
-    DELETE FROM Permiso_Componente WHERE PermisoPadre =@PermisoPadre;
+    DELETE FROM Permiso_Componente WHERE CodPadre =@CodPadre;
 END
 GO
 
 
 
 CREATE PROCEDURE TraerListaHijos 
-@codPermisoPadre INT
+@CodPadre INT
 AS
 BEGIN
-    SELECT PC.PermisoPadre, PC.PermisoHijo, P.Nombre, P.Tipo FROM Permiso_Componente AS PC INNER JOIN Permisos AS P ON PC.PermisoHijo = P.CodPermiso WHERE PermisoPadre = @codPermisoPadre;
+    SELECT PC.CodPadre, PC.CodHijo, P.Nombre, P.Tipo FROM Permiso_Componente AS PC INNER JOIN Permisos AS P ON PC.CodHijo = P.CodPermiso WHERE CodPadre = @CodPadre;
 END
 GO
 
@@ -465,19 +465,6 @@ BEGIN
     UPDATE Roles SET Nombre = @Nombre WHERE CodRol = @CodRol;
 END
 GO
-
-
-CREATE PROCEDURE VerificarSiEstaEnFamilia 
-@idHijo INT
-AS
-BEGIN
-    SELECT PC.PermisoPadre, PC.PermisoHijo, P.Nombre, P.Tipo FROM Permiso_Componente AS PC INNER JOIN Permisos AS P ON PC.PermisoPadre = P.CodPermiso WHERE PermisoHijo = @idHijo;
-END
-GO
-
-
-
-
 
 
 

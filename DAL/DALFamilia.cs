@@ -46,8 +46,8 @@ namespace DAL
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@PermisoPadre", idPadre),
-                new SqlParameter("@PermisoHijo", idHijo)
+                new SqlParameter("@CodPadre", idPadre),
+                new SqlParameter("@CodHijo", idHijo)
             };
             dalCon.EjecutarProcAlmacenado("RegistrarHijosFamilia", parametros);
         }
@@ -59,7 +59,7 @@ namespace DAL
         {
             SqlParameter[] parametros = new SqlParameter[]
              {
-                 new SqlParameter("@codPermisoPadre", idPadre)
+                 new SqlParameter("@CodPadre", idPadre)
              };
             DataTable tabla = dalCon.ConsultaProcAlmacenado("TraerListaHijos", parametros);
 
@@ -84,7 +84,7 @@ namespace DAL
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@PermisoPadre", idPadre)
+                new SqlParameter("@CodPadre", idPadre)
             };
             dalCon.EjecutarProcAlmacenado("EliminarHijos", parametros);
         }
@@ -97,22 +97,6 @@ namespace DAL
             };
             dalCon.EjecutarProcAlmacenado("EliminarFamilia", parametros);
         }
-
-        public Componente VerificarSiEstaEnFamilia(int idHijo)
-        {
-            SqlParameter[] parametros = new SqlParameter[]
-             {
-                 new SqlParameter("@idHijo", idHijo)
-             };
-            DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarSiEstaEnFamilia", parametros);
-            Componente componente = null;
-            foreach (DataRow row in tabla.Rows)
-            {
-                componente = new Familia() { Id = Convert.ToInt32(row[0]), Nombre = row[2].ToString(), Tipo = row[3].ToString() };
-            }
-            return componente;
-        }
-
 
 
         #endregion
