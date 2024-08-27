@@ -34,10 +34,10 @@ namespace DAL
 
         public void RegistrarItemFactura(BEFactura factura)
         {
-            foreach (var item in factura.listaProductosAgregados)
+            foreach (BEItemFactura item in factura.listaProductosAgregados)
             {
-                BEProducto prod = item.Item1;
-                int cantidad = item.Item2;
+                BEProducto prod = item.producto;
+                int cantidad = item.cantidad;
 
                 SqlParameter[] parametros = new SqlParameter[]
                 {
@@ -97,7 +97,7 @@ namespace DAL
                 BEProducto prod = new BEProducto(Convert.ToInt64(rowitem[2]), rowitem[6].ToString(), null, null, null, Convert.ToDouble(rowitem[10]), 0, 0);
                 int cant = Convert.ToInt32(rowitem[3]);
 
-                fac.listaProductosAgregados.Add((prod, cant));
+                fac.listaProductosAgregados.Add(new BEItemFactura(prod, cant));
             }
 
             return fac;

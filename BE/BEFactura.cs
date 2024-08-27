@@ -17,23 +17,23 @@ namespace BE
  
 
 
-        public List<(BEProducto, int)> listaProductosAgregados{ get; set; }
+        public List<BEItemFactura> listaProductosAgregados{ get; set; }
         public BECliente clienteFactura { get; set; }
 
 
         public BEFactura()
         {
-            listaProductosAgregados = new List<(BEProducto, int)>();
+            listaProductosAgregados = new List<BEItemFactura>();
         }
 
         public double CalcularMonto()
         {
             //Calcular el total
             double total = 0;
-            foreach (var item in listaProductosAgregados)
+            foreach (BEItemFactura item in listaProductosAgregados)
             {
-                BEProducto prod = item.Item1;
-                int cantidad = item.Item2;
+                BEProducto prod = item.producto;
+                int cantidad = item.cantidad;
                 total += cantidad * prod.Precio;
             }
             return total;

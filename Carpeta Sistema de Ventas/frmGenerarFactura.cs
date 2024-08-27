@@ -84,10 +84,10 @@ namespace Carpeta_Sistema_de_Ventas
             grillaProductosAgregados.Rows.Clear();
             if (_factura.listaProductosAgregados.Count() > 0)
             {
-                foreach (var item in _factura.listaProductosAgregados)
+                foreach (BEItemFactura item in _factura.listaProductosAgregados)
                 {
-                    BEProducto prod = item.Item1;
-                    int cantidad = item.Item2;
+                    BEProducto prod = item.producto;
+                    int cantidad = item.cantidad;
 
                     grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
                 }
@@ -222,8 +222,8 @@ namespace Carpeta_Sistema_de_Ventas
 
                     foreach (var item in _factura.listaProductosAgregados)
                     {
-                        BEProducto prod = item.Item1;
-                        int cantidad = item.Item2;
+                        BEProducto prod = item.producto;
+                        int cantidad = item.cantidad;
 
                         bllProducto.ModificarStock(prod, prod.Stock - cantidad);
                     }

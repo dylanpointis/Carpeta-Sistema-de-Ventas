@@ -21,11 +21,11 @@ namespace Carpeta_Sistema_de_Ventas
     {
         BLLProducto bllProductos = new BLLProducto();
         BEFactura _factura;
-        public List<(BEProducto, int)> listaProductosInicial;
+        public List<BEItemFactura> listaProductosInicial;
         public frmSeleccionarProducto(BEFactura factura)
         {
             _factura = factura;
-            listaProductosInicial = new List<(BEProducto,int)>(_factura.listaProductosAgregados); // hace una copia de la lista incial al entrar al form
+            listaProductosInicial = new List<BEItemFactura>(_factura.listaProductosAgregados); // hace una copia de la lista incial al entrar al form
             InitializeComponent();
 
 
@@ -93,7 +93,7 @@ namespace Carpeta_Sistema_de_Ventas
                             if ((cantStock - Convert.ToInt32(cantIngresada) >= 0))
                             {
                                 //chequea si no ingreso una cantidad mayor al stock disponible.
-                                _factura.listaProductosAgregados.Add((producto, Convert.ToInt32(cantIngresada)));
+                                _factura.listaProductosAgregados.Add(new BEItemFactura(producto, Convert.ToInt32(cantIngresada)));
                                 ActualizarGrilla();
                                 btnConfirmar.Enabled = true;
                             }
@@ -113,7 +113,7 @@ namespace Carpeta_Sistema_de_Ventas
             if (grillaProductosAgregados.SelectedRows.Count > 0)
             {
                 long codigoProducto = Convert.ToInt64(grillaProductosAgregados.CurrentRow.Cells[0].Value);
-                var productoAEliminar = _factura.listaProductosAgregados.FirstOrDefault(p => p.Item1.CodigoProducto == codigoProducto);
+                var productoAEliminar = _factura.listaProductosAgregados.FirstOrDefault(p => p.producto.CodigoProducto == codigoProducto);
 
                 _factura.listaProductosAgregados.Remove(productoAEliminar);
                 ActualizarGrilla();
@@ -182,8 +182,8 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 foreach (var item in _factura.listaProductosAgregados)
                 {
-                    BEProducto prod = item.Item1;
-                    int cantidad = item.Item2;
+                    BEProducto prod = item.producto;
+                    int cantidad = item.cantidad;
 
                     grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
                 }
@@ -219,8 +219,8 @@ namespace Carpeta_Sistema_de_Ventas
         {
             foreach (var item in _factura.listaProductosAgregados)
             {
-                BEProducto prod = item.Item1;
-                int cantidad = item.Item2;
+                BEProducto prod = item.producto;
+                int cantidad = item.cantidad;
                 if (prod.CodigoProducto == idProd)
                 {
                     return true;

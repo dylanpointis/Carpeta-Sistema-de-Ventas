@@ -128,10 +128,10 @@ namespace Carpeta_Sistema_de_Ventas
 
                 string filas = "";
                 double subtotalfactura = 0;
-                foreach (var item in fac.listaProductosAgregados)
+                foreach (BEItemFactura item in fac.listaProductosAgregados)
                 {
-                    BEProducto prod = item.Item1;
-                    int cantidad = item.Item2;
+                    BEProducto prod = item.producto;
+                    int cantidad = item.cantidad;
                     double subtotal = cantidad * prod.Precio;
                     subtotalfactura += subtotal;
 
@@ -271,10 +271,10 @@ namespace Carpeta_Sistema_de_Ventas
                 fac = bllFactura.TraerItemsFactura(fac);
 
                 double total = 0;
-                foreach (var item in fac.listaProductosAgregados)
+                foreach (BEItemFactura item in fac.listaProductosAgregados)
                 {
-                    BEProducto prod = item.Item1;
-                    int cantidad = item.Item2;
+                    BEProducto prod = item.producto;
+                    int cantidad = item.cantidad;
                     total = cantidad * prod.Precio;
 
                     grillaItems.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, total);
