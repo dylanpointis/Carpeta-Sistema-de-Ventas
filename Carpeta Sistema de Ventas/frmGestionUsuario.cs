@@ -26,7 +26,6 @@ namespace Carpeta_Sistema_de_Ventas
             IdiomaManager.GetInstance().Agregar(this);
 
 
-
             grillaUsuarios.Columns.Add("DNI", IdiomaManager.GetInstance().ConseguirTexto("gridViewDNI"));
             grillaUsuarios.Columns.Add("Nombre", IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre"));
             grillaUsuarios.Columns.Add("Apellido", IdiomaManager.GetInstance().ConseguirTexto("gridViewApellido"));
@@ -35,6 +34,9 @@ namespace Carpeta_Sistema_de_Ventas
             grillaUsuarios.Columns.Add("Rol", IdiomaManager.GetInstance().ConseguirTexto("gridViewRol"));
             grillaUsuarios.Columns.Add("Bloqueo", IdiomaManager.GetInstance().ConseguirTexto("gridViewBloqueo"));
             grillaUsuarios.Columns.Add("Activo", IdiomaManager.GetInstance().ConseguirTexto("gridViewActivo"));
+
+            grillaUsuarios.Columns[6].Width = 60;
+            grillaUsuarios.Columns[7].Width = 60;
         }
 
         public void ActualizarObserver()

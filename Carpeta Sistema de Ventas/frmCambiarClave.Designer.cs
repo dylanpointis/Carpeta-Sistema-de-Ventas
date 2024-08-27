@@ -179,6 +179,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNombreUsuario);
             this.Name = "frmCambiarClave";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCambiarClave";
             this.Load += new System.EventHandler(this.frmCambiarClave_Load);
             this.ResumeLayout(false);

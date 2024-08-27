@@ -60,12 +60,18 @@
             // 
             // grillaProductosAgregados
             // 
+            this.grillaProductosAgregados.AllowUserToAddRows = false;
+            this.grillaProductosAgregados.AllowUserToDeleteRows = false;
+            this.grillaProductosAgregados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grillaProductosAgregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaProductosAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaProductosAgregados.Location = new System.Drawing.Point(41, 163);
+            this.grillaProductosAgregados.Location = new System.Drawing.Point(21, 163);
             this.grillaProductosAgregados.MultiSelect = false;
             this.grillaProductosAgregados.Name = "grillaProductosAgregados";
             this.grillaProductosAgregados.ReadOnly = true;
-            this.grillaProductosAgregados.Size = new System.Drawing.Size(504, 195);
+            this.grillaProductosAgregados.Size = new System.Drawing.Size(496, 195);
             this.grillaProductosAgregados.TabIndex = 1;
             // 
             // btnSeleccionarProducto
@@ -83,10 +89,11 @@
             // 
             // btnCobrarVenta
             // 
+            this.btnCobrarVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCobrarVenta.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCobrarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCobrarVenta.ForeColor = System.Drawing.Color.Black;
-            this.btnCobrarVenta.Location = new System.Drawing.Point(41, 465);
+            this.btnCobrarVenta.Location = new System.Drawing.Point(20, 471);
             this.btnCobrarVenta.Name = "btnCobrarVenta";
             this.btnCobrarVenta.Size = new System.Drawing.Size(132, 52);
             this.btnCobrarVenta.TabIndex = 27;
@@ -98,7 +105,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(38, 145);
+            this.label2.Location = new System.Drawing.Point(18, 145);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(152, 15);
             this.label2.TabIndex = 33;
@@ -108,7 +115,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(45, 26);
+            this.label3.Location = new System.Drawing.Point(25, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(162, 24);
             this.label3.TabIndex = 34;
@@ -116,9 +123,10 @@
             // 
             // lblTotal
             // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(38, 424);
+            this.lblTotal.Location = new System.Drawing.Point(18, 414);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(51, 16);
             this.lblTotal.TabIndex = 35;
@@ -126,9 +134,10 @@
             // 
             // lblIVA
             // 
+            this.lblIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblIVA.AutoSize = true;
             this.lblIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIVA.Location = new System.Drawing.Point(38, 396);
+            this.lblIVA.Location = new System.Drawing.Point(18, 386);
             this.lblIVA.Name = "lblIVA";
             this.lblIVA.Size = new System.Drawing.Size(51, 16);
             this.lblIVA.TabIndex = 39;
@@ -136,9 +145,10 @@
             // 
             // lblNeto
             // 
+            this.lblNeto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNeto.AutoSize = true;
             this.lblNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNeto.Location = new System.Drawing.Point(38, 371);
+            this.lblNeto.Location = new System.Drawing.Point(18, 361);
             this.lblNeto.Name = "lblNeto";
             this.lblNeto.Size = new System.Drawing.Size(48, 16);
             this.lblNeto.TabIndex = 38;
@@ -146,10 +156,11 @@
             // 
             // btnRegistrarCliente
             // 
+            this.btnRegistrarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRegistrarCliente.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRegistrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarCliente.ForeColor = System.Drawing.Color.Black;
-            this.btnRegistrarCliente.Location = new System.Drawing.Point(277, 426);
+            this.btnRegistrarCliente.Location = new System.Drawing.Point(285, 426);
             this.btnRegistrarCliente.Name = "btnRegistrarCliente";
             this.btnRegistrarCliente.Size = new System.Drawing.Size(78, 37);
             this.btnRegistrarCliente.TabIndex = 28;
@@ -159,10 +170,11 @@
             // 
             // btnAgregarCliente
             // 
+            this.btnAgregarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregarCliente.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnAgregarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarCliente.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarCliente.Location = new System.Drawing.Point(75, 426);
+            this.btnAgregarCliente.Location = new System.Drawing.Point(83, 426);
             this.btnAgregarCliente.Name = "btnAgregarCliente";
             this.btnAgregarCliente.Size = new System.Drawing.Size(78, 37);
             this.btnAgregarCliente.TabIndex = 29;
@@ -172,10 +184,11 @@
             // 
             // btnEliminarCliente
             // 
+            this.btnEliminarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEliminarCliente.BackColor = System.Drawing.Color.Firebrick;
             this.btnEliminarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarCliente.ForeColor = System.Drawing.Color.White;
-            this.btnEliminarCliente.Location = new System.Drawing.Point(178, 426);
+            this.btnEliminarCliente.Location = new System.Drawing.Point(186, 426);
             this.btnEliminarCliente.Name = "btnEliminarCliente";
             this.btnEliminarCliente.Size = new System.Drawing.Size(78, 37);
             this.btnEliminarCliente.TabIndex = 30;
@@ -185,9 +198,10 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(47, 299);
+            this.label4.Location = new System.Drawing.Point(92, 299);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(106, 15);
             this.label4.TabIndex = 33;
@@ -195,8 +209,9 @@
             // 
             // lblNombreCliente
             // 
+            this.lblNombreCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNombreCliente.AutoSize = true;
-            this.lblNombreCliente.Location = new System.Drawing.Point(47, 333);
+            this.lblNombreCliente.Location = new System.Drawing.Point(92, 333);
             this.lblNombreCliente.Name = "lblNombreCliente";
             this.lblNombreCliente.Size = new System.Drawing.Size(47, 13);
             this.lblNombreCliente.TabIndex = 34;
@@ -204,8 +219,9 @@
             // 
             // lblApellidoCliente
             // 
+            this.lblApellidoCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblApellidoCliente.AutoSize = true;
-            this.lblApellidoCliente.Location = new System.Drawing.Point(251, 333);
+            this.lblApellidoCliente.Location = new System.Drawing.Point(296, 333);
             this.lblApellidoCliente.Name = "lblApellidoCliente";
             this.lblApellidoCliente.Size = new System.Drawing.Size(50, 13);
             this.lblApellidoCliente.TabIndex = 35;
@@ -213,8 +229,9 @@
             // 
             // lblMailCliente
             // 
+            this.lblMailCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMailCliente.AutoSize = true;
-            this.lblMailCliente.Location = new System.Drawing.Point(47, 382);
+            this.lblMailCliente.Location = new System.Drawing.Point(92, 382);
             this.lblMailCliente.Name = "lblMailCliente";
             this.lblMailCliente.Size = new System.Drawing.Size(32, 13);
             this.lblMailCliente.TabIndex = 36;
@@ -222,8 +239,9 @@
             // 
             // lblDNICliente
             // 
+            this.lblDNICliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDNICliente.AutoSize = true;
-            this.lblDNICliente.Location = new System.Drawing.Point(251, 382);
+            this.lblDNICliente.Location = new System.Drawing.Point(296, 382);
             this.lblDNICliente.Name = "lblDNICliente";
             this.lblDNICliente.Size = new System.Drawing.Size(29, 13);
             this.lblDNICliente.TabIndex = 37;
@@ -231,20 +249,26 @@
             // 
             // grillaClientes
             // 
+            this.grillaClientes.AllowUserToAddRows = false;
+            this.grillaClientes.AllowUserToDeleteRows = false;
+            this.grillaClientes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grillaClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaClientes.Location = new System.Drawing.Point(15, 151);
+            this.grillaClientes.Location = new System.Drawing.Point(8, 151);
             this.grillaClientes.MultiSelect = false;
             this.grillaClientes.Name = "grillaClientes";
             this.grillaClientes.ReadOnly = true;
-            this.grillaClientes.Size = new System.Drawing.Size(399, 132);
+            this.grillaClientes.Size = new System.Drawing.Size(468, 132);
             this.grillaClientes.TabIndex = 36;
             // 
             // btnBuscarCliente
             // 
+            this.btnBuscarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscarCliente.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarCliente.ForeColor = System.Drawing.Color.Black;
-            this.btnBuscarCliente.Location = new System.Drawing.Point(195, 97);
+            this.btnBuscarCliente.Location = new System.Drawing.Point(196, 97);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
             this.btnBuscarCliente.Size = new System.Drawing.Size(78, 37);
             this.btnBuscarCliente.TabIndex = 38;
@@ -254,15 +278,17 @@
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(15, 114);
+            this.txtCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCliente.Location = new System.Drawing.Point(8, 114);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(164, 20);
             this.txtCliente.TabIndex = 39;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 95);
+            this.label1.Location = new System.Drawing.Point(5, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 13);
             this.label1.TabIndex = 40;
@@ -270,6 +296,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtCliente);
             this.groupBox1.Controls.Add(this.btnBuscarCliente);
@@ -282,19 +311,20 @@
             this.groupBox1.Controls.Add(this.btnEliminarCliente);
             this.groupBox1.Controls.Add(this.btnAgregarCliente);
             this.groupBox1.Controls.Add(this.btnRegistrarCliente);
-            this.groupBox1.Location = new System.Drawing.Point(579, 12);
+            this.groupBox1.Location = new System.Drawing.Point(531, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(420, 511);
+            this.groupBox1.Size = new System.Drawing.Size(482, 511);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // btnFinalizar
             // 
+            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFinalizar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnFinalizar.Enabled = false;
             this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinalizar.ForeColor = System.Drawing.Color.White;
-            this.btnFinalizar.Location = new System.Drawing.Point(179, 465);
+            this.btnFinalizar.Location = new System.Drawing.Point(158, 471);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(132, 52);
             this.btnFinalizar.TabIndex = 40;
@@ -315,7 +345,7 @@
             // 
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.btnSeleccionarProducto);
-            this.groupBox2.Location = new System.Drawing.Point(41, 62);
+            this.groupBox2.Location = new System.Drawing.Point(21, 62);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(195, 72);
             this.groupBox2.TabIndex = 1;

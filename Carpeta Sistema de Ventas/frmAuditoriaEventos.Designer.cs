@@ -67,6 +67,9 @@
             // grillaEventos
             // 
             this.grillaEventos.AllowUserToAddRows = false;
+            this.grillaEventos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaEventos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaEventos.Location = new System.Drawing.Point(71, 84);
@@ -89,6 +92,7 @@
             // 
             // lblNombre
             // 
+            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNombre.AutoSize = true;
             this.lblNombre.Location = new System.Drawing.Point(253, 358);
             this.lblNombre.Name = "lblNombre";
@@ -98,6 +102,7 @@
             // 
             // lblApellido
             // 
+            this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblApellido.AutoSize = true;
             this.lblApellido.Location = new System.Drawing.Point(451, 358);
             this.lblApellido.Name = "lblApellido";
@@ -107,6 +112,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(68, 407);
             this.label4.Name = "label4";
@@ -116,6 +122,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(71, 464);
             this.label5.Name = "label5";
@@ -125,6 +132,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(253, 464);
             this.label6.Name = "label6";
@@ -134,6 +142,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(451, 464);
             this.label7.Name = "label7";
@@ -143,6 +152,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(253, 407);
             this.label8.Name = "label8";
@@ -152,6 +162,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(451, 407);
             this.label9.Name = "label9";
@@ -161,6 +172,7 @@
             // 
             // txtModulo
             // 
+            this.txtModulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtModulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtModulo.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.txtModulo.FormattingEnabled = true;
@@ -171,6 +183,7 @@
             // 
             // txtEvento
             // 
+            this.txtEvento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtEvento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtEvento.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.txtEvento.FormattingEnabled = true;
@@ -181,6 +194,7 @@
             // 
             // txtCriticidad
             // 
+            this.txtCriticidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtCriticidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtCriticidad.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.txtCriticidad.FormattingEnabled = true;
@@ -197,6 +211,7 @@
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLimpiar.BackColor = System.Drawing.Color.IndianRed;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Location = new System.Drawing.Point(747, 474);
@@ -209,6 +224,7 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuscar.BackColor = System.Drawing.Color.PowderBlue;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Location = new System.Drawing.Point(747, 407);
@@ -221,6 +237,7 @@
             // 
             // btnImprimir
             // 
+            this.btnImprimir.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnImprimir.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImprimir.Location = new System.Drawing.Point(872, 84);
@@ -233,6 +250,7 @@
             // 
             // fechaInicio
             // 
+            this.fechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fechaInicio.CustomFormat = "yyyy-MM-dd";
             this.fechaInicio.Location = new System.Drawing.Point(256, 424);
             this.fechaInicio.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
@@ -244,6 +262,7 @@
             // 
             // fechaFin
             // 
+            this.fechaFin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fechaFin.CustomFormat = "yyyy-MM-dd";
             this.fechaFin.Location = new System.Drawing.Point(454, 424);
             this.fechaFin.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
@@ -255,6 +274,7 @@
             // 
             // txtNombreUsuario
             // 
+            this.txtNombreUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNombreUsuario.Location = new System.Drawing.Point(71, 423);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(140, 20);
@@ -262,6 +282,7 @@
             // 
             // lblDNI
             // 
+            this.lblDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDNI.AutoSize = true;
             this.lblDNI.Location = new System.Drawing.Point(68, 358);
             this.lblDNI.Name = "lblDNI";

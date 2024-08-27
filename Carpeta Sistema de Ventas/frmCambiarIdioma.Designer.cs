@@ -36,6 +36,7 @@
             // 
             // cmbIdioma
             // 
+            this.cmbIdioma.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmbIdioma.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbIdioma.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbIdioma.FormattingEnabled = true;
@@ -46,6 +47,7 @@
             // 
             // btnCambiarIdioma
             // 
+            this.btnCambiarIdioma.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCambiarIdioma.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCambiarIdioma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCambiarIdioma.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -59,6 +61,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(377, 113);
@@ -69,6 +72,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(401, 177);
@@ -88,6 +92,7 @@
             this.Controls.Add(this.btnCambiarIdioma);
             this.Controls.Add(this.cmbIdioma);
             this.Name = "frmCambiarIdioma";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCambiarIdioma";
             this.Load += new System.EventHandler(this.frmCambiarIdioma_Load);
             this.ResumeLayout(false);

@@ -59,6 +59,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Location = new System.Drawing.Point(607, 380);
@@ -71,6 +72,7 @@
             // 
             // lblModoOperacion
             // 
+            this.lblModoOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblModoOperacion.AutoSize = true;
             this.lblModoOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lblModoOperacion.Location = new System.Drawing.Point(111, 438);
@@ -81,6 +83,7 @@
             // 
             // btnCrear
             // 
+            this.btnCrear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCrear.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCrear.Location = new System.Drawing.Point(115, 380);
@@ -93,6 +96,7 @@
             // 
             // btnAplicar
             // 
+            this.btnAplicar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAplicar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAplicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAplicar.Location = new System.Drawing.Point(484, 380);
@@ -105,6 +109,7 @@
             // 
             // btnEliminar
             // 
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEliminar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Location = new System.Drawing.Point(361, 380);
@@ -117,6 +122,7 @@
             // 
             // btnModificar
             // 
+            this.btnModificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnModificar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Location = new System.Drawing.Point(238, 380);
@@ -129,6 +135,7 @@
             // 
             // btnQuitarPermiso
             // 
+            this.btnQuitarPermiso.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnQuitarPermiso.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnQuitarPermiso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitarPermiso.Location = new System.Drawing.Point(267, 122);
@@ -141,6 +148,8 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(15, 62);
@@ -151,6 +160,7 @@
             // 
             // btnAgregarPermiso
             // 
+            this.btnAgregarPermiso.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnAgregarPermiso.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAgregarPermiso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarPermiso.Location = new System.Drawing.Point(267, 86);
@@ -163,6 +173,8 @@
             // 
             // listBoxPermisos
             // 
+            this.listBoxPermisos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxPermisos.FormattingEnabled = true;
             this.listBoxPermisos.Location = new System.Drawing.Point(19, 85);
             this.listBoxPermisos.Name = "listBoxPermisos";
@@ -171,6 +183,8 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(484, 23);
             this.label9.Name = "label9";
@@ -180,6 +194,8 @@
             // 
             // txtNombreFamilia
             // 
+            this.txtNombreFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNombreFamilia.Location = new System.Drawing.Point(487, 79);
             this.txtNombreFamilia.Name = "txtNombreFamilia";
             this.txtNombreFamilia.Size = new System.Drawing.Size(146, 20);
@@ -187,6 +203,8 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(484, 63);
             this.label5.Name = "label5";
@@ -196,6 +214,8 @@
             // 
             // cmbFamilia
             // 
+            this.cmbFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbFamilia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFamilia.FormattingEnabled = true;
             this.cmbFamilia.Location = new System.Drawing.Point(487, 39);
@@ -206,6 +226,8 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(483, 3);
@@ -216,6 +238,8 @@
             // 
             // listBoxFamilia
             // 
+            this.listBoxFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxFamilia.FormattingEnabled = true;
             this.listBoxFamilia.Location = new System.Drawing.Point(487, 109);
             this.listBoxFamilia.Name = "listBoxFamilia";

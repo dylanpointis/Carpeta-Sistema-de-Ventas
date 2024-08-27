@@ -110,9 +110,16 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void CerrandoFormulario(object sender, FormClosingEventArgs e)
         {
-            IdiomaManager.GetInstance().PrimeraVez = true;
+            IdiomaManager.GetInstance().PrimeraVez = true; //hace el logout y registra el evento
+
+            if (SessionManager.GetInstance.ObtenerUsuario() != null)
+            {
+                BLLEvento bLLEvento = new BLLEvento();
+                bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Login", "Cierre sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+            }
+
             SessionManager.GetInstance.LogOut();
-            this.Show();
+            this.Show(); //vuelve a mostrar este form de login
         }
 
 
