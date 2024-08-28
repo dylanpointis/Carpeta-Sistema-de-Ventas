@@ -38,6 +38,7 @@
             this.Maestros = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productosCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Usuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +123,8 @@
             // 
             this.Maestros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.productosToolStripMenuItem,
-            this.clientesToolStripMenuItem});
+            this.clientesToolStripMenuItem,
+            this.productosCToolStripMenuItem});
             this.Maestros.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Maestros.ForeColor = System.Drawing.Color.White;
             this.Maestros.Name = "Maestros";
@@ -144,6 +146,14 @@
             this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
+            // 
+            // productosCToolStripMenuItem
+            // 
+            this.productosCToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productosCToolStripMenuItem.Name = "productosCToolStripMenuItem";
+            this.productosCToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.productosCToolStripMenuItem.Text = "Productos-C";
+            this.productosCToolStripMenuItem.Click += new System.EventHandler(this.productosCToolStripMenuItem_Click);
             // 
             // Usuarios
             // 
@@ -308,6 +318,7 @@
         private System.Windows.Forms.ToolStripMenuItem generarReporteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eventosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem respaldosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productosCToolStripMenuItem;
     }
 }
 

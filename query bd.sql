@@ -572,7 +572,50 @@ INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez
 
 INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256);
 INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512);
+INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 256);
+INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 512);
+
+
 INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==');
 INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==');
 INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)
+
+
+
+CREATE TABLE Productos_C
+(
+idCambio INT PRIMARY KEY IDENTITY(1,1),
+CodigoProducto varchar(14) FOREIGN KEY REFERENCES Productos(CodigoProducto),
+Fecha varchar(11),
+Hora varchar(5),
+Modelo varchar(50),
+Descripcion varchar(100) NOT NULL,
+Marca varchar(50) NOT NULL,
+Color varchar(50) NOT NULL,
+Precio float NOT NULL,
+Stock smallint NOT NULL,
+Almacenamiento smallint NOT NULL,
+Act bit
+)
+
+
+GO
+CREATE TRIGGER CreacionProducto ON Productos AFTER INSERT, UPDATE
+AS
+BEGIN
+UPDATE Productos_C SET Productos_C.Act = 0 FROM inserted where Productos_C.CodigoProducto = inserted.CodigoProducto
+
+INSERT INTO Productos_C (CodigoProducto, Fecha, Hora, Modelo, Descripcion, Marca, Color, Precio, Stock, Almacenamiento, Act)
+SELECT CodigoProducto, CONVERT(VARCHAR(11),GETDATE(),120), CONVERT(VARCHAR(5),GETDATE(),114), Modelo, Descripcion, Marca, Color, Precio, Stock, Almacenamiento, 1 
+FROM inserted
+END
+GO
+
+
+CREATE PROCEDURE TraerCambiosUltimoMes
+AS
+BEGIN
+	SELECT * FROM Productos_C WHERE CONVERT(DATE, Fecha, 120) >= DATEADD(DAY, -31, GETDATE());
+END
+GO

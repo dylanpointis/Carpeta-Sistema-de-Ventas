@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALCambio.cs" />
     <Compile Include="DALCliente.cs" />
     <Compile Include="DALConexion.cs" />
     <Compile Include="DALEvento.cs" />

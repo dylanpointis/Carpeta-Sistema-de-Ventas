@@ -195,6 +195,12 @@ namespace Carpeta_Sistema_de_Ventas
 
         }
 
+        private void productosCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new frmAuditoriaCambios());
+        }
+
+
         private void iniciarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BEUsuario user = SessionManager.GetInstance.ObtenerUsuario();

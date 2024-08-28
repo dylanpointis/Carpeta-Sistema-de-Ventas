@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAuditoriaCambios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuditoriaCambios.Designer.cs">
+      <DependentUpon>frmAuditoriaCambios.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAuditoriaEventos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAuditoriaCambios.resx">
+      <DependentUpon>frmAuditoriaCambios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAuditoriaEventos.resx">
       <DependentUpon>frmAuditoriaEventos.cs</DependentUpon>
     </EmbeddedResource>
