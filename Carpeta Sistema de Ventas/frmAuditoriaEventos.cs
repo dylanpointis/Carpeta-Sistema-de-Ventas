@@ -29,7 +29,7 @@ namespace Carpeta_Sistema_de_Ventas
            
             fechaFin.Format = DateTimePickerFormat.Custom;
             fechaFin.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
-            fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today;
+            fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-3);
 
 
             IdiomaManager.GetInstance().archivoActual = "frmAuditoriaEventos";
@@ -67,21 +67,6 @@ namespace Carpeta_Sistema_de_Ventas
             LlenarComboBox();
         }
 
-        private void LlenarComboBox()
-        {
-            txtEvento.Items.Add("Inicio sesión");
-            txtEvento.Items.Add("Cierre sesión");
-            txtEvento.Items.Add("Factura generada");
-
-
-
-
-
-            txtModulo.Items.Add("Login");
-            txtModulo.Items.Add("Gestión Usuarios");
-            txtModulo.Items.Add("Gestión Perfiles");
-            txtModulo.Items.Add("Ventas");
-        }
 
         private void ActualizarGrilla()
         {
@@ -117,8 +102,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             ActualizarGrilla();
-            fechaInicio.Value = DateTime.Today;
-            fechaFin.Value = DateTime.Today;
+            fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-3);
             txtNombreUsuario.Text = "";
             txtModulo.SelectedItem = null;
             txtEvento.SelectedItem = null;
@@ -233,5 +217,51 @@ namespace Carpeta_Sistema_de_Ventas
             }
         }
 
+
+        private void LlenarComboBox()
+        {
+
+            txtModulo.Items.Add("Sesiones");
+            txtModulo.Items.Add("Gestión Usuarios");
+            txtModulo.Items.Add("Gestión Perfiles");
+            txtModulo.Items.Add("Ventas");
+
+
+
+            txtEvento.Items.Add("Inicio sesión");
+            txtEvento.Items.Add("Cierre sesión");
+            txtEvento.Items.Add("Factura generada");
+        }
+
+
+
+        private void txtEvento_DropDown(object sender, EventArgs e)
+        {
+            if (txtModulo.Text != "")
+            {
+                txtEvento.Items.Clear();
+                string modulo = txtModulo.Text;
+
+                switch (modulo)
+                {
+                    case "Sesiones":
+                        txtEvento.Items.Add("Inicio sesión");
+                        txtEvento.Items.Add("Cierre sesión");
+                        break;
+                    case "Gestión Usuarios":
+                        txtEvento.Items.Add("Usuario creado");
+                        txtEvento.Items.Add("Usuario modificado");
+                        txtEvento.Items.Add("Usuario eliminado");
+                        txtEvento.Items.Add("Usuario activado");
+                        txtEvento.Items.Add("Usuario desbloqueado");
+                        break;
+                    case "Gestión Perfiles":
+                        break;
+                    case "Ventas":
+                        txtEvento.Items.Add("Factura generada");
+                        break;
+                }
+            }
+        }
     }
 }

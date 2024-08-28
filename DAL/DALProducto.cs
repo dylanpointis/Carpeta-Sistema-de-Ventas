@@ -89,5 +89,13 @@ namespace DAL
             }
             else { return false; }
         }
+
+        public void ActivarProducto(long idProd)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                 new SqlParameter("@CodigoProducto", idProd)
+            };
+        }
     }
 }

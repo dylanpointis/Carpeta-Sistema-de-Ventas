@@ -13,6 +13,7 @@ namespace BLL
     public class BLLEvento
     {
         DALEvento dalEv = new DALEvento();
+
         public void RegistrarEvento(Evento evento)
         {
             dalEv.RegistrarEvento(evento);

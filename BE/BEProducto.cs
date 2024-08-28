@@ -16,8 +16,9 @@ namespace BE
         public double Precio { get; set; }
         public int Stock { get; set; }
         public int Almacenamiento { get; set; }
+        public bool ActivoLogico { get; set; }
 
-        public BEProducto(long codigoProducto, string modelo, string descripcion, string marca, string color, double precio, int stock, int almacenamiento) 
+        public BEProducto(long codigoProducto, string modelo, string descripcion, string marca, string color, double precio, int stock, int almacenamiento, bool activoLogico) 
         {
             this.CodigoProducto = codigoProducto;
             this.Modelo = modelo;
@@ -27,6 +28,7 @@ namespace BE
             this.Precio = precio;
             this.Stock = stock;
             this.Almacenamiento = almacenamiento;
+            this.ActivoLogico =activoLogico;
         }
 
     }

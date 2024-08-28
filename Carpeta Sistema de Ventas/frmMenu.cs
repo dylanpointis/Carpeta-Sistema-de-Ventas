@@ -4,14 +4,7 @@ using BLL;
 using Services;
 using Services.Observer;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
@@ -36,8 +29,8 @@ namespace Carpeta_Sistema_de_Ventas
 
 
             //Deshabilita los controles
-            Admin.Enabled = false; Maestros.Enabled = false;Usuarios.Enabled = false;  Ventas.Enabled = false;Compras.Enabled = false; Reportes.Enabled = false; Ayuda.Enabled = false;
- 
+            Admin.Enabled = false; Maestros.Enabled = false; Usuarios.Enabled = false; Ventas.Enabled = false; Compras.Enabled = false; Reportes.Enabled = false; Ayuda.Enabled = false;
+
 
             /*Se fija los permisos del usuario*/
             List<Componente> listaHijosFamilia = new List<Componente>();
@@ -186,7 +179,7 @@ namespace Carpeta_Sistema_de_Ventas
                 if (SessionManager.GetInstance.ObtenerUsuario() != null)
                 {
                     BLLEvento bLLEvento = new BLLEvento();
-                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Login", "Cierre sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                     SessionManager.GetInstance.LogOut();
                     this.Close();
                 }
@@ -204,7 +197,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void iniciarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BEUsuario user = SessionManager.GetInstance.ObtenerUsuario();
-            if (user != null) 
+            if (user != null)
             {
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("haySesion"));
             }

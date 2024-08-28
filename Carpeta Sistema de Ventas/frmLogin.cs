@@ -73,7 +73,7 @@ namespace Carpeta_Sistema_de_Ventas
                             SessionManager.GetInstance.LogIn(user);
                             contClaveIncorrecta = 0;
 
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Login", "Inicio sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Inicio sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
 
                             this.Hide(); //oculta el formulario actual
                             frmMenu frmMenu = new frmMenu();
@@ -115,7 +115,7 @@ namespace Carpeta_Sistema_de_Ventas
             if (SessionManager.GetInstance.ObtenerUsuario() != null)
             {
                 BLLEvento bLLEvento = new BLLEvento();
-                bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Login", "Cierre sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
             }
 
             SessionManager.GetInstance.LogOut();

@@ -21,7 +21,7 @@ namespace BLL
             foreach (DataRow row in tabla.Rows) 
             {
                 BEProducto prod = new BEProducto(Convert.ToInt64(row[1]), row[4].ToString(), row[5].ToString(),
-                    row[6].ToString(), row[7].ToString(), Convert.ToDouble(row[8]), Convert.ToInt32(row[9]), Convert.ToInt32(row[10]));
+                    row[6].ToString(), row[7].ToString(), Convert.ToDouble(row[8]), Convert.ToInt32(row[9]), Convert.ToInt32(row[10]),true);
 
 
 

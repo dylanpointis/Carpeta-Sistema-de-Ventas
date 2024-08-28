@@ -24,9 +24,10 @@ Marca varchar(50) NOT NULL,
 Color varchar(50) NOT NULL,
 Precio float NOT NULL,
 Stock smallint NOT NULL,
-Almacenamiento smallint NOT NULL
+Almacenamiento smallint NOT NULL,
+ActivoLogico bit
 )
-
+¡
 
 CREATE TABLE Facturas(
 NumFactura INT PRIMARY KEY IDENTITY(1,1),
@@ -257,7 +258,7 @@ CREATE PROCEDURE RegistrarProducto
 
 AS
 BEGIN
-    INSERT INTO Productos VALUES (@CodigoProducto,@Modelo,@Descripcion,@Marca,@Color,@Precio,@Stock, @Almacenamiento)
+    INSERT INTO Productos VALUES (@CodigoProducto,@Modelo,@Descripcion,@Marca,@Color,@Precio,@Stock, @Almacenamiento,1)
 END
 GO
 
@@ -265,9 +266,18 @@ CREATE PROCEDURE EliminarProducto
 	@CodigoProducto varchar(14)
 AS
 BEGIN
-    DELETE FROM Productos WHERE CodigoProducto = @CodigoProducto;
+    UPDATE Productos set ActivoLogico = 0 WHERE CodigoProducto = @CodigoProducto;
 END
 GO
+
+CREATE PROCEDURE ActivarProducto
+	@CodigoProducto varchar(14)
+AS
+BEGIN
+    UPDATE Productos set ActivoLogico = 1 WHERE CodigoProducto = @CodigoProducto;
+END
+GO
+
 
 CREATE PROCEDURE ModificarProducto
 	@CodigoProducto varchar(14),
@@ -565,23 +575,9 @@ END
 GO
 
 
-/*CLAVE clave123*/
-INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1);
---Clave 41256789Rodriguez
-INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 2, 0, 1);
-
-INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256);
-INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512);
-INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 256);
-INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 512);
 
 
-INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==');
-INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==');
-INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,1,'marcos','')
-INSERT INTO Item_Factura VALUES (1,123,1,1100)
-
-
+/*BITACORA CAMBIOS*/
 
 CREATE TABLE Productos_C
 (
@@ -619,3 +615,26 @@ BEGIN
 	SELECT * FROM Productos_C WHERE CONVERT(DATE, Fecha, 120) >= DATEADD(DAY, -31, GETDATE());
 END
 GO
+
+
+/*CLAVE clave123*/
+INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1);
+--Clave 41256789Rodriguez
+INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 2, 0, 1);
+
+INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256,1);
+INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512,1);
+INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 256,1);
+INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 512,1);
+
+
+INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==');
+INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==');
+INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,1,'marcos','')
+INSERT INTO Item_Factura VALUES (1,123,1,1100)
+
+insert into Eventos values ('Esteban','Sesiones','Inicio sesión',1,'2024-08-26','12:15')
+insert into Eventos values ('Esteban','Ventas','Factura generada',2,'2024-08-26','13:20')
+insert into Eventos values ('Esteban','Sesiones','Cierre sesión',1,'2024-08-26','15:37')
+insert into Eventos values ('Admin','Sesiones','Inicio sesión',	1,'2024-08-27',	'15:40')
+insert into Eventos values ('Admin','Sesiones','Cierre sesión',	1,'2024-08-27',	'19:40')

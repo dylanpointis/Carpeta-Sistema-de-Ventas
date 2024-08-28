@@ -191,6 +191,7 @@
             this.txtEvento.Name = "txtEvento";
             this.txtEvento.Size = new System.Drawing.Size(143, 21);
             this.txtEvento.TabIndex = 70;
+            this.txtEvento.DropDown += new System.EventHandler(this.txtEvento_DropDown);
             // 
             // txtCriticidad
             // 

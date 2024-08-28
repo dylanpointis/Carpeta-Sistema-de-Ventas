@@ -17,7 +17,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             fechaFin.Format = DateTimePickerFormat.Custom;
             fechaFin.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
-            fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today;
+            fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-31);
         }
 
         BLLCambio bllCambios = new BLLCambio();

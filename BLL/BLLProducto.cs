@@ -20,7 +20,7 @@ namespace BLL
 
             foreach (DataRow row in tabla.Rows)
             {
-                BEProducto producto = new BEProducto(Convert.ToInt64(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), Convert.ToDouble(row[5]), Convert.ToInt32(row[6]), Convert.ToInt32(row[7]));
+                BEProducto producto = new BEProducto(Convert.ToInt64(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString(), Convert.ToDouble(row[5]), Convert.ToInt32(row[6]), Convert.ToInt32(row[7]), Convert.ToBoolean(row[8]));
                 lista.Add(producto);
             }
             return lista;
@@ -45,6 +45,13 @@ namespace BLL
         {
             dalProd.EliminarProducto(idProd);
         }
+
+
+        public void ActivarProducto(long idProd)
+        {
+            dalProd.ActivarProducto(idProd);
+        }
+
 
         public void ModificarProducto(BEProducto prod)
         {
