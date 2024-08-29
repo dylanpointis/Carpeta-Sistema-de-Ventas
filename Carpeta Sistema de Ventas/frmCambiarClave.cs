@@ -65,8 +65,18 @@ namespace Carpeta_Sistema_de_Ventas
                             {
                                 try
                                 {
+                                    string claveencriptada = Encriptador.EncriptarSHA256(txtNuevaClave.Text);
                                     bllUsuario.CambiarClave(usuarioActual.DNI, Encriptador.EncriptarSHA256(txtNuevaClave.Text));
+                                    bllUsuario.ModificarContFallido(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, 0); //resetea el contador de intentos fallidos
+
+
+                                    BLLEvento bllEv = new BLLEvento();
+                                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cambio de clave", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+
+
                                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+
+
 
                                     //Cierra sesion automaticamente
                                     SessionManager.GetInstance.LogOut();

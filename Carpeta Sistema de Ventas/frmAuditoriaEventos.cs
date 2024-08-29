@@ -89,10 +89,10 @@ namespace Carpeta_Sistema_de_Ventas
             
 
 
-            List<Evento> list = bllEvento.FiltrarEventos(txtNombreUsuario.Text, txtModulo.Text, txtEvento.Text, txtCriticidad.Text, fechaInicial, fechaFinal);
+            listaEventos = bllEvento.FiltrarEventos(txtNombreUsuario.Text, txtModulo.Text, txtEvento.Text, txtCriticidad.Text, fechaInicial, fechaFinal);
             grillaEventos.Rows.Clear();
 
-            foreach (Evento ev in list)
+            foreach (Evento ev in listaEventos)
             {
                 grillaEventos.Rows.Add(ev.IdEvento, ev.NombreUsuario, ev.Modulo, ev.evento, ev.Criticidad, ev.Fecha, ev.Hora);
             }
@@ -199,7 +199,8 @@ namespace Carpeta_Sistema_de_Ventas
             DateTime fechaInicial = fechaInicio.Value;
             DateTime fechaFinal = fechaFin.Value;
 
-            if(fechaInicial > fechaFinal) { 
+            if(fechaInicial > fechaFinal) //La fecha inicial no puede ser mayor a la final
+            {  
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaInicial"));
                 fechaInicio.Value = fechaFinal;
             }
@@ -210,7 +211,7 @@ namespace Carpeta_Sistema_de_Ventas
             DateTime fechaInicial = fechaInicio.Value;
             DateTime fechaFinal = fechaFin.Value;
 
-            if (fechaFinal < fechaInicial)
+            if (fechaFinal < fechaInicial) //La fecha final no puede ser menor a la inicial
             {
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaFinal"));
                 fechaFin.Value = fechaInicial;
@@ -247,6 +248,7 @@ namespace Carpeta_Sistema_de_Ventas
                     case "Sesiones":
                         txtEvento.Items.Add("Inicio sesión");
                         txtEvento.Items.Add("Cierre sesión");
+                        txtEvento.Items.Add("Cambio de clave");
                         break;
                     case "Gestión Usuarios":
                         txtEvento.Items.Add("Usuario creado");

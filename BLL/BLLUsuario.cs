@@ -36,7 +36,10 @@ namespace BLL
                 Familia rolEncontrado = listaRoles.FirstOrDefault(r => r.Id == Convert.ToInt32(dr[6]));
 
                 BEUsuario user = new BEUsuario(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), rolEncontrado.Id, Convert.ToBoolean(dr[7]), Convert.ToBoolean(dr[8]));
+                user.ContFallidos = Convert.ToInt16(dr[9]);
                 user.Rol = rolEncontrado;
+                
+                
                 listaUsuario.Add(user);
             }
             return listaUsuario;
@@ -71,6 +74,11 @@ namespace BLL
         public void ActivarUsuario(int DNICliente)
         {
             dalUsuario.ActivarUsuario(DNICliente);
+        }
+
+        public void ModificarContFallido(string nombreUsuario, int contClaveIncorrecta)
+        {
+            dalUsuario.ModificarContFallido(nombreUsuario, contClaveIncorrecta);
         }
     }
 }

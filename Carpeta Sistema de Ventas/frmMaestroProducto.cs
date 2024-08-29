@@ -66,7 +66,7 @@ namespace Carpeta_Sistema_de_Ventas
             listaProd = bllProducto.TraerListaProductos();
             foreach (BEProducto p in listaProd)
             {
-                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento, p.ActivoLogico);
+                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento, p.BorradoLogico);
             }
 
 

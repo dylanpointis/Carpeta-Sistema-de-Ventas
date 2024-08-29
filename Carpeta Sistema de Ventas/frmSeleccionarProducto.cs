@@ -174,7 +174,7 @@ namespace Carpeta_Sistema_de_Ventas
             List<BEProducto> listprod = bllProductos.TraerListaProductos();
             foreach(BEProducto p in listprod)
             {
-                if(p.ActivoLogico == true)
+                if(p.BorradoLogico == true)
                 {
                     grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento);
                 }

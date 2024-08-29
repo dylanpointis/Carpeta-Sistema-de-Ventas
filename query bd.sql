@@ -25,9 +25,9 @@ Color varchar(50) NOT NULL,
 Precio float NOT NULL,
 Stock smallint NOT NULL,
 Almacenamiento smallint NOT NULL,
-ActivoLogico bit
+BorradoLogico bit
 )
-¡
+
 
 CREATE TABLE Facturas(
 NumFactura INT PRIMARY KEY IDENTITY(1,1),
@@ -87,7 +87,7 @@ CREATE PROCEDURE RegistrarUsuario
 AS
 BEGIN
 
-    INSERT INTO Usuarios VALUES (@DNI, @Nombre, @Apellido, @Mail, @NombreUsuario, @Clave, @Rol, 0 ,1)
+    INSERT INTO Usuarios VALUES (@DNI, @Nombre, @Apellido, @Mail, @NombreUsuario, @Clave, @Rol, 0 ,1,0)
 END
 GO
 
@@ -133,6 +133,18 @@ BEGIN
 END
 GO
 
+
+
+CREATE PROCEDURE ModificarContFallido
+    @NombreUsuario varchar(50),
+	@ContClaveIncorrecta smallint
+AS
+BEGIN
+    UPDATE Usuarios SET ContFallidos = @ContClaveIncorrecta where NombreUsuario = @NombreUsuario;
+END
+GO
+
+/*clientes*/
 CREATE PROCEDURE RegistrarCliente
     @DNI int,
 	@Nombre varchar(50),
@@ -266,7 +278,7 @@ CREATE PROCEDURE EliminarProducto
 	@CodigoProducto varchar(14)
 AS
 BEGIN
-    UPDATE Productos set ActivoLogico = 0 WHERE CodigoProducto = @CodigoProducto;
+    UPDATE Productos set BorradoLogico = 0 WHERE CodigoProducto = @CodigoProducto;
 END
 GO
 
@@ -274,7 +286,7 @@ CREATE PROCEDURE ActivarProducto
 	@CodigoProducto varchar(14)
 AS
 BEGIN
-    UPDATE Productos set ActivoLogico = 1 WHERE CodigoProducto = @CodigoProducto;
+    UPDATE Productos set BorradoLogico = 1 WHERE CodigoProducto = @CodigoProducto;
 END
 GO
 
@@ -524,7 +536,8 @@ NombreUsuario varchar(50) NOT NULL UNIQUE,
 Clave varchar(100) NOT NULL,
 Rol INT FOREIGN KEY REFERENCES Roles(CodRol),
 Bloqueo bit,
-Activo bit
+Activo bit,
+ContFallidos smallint
 );
 
 CREATE TABLE Eventos(
@@ -592,18 +605,19 @@ Color varchar(50) NOT NULL,
 Precio float NOT NULL,
 Stock smallint NOT NULL,
 Almacenamiento smallint NOT NULL,
+BorradoLogico bit,
 Act bit
 )
 
 
 GO
-CREATE TRIGGER CreacionProducto ON Productos AFTER INSERT, UPDATE
+CREATE TRIGGER TriggerBitacoraCambio ON Productos AFTER INSERT, UPDATE
 AS
 BEGIN
 UPDATE Productos_C SET Productos_C.Act = 0 FROM inserted where Productos_C.CodigoProducto = inserted.CodigoProducto
 
-INSERT INTO Productos_C (CodigoProducto, Fecha, Hora, Modelo, Descripcion, Marca, Color, Precio, Stock, Almacenamiento, Act)
-SELECT CodigoProducto, CONVERT(VARCHAR(11),GETDATE(),120), CONVERT(VARCHAR(5),GETDATE(),114), Modelo, Descripcion, Marca, Color, Precio, Stock, Almacenamiento, 1 
+INSERT INTO Productos_C (CodigoProducto, Fecha, Hora, Modelo, Descripcion, Marca, Color, Precio, Stock, Almacenamiento, BorradoLogico, Act)
+SELECT CodigoProducto, CONVERT(VARCHAR(11),GETDATE(),120), CONVERT(VARCHAR(5),GETDATE(),114), Modelo, Descripcion, Marca, Color, Precio, Stock, Almacenamiento, BorradoLogico, 1 
 FROM inserted
 END
 GO
@@ -617,10 +631,28 @@ END
 GO
 
 
-/*CLAVE clave123*/
-INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1);
---Clave 41256789Rodriguez
-INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 2, 0, 1);
+
+CREATE PROCEDURE FiltrarCambios
+    @CodProd varchar(50),
+	@ModeloProd varchar(50),
+	@FechaInicio varchar(11),
+	@FechaFin varchar(11)
+AS
+BEGIN
+    SELECT * FROM Productos_C where CodigoProducto LIKE @CodProd+ '%' AND Modelo LIKE @ModeloProd + '%' 
+	AND (Fecha >= @FechaInicio AND Fecha <= @FechaFin)
+END
+GO
+
+
+
+
+/*CLAVE: clave123*/
+INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1,0);
+--clave: claveadmin2
+INSERT INTO Usuarios VALUES (11111111, 'Admin2', 'Admin2', 'admin2@gmail.com', 'Admin2', '18776097b125be86e05255df301827a91cdd34564b26cb8538f61cf781db5471', 1, 0, 1,0);
+--Clave: 41256789Rodriguez
+INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 2, 0, 1,0);
 
 INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256,1);
 INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512,1);

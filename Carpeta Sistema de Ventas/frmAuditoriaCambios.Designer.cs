@@ -60,9 +60,10 @@
             this.fechaFin.Location = new System.Drawing.Point(307, 484);
             this.fechaFin.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
             this.fechaFin.Name = "fechaFin";
-            this.fechaFin.Size = new System.Drawing.Size(172, 20);
+            this.fechaFin.Size = new System.Drawing.Size(211, 20);
             this.fechaFin.TabIndex = 98;
             this.fechaFin.Value = new System.DateTime(2024, 8, 20, 0, 0, 0, 0);
+            this.fechaFin.ValueChanged += new System.EventHandler(this.fechaFin_ValueChanged);
             // 
             // fechaInicio
             // 
@@ -74,6 +75,7 @@
             this.fechaInicio.Size = new System.Drawing.Size(172, 20);
             this.fechaInicio.TabIndex = 97;
             this.fechaInicio.Value = new System.DateTime(2024, 8, 20, 0, 0, 0, 0);
+            this.fechaInicio.ValueChanged += new System.EventHandler(this.fechaInicio_ValueChanged);
             // 
             // btnLimpiar
             // 
@@ -86,6 +88,7 @@
             this.btnLimpiar.TabIndex = 95;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnBuscar
             // 
@@ -98,6 +101,7 @@
             this.btnBuscar.TabIndex = 94;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label9
             // 
@@ -192,9 +196,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(304, 389);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 101;
-            this.label1.Text = "Modelo";
+            this.label1.Text = "Modelo producto";
             // 
             // frmAuditoriaCambios
             // 

@@ -86,6 +86,7 @@ namespace DAL
             foreach (DataRow dr in tabla.Rows)
             {
                 user = new BEUsuario(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), Convert.ToInt32(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToBoolean(dr[8]));
+                user.ContFallidos = Convert.ToInt16(dr[9]);
                 break;
                 //Solo agarra el primer registro que coincida nombreusuario
             }
@@ -109,6 +110,16 @@ namespace DAL
                 new SqlParameter("@DNI", DNICliente)
             };
             dalCon.EjecutarProcAlmacenado("ActivarUsuario", parametros);
+        }
+
+        public void ModificarContFallido(string nombreUsuario, int contClaveIncorrecta)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@NombreUsuario", nombreUsuario),
+                new SqlParameter("@ContClaveIncorrecta", contClaveIncorrecta)
+            };
+            dalCon.EjecutarProcAlmacenado("ModificarContFallido", parametros);
         }
     }
 }

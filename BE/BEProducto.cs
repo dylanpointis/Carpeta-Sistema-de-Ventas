@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BE
+﻿namespace BE
 {
     public class BEProducto
     {
@@ -16,9 +10,9 @@ namespace BE
         public double Precio { get; set; }
         public int Stock { get; set; }
         public int Almacenamiento { get; set; }
-        public bool ActivoLogico { get; set; }
+        public bool BorradoLogico { get; set; }
 
-        public BEProducto(long codigoProducto, string modelo, string descripcion, string marca, string color, double precio, int stock, int almacenamiento, bool activoLogico) 
+        public BEProducto(long codigoProducto, string modelo, string descripcion, string marca, string color, double precio, int stock, int almacenamiento, bool borrado) 
         {
             this.CodigoProducto = codigoProducto;
             this.Modelo = modelo;
@@ -28,7 +22,7 @@ namespace BE
             this.Precio = precio;
             this.Stock = stock;
             this.Almacenamiento = almacenamiento;
-            this.ActivoLogico =activoLogico;
+            this.BorradoLogico =borrado;
         }
 
     }

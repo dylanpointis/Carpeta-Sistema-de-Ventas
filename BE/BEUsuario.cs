@@ -21,6 +21,7 @@ namespace BE
 
         public bool Bloqueado { get; set; }
         public bool Activo { get; set; }
+        public int ContFallidos { get; set; }
 
 
         public List<Componente> listaPermisosRol = new List<Componente>();

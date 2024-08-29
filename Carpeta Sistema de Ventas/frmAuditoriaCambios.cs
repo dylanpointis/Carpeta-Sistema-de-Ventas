@@ -25,7 +25,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void frmAuditoriaCambios_Load(object sender, EventArgs e)
         {
-            grillaCambios.ColumnCount = 11;
+            grillaCambios.ColumnCount = 12;
             grillaCambios.Columns[0].Name = "Codigo producto";
             grillaCambios.Columns[1].Name = "Fecha";
             grillaCambios.Columns[2].Name = "Hora";
@@ -36,7 +36,8 @@ namespace Carpeta_Sistema_de_Ventas
             grillaCambios.Columns[7].Name = "Precio";
             grillaCambios.Columns[8].Name = "Stock";
             grillaCambios.Columns[9].Name = "Almacenamiento";
-            grillaCambios.Columns[10].Name = "Activo";
+            grillaCambios.Columns[10].Name = "Borrado";
+            grillaCambios.Columns[11].Name = "Activo";
 
 
 
@@ -66,7 +67,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             foreach(var prodC in listaCambios)
             {
-                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, prodC.Activo);
+                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, prodC.Producto.BorradoLogico,prodC.Activo);
             }
             
         }
@@ -74,6 +75,51 @@ namespace Carpeta_Sistema_de_Ventas
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             ActualizarGrilla();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string fechaInicial = fechaInicio.Value.ToString("yyyy-MM-dd");
+            string fechaFinal = fechaFin.Value.ToString("yyyy-MM-dd");
+
+
+            List<Producto_C> list = bllCambios.FiltrarCambios(txtCodigoProd.Text, txtModelo.Text, fechaInicial, fechaFinal);
+            grillaCambios.Rows.Clear();
+
+            foreach (Producto_C prodC in list)
+            {
+                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, prodC.Producto.BorradoLogico, prodC.Activo);
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtModelo.Text = ""; txtCodigoProd.Text = "";
+            fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-31);
+        }
+
+        private void fechaInicio_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaInicial = fechaInicio.Value;
+            DateTime fechaFinal = fechaFin.Value;
+
+            if (fechaInicial > fechaFinal) //La fecha inicial no puede ser mayor a la final
+            {
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaInicial"));
+                fechaInicio.Value = fechaFinal;
+            }
+        }
+
+        private void fechaFin_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaInicial = fechaInicio.Value;
+            DateTime fechaFinal = fechaFin.Value;
+
+            if (fechaFinal < fechaInicial) //La fecha final no puede ser menor a la inicial
+            {
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaFinal"));
+                fechaFin.Value = fechaInicial;
+            }
         }
     }
 }

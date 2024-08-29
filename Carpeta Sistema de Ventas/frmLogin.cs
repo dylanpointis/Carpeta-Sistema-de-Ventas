@@ -44,8 +44,7 @@ namespace Carpeta_Sistema_de_Ventas
         BLLUsuario bllUsuario = new BLLUsuario();
         BLLFamilia bllFamilia = new BLLFamilia();
         BLLEvento bllEvento = new BLLEvento();
-        int contClaveIncorrecta = 0;
-
+      
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
@@ -63,6 +62,7 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if(user.Bloqueado == false && user.Activo == true)
                     {
+                        int contClaveIncorrecta = user.ContFallidos;
                         if (user.Clave == Encriptador.EncriptarSHA256(txtClave.Text))
                         {
                             //trae los permisos segun su rol
@@ -71,9 +71,10 @@ namespace Carpeta_Sistema_de_Ventas
 
 
                             SessionManager.GetInstance.LogIn(user);
-                            contClaveIncorrecta = 0;
 
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Inicio sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllUsuario.ModificarContFallido(user.NombreUsuario, 0);
+
+                            bllEvento.RegistrarEvento(new Evento(txtNombreUsuario.Text, "Sesiones", "Inicio sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
 
                             this.Hide(); //oculta el formulario actual
                             frmMenu frmMenu = new frmMenu();
@@ -85,11 +86,14 @@ namespace Carpeta_Sistema_de_Ventas
                         else
                         {
                             contClaveIncorrecta++;
+                            bllUsuario.ModificarContFallido(user.NombreUsuario, contClaveIncorrecta);
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"));
                             if (contClaveIncorrecta == 3)
                             {
                                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seBloqueo"));
                                 bllUsuario.ModificarBloqueo(user.DNI, true);
+
+                                bllEvento.RegistrarEvento(new Evento(txtNombreUsuario.Text, "Sesiones", "Usuario bloqueado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             }
                         }
                     }

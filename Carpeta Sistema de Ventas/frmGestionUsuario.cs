@@ -162,7 +162,11 @@ namespace Carpeta_Sistema_de_Ventas
                     if (resultado == DialogResult.Yes)
                     {
                         int DNI = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
+                        string username = grillaUsuarios.CurrentRow.Cells[4].Value.ToString();
+
                         bllUsuario.ModificarBloqueo(DNI, false);
+                        bllUsuario.ModificarContFallido(username, 0); //resetea el cont de intenos fallidos a 0
+
                         //Cuando bloquea un usuario porque se olvido la clave, al desbloquearlo se le reseta a la clave por defecto
                         string apellido = grillaUsuarios.CurrentRow.Cells[2].Value.ToString();
                         string clave = DNI + apellido; // CLAVE COMBINA DNI + APELLIDO
@@ -455,7 +459,9 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     try
                     {
+                        string username = grillaUsuarios.CurrentRow.Cells[4].Value.ToString();
                         bllUsuario.CambiarClave(DNI, Encriptador.EncriptarSHA256(clave));
+                        bllUsuario.ModificarContFallido(username, 0);
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                     catch (Exception ex) { MessageBox.Show("Error al modificar la clave"); }
