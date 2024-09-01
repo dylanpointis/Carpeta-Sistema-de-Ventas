@@ -29,7 +29,7 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
 
-
+        BLLEvento bllEvento = new BLLEvento();
         BLLCliente bllCliente = new BLLCliente();
         private void btnRegistrarCliente_Click(object sender, EventArgs e)
         {
@@ -43,6 +43,8 @@ namespace Carpeta_Sistema_de_Ventas
                     try
                     {
                         bllCliente.RegistrarCliente(cliente);
+
+                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
                     catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error")); }

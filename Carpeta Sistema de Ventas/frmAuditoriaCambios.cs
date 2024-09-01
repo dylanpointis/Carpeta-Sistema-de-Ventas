@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using BE;
+using BLL;
 using Services;
 using Services.Observer;
 using System;
@@ -20,8 +21,8 @@ namespace Carpeta_Sistema_de_Ventas
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-31);
         }
 
-        BLLCambio bllCambios = new BLLCambio();
-
+        BLLProducto_C bllCambios = new BLLProducto_C();
+        BLLProducto bllProd = new BLLProducto();
 
         private void frmAuditoriaCambios_Load(object sender, EventArgs e)
         {
@@ -120,6 +121,36 @@ namespace Carpeta_Sistema_de_Ventas
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaFinal"));
                 fechaFin.Value = fechaInicial;
             }
+        }
+
+        private void btnActivar_Click(object sender, EventArgs e)
+        {
+            if (grillaCambios.SelectedRows.Count > 0) 
+            {
+                if (grillaCambios.CurrentRow.Cells[11].Value.ToString() == "False")
+                {
+                    long codProd = Convert.ToInt64(grillaCambios.CurrentRow.Cells[0].Value);
+                    string modelo = grillaCambios.CurrentRow.Cells[3].Value.ToString();
+                    string descripcion = grillaCambios.CurrentRow.Cells[4].Value.ToString();
+                    string marca = grillaCambios.CurrentRow.Cells[5].Value.ToString();
+                    string color = grillaCambios.CurrentRow.Cells[6].Value.ToString();
+                    double precio = Convert.ToDouble(grillaCambios.CurrentRow.Cells[7].Value);
+                    int stock = Convert.ToInt32(grillaCambios.CurrentRow.Cells[8].Value);
+                    int alm = Convert.ToInt32(grillaCambios.CurrentRow.Cells[9].Value);
+
+                    bool borrado = grillaCambios.CurrentRow.Cells[10].Value.ToString() == "False" ? false : true; 
+
+
+                    BEProducto prod = new BEProducto(codProd, modelo, descripcion, marca, color, precio, stock, alm, borrado);
+
+                    bllProd.ModificarProducto(prod);
+                    ActualizarGrilla();
+                    MessageBox.Show("Producto activado");
+                }
+                else { MessageBox.Show("El producto ya esta activado"); }
+            }
+            else { MessageBox.Show("Seleccione un elemento de la grilla para volver el producto a ese estado"); }
+
         }
     }
 }

@@ -82,7 +82,7 @@
             this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLimpiar.BackColor = System.Drawing.Color.IndianRed;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar.Location = new System.Drawing.Point(720, 459);
+            this.btnLimpiar.Location = new System.Drawing.Point(733, 459);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(104, 45);
             this.btnLimpiar.TabIndex = 95;
@@ -95,7 +95,7 @@
             this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuscar.BackColor = System.Drawing.Color.PowderBlue;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(720, 392);
+            this.btnBuscar.Location = new System.Drawing.Point(733, 392);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(104, 45);
             this.btnBuscar.TabIndex = 94;
@@ -167,7 +167,7 @@
             this.grillaCambios.MultiSelect = false;
             this.grillaCambios.Name = "grillaCambios";
             this.grillaCambios.ReadOnly = true;
-            this.grillaCambios.Size = new System.Drawing.Size(780, 255);
+            this.grillaCambios.Size = new System.Drawing.Size(793, 255);
             this.grillaCambios.TabIndex = 80;
             // 
             // btnActivar
@@ -175,12 +175,14 @@
             this.btnActivar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnActivar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnActivar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActivar.Location = new System.Drawing.Point(845, 69);
+            this.btnActivar.ForeColor = System.Drawing.Color.White;
+            this.btnActivar.Location = new System.Drawing.Point(861, 69);
             this.btnActivar.Name = "btnActivar";
             this.btnActivar.Size = new System.Drawing.Size(104, 45);
             this.btnActivar.TabIndex = 96;
             this.btnActivar.Text = "Activar";
             this.btnActivar.UseVisualStyleBackColor = false;
+            this.btnActivar.Click += new System.EventHandler(this.btnActivar_Click);
             // 
             // txtModelo
             // 

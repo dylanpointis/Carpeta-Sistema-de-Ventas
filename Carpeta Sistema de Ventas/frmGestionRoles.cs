@@ -1,6 +1,7 @@
 ﻿using BE;
 using BE.Composite;
 using BLL;
+using Services;
 using Services.Observer;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace Carpeta_Sistema_de_Ventas
         BLLPermiso bllPermiso = new BLLPermiso();
         BLLFamilia bllFamilia = new BLLFamilia();
         BLLUsuario bllUsuario = new BLLUsuario();
+        BLLEvento bllEv = new BLLEvento();
         private Familia RolConfigurado = new Familia();
 
 
@@ -203,6 +205,7 @@ namespace Carpeta_Sistema_de_Ventas
                     bllFamilia.EliminarPermisosRol(rolAModifcarOEliminar.Id);
                     bllFamilia.EliminarRol(rolAModifcarOEliminar.Id);
 
+                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Perfil eliminado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                 }
             }
@@ -220,6 +223,8 @@ namespace Carpeta_Sistema_de_Ventas
                             {
                                 bllFamilia.RegistrarPermisosRol(idRolCreado, permiso.Id);
                             }
+
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Perfil creado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                         else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
@@ -239,6 +244,8 @@ namespace Carpeta_Sistema_de_Ventas
                         {
                             bllFamilia.RegistrarPermisosRol(rolAModifcarOEliminar.Id, permiso.Id); //Registra de vuelta los permisos del rol
                         }
+
+                        bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Perfil modificado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }

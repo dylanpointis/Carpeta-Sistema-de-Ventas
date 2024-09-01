@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Services.Observer;
+using Services;
 
 namespace Carpeta_Sistema_de_Ventas
 {
@@ -31,6 +32,8 @@ namespace Carpeta_Sistema_de_Ventas
         private BLLPermiso bllPermiso = new BLLPermiso();
         private BLLFamilia bllFamilia = new BLLFamilia();
         private BLLUsuario bllUsuario = new BLLUsuario();
+        private BLLEvento bllEv = new BLLEvento();
+
         private Familia FamiliaConfigurada = new Familia();
         private EnumModoAplicar modoOperacion;
 
@@ -213,6 +216,8 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     bllFamilia.EliminarHijos(FamiliaConfigurada.Id); //primero elimina sus hijos y luego la familia
                     bllFamilia.EliminarFamilia(FamiliaConfigurada.Id);
+
+                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia eliminada", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                 }
 
@@ -233,6 +238,9 @@ namespace Carpeta_Sistema_de_Ventas
                                 {
                                     bllFamilia.RegistrarHijos(idFamiliaCreada, permiso.Id);
                                 }
+
+
+                                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia creada", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                             }
                             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
@@ -252,7 +260,7 @@ namespace Carpeta_Sistema_de_Ventas
                             {
                                 bllFamilia.RegistrarHijos(FamiliaConfigurada.Id, hijo.Id);
                             }
-
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia modificada", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                         else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }

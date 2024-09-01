@@ -65,7 +65,6 @@ namespace Carpeta_Sistema_de_Ventas
                             {
                                 try
                                 {
-                                    string claveencriptada = Encriptador.EncriptarSHA256(txtNuevaClave.Text);
                                     bllUsuario.CambiarClave(usuarioActual.DNI, Encriptador.EncriptarSHA256(txtNuevaClave.Text));
                                     bllUsuario.ModificarContFallido(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, 0); //resetea el contador de intentos fallidos
 

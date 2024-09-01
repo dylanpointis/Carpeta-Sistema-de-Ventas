@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class BLLCambio
+    public class BLLProducto_C
     {
-        DALCambio dalCambio = new DALCambio();
+        DALProducto_C dalCambio = new DALProducto_C();
 
         public List<Producto_C> FiltrarCambios(string codProd, string modeloProd, string fechaInicial, string fechaFinal)
         {

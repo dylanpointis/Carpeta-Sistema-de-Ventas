@@ -18,6 +18,7 @@ namespace Carpeta_Sistema_de_Ventas
     {
         List<BEProducto> listaProd = new List<BEProducto> ();
         BLLProducto bllProducto = new BLLProducto();
+        BLLEvento bllEv = new BLLEvento();
         EnumModoAplicar modoOperacion;
         public frmMaestroProducto()
         {
@@ -155,6 +156,8 @@ namespace Carpeta_Sistema_de_Ventas
                         {
                             BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text),true);
                             bllProducto.RegistrarProducto(prod);
+
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                     }
@@ -172,6 +175,8 @@ namespace Carpeta_Sistema_de_Ventas
                             if (bllProducto.VerificarSiProductoTieneFacturas(idProd) == false)
                             {
                                 bllProducto.EliminarProducto(idProd);
+
+                                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto eliminado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                             }
                             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("tieneFacturas")); }
@@ -181,6 +186,8 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text),txtModelo.Text,txtDescripcion.Text,cmbMarca.Text,txtColor.Text, Convert.ToDouble(txtPrecio.Text),Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text),true);
                         bllProducto.ModificarProducto(prod);
+
+                        bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
                 }

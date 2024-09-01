@@ -226,6 +226,7 @@ namespace Carpeta_Sistema_de_Ventas
             txtModulo.Items.Add("Gestión Usuarios");
             txtModulo.Items.Add("Gestión Perfiles");
             txtModulo.Items.Add("Ventas");
+            txtModulo.Items.Add("Productos");
 
 
 
@@ -258,9 +259,25 @@ namespace Carpeta_Sistema_de_Ventas
                         txtEvento.Items.Add("Usuario desbloqueado");
                         break;
                     case "Gestión Perfiles":
+                        txtEvento.Items.Add("Familia eliminada");
+                        txtEvento.Items.Add("Familia creada");
+                        txtEvento.Items.Add("Familia modificada");
+                        txtEvento.Items.Add("Perfil eliminado");
+                        txtEvento.Items.Add("Perfil creado");
+                        txtEvento.Items.Add("Perfil modificado");
                         break;
                     case "Ventas":
                         txtEvento.Items.Add("Factura generada");
+                        break;
+                    case "Productos":
+                        txtEvento.Items.Add("Producto creado");
+                        txtEvento.Items.Add("Producto eliminado");
+                        txtEvento.Items.Add("Producto modificado");
+                        break;
+                    case "Clientes":
+                        txtEvento.Items.Add("Cliente creado");
+                        txtEvento.Items.Add("Cliente eliminado");
+                        txtEvento.Items.Add("Cliente modificado");
                         break;
                 }
             }

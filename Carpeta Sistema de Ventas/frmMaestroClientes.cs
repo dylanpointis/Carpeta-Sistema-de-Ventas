@@ -31,6 +31,8 @@ namespace Carpeta_Sistema_de_Ventas
 
         List<BECliente> listaClientes = new List<BECliente>();
         BLLCliente bllCliente = new BLLCliente();
+        BLLEvento bllEvento = new BLLEvento();
+
         EnumModoAplicar modoOperacion;
 
 
@@ -145,6 +147,9 @@ namespace Carpeta_Sistema_de_Ventas
                         {
                             BECliente cli = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
                             bllCliente.RegistrarCliente(cli);
+
+
+                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                     }
@@ -163,6 +168,8 @@ namespace Carpeta_Sistema_de_Ventas
                             if(bllCliente.VerificarSiClienteTieneFacturas(dniCliente) == false)
                             {
                                 bllCliente.EliminarCliente(dniCliente);
+
+                                bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente eliminado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                             }
                             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("tieneFacturas")); }
@@ -172,6 +179,8 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
                         bllCliente.ModificarCliente(cliente);
+
+                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente modificado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                     }
                 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class DALCambio
+    public class DALProducto_C
     {
         DALConexion dalCon = new DALConexion();
 
