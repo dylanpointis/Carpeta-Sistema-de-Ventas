@@ -48,6 +48,7 @@
     <Compile Include="BLLFamilia.cs" />
     <Compile Include="BLLPermiso.cs" />
     <Compile Include="BLLProducto.cs" />
+    <Compile Include="BLLRespaldo.cs" />
     <Compile Include="BLLUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

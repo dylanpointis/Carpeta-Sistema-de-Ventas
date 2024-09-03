@@ -167,7 +167,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void respaldosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AbrirForm(new frmRespaldo());
         }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)

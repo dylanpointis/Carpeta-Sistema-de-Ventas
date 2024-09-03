@@ -61,6 +61,16 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap foldericon2 {
+            get {
+                object obj = ResourceManager.GetObject("foldericon2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
         ///&lt;html&gt;
         ///&lt;head&gt;
@@ -74,13 +84,13 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         ///
         ///    &lt;table style=&quot;width: 100%; margin-top: 10px&quot;&gt;
         ///        &lt;tr&gt;
-        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoAuditoria&lt;/td&gt;
-        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFecha: @Fecha&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@label2&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFecha: @auditoriaFecha&lt;/td&gt;
         ///        &lt;/tr&gt;
         ///    &lt;/table&gt;
         ///
         ///    &lt;h2&gt;@textoDetalleEvento&lt;/h2&gt;
-        ///    &lt;table border=&quot;1&quot; st [resto de la cadena truncado]&quot;;.
+        ///    &lt;table border=&quot;1&quot; s [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string htmlauditoriaevento {
             get {

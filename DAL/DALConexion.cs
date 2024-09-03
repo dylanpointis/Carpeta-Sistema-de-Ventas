@@ -98,6 +98,42 @@ namespace DAL
             
         }
 
+
+        //Metodo para ejecutar comandos pasandole directamente la query
+        public void EjecutarComando(string comando)
+        {
+            try
+            {
+                Conectar();
+                using (SqlCommand command = new SqlCommand(comando, con))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+        }
+
+
+        public void EstablecerConexionConMaster()
+        {
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
+            con.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=True";
+            Conectar();
+        }
+
+
         #endregion
 
 

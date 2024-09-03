@@ -135,6 +135,12 @@
     <Compile Include="frmReportes.Designer.cs">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRespaldo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRespaldo.Designer.cs">
+      <DependentUpon>frmRespaldo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSeleccionarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     <EmbeddedResource Include="frmReportes.resx">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRespaldo.resx">
+      <DependentUpon>frmRespaldo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSeleccionarProducto.resx">
       <DependentUpon>frmSeleccionarProducto.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,6 +264,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="icons\foldericon2.png" />
     <Content Include="icons\invisible.png" />
     <None Include="Resources\htmlauditoriaevento.html" />
     <None Include="Resources\htmlfactura.html" />

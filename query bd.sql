@@ -659,6 +659,15 @@ END
 GO
 
 
+/*RESPALDO
+CREATE PROCEDURE RealizarBackUp
+    @RutaBackUp varchar(260)
+AS
+BEGIN
+    BACKUP DATABASE CarpetaIngSoftware TO DISK= @RutaBackUp
+END
+GO
+*/
 
 
 /*CLAVE: clave123*/
