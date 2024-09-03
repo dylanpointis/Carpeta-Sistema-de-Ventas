@@ -1,4 +1,6 @@
 ﻿using BLL;
+using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,20 +13,31 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmRespaldo : Form
+    public partial class frmRespaldo : Form, IObserver
     {
         public frmRespaldo()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            IdiomaManager.GetInstance().archivoActual = "frmRespaldo";
+            IdiomaManager.GetInstance().Agregar(this);
         }
 
         private BLLRespaldo bllRespaldo = new BLLRespaldo();
+        private BLLEvento bllEv = new BLLEvento();
 
 
         private void frmRespaldo_Load(object sender, EventArgs e)
         {
-
+            btnRutaBackUp.Text = "";
+            btnRutaRestore.Text = "";
         }
+
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
+        }
+
 
         #region BackUp
         private void btnRutaBackUp_Click(object sender, EventArgs e)
@@ -45,21 +58,23 @@ namespace Carpeta_Sistema_de_Ventas
                 try
                 {
                     bllRespaldo.RealizarBackUp(txtBackupRuta.Text);
-                    MessageBox.Show("BackUp guardado exitosamente");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoBackUp"));
                     txtBackupRuta.Text = "";
+
+                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Respaldos", "Backup realizado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error al realizar el back up: {ex.Message}");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorBackUp") + ex.Message); ;
                 }
             }
-            else { MessageBox.Show("Selecciona una ruta para guardar el archivo Back Up en el equipo"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneRutaBackUp")); }
         }
         #endregion
 
         #region Restore
-
-        private void btnRestoreRuta_Click(object sender, EventArgs e)
+        private void btnRutaRestore_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog buscadorArchivo = new OpenFileDialog())
             {
@@ -70,6 +85,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
             }
         }
+
         private void btnRealizarRestore_Click(object sender, EventArgs e)
         {
             if(txtRestoreRuta.Text != "")
@@ -77,13 +93,15 @@ namespace Carpeta_Sistema_de_Ventas
                 try
                 {
                     bllRespaldo.RealizarRestore(txtRestoreRuta.Text);
-                    MessageBox.Show("Restauración realizada exitosamente");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoRestore"));
                     txtRestoreRuta.Text = "";
 
-                }catch(Exception ex) { MessageBox.Show($"Error al realizar la restauración: {ex.Message}"); }
-            }
-            else { MessageBox.Show("Seleccione la ruta del archivo .bak para realizar la restauración"); }
 
+                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Respaldos", "Restore realizado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                }
+                catch(Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorRestore") + ex.Message); }
+            }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneRutaRestore")); }
         }
         #endregion
     }

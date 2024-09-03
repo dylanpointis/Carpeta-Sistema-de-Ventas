@@ -228,6 +228,7 @@ namespace Carpeta_Sistema_de_Ventas
             txtModulo.Items.Add("Ventas");
             txtModulo.Items.Add("Productos");
             txtModulo.Items.Add("Clientes");
+            txtModulo.Items.Add("Respaldos");
 
 
 
@@ -282,6 +283,10 @@ namespace Carpeta_Sistema_de_Ventas
                         txtEvento.Items.Add("Cliente eliminado");
                         txtEvento.Items.Add("Cliente habilitado");
                         txtEvento.Items.Add("Cliente modificado");
+                        break;
+                    case "Respaldos":
+                        txtEvento.Items.Add("Backup realizado");
+                        txtEvento.Items.Add("Restore realizado");
                         break;
                 }
             }

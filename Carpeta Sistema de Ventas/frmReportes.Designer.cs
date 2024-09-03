@@ -47,12 +47,11 @@
             this.grillaFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grillaFacturas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaFacturas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grillaFacturas.Location = new System.Drawing.Point(8, 46);
             this.grillaFacturas.Name = "grillaFacturas";
-            this.grillaFacturas.Size = new System.Drawing.Size(626, 375);
+            this.grillaFacturas.Size = new System.Drawing.Size(542, 375);
             this.grillaFacturas.TabIndex = 0;
             this.grillaFacturas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grillaFacturas_CellClick);
             // 
@@ -85,7 +84,7 @@
             this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(530, 467);
+            this.btnBuscar.Location = new System.Drawing.Point(447, 467);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(104, 30);
             this.btnBuscar.TabIndex = 23;
@@ -97,7 +96,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(368, 461);
+            this.label2.Location = new System.Drawing.Point(285, 461);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 69;
@@ -106,7 +105,7 @@
             // txtNumFactura
             // 
             this.txtNumFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNumFactura.Location = new System.Drawing.Point(371, 477);
+            this.txtNumFactura.Location = new System.Drawing.Point(288, 477);
             this.txtNumFactura.Name = "txtNumFactura";
             this.txtNumFactura.Size = new System.Drawing.Size(134, 20);
             this.txtNumFactura.TabIndex = 70;
@@ -126,20 +125,25 @@
             // 
             // grillaItems
             // 
+            this.grillaItems.AllowUserToAddRows = false;
+            this.grillaItems.AllowUserToDeleteRows = false;
             this.grillaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaItems.Location = new System.Drawing.Point(644, 44);
+            this.grillaItems.Location = new System.Drawing.Point(556, 44);
             this.grillaItems.Name = "grillaItems";
-            this.grillaItems.Size = new System.Drawing.Size(378, 204);
+            this.grillaItems.ReadOnly = true;
+            this.grillaItems.Size = new System.Drawing.Size(466, 204);
             this.grillaItems.TabIndex = 72;
             // 
             // lblProductos
             // 
+            this.lblProductos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProductos.AutoSize = true;
             this.lblProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductos.Location = new System.Drawing.Point(641, 25);
+            this.lblProductos.Location = new System.Drawing.Point(553, 26);
             this.lblProductos.Name = "lblProductos";
             this.lblProductos.Size = new System.Drawing.Size(136, 15);
             this.lblProductos.TabIndex = 73;
@@ -162,6 +166,7 @@
             this.Name = "frmReportes";
             this.Text = "frmReportes";
             this.Load += new System.EventHandler(this.frmReportes_Load);
+            this.Resize += new System.EventHandler(this.frmReportes_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.grillaFacturas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaItems)).EndInit();
             this.ResumeLayout(false);

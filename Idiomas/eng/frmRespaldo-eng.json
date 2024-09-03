@@ -1,0 +1,20 @@
+{
+  "label1": "Backup:",
+  "btnRealizarBackUp": "Save Backup",
+  "label2": "Restore:",
+  "btnRealizarRestore": "Perform Restore",
+  "exitoBackUp": "Backup saved successfully",
+  "errorBackUp": "Error performing backup: ",
+  "seleccioneRutaBackUp": "Select a path to save the Backup file on the computer",
+  "exitoRestore": "Restore performed successfully",
+  "errorRestore": "Error performing the restore: ",
+  "seleccioneRutaRestore": "Select the .bak file path to perform the restore",
+  "btnRutaBackUp": "",
+  "btnRutaRestore": "",
+
+
+  "cerrar": "Log Out",
+  "deseaCerrar": "Do you want to log out?",
+  "noHaySesion": "No session started",
+  "haySesion": "A session is already established"
+}

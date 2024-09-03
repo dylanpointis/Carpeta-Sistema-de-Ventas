@@ -68,7 +68,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaItems.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvSubtotal");
 
             grillaItems.Columns[2].Width = 40;
-
+            grillaItems.RowHeadersVisible = false;
 
             ActualizarGrilla();
         }
@@ -81,7 +81,7 @@ namespace Carpeta_Sistema_de_Ventas
             foreach(BEFactura fac in listaFac)
             {
                 grillaFacturas.Rows.Add(fac.NumFactura, fac.clienteFactura.DniCliente, fac.cobro.NumTransaccionBancaria,
-                    fac.MontoTotal, fac.Impuesto, fac.Fecha, fac.cobro.stringMetodoPago, fac.cobro.MarcaTarjeta, fac.cobro.CantCuotas, fac.cobro.AliasMP,
+                    fac.MontoTotal, fac.Impuesto, fac.Fecha.ToString("yyyy-MM-dd HH:mm"), fac.cobro.stringMetodoPago, fac.cobro.MarcaTarjeta, fac.cobro.CantCuotas, fac.cobro.AliasMP,
                     fac.clienteFactura.Nombre, fac.clienteFactura.Apellido, fac.clienteFactura.Mail, fac.clienteFactura.Direccion);
             }
         }
@@ -280,6 +280,16 @@ namespace Carpeta_Sistema_de_Ventas
                     grillaItems.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, total);
                 }
             }
+        }
+
+        //esto es para que se vea bien cuando agrando o achico la pantalla
+        private void frmReportes_Resize(object sender, EventArgs e)
+        {
+            if (this.ClientSize.Width > 1500)
+            {
+                grillaFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            else { grillaFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; }
         }
     }
 }

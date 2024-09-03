@@ -35,7 +35,7 @@
             this.btnRealizarBackUp = new System.Windows.Forms.Button();
             this.btnRealizarRestore = new System.Windows.Forms.Button();
             this.btnRutaBackUp = new System.Windows.Forms.Button();
-            this.btnRestoreRuta = new System.Windows.Forms.Button();
+            this.btnRutaRestore = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtBackupRuta
@@ -70,9 +70,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(285, 111);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 18);
+            this.label1.Size = new System.Drawing.Size(62, 18);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Back Up:";
+            this.label1.Text = "Backup:";
             // 
             // btnRealizarBackUp
             // 
@@ -83,7 +83,7 @@
             this.btnRealizarBackUp.Name = "btnRealizarBackUp";
             this.btnRealizarBackUp.Size = new System.Drawing.Size(108, 32);
             this.btnRealizarBackUp.TabIndex = 97;
-            this.btnRealizarBackUp.Text = "Guardar Back Up";
+            this.btnRealizarBackUp.Text = "Guardar Backup";
             this.btnRealizarBackUp.UseVisualStyleBackColor = false;
             this.btnRealizarBackUp.Click += new System.EventHandler(this.btnRealizarBackUp_Click);
             // 
@@ -113,18 +113,18 @@
             this.btnRutaBackUp.UseVisualStyleBackColor = false;
             this.btnRutaBackUp.Click += new System.EventHandler(this.btnRutaBackUp_Click);
             // 
-            // btnRestoreRuta
+            // btnRutaRestore
             // 
-            this.btnRestoreRuta.BackColor = System.Drawing.SystemColors.Control;
-            this.btnRestoreRuta.BackgroundImage = global::Carpeta_Sistema_de_Ventas.Properties.Resources.foldericon2;
-            this.btnRestoreRuta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnRestoreRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRestoreRuta.Location = new System.Drawing.Point(581, 224);
-            this.btnRestoreRuta.Name = "btnRestoreRuta";
-            this.btnRestoreRuta.Size = new System.Drawing.Size(54, 54);
-            this.btnRestoreRuta.TabIndex = 100;
-            this.btnRestoreRuta.UseVisualStyleBackColor = false;
-            this.btnRestoreRuta.Click += new System.EventHandler(this.btnRestoreRuta_Click);
+            this.btnRutaRestore.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRutaRestore.BackgroundImage = global::Carpeta_Sistema_de_Ventas.Properties.Resources.foldericon2;
+            this.btnRutaRestore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRutaRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRutaRestore.Location = new System.Drawing.Point(581, 224);
+            this.btnRutaRestore.Name = "btnRutaRestore";
+            this.btnRutaRestore.Size = new System.Drawing.Size(54, 54);
+            this.btnRutaRestore.TabIndex = 100;
+            this.btnRutaRestore.UseVisualStyleBackColor = false;
+            this.btnRutaRestore.Click += new System.EventHandler(this.btnRutaRestore_Click);
             // 
             // frmRespaldo
             // 
@@ -132,7 +132,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(988, 535);
-            this.Controls.Add(this.btnRestoreRuta);
+            this.Controls.Add(this.btnRutaRestore);
             this.Controls.Add(this.btnRutaBackUp);
             this.Controls.Add(this.btnRealizarRestore);
             this.Controls.Add(this.btnRealizarBackUp);
@@ -157,6 +157,6 @@
         private System.Windows.Forms.Button btnRealizarBackUp;
         private System.Windows.Forms.Button btnRealizarRestore;
         private System.Windows.Forms.Button btnRutaBackUp;
-        private System.Windows.Forms.Button btnRestoreRuta;
+        private System.Windows.Forms.Button btnRutaRestore;
     }
 }

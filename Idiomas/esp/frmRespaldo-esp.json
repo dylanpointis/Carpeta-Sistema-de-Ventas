@@ -1,0 +1,20 @@
+{
+  "label1": "Backup:",
+  "btnRealizarBackUp": "Guardar Backup",
+  "label2": "Restore:",
+  "btnRealizarRestore": "Realizar Restore",
+  "exitoBackUp": "Backup guardado exitosamente",
+  "errorBackUp": "Error al realizar el backup: ",
+  "seleccioneRutaBackUp": "Selecciona una ruta para guardar el archivo Backup en el equipo",
+  "exitoRestore": "Restauración realizada exitosamente",
+  "errorRestore": "Error al realizar la restauración: ",
+  "seleccioneRutaRestore": "Seleccione la ruta del archivo .bak para realizar la restauración",
+  "btnRutaBackUp": "",
+  "btnRutaRestore": "",
+
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

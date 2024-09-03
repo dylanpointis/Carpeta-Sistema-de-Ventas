@@ -26,6 +26,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             txtNombreUsuario.Text = "Admin";
             txtClave.Text = "clave123";
+            btnMostrarClave.Text = "";
         }
 
         //Cuando carga por primera vez y cuando se vuelve a mostrar con el Metodo CerrandoFormulario() carga el archivo actual y lo agrega al sujeto
