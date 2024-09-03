@@ -20,6 +20,7 @@ namespace Carpeta_Sistema_de_Ventas
         public BEFactura _factura;
         private BLLFactura bllFactura = new BLLFactura();
         private BLLProducto bllProducto = new BLLProducto();
+        private BLLEvento bLLEvento = new BLLEvento();
         public frmGenerarFactura()
         {
             InitializeComponent();
@@ -105,7 +106,10 @@ namespace Carpeta_Sistema_de_Ventas
             grillaClientes.Rows.Clear();
             foreach(BECliente c  in list)
             {
-                grillaClientes.Rows.Add(c.DniCliente,c.Nombre,c.Apellido,c.Mail,c.Direccion);
+                if(c.BorradoLogico == true) // Si no esta borrado logicamente lo muestra
+                {
+                    grillaClientes.Rows.Add(c.DniCliente, c.Nombre, c.Apellido, c.Mail, c.Direccion);
+                }
             }
         }
 
@@ -217,8 +221,11 @@ namespace Carpeta_Sistema_de_Ventas
                 if (resultado == DialogResult.Yes)
                 {
                     bllFactura.RegistrarFactura(_factura);
-                    bllFactura.RegistrarItemFactura(_factura); //registra cada item de la factura
+                    bllFactura.RegistrarItemFactura(_factura); 
 
+                    //registra cada item de la factura
+                    //registra en la bitacora de eventos
+                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Factura generada", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
 
                     foreach (var item in _factura.listaProductosAgregados)
                     {
@@ -226,11 +233,9 @@ namespace Carpeta_Sistema_de_Ventas
                         int cantidad = item.cantidad;
 
                         bllProducto.ModificarStock(prod, prod.Stock - cantidad);
+                        bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Stock reducido", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                     }
 
-                    //registra en la bitacora de eventos
-                    BLLEvento bLLEvento = new BLLEvento();
-                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Factura generada", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
 
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"));
                     this.Enabled = false; // deshabilita los botones

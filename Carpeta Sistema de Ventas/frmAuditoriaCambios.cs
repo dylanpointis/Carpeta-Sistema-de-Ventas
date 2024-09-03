@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmAuditoriaCambios : Form
+    public partial class frmAuditoriaCambios : Form, IObserver
     {
         public frmAuditoriaCambios()
         {
@@ -19,6 +19,10 @@ namespace Carpeta_Sistema_de_Ventas
             fechaFin.Format = DateTimePickerFormat.Custom;
             fechaFin.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-31);
+
+
+            IdiomaManager.GetInstance().archivoActual = "frmAuditoriaCambios";
+            IdiomaManager.GetInstance().Agregar(this);
         }
 
         BLLProducto_C bllCambios = new BLLProducto_C();
@@ -27,32 +31,21 @@ namespace Carpeta_Sistema_de_Ventas
         private void frmAuditoriaCambios_Load(object sender, EventArgs e)
         {
             grillaCambios.ColumnCount = 12;
-            grillaCambios.Columns[0].Name = "Codigo producto";
-            grillaCambios.Columns[1].Name = "Fecha";
-            grillaCambios.Columns[2].Name = "Hora";
-            grillaCambios.Columns[3].Name = "Modelo";
-            grillaCambios.Columns[4].Name = "Descripcion";
-            grillaCambios.Columns[5].Name = "Marca";
-            grillaCambios.Columns[6].Name = "Color";
-            grillaCambios.Columns[7].Name = "Precio";
-            grillaCambios.Columns[8].Name = "Stock";
-            grillaCambios.Columns[9].Name = "Almacenamiento";
-            grillaCambios.Columns[10].Name = "Borrado";
-            grillaCambios.Columns[11].Name = "Activo";
 
 
 
-            //grillaCambios.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
-            //grillaCambios.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewFecha");
-            //grillaCambios.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewHora");
-            //grillaCambios.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
-            //grillaCambios.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDescripcion");
-            //grillaCambios.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMarca");
-            //grillaCambios.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewColor");
-            //grillaCambios.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
-            //grillaCambios.Columns[8].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewStock");
-            //grillaCambios.Columns[9].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewAlmacenamiento");
-            //grillaCambios.Columns[10].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewActivo");
+            grillaCambios.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvCodProd");
+            grillaCambios.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvFecha");
+            grillaCambios.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvHora");
+            grillaCambios.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvModelo");
+            grillaCambios.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvDescripcion");
+            grillaCambios.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvMarca");
+            grillaCambios.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvColor");
+            grillaCambios.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvPrecio");
+            grillaCambios.Columns[8].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvStock");
+            grillaCambios.Columns[9].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvAlmacenamiento");
+            grillaCambios.Columns[10].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvBorrado");
+            grillaCambios.Columns[11].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvActivo");
 
 
 
@@ -61,6 +54,11 @@ namespace Carpeta_Sistema_de_Ventas
             ActualizarGrilla();
         }
 
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles(this);
+        }
         private void ActualizarGrilla()
         {
             grillaCambios.Rows.Clear();
@@ -68,7 +66,21 @@ namespace Carpeta_Sistema_de_Ventas
 
             foreach(var prodC in listaCambios)
             {
-                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, prodC.Producto.BorradoLogico,prodC.Activo);
+                string activo = ""; //El elemento activo es el que tiene el estado actual del producto, los antiguos no son activos
+                if (prodC.Activo == true)
+                {
+                    activo = IdiomaManager.GetInstance().ConseguirTexto("boolTrue");
+                }
+                else { activo = IdiomaManager.GetInstance().ConseguirTexto("boolFalse"); }
+
+                string borrado = "";
+                if(prodC.Producto.BorradoLogico == true) //Si el bool BorradoLogico es true es porque el producto esta habilitado (no borrado)
+                {
+                    borrado = IdiomaManager.GetInstance().ConseguirTexto("boolHabilitado");
+                }
+                else { borrado = IdiomaManager.GetInstance().ConseguirTexto("boolBorrado"); }
+
+                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, borrado, activo);
             }
             
         }
@@ -127,7 +139,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaCambios.SelectedRows.Count > 0) 
             {
-                if (grillaCambios.CurrentRow.Cells[11].Value.ToString() == "False")
+                if (grillaCambios.CurrentRow.Cells[11].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolFalse"))
                 {
                     long codProd = Convert.ToInt64(grillaCambios.CurrentRow.Cells[0].Value);
                     string modelo = grillaCambios.CurrentRow.Cells[3].Value.ToString();
@@ -138,18 +150,20 @@ namespace Carpeta_Sistema_de_Ventas
                     int stock = Convert.ToInt32(grillaCambios.CurrentRow.Cells[8].Value);
                     int alm = Convert.ToInt32(grillaCambios.CurrentRow.Cells[9].Value);
 
-                    bool borrado = grillaCambios.CurrentRow.Cells[10].Value.ToString() == "False" ? false : true; 
-
+               
+                    bool borrado = grillaCambios.CurrentRow.Cells[10].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolHabilitado") ? true : false;
+                    
+                    //si dice "Habilitado" es porque no esta borrado entonces se le pone true al bool.
 
                     BEProducto prod = new BEProducto(codProd, modelo, descripcion, marca, color, precio, stock, alm, borrado);
 
                     bllProd.ModificarProducto(prod);
                     ActualizarGrilla();
-                    MessageBox.Show("Producto activado");
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoActivado"));
                 }
-                else { MessageBox.Show("El producto ya esta activado"); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaEstaActivado")); } //tiene True en el bool Activado
             }
-            else { MessageBox.Show("Seleccione un elemento de la grilla para volver el producto a ese estado"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionaGrid")); }
 
         }
     }

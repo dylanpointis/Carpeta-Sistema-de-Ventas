@@ -23,6 +23,15 @@ namespace DAL
             dalCon.EjecutarProcAlmacenado("EliminarCliente", parametros);
         }
 
+        public void HabilitarCliente(int dni)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+          {
+                new SqlParameter("@DNI", dni)
+          };
+            dalCon.EjecutarProcAlmacenado("HabilitarCliente", parametros);
+        }
+
         public void ModificarCliente(BECliente cliente)
         {
             SqlParameter[] parametros = new SqlParameter[]
@@ -31,7 +40,8 @@ namespace DAL
                 new SqlParameter("@Nombre", cliente.Nombre),
                 new SqlParameter("@Apellido", cliente.Apellido),
                 new SqlParameter("@Mail", cliente.Mail),
-                new SqlParameter("@Direccion", cliente.Direccion)
+                new SqlParameter("@Direccion", cliente.Direccion),
+                new SqlParameter("@Borrado", cliente.BorradoLogico)
              };
             dalCon.EjecutarProcAlmacenado("ModificarCliente", parametros);
         }
@@ -67,6 +77,7 @@ namespace DAL
             foreach(DataRow row in tabla.Rows) 
             {
                 cliente = new BECliente(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString(), row[4].ToString());
+                cliente.BorradoLogico = Convert.ToBoolean(row[5]);
                 break;
             }
             return cliente;

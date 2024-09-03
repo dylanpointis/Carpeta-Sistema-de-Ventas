@@ -47,9 +47,9 @@ namespace BLL
         }
 
 
-        public void ActivarProducto(long idProd)
+        public void HabilitarProducto(long idProd)
         {
-            dalProd.ActivarProducto(idProd);
+            dalProd.HabilitarProducto(idProd);
         }
 
 

@@ -13,6 +13,7 @@ namespace BE
         public string Apellido { get; set; }
         public string Mail { get; set; }
         public string Direccion { get; set; }
+        public bool BorradoLogico { get; set; }
 
         public BECliente(int dnicliente, string nombre, string apellido, string mail, string direccion)
         {

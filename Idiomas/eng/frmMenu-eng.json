@@ -16,6 +16,7 @@
   "generarReporteToolStripMenuItem": "Generate report",
   "eventosToolStripMenuItem": "Events",
   "respaldosToolStripMenuItem": "Backups",
+  "productosCToolStripMenuItem": "Product-Changes",
   "btnSesion": "Session",
   "iniciarSesiónToolStripMenuItem": "Log In",
   "cerrarSesionToolStripMenuItem": "Log Out",

@@ -11,7 +11,8 @@ DNICliente INT PRIMARY KEY NOT NULL,
 Nombre varchar(50) NOT NULL,
 Apellido varchar(50) NOT NULL,
 Mail varchar(100) NOT NULL,
-Direccion varchar(150) NOT NULL
+Direccion varchar(150) NOT NULL,
+BorradoLogico bit
 )
 
 
@@ -154,7 +155,7 @@ CREATE PROCEDURE RegistrarCliente
 AS
 BEGIN
 
-    INSERT INTO Clientes VALUES (@DNI, @Nombre, @Apellido, @Mail, @Direccion)
+    INSERT INTO Clientes VALUES (@DNI, @Nombre, @Apellido, @Mail, @Direccion,1)
 END
 GO
 
@@ -162,19 +163,30 @@ CREATE PROCEDURE EliminarCliente
     @DNI int
 AS
 BEGIN
-    DELETE FROM Clientes WHERE DNICliente = @DNI;
+    UPDATE Clientes SET BorradoLogico = 0 where DNICliente = @DNI;
 END
 GO
+
+
+CREATE PROCEDURE HabilitarCliente
+    @DNI int
+AS
+BEGIN
+    UPDATE Clientes SET BorradoLogico = 1 where DNICliente = @DNI;
+END
+GO
+
 
 CREATE PROCEDURE ModificarCliente
     @DNI int,
 	@Nombre varchar(50),
 	@Apellido varchar(50),
 	@Mail varchar(50),
-	@Direccion varchar(150)
+	@Direccion varchar(150),
+	@Borrado bit
 AS
 BEGIN
-    UPDATE Clientes SET Nombre= @Nombre, Apellido = @Apellido, Mail = @Mail, Direccion = @Direccion where DNICliente= @DNI
+    UPDATE Clientes SET Nombre= @Nombre, Apellido = @Apellido, Mail = @Mail, Direccion = @Direccion, BorradoLogico = @Borrado where DNICliente= @DNI
 END
 GO
 
@@ -186,21 +198,22 @@ BEGIN
 END
 GO
 
+/*
 CREATE PROCEDURE VerificarSiClienteTieneFacturas
     @DNI int
 AS
 BEGIN
     SELECT * FROM Facturas WHERE DNICliente = @DNI;
 END
-GO
-
+GO*/
+/*
 CREATE PROCEDURE VerificarSiProductoTieneFacturas
     @CodigoProducto varchar(14)
 AS
 BEGIN
     SELECT * FROM Item_Factura WHERE CodigoProducto =  @CodigoProducto;
 END
-GO
+GO*/
 
 
 CREATE PROCEDURE TraerUltimoIDFactura
@@ -282,7 +295,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE ActivarProducto
+CREATE PROCEDURE HabilitarProducto
 	@CodigoProducto varchar(14)
 AS
 BEGIN
@@ -299,11 +312,12 @@ CREATE PROCEDURE ModificarProducto
 	@Color varchar(50),
 	@Precio float,
 	@Stock smallint,
-	@Almacenamiento smallint
+	@Almacenamiento smallint,
+	@Borrado bit
 
 AS
 BEGIN
-    UPDATE Productos SET Modelo = @Modelo, Descripcion = @Descripcion, Marca = @Marca, Color = @Color, Precio = @Precio, Stock = @Stock, Almacenamiento = @Almacenamiento where CodigoProducto = @CodigoProducto
+    UPDATE Productos SET Modelo = @Modelo, Descripcion = @Descripcion, Marca = @Marca, Color = @Color, Precio = @Precio, Stock = @Stock, Almacenamiento = @Almacenamiento, BorradoLogico = @Borrado where CodigoProducto = @CodigoProducto
 END
 GO
 
@@ -660,8 +674,8 @@ INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram
 INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 512,1);
 
 
-INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==');
-INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==');
+INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==',1);
+INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==',1);
 INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)
 

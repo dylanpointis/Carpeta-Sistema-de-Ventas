@@ -33,7 +33,6 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAplicar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -47,6 +46,7 @@
             this.grillaClientes = new System.Windows.Forms.DataGridView();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.btnAplicar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtDNI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).BeginInit();
             this.SuspendLayout();
@@ -105,19 +105,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAplicar
-            // 
-            this.btnAplicar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAplicar.BackColor = System.Drawing.Color.PowderBlue;
-            this.btnAplicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAplicar.Location = new System.Drawing.Point(872, 254);
-            this.btnAplicar.Name = "btnAplicar";
-            this.btnAplicar.Size = new System.Drawing.Size(104, 45);
-            this.btnAplicar.TabIndex = 76;
-            this.btnAplicar.Text = "Aplicar";
-            this.btnAplicar.UseVisualStyleBackColor = false;
-            this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
             // 
             // btnModificar
             // 
@@ -266,6 +253,19 @@
             this.txtDireccion.Size = new System.Drawing.Size(262, 20);
             this.txtDireccion.TabIndex = 88;
             // 
+            // btnAplicar
+            // 
+            this.btnAplicar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAplicar.BackColor = System.Drawing.Color.PowderBlue;
+            this.btnAplicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAplicar.Location = new System.Drawing.Point(872, 254);
+            this.btnAplicar.Name = "btnAplicar";
+            this.btnAplicar.Size = new System.Drawing.Size(104, 45);
+            this.btnAplicar.TabIndex = 76;
+            this.btnAplicar.Text = "Aplicar";
+            this.btnAplicar.UseVisualStyleBackColor = false;
+            this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
+            // 
             // frmMaestroClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -308,7 +308,6 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnAplicar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnAgregar;
@@ -322,5 +321,6 @@
         private System.Windows.Forms.DataGridView grillaClientes;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.Button btnAplicar;
     }
 }

@@ -25,6 +25,8 @@
   "generarReporteToolStripMenuItem": "Generar reporte",
   "eventosToolStripMenuItem": "Eventos",
   "respaldosToolStripMenuItem": "Respaldos",
+  "productosCToolStripMenuItem": "Productos-Cambios",
+
 
   "btnSesion": "Sesión",
   "iniciarSesiónToolStripMenuItem": "Iniciar sesión",

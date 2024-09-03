@@ -19,6 +19,7 @@
   "generarReporteToolStripMenuItem": "Generar reporte",
   "eventosToolStripMenuItem": "Eventos",
   "respaldosToolStripMenuItem": "Respaldos",
+  "productosCToolStripMenuItem": "Productos-Cambios",
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

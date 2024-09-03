@@ -16,6 +16,34 @@
 
 
 
+
+  "Admin": "Admin",
+  "Maestros": "Maestros",
+  "Usuarios": "Usuarios",
+  "Ventas": "Ventas",
+  "Compras": "Compras",
+  "Reportes": "Reportes",
+  "Ayuda": "Ayuda",
+  "gestiónDeUsuariosToolStripMenuItem": "Gestión de Usuarios",
+  "gestiónDePerfilesToolStripMenuItem": "Gestión de Perfiles",
+  "productosToolStripMenuItem": "Productos",
+  "clientesToolStripMenuItem": "Clientes",
+  "cambiarClaveToolStripMenuItem": "Cambiar clave",
+  "cambiarIdiomaToolStripMenuItem": "Cambiar idioma",
+  "generarFacturaToolStripMenuItem": "Generar factura",
+  "btnSesion": "Sesión",
+  "iniciarSesiónToolStripMenuItem": "Iniciar sesión",
+  "cerrarSesionToolStripMenuItem": "Cerrar sesión",
+  "generarReporteToolStripMenuItem": "Generar reporte",
+  "eventosToolStripMenuItem": "Eventos",
+  "respaldosToolStripMenuItem": "Respaldos",
+  "productosCToolStripMenuItem": "Productos-Cambios",
+
+
+
+
+
+
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

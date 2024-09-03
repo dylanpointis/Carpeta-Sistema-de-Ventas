@@ -71,6 +71,7 @@ namespace Carpeta_Sistema_de_Ventas
 
 
                             SessionManager.GetInstance.LogIn(user);
+                            IdiomaManager.GetInstance().PrimeraVez = true;
 
                             bllUsuario.ModificarContFallido(user.NombreUsuario, 0);
 

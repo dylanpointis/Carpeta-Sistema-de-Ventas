@@ -226,7 +226,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(104, 45);
             this.btnEliminar.TabIndex = 17;
-            this.btnEliminar.Text = "Desactivar";
+            this.btnEliminar.Text = "Desactivar/Activar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 

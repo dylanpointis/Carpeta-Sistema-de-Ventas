@@ -135,7 +135,7 @@
             // 
             this.productosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
@@ -143,7 +143,7 @@
             // 
             this.clientesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -151,7 +151,7 @@
             // 
             this.productosCToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productosCToolStripMenuItem.Name = "productosCToolStripMenuItem";
-            this.productosCToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.productosCToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.productosCToolStripMenuItem.Text = "Productos-C";
             this.productosCToolStripMenuItem.Click += new System.EventHandler(this.productosCToolStripMenuItem_Click);
             // 

@@ -1,0 +1,41 @@
+{
+  "label2": "Product Change Audit",
+  "btnActualizar": "Refresh",
+  "btnActivar": "Activate",
+  "label1": "Product model:",
+  "label3": "Product code:",
+  "label8": "Start date",
+  "label9": "End date",
+  "btnBuscar": "Search",
+  "btnLimpiar": "Clear",
+  "fechaInicial": "The start date cannot be later than the end date",
+  "fechaFinal": "The end date cannot be earlier than the start date",
+  "textoFecha": "Date",
+  "dgvCodProd": "Product code",
+  "dgvFecha": "Date",
+  "dgvHora": "Time",
+  "dgvModelo": "Model",
+  "dgvDescripcion": "Description",
+  "dgvMarca": "Brand",
+  "dgvColor": "Color",
+  "dgvPrecio": "Price",
+  "dgvStock": "Stock",
+  "dgvAlmacenamiento": "Storage",
+  "dgvBorrado": "Deleted",
+  "dgvActivo": "Active",
+  "boolTrue": "Yes",
+  "boolFalse": "No",
+  "boolBorrado": "Deleted",
+  "boolHabilitado": "Enabled",
+
+  "exitoActivado": "Product successfully activated, the product has returned to the selected state",
+  "yaEstaActivado": "The product is already activated",
+  "seleccionaGrid": "Select an item from the grid to return the product to that state",
+
+
+  "cerrar": "Log out",
+  "deseaCerrar": "Do you want to log out?",
+  "noHaySesion": "There is no active session",
+  "haySesion": "There is already an active session"
+}
+

@@ -45,7 +45,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaProductos.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
             grillaProductos.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewStock");
             grillaProductos.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewAlmacenamiento");
-            grillaProductos.Columns[8].Name = "Activo";
+            grillaProductos.Columns[8].Name = "Borrado";
 
             grillaProductos.Columns[8].Visible = false;
 
@@ -115,22 +115,38 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaProductos.SelectedRows.Count > 0)
             {
-                LlenarCampos();
-                modoOperacion = EnumModoAplicar.Modificar;
-                BloquearBotones();
-                lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
+                long codProd = Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value);
+                if (grillaProductos.CurrentRow.Cells[8].Value.ToString() == "True")
+                {
+                    LlenarCampos();
+                    modoOperacion = EnumModoAplicar.Modificar;
+                    BloquearBotones();
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {codProd}";
+                }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar")); } //No se puede modifcar un producto deshabilitado
+                
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
 
-
+        //este boton sirve tanto para habilitar como deshabilitar un producto, dependiendo de lo que diga su texto
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (grillaProductos.SelectedRows.Count > 0)
             {
-                modoOperacion = EnumModoAplicar.Eliminar;
-                BloquearBotones();
-                lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
+                if(btnEliminar.Text == IdiomaManager.GetInstance().ConseguirTexto("deshabilitar")) //si dice deshabilitar
+                {
+                    modoOperacion = EnumModoAplicar.Eliminar;
+                    BloquearBotones();
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
+
+                }
+                else //si dice habilitar
+                {
+                    modoOperacion = EnumModoAplicar.Activar;
+                    BloquearBotones();
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoActivar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
+                }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
@@ -157,7 +173,7 @@ namespace Carpeta_Sistema_de_Ventas
                             BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text),true);
                             bllProducto.RegistrarProducto(prod);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                     }
@@ -172,23 +188,41 @@ namespace Carpeta_Sistema_de_Ventas
                         if (resultado == DialogResult.Yes)
                         {
                             long idProd = Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value);
-                            if (bllProducto.VerificarSiProductoTieneFacturas(idProd) == false)
-                            {
-                                bllProducto.EliminarProducto(idProd);
+                           
+                            bllProducto.EliminarProducto(idProd);
 
-                                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto eliminado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
-                            }
-                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("tieneFacturas")); }
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto eliminado", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                     }
+                    if (modoOperacion == EnumModoAplicar.Activar)
+                    {
+                        DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("estaSeguroHabilitar") + " " + grillaProductos.CurrentRow.Cells[0].Value + " ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (resultado == DialogResult.Yes)
+                        {
+                            long idProd = Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value);
+
+                            bllProducto.HabilitarProducto(idProd);
+
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto habilitado", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                        }
+
+                    }
+
+
                     if (modoOperacion == EnumModoAplicar.Modificar)
                     {
-                        BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text),txtModelo.Text,txtDescripcion.Text,cmbMarca.Text,txtColor.Text, Convert.ToDouble(txtPrecio.Text),Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text),true);
-                        bllProducto.ModificarProducto(prod);
+                        if (grillaProductos.CurrentRow.Cells[8].Value.ToString() == "True")
+                        {
+                            BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text), true);
+                            bllProducto.ModificarProducto(prod);
 
-                        bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                        }
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar")); } //No se puede modifcar un producto deshabilitado
                     }
                 }
                 ResetearBotones();
@@ -319,15 +353,33 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaProductos.SelectedRows.Count > 0)
             {
+                long codProd = Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value);
                 if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
-                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {codProd}";
+                }
+                if (modoOperacion == EnumModoAplicar.Activar)
+                {
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoActivar")}: {codProd}";
                 }
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
-                    LlenarCampos();
-                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaProductos.CurrentRow.Cells[0].Value}";
+                    if (grillaProductos.CurrentRow.Cells[8].Value.ToString() == "True") //Si esta habilitado se puede modificar
+                    {
+                        LlenarCampos();
+                        lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {codProd}";
+                    }
+                    else // si no esta habilitado no se puede
+                    {
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"));
+                        ResetearBotones();
+                    }
                 }
+
+                if (grillaProductos.CurrentRow.Cells[8].Value.ToString() == "False") 
+                { 
+                    btnEliminar.Text = IdiomaManager.GetInstance().ConseguirTexto("habilitar");
+                } else { btnEliminar.Text = IdiomaManager.GetInstance().ConseguirTexto("deshabilitar"); }
             }
         }
 

@@ -39,12 +39,18 @@ namespace Carpeta_Sistema_de_Ventas
         private void frmMaestroClientes_Load(object sender, EventArgs e)
         {
 
-            grillaClientes.ColumnCount = 5;
+            grillaClientes.ColumnCount = 6;
             grillaClientes.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDNI");
             grillaClientes.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre");
             grillaClientes.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewApellido");
             grillaClientes.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMail");
             grillaClientes.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion");
+
+            grillaClientes.Columns[5].Name = "Borrado";
+
+            grillaClientes.Columns[5].Visible = false;
+
+
 
 
             modoOperacion = EnumModoAplicar.Consulta;
@@ -60,7 +66,16 @@ namespace Carpeta_Sistema_de_Ventas
             grillaClientes.Rows.Clear();
             foreach (BECliente c in listaClientes)
             {
-                grillaClientes.Rows.Add(c.DniCliente, c.Nombre, c.Apellido, c.Mail, c.Direccion);
+                grillaClientes.Rows.Add(c.DniCliente, c.Nombre, c.Apellido, c.Mail, c.Direccion, c.BorradoLogico);
+            }
+
+            grillaClientes.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN ROJO A LOS NO ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW
+            foreach (DataGridViewRow row in grillaClientes.Rows)
+            {
+                if (row.Cells[5].Value != null && row.Cells[5].Value.ToString() == "False")
+                {
+                    row.DefaultCellStyle.BackColor = Color.Crimson; //pone en rojo el background
+                }
             }
         }
 
@@ -98,10 +113,14 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaClientes.SelectedRows.Count > 0)
             {
-                LlenarCampos();
-                modoOperacion = EnumModoAplicar.Modificar;
-                BloquearBotones();
-                lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
+                if (grillaClientes.CurrentRow.Cells[5].Value.ToString() == "True")
+                {
+                    LlenarCampos();
+                    modoOperacion = EnumModoAplicar.Modificar;
+                    BloquearBotones();
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
+                }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar")); } //No se puede modificar a un cliente deshabilitado
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
@@ -119,9 +138,18 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaClientes.SelectedRows.Count > 0)
             {
-                modoOperacion = EnumModoAplicar.Eliminar;
-                BloquearBotones();
-                lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
+                if (btnEliminar.Text == IdiomaManager.GetInstance().ConseguirTexto("deshabilitar")) //si dice deshabilitar
+                {
+                    modoOperacion = EnumModoAplicar.Eliminar;
+                    BloquearBotones();
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
+                }
+                else //si dice habilitar
+                {
+                    modoOperacion = EnumModoAplicar.Activar;
+                    BloquearBotones();
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoActivar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
+                }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
@@ -149,7 +177,7 @@ namespace Carpeta_Sistema_de_Ventas
                             bllCliente.RegistrarCliente(cli);
 
 
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                     }
@@ -165,23 +193,39 @@ namespace Carpeta_Sistema_de_Ventas
                         {
                             int dniCliente = Convert.ToInt32(grillaClientes.CurrentRow.Cells[0].Value);
 
-                            if(bllCliente.VerificarSiClienteTieneFacturas(dniCliente) == false)
-                            {
-                                bllCliente.EliminarCliente(dniCliente);
+                            bllCliente.EliminarCliente(dniCliente);
 
-                                bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente eliminado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
-                            }
-                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("tieneFacturas")); }
+                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente eliminado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            
                         }
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar)
                     {
-                        BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
-                        bllCliente.ModificarCliente(cliente);
+                        if(grillaClientes.CurrentRow.Cells[5].Value.ToString() == "True") // si esta habilitado se puede modificar
+                        {
+                            BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
+                            cliente.BorradoLogico = true;
+                            bllCliente.ModificarCliente(cliente);
 
-                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente modificado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente modificado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                        }
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar")); } //No se puede modificar a un cliente deshabilitado
+                    }
+                    if(modoOperacion == EnumModoAplicar.Activar)
+                    {
+                        DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("estaSeguroHabilitar") + " " + grillaClientes.CurrentRow.Cells[0].Value + " ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (resultado == DialogResult.Yes)
+                        {
+                            int dni = Convert.ToInt32(grillaClientes.CurrentRow.Cells[0].Value);
+
+                            bllCliente.HabilitarCliente(dni);
+
+                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente habilitado", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                        }
                     }
                 }
 
@@ -293,15 +337,32 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(grillaClientes.SelectedRows.Count > 0)
             {
+                int dni = Convert.ToInt32(grillaClientes.CurrentRow.Cells[0].Value);
+
                 if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
-                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
+                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoEliminar")}: {dni}";
                 }
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
-                    LlenarCampos();
-                    lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
+                    if (grillaClientes.CurrentRow.Cells[5].Value.ToString() == "True")//Si esta habilitado se puede modificar
+                    {
+                        LlenarCampos();
+                        lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {dni}";
+                    }
+                    else //Si no esta habilitado no se puede modificar
+                    {
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"));
+                        ResetearBotones();
+                    }
                 }
+
+                BECliente cli = bllCliente.VerificarCliente(dni);
+                if(cli.BorradoLogico == false)
+                {
+                    btnEliminar.Text = IdiomaManager.GetInstance().ConseguirTexto("habilitar");
+                }
+                else { btnEliminar.Text = IdiomaManager.GetInstance().ConseguirTexto("deshabilitar"); }
             }
         }
 

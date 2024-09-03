@@ -3,7 +3,7 @@
   "btnActualizar": "Actualizar",
   "btnAgregar": "Agregar",
   "btnModificar": "Modificar",
-  "btnEliminar": "Eliminar",
+  "btnEliminar": "Deshabilitar",
   "btnAplicar": "Aplicar",
   "btnCancelar": "Cancelar",
   "label1": "Apellido",
@@ -13,7 +13,7 @@
   "label7": "Dirección",
   "lblMensaje": "Mensaje: Modo Consulta",
   "modoAñadir": "Mensaje: Modo Añadir",
-  "modoEliminar": "Mensaje: Modo Eliminar cliente DNI",
+  "modoEliminar": "Mensaje: Modo Deshabilitar cliente DNI",
   "modoModificar": "Mensaje: Modo Modificar cliente DNI",
   "modoDesbloquear": "Mensaje: Modo Desbloquear",
   "yaExiste": "Ya existe un cliente con el DNI ingresado",
@@ -22,7 +22,7 @@
   "seleccione": "Seleccione un Cliente en la grilla",
   "exito": "Operación exitosa",
   "llenarCampos": "Llene los campos",
-  "estaSeguro": "¿Está seguro que desea eliminar al cliente DNI:",
+  "estaSeguro": "¿Está seguro que desea deshabilitar al cliente DNI:",
   "tieneFacturas": "El cliente no puede eliminarse porque tiene facturas registradas a su nombre",
   "formato": "El formato del correo electrónico no es válido",
   "gridViewDNI": "DNI",
@@ -30,6 +30,13 @@
   "gridViewApellido": "Apellido",
   "gridViewMail": "Mail",
   "gridViewDireccion": "Direccion",
+
+
+  "noSePuedeModificar": "No se puede modificar a un cliente deshabilitado",
+  "habilitar": "Habilitar",
+  "deshabilitar": "Deshabilitar",
+  "estaSeguroHabilitar": "¿Está seguro que desea habilitar al cliente DNI:",
+  "modoActivar": "Mensaje: Modo Habilitar cliente DNI",
 
 
   "cerrar": "Cerrar sesión",

@@ -147,7 +147,7 @@
             // 
             this.btnActualizar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Location = new System.Drawing.Point(247, 31);
+            this.btnActualizar.Location = new System.Drawing.Point(307, 31);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 81;

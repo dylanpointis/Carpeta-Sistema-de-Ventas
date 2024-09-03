@@ -70,7 +70,9 @@ namespace DAL
                 new SqlParameter("@Color", prod.Color),
                 new SqlParameter("@Precio", prod.Precio),
                 new SqlParameter("@Stock", prod.Stock),
-                new SqlParameter("@Almacenamiento", prod.Almacenamiento)
+                new SqlParameter("@Almacenamiento", prod.Almacenamiento),
+                new SqlParameter("@Borrado", prod.BorradoLogico),
+
             };
             dalCon.EjecutarProcAlmacenado("ModificarProducto", parametros);
         }
@@ -90,12 +92,13 @@ namespace DAL
             else { return false; }
         }
 
-        public void ActivarProducto(long idProd)
+        public void HabilitarProducto(long idProd)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
                  new SqlParameter("@CodigoProducto", idProd)
             };
+            dalCon.EjecutarProcAlmacenado("HabilitarProducto", parametros);
         }
     }
 }

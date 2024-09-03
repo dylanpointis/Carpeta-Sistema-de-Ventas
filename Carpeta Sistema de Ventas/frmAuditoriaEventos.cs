@@ -227,6 +227,7 @@ namespace Carpeta_Sistema_de_Ventas
             txtModulo.Items.Add("Gestión Perfiles");
             txtModulo.Items.Add("Ventas");
             txtModulo.Items.Add("Productos");
+            txtModulo.Items.Add("Clientes");
 
 
 
@@ -272,11 +273,14 @@ namespace Carpeta_Sistema_de_Ventas
                     case "Productos":
                         txtEvento.Items.Add("Producto creado");
                         txtEvento.Items.Add("Producto eliminado");
+                        txtEvento.Items.Add("Producto habilitado");
                         txtEvento.Items.Add("Producto modificado");
+                        txtEvento.Items.Add("Stock reducido");
                         break;
                     case "Clientes":
                         txtEvento.Items.Add("Cliente creado");
                         txtEvento.Items.Add("Cliente eliminado");
+                        txtEvento.Items.Add("Cliente habilitado");
                         txtEvento.Items.Add("Cliente modificado");
                         break;
                 }
