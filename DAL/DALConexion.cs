@@ -71,7 +71,7 @@ namespace DAL
                     con.Close();
                 }
             }
-            catch(Exception ex) { tran.Rollback(); }
+            catch(Exception ex) { tran.Rollback(); throw ex; }
         }
 
         public int EjecutarYTraerId(string nombreProc, SqlParameter[] parametros)
@@ -87,6 +87,10 @@ namespace DAL
                     command.Transaction = tran;
                     foreach (SqlParameter parametro in parametros)
                     {
+                        if (parametro.Value == null)
+                        {
+                            parametro.Value = DBNull.Value;
+                        }
                         command.Parameters.Add(parametro);
                     }
                     idGenerado = Convert.ToInt32(command.ExecuteScalar());
@@ -95,7 +99,7 @@ namespace DAL
                     return idGenerado;
                 }
             }
-            catch (Exception ex) { tran.Rollback(); return idGenerado;}
+            catch (Exception ex) { tran.Rollback(); return idGenerado; throw ex; }
             
         }
 
@@ -113,7 +117,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw ex;
             }
             finally
             {

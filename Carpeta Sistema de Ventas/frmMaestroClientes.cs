@@ -7,11 +7,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Carpeta_Sistema_de_Ventas
 {
@@ -54,6 +56,7 @@ namespace Carpeta_Sistema_de_Ventas
 
 
             modoOperacion = EnumModoAplicar.Consulta;
+            listaClientes = bllCliente.TraerListaCliente();
             ActualizarGrilla();
             ResetearBotones();
         }
@@ -62,7 +65,6 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void ActualizarGrilla()
         {
-            listaClientes = bllCliente.TraerListaCliente();
             grillaClientes.Rows.Clear();
             foreach (BECliente c in listaClientes)
             {
@@ -81,6 +83,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            listaClientes = bllCliente.TraerListaCliente();
             ActualizarGrilla();
         }
 
@@ -283,15 +286,14 @@ namespace Carpeta_Sistema_de_Ventas
             }
 
             grillaClientes.Rows.Clear();
-            foreach(BECliente c in lstConsulta)
-            {
-                grillaClientes.Rows.Add(c.DniCliente, c.Nombre, c.Apellido, c.Mail, c.Direccion);
-            }
+            listaClientes = lstConsulta;
+            ActualizarGrilla();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             ResetearBotones();
+            ActualizarGrilla();
         }
 
         private void BloquearBotones()
@@ -300,6 +302,8 @@ namespace Carpeta_Sistema_de_Ventas
             btnAgregar.Enabled = false;
             btnEliminar.Enabled = false;
             btnCancelar.Enabled = true;
+            btnSerializar.Enabled = false;
+            btnDeserializar.Enabled = false;
             if (modoOperacion == EnumModoAplicar.Modificar)
             {
                 txtDNI.Enabled = false;
@@ -331,6 +335,10 @@ namespace Carpeta_Sistema_de_Ventas
             btnModificar.Enabled = true;
             btnAgregar.Enabled = true;
             btnEliminar.Enabled = true;
+            btnSerializar.Enabled = true;
+            btnDeserializar.Enabled = true;
+
+            listaClientes = bllCliente.TraerListaCliente();
         }
 
         private void grillaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -389,6 +397,60 @@ namespace Carpeta_Sistema_de_Ventas
                     }
                 }
             }
+        }
+
+
+
+        //SERIALIZACION - DESERIALIZACION XML
+
+        private void btnSerializar_Click(object sender, EventArgs e)
+        {
+            if (grillaClientes.Rows.Count > 0)
+            {
+                try
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "XML Files|*.xml";
+                    saveFileDialog.FileName = DateTime.Now.ToString("yyyy-MM-dd HH_mm");
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                        {
+                            XmlSerializer serializer = new XmlSerializer(typeof(List<BECliente>));
+                            serializer.Serialize(fs, listaClientes);
+                        }
+
+                        bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo serializado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
+
+                        MessageBox.Show("Archivo serializado guardado exitosamente");
+                        grillaClientes.Rows.Clear();
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+                
+            }
+            else { MessageBox.Show("No hay ningun registro en la grilla para serializar"); }
+        }
+
+        private void btnDeserializar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "XML Files|*.xml";
+                if(openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof (List<BECliente>));
+                        listaClientes = (List<BECliente>) serializer.Deserialize(fs);
+                    }
+                    bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo deserializado", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
+                    grillaClientes.Rows.Clear();
+                    ActualizarGrilla();
+                }
+            }
+            catch(Exception ex) { MessageBox.Show("Error: " + ex.Message); }
         }
     }
 }

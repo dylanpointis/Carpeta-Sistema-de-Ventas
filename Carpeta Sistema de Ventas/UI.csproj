@@ -57,6 +57,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="COMPRAfrmConfirmarRecepcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="COMPRAfrmConfirmarRecepcion.Designer.cs">
+      <DependentUpon>COMPRAfrmConfirmarRecepcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="COMPRAfrmGenerarOrdenCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="COMPRAfrmGenerarOrdenCompra.Designer.cs">
+      <DependentUpon>COMPRAfrmGenerarOrdenCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="COMPRAfrmGenerarSolicitudCotizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="COMPRAfrmGenerarSolicitudCotizacion.Designer.cs">
+      <DependentUpon>COMPRAfrmGenerarSolicitudCotizacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="COMPRAfrmRegistrarPagoProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="COMPRAfrmRegistrarPagoProveedor.Designer.cs">
+      <DependentUpon>COMPRAfrmRegistrarPagoProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="COMPRAfrmPreRegistrarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="COMPRAfrmPreRegistrarProveedor.Designer.cs">
+      <DependentUpon>COMPRAfrmPreRegistrarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="COMPRAfrmRegistrarProveedorCompleto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="COMPRAfrmRegistrarProveedorCompleto.Designer.cs">
+      <DependentUpon>COMPRAfrmRegistrarProveedorCompleto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="COMPRAfrmSeleccionarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="COMPRAfrmSeleccionarProducto.Designer.cs">
+      <DependentUpon>COMPRAfrmSeleccionarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAuditoriaCambios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +209,27 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="COMPRAfrmConfirmarRecepcion.resx">
+      <DependentUpon>COMPRAfrmConfirmarRecepcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="COMPRAfrmGenerarOrdenCompra.resx">
+      <DependentUpon>COMPRAfrmGenerarOrdenCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="COMPRAfrmGenerarSolicitudCotizacion.resx">
+      <DependentUpon>COMPRAfrmGenerarSolicitudCotizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="COMPRAfrmRegistrarPagoProveedor.resx">
+      <DependentUpon>COMPRAfrmRegistrarPagoProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="COMPRAfrmPreRegistrarProveedor.resx">
+      <DependentUpon>COMPRAfrmPreRegistrarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="COMPRAfrmRegistrarProveedorCompleto.resx">
+      <DependentUpon>COMPRAfrmRegistrarProveedorCompleto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="COMPRAfrmSeleccionarProducto.resx">
+      <DependentUpon>COMPRAfrmSeleccionarProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAuditoriaCambios.resx">
       <DependentUpon>frmAuditoriaCambios.cs</DependentUpon>
     </EmbeddedResource>

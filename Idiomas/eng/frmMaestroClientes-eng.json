@@ -30,6 +30,8 @@
   "gridViewApellido": "Last name",
   "gridViewMail": "Email",
   "gridViewDireccion": "Address",
+  "btnSerializar": "Serialize",
+  "btnDeserializar": "Deserialize",
 
   "noSePuedeModificar": "Cannot modify a disabled customer",
   "habilitar": "Enable",

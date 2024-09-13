@@ -32,7 +32,8 @@ namespace DAL
                 dalCon.EjecutarComando("ALTER DATABASE CarpetaIngSoftware SET MULTI_USER;");
             }
             catch (Exception ex) 
-            { 
+            {
+                throw ex;
             }
             finally // Asegura que la base de datos esté en modo multiusuario al final del proceso, incluso si hay un fallo
             { 

@@ -223,19 +223,32 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if(txtNumFactura.Text != "")
+            if (txtNumFactura.Text == "" && txtNumTransaccion.Text == "" && txtDni.Text == "")
             {
-                BEFactura fac = bllFactura.TraerFacturas().FirstOrDefault(f => f.NumFactura == Convert.ToInt64(txtNumFactura.Text));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingrese"));
+            }
+            else
+            {
+                //Si no esta vacio convierte a int32, si no le pone 0
+                int numfac = txtNumFactura.Text != "" ? Convert.ToInt32(txtNumFactura.Text) : 0;
+                int numtran = txtNumTransaccion.Text != "" ? Convert.ToInt32(txtNumTransaccion.Text) : 0;
+                int dni = txtDni.Text != "" ? Convert.ToInt32(txtDni.Text) : 0;
+
+
+
+                List<BEFactura> listaFacturasConsulta = bllFactura.ConsultarFacturas(numfac, numtran, dni);
 
                 grillaFacturas.Rows.Clear();
 
-                grillaFacturas.Rows.Add(fac.NumFactura, fac.clienteFactura.DniCliente, fac.cobro.NumTransaccionBancaria,
+                foreach (BEFactura fac in listaFacturasConsulta)
+                {
+                    grillaFacturas.Rows.Add(fac.NumFactura, fac.clienteFactura.DniCliente, fac.cobro.NumTransaccionBancaria,
                     fac.MontoTotal, fac.Impuesto, fac.Fecha, fac.cobro.stringMetodoPago, fac.cobro.MarcaTarjeta, fac.cobro.CantCuotas, fac.cobro.AliasMP,
                     fac.clienteFactura.Nombre, fac.clienteFactura.Apellido, fac.clienteFactura.Mail, fac.clienteFactura.Direccion);
+                }
+
+                //txtNumFactura.Text = ""; txtNumTransaccion.Text = "";  txtDni.Text = "";
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingrese")); }
-            
-           
         }
 
 
@@ -270,15 +283,16 @@ namespace Carpeta_Sistema_de_Ventas
 
                 fac = bllFactura.TraerItemsFactura(fac);
 
-                double total = 0;
+                double subtotal = 0;
                 foreach (BEItemFactura item in fac.listaProductosAgregados)
                 {
                     BEProducto prod = item.producto;
                     int cantidad = item.cantidad;
-                    total = cantidad * prod.Precio;
+                    subtotal += cantidad * prod.Precio;
 
-                    grillaItems.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, total);
+                    grillaItems.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
                 }
+                grillaItems.Rows.Add("","","","",subtotal);
             }
         }
 

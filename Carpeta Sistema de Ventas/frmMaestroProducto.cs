@@ -388,8 +388,6 @@ namespace Carpeta_Sistema_de_Ventas
         private void txtCodigoProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             NumericUpDown numUpDown = sender as NumericUpDown;
-     
-
             if (!char.IsControl(e.KeyChar))
             {
                 string texto = numUpDown.Text;
@@ -409,17 +407,57 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+            NumericUpDown numUpDown = sender as NumericUpDown;
+            if (!char.IsControl(e.KeyChar))
             {
-                e.Handled = true;
+                string texto = numUpDown.Text;
+
+                if (texto.Length >= 3)
+                {
+                    e.Handled = true;
+                }
+
+                /*no puede escribir . - ,*/
+                if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+                {
+                    e.Handled = true;
+                }
             }
         }
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == '.' || e.KeyChar == '-')
+            NumericUpDown numUpDown = sender as NumericUpDown;
+            if (!char.IsControl(e.KeyChar))
             {
-                e.Handled = true;
+                if (e.KeyChar == '.' || e.KeyChar == '-')
+                {
+                    e.Handled = true;
+                }
+                if (numUpDown.Text.Length >= 9)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtAlmacenamiento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericUpDown numUpDown = sender as NumericUpDown;
+            if (!char.IsControl(e.KeyChar))
+            {
+                string texto = numUpDown.Text;
+
+                if (texto.Length >= 8)
+                {
+                    e.Handled = true;
+                }
+
+                /*no puede escribir . - ,*/
+                if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+                {
+                    e.Handled = true;
+                }
             }
         }
     }

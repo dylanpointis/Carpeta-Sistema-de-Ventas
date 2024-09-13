@@ -33,7 +33,7 @@ BorradoLogico bit
 CREATE TABLE Facturas(
 NumFactura INT PRIMARY KEY IDENTITY(1,1),
 DNICliente INT FOREIGN KEY REFERENCES Clientes(DNICliente),
-NumeroTransaccion INT,
+NumeroTransaccion INT UNIQUE,
 MontoTotal float,
 Impuesto float,
 Fecha varchar(50),
@@ -51,7 +51,7 @@ Item INT PRIMARY KEY IDENTITY(1,1),
 NumFactura INT FOREIGN KEY REFERENCES Facturas(NumFactura),
 CodigoProducto varchar(14) FOREIGN KEY REFERENCES Productos(CodigoProducto),
 Cant smallint,
-SubTotal float
+PrecioVenta float
 )
 GO
 
@@ -198,6 +198,15 @@ BEGIN
 END
 GO
 
+
+CREATE PROCEDURE TraerUltimoNumTransaccion
+AS
+BEGIN
+SELECT TOP 1 NumeroTransaccion from Facturas ORDER BY NumFactura DESC
+END 
+GO
+
+
 /*
 CREATE PROCEDURE VerificarSiClienteTieneFacturas
     @DNI int
@@ -215,13 +224,13 @@ BEGIN
 END
 GO*/
 
-
+/*
 CREATE PROCEDURE TraerUltimoIDFactura
 AS
 BEGIN
 SELECT IDENT_CURRENT( 'Facturas' )  
 END 
-GO
+GO*/
 
 /*
 /*Solo registra la fecha. Luego se le modifica los datos del pago. Devuelve el ID NumFactura generado*/
@@ -248,6 +257,7 @@ CREATE PROCEDURE RegistrarFactura
 AS
 BEGIN
     INSERT INTO Facturas VALUES (@DNICliente, @NumTransaccion, @MontoTotal, @Impuesto, @Fecha, @MetodoPago, @MarcaTarjeta, @CantCuotas, @AliasMP, @ComentarioAdicional);
+	SELECT SCOPE_IDENTITY()
 END
 GO
 
@@ -255,10 +265,10 @@ CREATE PROCEDURE RegistrarItemFactura
     @NumFactura int,
 	@CodigoProducto varchar(14),
 	@Cant int,
-	@SubTotal float
+	@PrecioVenta float
 AS
 BEGIN
-    INSERT INTO Item_Factura VALUES (@NumFactura,@CodigoProducto,@Cant,@SubTotal);
+    INSERT INTO Item_Factura VALUES (@NumFactura,@CodigoProducto,@Cant,@PrecioVenta);
 END
 GO
 
@@ -322,10 +332,10 @@ END
 GO
 
 
-CREATE PROCEDURE TraerFacturas
+CREATE PROCEDURE TraerUltimas100Facturas
 AS
 BEGIN
-     SELECT * FROM Facturas F INNER JOIN Clientes C ON C.DNICliente = F.DNICliente;
+     SELECT TOP 100 * FROM Facturas F INNER JOIN Clientes C ON C.DNICliente = F.DNICliente ORDER BY NumFactura DESC;
 END
 GO
 
@@ -337,6 +347,18 @@ BEGIN
 	SELECT * FROM Item_Factura I INNER JOIN Productos P ON I.CodigoProducto = P.CodigoProducto WHERE I.NumFactura = @NumFactura;
 END
 GO
+
+CREATE PROCEDURE ConsultarFacturas
+@NumFactura int,
+@NumTransaccion int,
+@DNICliente int
+AS
+BEGIN
+	SELECT * FROM Facturas F INNER JOIN Clientes C ON C.DNICliente = F.DNICliente
+	WHERE NumFactura = @NumFactura OR NumeroTransaccion = @NumTransaccion OR F.DNICliente = @DNICliente  ORDER BY NumFactura DESC;
+END
+GO
+
 
 
 /*COMPOSITE*/

@@ -222,6 +222,7 @@
             this.txtNumTransaccion.Name = "txtNumTransaccion";
             this.txtNumTransaccion.Size = new System.Drawing.Size(144, 20);
             this.txtNumTransaccion.TabIndex = 36;
+            this.txtNumTransaccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTransaccion_KeyPress);
             // 
             // label10
             // 

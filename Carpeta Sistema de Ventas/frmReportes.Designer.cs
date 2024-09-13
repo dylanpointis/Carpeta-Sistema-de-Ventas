@@ -37,6 +37,10 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.grillaItems = new System.Windows.Forms.DataGridView();
             this.lblProductos = new System.Windows.Forms.Label();
+            this.txtNumTransaccion = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtDni = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaFacturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaItems)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +88,7 @@
             this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(447, 467);
+            this.btnBuscar.Location = new System.Drawing.Point(757, 467);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(104, 30);
             this.btnBuscar.TabIndex = 23;
@@ -149,11 +153,51 @@
             this.lblProductos.TabIndex = 73;
             this.lblProductos.Text = "Productos vendidos:";
             // 
+            // txtNumTransaccion
+            // 
+            this.txtNumTransaccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtNumTransaccion.Location = new System.Drawing.Point(442, 477);
+            this.txtNumTransaccion.Name = "txtNumTransaccion";
+            this.txtNumTransaccion.Size = new System.Drawing.Size(134, 20);
+            this.txtNumTransaccion.TabIndex = 75;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(439, 461);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 13);
+            this.label3.TabIndex = 74;
+            this.label3.Text = "Número de transacción";
+            // 
+            // txtDni
+            // 
+            this.txtDni.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtDni.Location = new System.Drawing.Point(602, 477);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(134, 20);
+            this.txtDni.TabIndex = 77;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(599, 461);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 13);
+            this.label4.TabIndex = 76;
+            this.label4.Text = "DNI Cliente";
+            // 
             // frmReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 529);
+            this.Controls.Add(this.txtDni);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtNumTransaccion);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblProductos);
             this.Controls.Add(this.grillaItems);
             this.Controls.Add(this.btnActualizar);
@@ -185,5 +229,9 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.DataGridView grillaItems;
         private System.Windows.Forms.Label lblProductos;
+        private System.Windows.Forms.TextBox txtNumTransaccion;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtDni;
+        private System.Windows.Forms.Label label4;
     }
 }

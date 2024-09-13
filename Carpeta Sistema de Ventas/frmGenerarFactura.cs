@@ -51,6 +51,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaClientes.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMail");
             grillaClientes.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion");
             grillaClientes.Columns[0].Width = 63;
+            grillaClientes.RowHeadersWidth = 30;
 
 
 
@@ -135,9 +136,9 @@ namespace Carpeta_Sistema_de_Ventas
             List<BECliente> lstClientes = bllCliente.TraerListaCliente();
             List<BECliente> lstClientesEncontrados = new List<BECliente>();
 
-            /*Crea una lista con los clientes encontrados. Concatena el dni, nombre y apellido y luego con el metodo Contain se fija si contiene las letras de la consulta*/
+            /*Crea una lista con los clientes encontrados. //Busca por el dni exacto o si no: Concatena el nombre y apellido y luego con el metodo Contain se fija si contiene las letras de la consulta*/
             lstClientesEncontrados = lstClientes
-            .Where(c => (c.DniCliente.ToString() + c.Nombre.ToLower() + c.Apellido.ToLower()).Contains(consulta))
+            .Where(c => (c.DniCliente.ToString() == consulta) || (c.Nombre.ToLower() + c.Apellido.ToLower()).Contains(consulta))
             .ToList();
 
             grillaClientes.Rows.Clear();
@@ -188,7 +189,8 @@ namespace Carpeta_Sistema_de_Ventas
             if(_factura.listaProductosAgregados.Count > 0 && _factura.clienteFactura != null)
             {
                 _factura.Fecha = DateTime.Now;
-                _factura.NumFactura = bllFactura.TraerUltimoNumTransaccion() + 1;
+                _factura.cobro = new BECobro();
+                _factura.cobro.NumTransaccionBancaria = bllFactura.TraerUltimoNumTransaccion() + 1;
 
                 frmCobrarVenta form = new frmCobrarVenta(_factura);
                 form.ShowDialog();
@@ -220,25 +222,30 @@ namespace Carpeta_Sistema_de_Ventas
 
                 if (resultado == DialogResult.Yes)
                 {
-                    bllFactura.RegistrarFactura(_factura);
-                    bllFactura.RegistrarItemFactura(_factura); 
-
-                    //registra cada item de la factura
-                    //registra en la bitacora de eventos
-                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Factura generada", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-
-                    foreach (var item in _factura.listaProductosAgregados)
+                    try
                     {
-                        BEProducto prod = item.producto;
-                        int cantidad = item.cantidad;
+                        _factura.NumFactura = bllFactura.RegistrarFactura(_factura);
+                        bllFactura.RegistrarItemFactura(_factura);
 
-                        bllProducto.ModificarStock(prod, prod.Stock - cantidad);
-                        bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Stock reducido", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                        //registra cada item de la factura
+                        //registra en la bitacora de eventos
+                        bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Factura generada", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+
+                        foreach (var item in _factura.listaProductosAgregados)
+                        {
+                            BEProducto prod = item.producto;
+                            int cantidad = item.cantidad;
+
+                            bllProducto.ModificarStock(prod, prod.Stock - cantidad);
+                            bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Stock reducido", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                        }
+
+
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"));
+                        this.Enabled = false; // deshabilita los botones
+
                     }
-
-
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"));
-                    this.Enabled = false; // deshabilita los botones
+                    catch (Exception ex) { MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
             }
         }

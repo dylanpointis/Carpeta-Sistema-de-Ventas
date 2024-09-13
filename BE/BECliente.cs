@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    [Serializable]
     public class BECliente
     {
         public int DniCliente { get; set; }
@@ -14,6 +15,8 @@ namespace BE
         public string Mail { get; set; }
         public string Direccion { get; set; }
         public bool BorradoLogico { get; set; }
+
+        public BECliente() { }  //Constructor vacio porque XMLSerializer lo requiere
 
         public BECliente(int dnicliente, string nombre, string apellido, string mail, string direccion)
         {

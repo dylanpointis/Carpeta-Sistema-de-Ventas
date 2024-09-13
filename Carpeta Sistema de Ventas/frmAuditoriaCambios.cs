@@ -101,7 +101,21 @@ namespace Carpeta_Sistema_de_Ventas
 
             foreach (Producto_C prodC in list)
             {
-                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, prodC.Producto.BorradoLogico, prodC.Activo);
+                string activo = ""; //El elemento activo es el que tiene el estado actual del producto, los antiguos no son activos
+                if (prodC.Activo == true)
+                {
+                    activo = IdiomaManager.GetInstance().ConseguirTexto("boolTrue");
+                }
+                else { activo = IdiomaManager.GetInstance().ConseguirTexto("boolFalse"); }
+
+                string borrado = "";
+                if (prodC.Producto.BorradoLogico == true) //Si el bool BorradoLogico es true es porque el producto esta habilitado (no borrado)
+                {
+                    borrado = IdiomaManager.GetInstance().ConseguirTexto("boolHabilitado");
+                }
+                else { borrado = IdiomaManager.GetInstance().ConseguirTexto("boolBorrado"); }
+
+                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, borrado, activo);
             }
         }
 

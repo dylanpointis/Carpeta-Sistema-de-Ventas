@@ -30,6 +30,8 @@
   "gridViewApellido": "Apellido",
   "gridViewMail": "Mail",
   "gridViewDireccion": "Direccion",
+  "btnSerializar": "Serializar",
+  "btnDeserializar": "Deserializar",
 
 
   "noSePuedeModificar": "No se puede modificar a un cliente deshabilitado",

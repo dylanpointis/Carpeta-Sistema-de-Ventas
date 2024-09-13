@@ -12,9 +12,9 @@ namespace BLL
     public class BLLFactura
     {
         DALFactura dalFac = new DALFactura();
-        public void RegistrarFactura(BEFactura factura)
+        public int RegistrarFactura(BEFactura factura) //devuelve el num factura
         {
-            dalFac.RegistrarFactura(factura);
+            return dalFac.RegistrarFactura(factura);
         }
 
 
@@ -26,7 +26,7 @@ namespace BLL
 
         public int TraerUltimoNumTransaccion()
         {
-            return dalFac.TraerUltimoIDFactura();
+            return dalFac.TraerUltimoNumTransaccion();
         }
 
         public List<BEFactura> TraerFacturas()
@@ -42,6 +42,11 @@ namespace BLL
         public BEFactura TraerItemsFactura(BEFactura fac)
         {
             return dalFac.TraerItemsFactura(fac);
+        }
+
+        public List<BEFactura> ConsultarFacturas(int numfactura, int numtransaccion, int dni)
+        {
+            return dalFac.ConsultarFacturas(numfactura, numtransaccion, dni);
         }
     }
 }

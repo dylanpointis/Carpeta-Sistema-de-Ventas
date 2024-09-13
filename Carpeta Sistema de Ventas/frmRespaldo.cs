@@ -66,7 +66,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorBackUp") + ex.Message); ;
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorBackUp") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
                 }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneRutaBackUp")); }
@@ -99,8 +99,8 @@ namespace Carpeta_Sistema_de_Ventas
 
                     bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Respaldos", "Restore realizado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                 }
-                catch(Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorRestore") + ex.Message); }
-            }
+                catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorRestore") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); } 
+                }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneRutaRestore")); }
         }
         #endregion

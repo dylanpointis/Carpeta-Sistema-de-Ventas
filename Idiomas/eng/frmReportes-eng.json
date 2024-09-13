@@ -4,6 +4,8 @@
   "btnGenerarPDF": "Generate PDF",
   "lblProductos": "Sold Products",
   "label2": "Invoice Number",
+  "label3": "Transaction number",
+  "label4": "Customer DNI",
   "btnBuscar": "Search",
   "ingrese": "Enter the Invoice Number",
   "seleccione": "Select an invoice to generate the PDF file",

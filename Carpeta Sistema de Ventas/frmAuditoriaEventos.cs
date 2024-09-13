@@ -124,74 +124,80 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            if (grillaEventos.SelectedRows.Count > 0)
+            string filas = "";
+            foreach(DataGridViewRow row in grillaEventos.Rows)
             {
-                string nombreusuario = grillaEventos.CurrentRow.Cells[1].Value.ToString();
-                string modulo = grillaEventos.CurrentRow.Cells[2].Value.ToString();
-                string eventodesc = grillaEventos.CurrentRow.Cells[3].Value.ToString();
-                int criticidad = Convert.ToInt16(grillaEventos.CurrentRow.Cells[4].Value);
-                string fecha = grillaEventos.CurrentRow.Cells[5].Value.ToString();
-                string hora = grillaEventos.CurrentRow.Cells[6].Value.ToString();
-
-                Evento evento = new Evento(nombreusuario,modulo,eventodesc, criticidad,fecha,hora);
-                evento.IdEvento = Convert.ToInt32(grillaEventos.CurrentRow.Cells[0].Value);
-
-                SaveFileDialog guardarArchivo = new SaveFileDialog();
-                guardarArchivo.FileName = evento.IdEvento + "-" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
+                string idevento = row.Cells[0].Value.ToString();
+                string nombreusuario = row.Cells[1].Value.ToString();
+                string modulo = row.Cells[2].Value.ToString();
+                string eventodesc = row.Cells[3].Value.ToString();
+                int criticidad = Convert.ToInt16(row.Cells[4].Value);
+                string fecha = row.Cells[5].Value.ToString();
+                string hora = row.Cells[6].Value.ToString();
 
 
-                string paginahtml = Properties.Resources.htmlauditoriaevento.ToString();
+                filas += "<tr>";
+                filas += "<td>" + idevento + "</td>";
+                filas += "<td>" + nombreusuario + "</td>";
+                filas += "<td>" + modulo + "</td>";
+                filas += "<td>" + eventodesc + "</td>";
+                filas += "<td>" + criticidad + "</td>";
+                filas += "<td>" + fecha + "</td>";
+                filas += "<td>" + hora + "</td>";
+                filas += "</tr>";
+            }
+
+            SaveFileDialog guardarArchivo = new SaveFileDialog();
+            guardarArchivo.FileName = "Eventos-" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm") + ".pdf";
 
 
-                paginahtml = paginahtml.Replace("@auditoriaFecha", DateTime.Today.ToString("yyyy-MM-dd"));
-                paginahtml = paginahtml.Replace("@IdEvento", evento.IdEvento.ToString());
-                paginahtml = paginahtml.Replace("@NombreUsuario", evento.NombreUsuario);
-                paginahtml = paginahtml.Replace("@Modulo", evento.Modulo);
-                paginahtml = paginahtml.Replace("@Evento", evento.evento);
-                paginahtml = paginahtml.Replace("@Criticidad", evento.Criticidad.ToString());
-                paginahtml = paginahtml.Replace("@FechaEvento", evento.Fecha);
-                paginahtml = paginahtml.Replace("@Hora", evento.Hora);
+            string paginahtml = Properties.Resources.htmlauditoriaevento.ToString();
 
 
-                paginahtml = paginahtml.Replace("@label2", IdiomaManager.GetInstance().ConseguirTexto("label2"));
-                paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
-                paginahtml = paginahtml.Replace("@textoDetalleEvento", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleEvento"));
-                paginahtml = paginahtml.Replace("@textoIdEvento", IdiomaManager.GetInstance().ConseguirTexto("textoIdEvento"));
-                paginahtml = paginahtml.Replace("@textoNombreUsuario", IdiomaManager.GetInstance().ConseguirTexto("textoNombreUsuario"));
-                paginahtml = paginahtml.Replace("@textoModulo", IdiomaManager.GetInstance().ConseguirTexto("textoModulo"));
-                paginahtml = paginahtml.Replace("@textoEvento", IdiomaManager.GetInstance().ConseguirTexto("textoEvento"));
-                paginahtml = paginahtml.Replace("@textoCriticidad", IdiomaManager.GetInstance().ConseguirTexto("textoCriticidad"));
-                paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
-                paginahtml = paginahtml.Replace("@textoHora", IdiomaManager.GetInstance().ConseguirTexto("textoHora"));
+            paginahtml = paginahtml.Replace("@FILAS", filas);
+            paginahtml = paginahtml.Replace("@auditoriaFecha", DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+ 
+
+
+            paginahtml = paginahtml.Replace("@label2", IdiomaManager.GetInstance().ConseguirTexto("label2"));
+            paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
+            paginahtml = paginahtml.Replace("@textoDetalleEvento", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleEvento"));
+            paginahtml = paginahtml.Replace("@textoIdEvento", IdiomaManager.GetInstance().ConseguirTexto("textoIdEvento"));
+            paginahtml = paginahtml.Replace("@textoNombreUsuario", IdiomaManager.GetInstance().ConseguirTexto("textoNombreUsuario"));
+            paginahtml = paginahtml.Replace("@textoModulo", IdiomaManager.GetInstance().ConseguirTexto("textoModulo"));
+            paginahtml = paginahtml.Replace("@textoEvento", IdiomaManager.GetInstance().ConseguirTexto("textoEvento"));
+            paginahtml = paginahtml.Replace("@textoCriticidad", IdiomaManager.GetInstance().ConseguirTexto("textoCriticidad"));
+            paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
+            paginahtml = paginahtml.Replace("@textoHora", IdiomaManager.GetInstance().ConseguirTexto("textoHora"));
 
 
 
-                if (guardarArchivo.ShowDialog() == DialogResult.OK)
+            if (guardarArchivo.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
                 {
-                    using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
+                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
+
+                    pdf.Open();
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.logo, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(80, 60);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
+                    pdf.Add(img);
+
+                    using (StringReader lector = new StringReader(paginahtml))
                     {
-                        Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                        PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
-
-                        pdf.Open();
-                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.logo, System.Drawing.Imaging.ImageFormat.Png);
-                        img.ScaleToFit(80, 60);
-                        img.Alignment = iTextSharp.text.Image.UNDERLYING;
-                        img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
-                        pdf.Add(img);
-
-                        using (StringReader lector = new StringReader(paginahtml))
-                        {
-                            XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
-                        }
-
-
-                        pdf.Close();
-                        stream.Close();
+                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
                     }
+
+
+                    pdf.Close();
+                    stream.Close();
                 }
             }
+            
         }
 
         private void fechaInicio_ValueChanged(object sender, EventArgs e)
@@ -229,12 +235,6 @@ namespace Carpeta_Sistema_de_Ventas
             txtModulo.Items.Add("Productos");
             txtModulo.Items.Add("Clientes");
             txtModulo.Items.Add("Respaldos");
-
-
-
-            txtEvento.Items.Add("Inicio sesión");
-            txtEvento.Items.Add("Cierre sesión");
-            txtEvento.Items.Add("Factura generada");
         }
 
 
@@ -283,6 +283,8 @@ namespace Carpeta_Sistema_de_Ventas
                         txtEvento.Items.Add("Cliente eliminado");
                         txtEvento.Items.Add("Cliente habilitado");
                         txtEvento.Items.Add("Cliente modificado");
+                        txtEvento.Items.Add("Archivo serializado");
+                        txtEvento.Items.Add("Archivo deserializado");
                         break;
                     case "Respaldos":
                         txtEvento.Items.Add("Backup realizado");

@@ -305,8 +305,8 @@
             this.txtPrecio.DecimalPlaces = 2;
             this.txtPrecio.Location = new System.Drawing.Point(578, 358);
             this.txtPrecio.Maximum = new decimal(new int[] {
-            -1530494977,
-            232830,
+            999999999,
+            0,
             0,
             0});
             this.txtPrecio.Name = "txtPrecio";
@@ -319,8 +319,8 @@
             this.txtStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtStock.Location = new System.Drawing.Point(12, 428);
             this.txtStock.Maximum = new decimal(new int[] {
-            -1530494977,
-            232830,
+            999,
+            0,
             0,
             0});
             this.txtStock.Name = "txtStock";
@@ -333,13 +333,14 @@
             this.txtAlmacenamiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtAlmacenamiento.Location = new System.Drawing.Point(204, 428);
             this.txtAlmacenamiento.Maximum = new decimal(new int[] {
-            -1530494977,
-            232830,
+            99999999,
+            0,
             0,
             0});
             this.txtAlmacenamiento.Name = "txtAlmacenamiento";
             this.txtAlmacenamiento.Size = new System.Drawing.Size(142, 20);
             this.txtAlmacenamiento.TabIndex = 59;
+            this.txtAlmacenamiento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAlmacenamiento_KeyPress);
             // 
             // txtDescripcion
             // 

@@ -36,11 +36,14 @@
             this.btnRealizarRestore = new System.Windows.Forms.Button();
             this.btnRutaBackUp = new System.Windows.Forms.Button();
             this.btnRutaRestore = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBackupRuta
             // 
-            this.txtBackupRuta.Location = new System.Drawing.Point(288, 132);
+            this.txtBackupRuta.Location = new System.Drawing.Point(47, 64);
             this.txtBackupRuta.Name = "txtBackupRuta";
             this.txtBackupRuta.ReadOnly = true;
             this.txtBackupRuta.Size = new System.Drawing.Size(277, 20);
@@ -48,7 +51,7 @@
             // 
             // txtRestoreRuta
             // 
-            this.txtRestoreRuta.Location = new System.Drawing.Point(288, 258);
+            this.txtRestoreRuta.Location = new System.Drawing.Point(47, 190);
             this.txtRestoreRuta.Name = "txtRestoreRuta";
             this.txtRestoreRuta.ReadOnly = true;
             this.txtRestoreRuta.Size = new System.Drawing.Size(277, 20);
@@ -58,7 +61,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(285, 237);
+            this.label2.Location = new System.Drawing.Point(44, 169);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 18);
             this.label2.TabIndex = 6;
@@ -68,7 +71,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(285, 111);
+            this.label1.Location = new System.Drawing.Point(44, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 18);
             this.label1.TabIndex = 5;
@@ -79,7 +82,7 @@
             this.btnRealizarBackUp.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnRealizarBackUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRealizarBackUp.ForeColor = System.Drawing.Color.White;
-            this.btnRealizarBackUp.Location = new System.Drawing.Point(288, 161);
+            this.btnRealizarBackUp.Location = new System.Drawing.Point(47, 93);
             this.btnRealizarBackUp.Name = "btnRealizarBackUp";
             this.btnRealizarBackUp.Size = new System.Drawing.Size(108, 32);
             this.btnRealizarBackUp.TabIndex = 97;
@@ -92,7 +95,7 @@
             this.btnRealizarRestore.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btnRealizarRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRealizarRestore.ForeColor = System.Drawing.Color.White;
-            this.btnRealizarRestore.Location = new System.Drawing.Point(288, 289);
+            this.btnRealizarRestore.Location = new System.Drawing.Point(47, 221);
             this.btnRealizarRestore.Name = "btnRealizarRestore";
             this.btnRealizarRestore.Size = new System.Drawing.Size(108, 32);
             this.btnRealizarRestore.TabIndex = 98;
@@ -106,7 +109,7 @@
             this.btnRutaBackUp.BackgroundImage = global::Carpeta_Sistema_de_Ventas.Properties.Resources.foldericon2;
             this.btnRutaBackUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnRutaBackUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRutaBackUp.Location = new System.Drawing.Point(581, 98);
+            this.btnRutaBackUp.Location = new System.Drawing.Point(340, 30);
             this.btnRutaBackUp.Name = "btnRutaBackUp";
             this.btnRutaBackUp.Size = new System.Drawing.Size(54, 54);
             this.btnRutaBackUp.TabIndex = 99;
@@ -119,12 +122,31 @@
             this.btnRutaRestore.BackgroundImage = global::Carpeta_Sistema_de_Ventas.Properties.Resources.foldericon2;
             this.btnRutaRestore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnRutaRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRutaRestore.Location = new System.Drawing.Point(581, 224);
+            this.btnRutaRestore.Location = new System.Drawing.Point(340, 156);
             this.btnRutaRestore.Name = "btnRutaRestore";
             this.btnRutaRestore.Size = new System.Drawing.Size(54, 54);
             this.btnRutaRestore.TabIndex = 100;
             this.btnRutaRestore.UseVisualStyleBackColor = false;
             this.btnRutaRestore.Click += new System.EventHandler(this.btnRutaRestore_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnRutaRestore);
+            this.groupBox1.Controls.Add(this.btnRutaBackUp);
+            this.groupBox1.Controls.Add(this.btnRealizarRestore);
+            this.groupBox1.Controls.Add(this.btnRealizarBackUp);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtRestoreRuta);
+            this.groupBox1.Controls.Add(this.txtBackupRuta);
+            this.groupBox1.Location = new System.Drawing.Point(241, 68);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(452, 280);
+            this.groupBox1.TabIndex = 101;
+            this.groupBox1.TabStop = false;
             // 
             // frmRespaldo
             // 
@@ -132,19 +154,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(988, 535);
-            this.Controls.Add(this.btnRutaRestore);
-            this.Controls.Add(this.btnRutaBackUp);
-            this.Controls.Add(this.btnRealizarRestore);
-            this.Controls.Add(this.btnRealizarBackUp);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtRestoreRuta);
-            this.Controls.Add(this.txtBackupRuta);
+            this.Controls.Add(this.groupBox1);
             this.Name = "frmRespaldo";
             this.Text = "frmRespaldo";
             this.Load += new System.EventHandler(this.frmRespaldo_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -158,5 +174,7 @@
         private System.Windows.Forms.Button btnRealizarRestore;
         private System.Windows.Forms.Button btnRutaBackUp;
         private System.Windows.Forms.Button btnRutaRestore;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

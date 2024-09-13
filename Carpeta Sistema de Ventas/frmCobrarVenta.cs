@@ -19,7 +19,7 @@ namespace Carpeta_Sistema_de_Ventas
     public partial class frmCobrarVenta : Form, IObserver
     {
         BEFactura _factura;
-        public BECobro cobroDatos = new BECobro();
+        //public BECobro cobroDatos = new BECobro();
         public frmCobrarVenta(BEFactura factura)
         {
             InitializeComponent();
@@ -51,31 +51,39 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (ValidarCampos())
             {
-                cobroDatos.NumTransaccionBancaria = _factura.NumFactura;
-                cobroDatos.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedItem.ToString());
-                cobroDatos.ComentarioAdicional = txtComentarioAdicional.Text;
-                
-                if(cobroDatos.MetodoPago == EnumMetodoPago.Debito) /*si es debito es una cuota*/
-                {
-                    cobroDatos.CantCuotas = 1;
-                }
+                //_factura.cobro.NumTransaccionBancaria = _factura.NumFactura;
+                _factura.cobro.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedItem.ToString());
+                _factura.cobro.ComentarioAdicional = txtComentarioAdicional.Text;
+                _factura.cobro.NumTransaccionBancaria = Convert.ToInt32(txtNumTransaccion.Text);
 
-                if (cobroDatos.MetodoPago == EnumMetodoPago.MercadoPago)
-                {
-                    cobroDatos.CantCuotas = 1;
-                    cobroDatos.AliasMP = txtAliasMP.Text;
-                }
-                else
-                {
-                    cobroDatos.AliasMP = null;
-                    cobroDatos.MarcaTarjeta = cmbMarcaTarjeta.Text;
-                    cobroDatos.CantCuotas = Convert.ToInt16(txtCantCuotas.Text);
-                }
-               
 
-                _factura.cobro = cobroDatos;
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaCobrada"));
-                this.Close();
+                BLLFactura bllfac = new BLLFactura();
+                List<BEFactura> facs = bllfac.ConsultarFacturas(0, Convert.ToInt32(txtNumTransaccion.Text), 0); //busca si ya hay una factura con el mismo num transaccion
+                if (facs.Count() == 0)
+                {
+                    if (_factura.cobro.MetodoPago == EnumMetodoPago.Debito) /*si es debito es una cuota*/
+                    {
+                        _factura.cobro.CantCuotas = 1;
+                    }
+
+                    if (_factura.cobro.MetodoPago == EnumMetodoPago.MercadoPago)
+                    {
+                        _factura.cobro.CantCuotas = 1;
+                        _factura.cobro.AliasMP = txtAliasMP.Text;
+                    }
+                    else
+                    {
+                        _factura.cobro.AliasMP = null;
+                        _factura.cobro.MarcaTarjeta = cmbMarcaTarjeta.Text;
+                        _factura.cobro.CantCuotas = Convert.ToInt16(txtCantCuotas.Text);
+                    }
+
+
+                    //_factura.cobro = cobroDatos;
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaCobrada"));
+                    this.Close();
+                }
+                else { MessageBox.Show("Número de transaccion ya ocupado"); }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene")); }
            
@@ -111,14 +119,16 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
         private void btnConectar_Click(object sender, EventArgs e) 
-        { 
-            txtNumTransaccion.Text = _factura.NumFactura.ToString();
+        {
+            txtNumTransaccion.Enabled = true;
+            txtNumTransaccion.Text = _factura.cobro.NumTransaccionBancaria.ToString();
             cmbMetodoPago.Enabled = true;
             txtAliasMP.Enabled = true;
             cmbMarcaTarjeta.Enabled = true;
             txtCantCuotas.Enabled = true;
             txtComentarioAdicional.Enabled = true;
             btnCobrarVenta.Enabled = true;
+            btnConectar.Enabled = false;
         }
 
         private void cmbMetodoPago_SelectedIndexChanged(object sender, EventArgs e)
@@ -150,6 +160,12 @@ namespace Carpeta_Sistema_de_Ventas
         {
             this.Close();
         }
+
+
+
+
+
+
 
         /*Evento para que no escriba mas de 16 digitos*/
         private void txtNumTarjeta_KeyPress(object sender, KeyPressEventArgs e)
@@ -197,6 +213,23 @@ namespace Carpeta_Sistema_de_Ventas
                 }
 
             }
+        }
+
+
+        //para que pueda escribir solo numeros
+        private void txtNumTransaccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+
+                    e.Handled = true;
+                }
+            }
+
         }
     }
 }

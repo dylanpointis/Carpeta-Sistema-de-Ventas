@@ -47,6 +47,8 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.btnAplicar = new System.Windows.Forms.Button();
+            this.btnSerializar = new System.Windows.Forms.Button();
+            this.btnDeserializar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtDNI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).BeginInit();
             this.SuspendLayout();
@@ -266,12 +268,44 @@
             this.btnAplicar.UseVisualStyleBackColor = false;
             this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
             // 
+            // btnSerializar
+            // 
+            this.btnSerializar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSerializar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnSerializar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSerializar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSerializar.ForeColor = System.Drawing.Color.White;
+            this.btnSerializar.Location = new System.Drawing.Point(663, 454);
+            this.btnSerializar.Name = "btnSerializar";
+            this.btnSerializar.Size = new System.Drawing.Size(145, 43);
+            this.btnSerializar.TabIndex = 89;
+            this.btnSerializar.Text = "Serializar";
+            this.btnSerializar.UseVisualStyleBackColor = false;
+            this.btnSerializar.Click += new System.EventHandler(this.btnSerializar_Click);
+            // 
+            // btnDeserializar
+            // 
+            this.btnDeserializar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeserializar.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnDeserializar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeserializar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeserializar.ForeColor = System.Drawing.Color.White;
+            this.btnDeserializar.Location = new System.Drawing.Point(831, 454);
+            this.btnDeserializar.Name = "btnDeserializar";
+            this.btnDeserializar.Size = new System.Drawing.Size(145, 43);
+            this.btnDeserializar.TabIndex = 90;
+            this.btnDeserializar.Text = "Deserializar";
+            this.btnDeserializar.UseVisualStyleBackColor = false;
+            this.btnDeserializar.Click += new System.EventHandler(this.btnDeserializar_Click);
+            // 
             // frmMaestroClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(988, 535);
+            this.Controls.Add(this.btnDeserializar);
+            this.Controls.Add(this.btnSerializar);
             this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.txtApellido);
@@ -322,5 +356,7 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Button btnAplicar;
+        private System.Windows.Forms.Button btnSerializar;
+        private System.Windows.Forms.Button btnDeserializar;
     }
 }
