@@ -707,6 +707,10 @@ INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Ge
 
 INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==',1);
 INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==',1);
+INSERT INTO Clientes VALUES (44978545, 'Luis', 'Hernández', 'luishernandez@gmail.com', 'G83WHQGteUATtYUG2eu3bydWi2qACBS6A19s6UyTTKc=', 1);
+INSERT INTO Clientes VALUES (40898122, 'Carla', 'Martínez', 'carlamartinez@gmail.com', 'NccLBubi03EOxcaLpcaPRg==', 1);
+
+
 INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)
 

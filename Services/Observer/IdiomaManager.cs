@@ -56,7 +56,7 @@ namespace Services.Observer
         {
             textosDiccionario = new Dictionary<string, string>();
             textosDiccionario.Clear();
-            var fileName = $"Idiomas\\{SessionManager.IdiomaActual}\\{archivoActual}-{SessionManager.IdiomaActual}.json";
+            var fileName = Path.Combine("..","..","..",$"Idiomas\\{SessionManager.IdiomaActual}\\{archivoActual}-{SessionManager.IdiomaActual}.json");
             var jsonString = File.ReadAllText(fileName);
             textosDiccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
         }

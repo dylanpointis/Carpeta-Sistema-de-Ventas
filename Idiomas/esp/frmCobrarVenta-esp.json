@@ -15,6 +15,7 @@
   "ventaCobrada": "Venta cobrada con exito",
   "llene": "Complete los campos",
   "seleccioneMetodo": "Seleccione un metodo de pago",
+  "numTransOcupado": "Número de transaccion ya ocupado anteriormente",
 
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",

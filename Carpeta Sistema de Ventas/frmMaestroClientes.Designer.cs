@@ -49,6 +49,7 @@
             this.btnAplicar = new System.Windows.Forms.Button();
             this.btnSerializar = new System.Windows.Forms.Button();
             this.btnDeserializar = new System.Windows.Forms.Button();
+            this.listBoxArchivoSerializado = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtDNI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaClientes)).BeginInit();
             this.SuspendLayout();
@@ -298,12 +299,22 @@
             this.btnDeserializar.UseVisualStyleBackColor = false;
             this.btnDeserializar.Click += new System.EventHandler(this.btnDeserializar_Click);
             // 
+            // listBoxArchivoSerializado
+            // 
+            this.listBoxArchivoSerializado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxArchivoSerializado.FormattingEnabled = true;
+            this.listBoxArchivoSerializado.Location = new System.Drawing.Point(589, 317);
+            this.listBoxArchivoSerializado.Name = "listBoxArchivoSerializado";
+            this.listBoxArchivoSerializado.Size = new System.Drawing.Size(270, 121);
+            this.listBoxArchivoSerializado.TabIndex = 91;
+            // 
             // frmMaestroClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(988, 535);
+            this.Controls.Add(this.listBoxArchivoSerializado);
             this.Controls.Add(this.btnDeserializar);
             this.Controls.Add(this.btnSerializar);
             this.Controls.Add(this.txtDireccion);
@@ -358,5 +369,6 @@
         private System.Windows.Forms.Button btnAplicar;
         private System.Windows.Forms.Button btnSerializar;
         private System.Windows.Forms.Button btnDeserializar;
+        private System.Windows.Forms.ListBox listBoxArchivoSerializado;
     }
 }

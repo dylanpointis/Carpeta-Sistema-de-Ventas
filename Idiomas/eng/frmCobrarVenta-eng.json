@@ -15,6 +15,7 @@
   "ventaCobrada": "Sale successfully charged",
   "llene": "Fill in all fields",
   "seleccioneMetodo": "Select a payment method",
+  "numTransOcupado": "Transaction number already occupied previously",
 
   "cerrar": "Log Out",
   "deseaCerrar": "Do you want to log out?",

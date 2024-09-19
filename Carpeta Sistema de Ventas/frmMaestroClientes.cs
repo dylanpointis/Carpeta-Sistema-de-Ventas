@@ -420,6 +420,7 @@ namespace Carpeta_Sistema_de_Ventas
                             serializer.Serialize(fs, listaClientes);
                         }
 
+                        MostrarArchivoSerializado(saveFileDialog.FileName);
                         bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo serializado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
 
                         MessageBox.Show("Archivo serializado guardado exitosamente");
@@ -431,6 +432,19 @@ namespace Carpeta_Sistema_de_Ventas
             }
             else { MessageBox.Show("No hay ningun registro en la grilla para serializar"); }
         }
+
+
+        private void MostrarArchivoSerializado(string path)
+        {
+            listBoxArchivoSerializado.Items.Clear();
+            string[] lineas = File.ReadAllLines(path);
+
+            foreach (string linea in lineas)
+            {
+                listBoxArchivoSerializado.Items.Add(linea);
+            }
+        }
+
 
         private void btnDeserializar_Click(object sender, EventArgs e)
         {
@@ -445,12 +459,29 @@ namespace Carpeta_Sistema_de_Ventas
                         XmlSerializer serializer = new XmlSerializer(typeof (List<BECliente>));
                         listaClientes = (List<BECliente>) serializer.Deserialize(fs);
                     }
+
+                    MostrarDatosDeserializados(listaClientes);
+
                     bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo deserializado", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
                     grillaClientes.Rows.Clear();
                     ActualizarGrilla();
                 }
             }
             catch(Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+        }
+
+        private void MostrarDatosDeserializados(List<BECliente> listaClientes)
+        {
+            listBoxArchivoSerializado.Items.Clear();
+            foreach(BECliente cli in listaClientes)
+            {
+                listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewDNI")}: {cli.DniCliente}");
+                listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre")}: {cli.Nombre}");
+                listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewApellido")}: {cli.Apellido}");
+                listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewMail")}: {cli.Mail}");
+                listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion")} : : {cli.Direccion}");
+                listBoxArchivoSerializado.Items.Add($"--------------------------");
+            }
         }
     }
 }

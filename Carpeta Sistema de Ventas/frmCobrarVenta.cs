@@ -83,7 +83,7 @@ namespace Carpeta_Sistema_de_Ventas
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaCobrada"));
                     this.Close();
                 }
-                else { MessageBox.Show("Número de transaccion ya ocupado"); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numTransOcupado")); }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene")); }
            

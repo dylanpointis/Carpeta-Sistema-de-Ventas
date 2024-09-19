@@ -16,5 +16,10 @@ namespace Carpeta_Sistema_de_Ventas
         {
             InitializeComponent();
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -65,7 +65,7 @@
             this.btnGenerarPDF.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnGenerarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarPDF.ForeColor = System.Drawing.Color.White;
-            this.btnGenerarPDF.Location = new System.Drawing.Point(8, 452);
+            this.btnGenerarPDF.Location = new System.Drawing.Point(7, 472);
             this.btnGenerarPDF.Name = "btnGenerarPDF";
             this.btnGenerarPDF.Size = new System.Drawing.Size(163, 45);
             this.btnGenerarPDF.TabIndex = 21;
@@ -88,7 +88,7 @@
             this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(757, 467);
+            this.btnBuscar.Location = new System.Drawing.Point(756, 487);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(104, 30);
             this.btnBuscar.TabIndex = 23;
@@ -100,7 +100,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(285, 461);
+            this.label2.Location = new System.Drawing.Point(284, 481);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 69;
@@ -109,7 +109,7 @@
             // txtNumFactura
             // 
             this.txtNumFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNumFactura.Location = new System.Drawing.Point(288, 477);
+            this.txtNumFactura.Location = new System.Drawing.Point(287, 497);
             this.txtNumFactura.Name = "txtNumFactura";
             this.txtNumFactura.Size = new System.Drawing.Size(134, 20);
             this.txtNumFactura.TabIndex = 70;
@@ -117,9 +117,10 @@
             // 
             // btnActualizar
             // 
+            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnActualizar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Location = new System.Drawing.Point(164, 17);
+            this.btnActualizar.Location = new System.Drawing.Point(8, 423);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 71;
@@ -156,7 +157,7 @@
             // txtNumTransaccion
             // 
             this.txtNumTransaccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtNumTransaccion.Location = new System.Drawing.Point(442, 477);
+            this.txtNumTransaccion.Location = new System.Drawing.Point(441, 497);
             this.txtNumTransaccion.Name = "txtNumTransaccion";
             this.txtNumTransaccion.Size = new System.Drawing.Size(134, 20);
             this.txtNumTransaccion.TabIndex = 75;
@@ -165,7 +166,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(439, 461);
+            this.label3.Location = new System.Drawing.Point(438, 481);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 13);
             this.label3.TabIndex = 74;
@@ -174,7 +175,7 @@
             // txtDni
             // 
             this.txtDni.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtDni.Location = new System.Drawing.Point(602, 477);
+            this.txtDni.Location = new System.Drawing.Point(601, 497);
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(134, 20);
             this.txtDni.TabIndex = 77;
@@ -183,7 +184,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(599, 461);
+            this.label4.Location = new System.Drawing.Point(598, 481);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 13);
             this.label4.TabIndex = 76;

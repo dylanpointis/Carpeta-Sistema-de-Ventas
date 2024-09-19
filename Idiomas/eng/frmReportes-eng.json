@@ -1,5 +1,5 @@
 {
-  "label1": "Invoices",
+  "label1": "Last 100 Invoices",
   "btnActualizar": "Refresh",
   "btnGenerarPDF": "Generate PDF",
   "lblProductos": "Sold Products",
