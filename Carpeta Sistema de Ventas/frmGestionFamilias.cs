@@ -70,26 +70,55 @@ namespace Carpeta_Sistema_de_Ventas
                     listBoxPermisos.Items.Add($"{permiso.Id} - {permiso.Nombre} - {permiso.Tipo}");
                 }
             }
+
+            List<Familia> listaFamilias = bllFamilia.TraerListaFamilias();
+            foreach(var  familia in listaFamilias)
+            {
+                listBoxFamilias.Items.Add($"{familia.Id} - {familia.Nombre} - {familia.Tipo}");
+            }
         }
 
+
+
+        //Agregar familia
+        private void btnAgregarFamilia_Click(object sender, EventArgs e)
+        {
+            if (listBoxFamilias.SelectedItems.Count > 0)
+            {
+                Componente familiaSeleccionada = TraerComponeneteDeListBox(listBoxFamilias);
+
+                if (!ExisteConflicto(familiaSeleccionada))
+                {
+                    FamiliaConfigurada.AgregarHijo(familiaSeleccionada);
+                    ActualizarListBoxFamilia();
+                }
+            }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneFamilia")); }
+        }
+
+
+        //Agregar permiso
         private void btnAgregarPermiso_Click(object sender, EventArgs e)
         {
             if (listBoxPermisos.SelectedItems.Count > 0)
             {
                 Componente permisoSeleccionado = TraerComponeneteDeListBox(listBoxPermisos);
-
-                FamiliaConfigurada.AgregarHijo(permisoSeleccionado);
-                ActualizarListBoxFamilia();
+                if (!ExisteConflicto(permisoSeleccionado))
+                {
+                    FamiliaConfigurada.AgregarHijo(permisoSeleccionado);
+                    ActualizarListBoxFamilia();
+                }
 
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionePermiso")); }
         }
 
+        //Quitar
         private void btnQuitarPermiso_Click(object sender, EventArgs e)
         {
-            if (listBoxFamilia.SelectedItems.Count > 0)
+            if (listBoxFamiliaConfigurada.SelectedItems.Count > 0)
             {
-                Componente permisoSeleccionado = TraerComponeneteDeListBox(listBoxFamilia);
+                Componente permisoSeleccionado = TraerComponeneteDeListBox(listBoxFamiliaConfigurada);
 
                 FamiliaConfigurada.QuitarHijo(permisoSeleccionado);
                 ActualizarListBoxFamilia();
@@ -113,12 +142,81 @@ namespace Carpeta_Sistema_de_Ventas
             return componenteSeleccionado;
         }
 
+
+
+
+        private bool ExisteConflicto(Componente permisoSeleccionado)
+        {
+            List<Componente> listaHijosRolConfigurado = FamiliaConfigurada.ObtenerHijos();
+            if (permisoSeleccionado is Permiso) // si el permiso seleccionado es simple
+            {
+                foreach (Componente compConfigurado in listaHijosRolConfigurado) //recorre los permisos seleccionados del RolConfigurado
+                {
+                    //logica pra saber si el permiso seleccionado ya esta en una familia ya seleccionada
+                    if (compConfigurado is Familia)
+                    {
+                        List<Componente> listaHijos = bllFamilia.TraerListaHijos(compConfigurado.Id);
+                        Componente yaEstaEnElRol = listaHijos.FirstOrDefault(f => f.Id == permisoSeleccionado.Id);
+                        if (yaEstaEnElRol != null)
+                        {
+                            //El permiso seleccionado ya está en la familia: {id}
+                            MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("yaEstaEnFamilia")} {compConfigurado.Id}");
+                            return true;
+                        }
+                    }
+                }
+            }
+            else// si el permiso seleccionado es familia
+            {
+                //logica para saber si la familia seleccionada tiene algun permiso  que ya se selecciono
+                List<Componente> listaHijos = bllFamilia.TraerListaHijos(permisoSeleccionado.Id);
+
+                foreach (var hijo in listaHijos)
+                {
+                    foreach (Componente compConfigurado in listaHijosRolConfigurado)
+                    {
+                        if (compConfigurado is Familia)
+                        {
+                            List<Componente> listaHijosFamiliaConfigurada = bllFamilia.TraerListaHijos(compConfigurado.Id);
+                            Componente yaEstaEnElRol = listaHijosFamiliaConfigurada.FirstOrDefault(f => f.Id == hijo.Id);
+                            if (yaEstaEnElRol != null)
+                            {
+                                //La familia seleccionada repite permisos de la familia {id}
+                                MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("familiarepitefamilia")} {compConfigurado.Id}");
+                                return true;
+                            }
+                        }
+                        else if (compConfigurado is Permiso)
+                        {
+                            if (hijo.Id == compConfigurado.Id)
+                            {
+                                //La familia ya tiene al permiso {id}
+                                MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("familiayatiene")} {compConfigurado.Id}");
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
         private void ActualizarListBoxFamilia()
         {
-            listBoxFamilia.Items.Clear();
+            listBoxFamiliaConfigurada.Items.Clear();
             foreach (Componente permiso in FamiliaConfigurada.ObtenerHijos())
             {
-                listBoxFamilia.Items.Add($"{permiso.Id} - {permiso.Nombre} - {permiso.Tipo}");
+                listBoxFamiliaConfigurada.Items.Add($"{permiso.Id} - {permiso.Nombre} - {permiso.Tipo}");
             }
         }
 
@@ -272,6 +370,7 @@ namespace Carpeta_Sistema_de_Ventas
             ActualizarListBoxFamilia();
             ActualizarComboBox();
             ResetearBotones();
+            ActualizarListBoxPermisos();
         }
 
 
@@ -296,14 +395,14 @@ namespace Carpeta_Sistema_de_Ventas
             if (cmbFamilia.SelectedItem != null)
             {
                 FamiliaConfigurada.ObtenerHijos().Clear();
-                listBoxFamilia.Items.Clear();
+                listBoxFamiliaConfigurada.Items.Clear();
                 string[] partes = cmbFamilia.SelectedItem.ToString().Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
                 int id = int.Parse(partes[0].Trim());
 
                 List<Componente> listaHijos = bllFamilia.TraerListaHijos(id);
                 foreach (var hijo in listaHijos)
                 {
-                    listBoxFamilia.Items.Add($"{hijo.Id} - {hijo.Nombre} - {hijo.Tipo}");
+                    listBoxFamiliaConfigurada.Items.Add($"{hijo.Id} - {hijo.Nombre} - {hijo.Tipo}");
                     FamiliaConfigurada.AgregarHijo(hijo);
                 }
             }
@@ -321,5 +420,6 @@ namespace Carpeta_Sistema_de_Ventas
 
             lblModoOperacion.Text = IdiomaManager.GetInstance().ConseguirTexto("lblModoOperacion");
         }
+
     }
 }

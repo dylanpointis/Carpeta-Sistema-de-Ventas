@@ -71,9 +71,19 @@ namespace DAL
                 if (Convert.ToBoolean(dr[3]) == false)
                 {
                     permiso = new Permiso() { Id = Convert.ToInt32(dr[1]), Nombre = dr[2].ToString(), Tipo = "Simple" };
+                    lista.Add(permiso);
                 }
-                else { permiso = new Familia() { Id = Convert.ToInt32(dr[1]), Nombre = dr[2].ToString(), Tipo = "Familia" }; }
-                lista.Add(permiso);
+                else 
+                { 
+                    permiso = new Familia() { Id = Convert.ToInt32(dr[1]), Nombre = dr[2].ToString(), Tipo = "Familia" };
+                    lista.Add(permiso);
+
+                    List<Componente> listahijosrecursivo =TraerListaHijos(permiso.Id); //si es una familia vuelvo a buscar sus permisos
+                    foreach(var h in listahijosrecursivo)
+                    {
+                        permiso.AgregarHijo(h);
+                    }
+                }
             }
             return lista;
         }

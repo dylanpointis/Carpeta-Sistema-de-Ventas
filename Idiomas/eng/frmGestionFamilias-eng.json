@@ -6,6 +6,7 @@
   "label5": "New Family Name",
   "label9": "Family",
   "btnAgregarPermiso": "Add>>",
+  "btnAgregarFamilia": "Add>>",
   "btnQuitarPermiso": "Remove<<",
   "btnCrear": "Create New",
   "btnModificar": "Modify",
@@ -29,6 +30,13 @@
   "modoEliminar": "Message: Delete Family Code Mode:",
   "modoModificar": "Message: Modify Family Code Mode:",
   "yaOcupado": "The family name entered is already taken",
+
+
+  "seleccioneFamilia": "Select a family in the list to add it",
+  "yaEstaEnFamilia": "The selected permission is already in the family: ",
+  "familiarepitefamilia": "The selected family repeats permissions from the family",
+  "familiayatiene": "The selected family already has the permission",
+
 
   "cerrar": "Log Out",
   "deseaCerrar": "Do you want to log out?",

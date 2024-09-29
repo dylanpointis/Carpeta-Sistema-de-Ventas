@@ -25,52 +25,72 @@ namespace Carpeta_Sistema_de_Ventas
         private void frmMenu_Load(object sender, EventArgs e)
         {
             BEUsuario user = SessionManager.GetInstance.ObtenerUsuario();
-            btnSesion.Text = IdiomaManager.GetInstance().ConseguirTexto("btnSesion") + ": " + SessionManager.GetInstance.ObtenerUsuario().NombreUsuario;
+            btnSesion.Text = IdiomaManager.GetInstance().ConseguirTexto("btnSesion") + ": " + user.NombreUsuario;
 
+            //deshabilita todos los controles inicialmente
+            DeshabilitarControles();
 
-            //Deshabilita los controles
-            Admin.Enabled = false; Maestros.Enabled = false; Usuarios.Enabled = false; Ventas.Enabled = false; Compras.Enabled = false; Reportes.Enabled = false; Ayuda.Enabled = false;
-
-
-            /*Se fija los permisos del usuario*/
-            List<Componente> listaHijosFamilia = new List<Componente>();
+            //recorre los permisos (permisos simples o familias) del rol usuario
             foreach (Componente componente in user.listaPermisosRol)
             {
-                if (componente is Permiso) //si es un permiso simple deshabilita el bootn
+                if (componente is Permiso)
                 {
-                    foreach (ToolStripMenuItem control in this.menuStrip1.Items)
-                    {
-                        if (control.Name == componente.Nombre)
-                        {
-                            control.Enabled = true;
-                        }
-                    }
+                    HabiilitarControl(componente.Nombre);
+                }
+                else if (componente is Familia)
+                {
+                    ProcesarFamilia((Familia)componente);
+                }
+            }
+        }
+
+        private void DeshabilitarControles()
+        {
+            Admin.Enabled = false;
+            Maestros.Enabled = false;
+            Usuarios.Enabled = false;
+            Ventas.Enabled = false;
+            Compras.Enabled = false;
+            Reportes.Enabled = false;
+            Ayuda.Enabled = false;
+        }
+
+        private void HabiilitarControl(string nombreControl)
+        {
+            foreach (ToolStripMenuItem control in menuStrip1.Items)
+            {
+                if (control.Name == nombreControl) //se fija si coincide el nombre del control con el permiso
+                {
+                    control.Enabled = true;
                 }
 
-                if (componente is Familia) // si es familia recorre sus hijos y deshabilita los botones
+                foreach (ToolStripMenuItem item in control.DropDownItems)
                 {
-                    listaHijosFamilia = bllFamilia.TraerListaHijos(componente.Id);
-
-                    foreach (Componente hijo in listaHijosFamilia)
+                    if (item.Name == nombreControl)
                     {
-                        foreach (ToolStripMenuItem control in this.menuStrip1.Items)
-                        {
-                            if (control.Name == hijo.Nombre)
-                            {
-                                control.Enabled = true;
-                            }
-                            foreach (ToolStripMenuItem item in control.DropDownItems)
-                            {
-                                if (item.Name == hijo.Nombre)
-                                {
-                                    item.Enabled = true;
-                                }
-                            }
-                        }
+                        item.Enabled = true;
                     }
                 }
             }
+        }
 
+        private void ProcesarFamilia(Familia familia)
+        {
+            //Obtiene los hijos de la familia (permisos simples u otras familias)
+            List<Componente> listaHijosFamilia = bllFamilia.TraerListaHijos(familia.Id);
+
+            foreach (Componente hijo in listaHijosFamilia)
+            {
+                if (hijo is Permiso)
+                {
+                    HabiilitarControl(hijo.Nombre);
+                }
+                else if (hijo is Familia)
+                {
+                    //Funcion recursiva
+                    ProcesarFamilia((Familia)hijo);
+                }
+            }
         }
 
 

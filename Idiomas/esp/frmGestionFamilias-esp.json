@@ -6,6 +6,7 @@
   "label5": "Nombre nuevo familia",
   "label9": "Familia",
   "btnAgregarPermiso": "Agregar>>",
+  "btnAgregarFamilia": "Agregar>>",
   "btnQuitarPermiso": "Quitar <<",
   "btnCrear": "Crear nuevo",
   "btnModificar": "Modificar",
@@ -29,6 +30,11 @@
   "modoEliminar": "Mensaje: Eliminar Familia Código:",
   "modoModificar": "Mensaje: Modificar Famila Código:",
   "yaOcupado": "El nombre de la familia ingresada ya está ocupado",
+
+  "seleccioneFamilia": "Seleccione una familia en la lista para agregarla",
+  "yaEstaEnFamilia": "El permiso seleccionado ya está en la familia: ",
+  "familiarepitefamilia": "La familia seleccionada repite permisos de la familia",
+  "familiayatiene": "La familia seleccionada ya tiene al permiso",
 
 
   "cerrar": "Cerrar sesión",

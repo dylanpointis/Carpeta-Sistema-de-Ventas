@@ -44,7 +44,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cmbFamilia = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.listBoxFamilia = new System.Windows.Forms.ListBox();
+            this.listBoxFamiliaConfigurada = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnAgregarFamilia = new System.Windows.Forms.Button();
+            this.listBoxFamilias = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label2
@@ -62,7 +65,7 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Location = new System.Drawing.Point(607, 380);
+            this.btnCancelar.Location = new System.Drawing.Point(869, 429);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(109, 34);
             this.btnCancelar.TabIndex = 94;
@@ -75,7 +78,7 @@
             this.lblModoOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblModoOperacion.AutoSize = true;
             this.lblModoOperacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.lblModoOperacion.Location = new System.Drawing.Point(111, 438);
+            this.lblModoOperacion.Location = new System.Drawing.Point(373, 487);
             this.lblModoOperacion.Name = "lblModoOperacion";
             this.lblModoOperacion.Size = new System.Drawing.Size(169, 24);
             this.lblModoOperacion.TabIndex = 93;
@@ -86,7 +89,7 @@
             this.btnCrear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCrear.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCrear.Location = new System.Drawing.Point(115, 380);
+            this.btnCrear.Location = new System.Drawing.Point(377, 429);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(109, 34);
             this.btnCrear.TabIndex = 92;
@@ -99,7 +102,7 @@
             this.btnAplicar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAplicar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAplicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAplicar.Location = new System.Drawing.Point(484, 380);
+            this.btnAplicar.Location = new System.Drawing.Point(746, 429);
             this.btnAplicar.Name = "btnAplicar";
             this.btnAplicar.Size = new System.Drawing.Size(109, 34);
             this.btnAplicar.TabIndex = 91;
@@ -112,7 +115,7 @@
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEliminar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Location = new System.Drawing.Point(361, 380);
+            this.btnEliminar.Location = new System.Drawing.Point(623, 429);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(109, 34);
             this.btnEliminar.TabIndex = 90;
@@ -125,7 +128,7 @@
             this.btnModificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnModificar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Location = new System.Drawing.Point(238, 380);
+            this.btnModificar.Location = new System.Drawing.Point(500, 429);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(109, 34);
             this.btnModificar.TabIndex = 89;
@@ -138,7 +141,7 @@
             this.btnQuitarPermiso.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnQuitarPermiso.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnQuitarPermiso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQuitarPermiso.Location = new System.Drawing.Point(267, 122);
+            this.btnQuitarPermiso.Location = new System.Drawing.Point(623, 109);
             this.btnQuitarPermiso.Name = "btnQuitarPermiso";
             this.btnQuitarPermiso.Size = new System.Drawing.Size(80, 30);
             this.btnQuitarPermiso.TabIndex = 88;
@@ -152,7 +155,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 62);
+            this.label1.Location = new System.Drawing.Point(15, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 20);
             this.label1.TabIndex = 87;
@@ -163,7 +166,7 @@
             this.btnAgregarPermiso.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnAgregarPermiso.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAgregarPermiso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarPermiso.Location = new System.Drawing.Point(267, 86);
+            this.btnAgregarPermiso.Location = new System.Drawing.Point(267, 88);
             this.btnAgregarPermiso.Name = "btnAgregarPermiso";
             this.btnAgregarPermiso.Size = new System.Drawing.Size(80, 30);
             this.btnAgregarPermiso.TabIndex = 86;
@@ -176,7 +179,7 @@
             this.listBoxPermisos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxPermisos.FormattingEnabled = true;
-            this.listBoxPermisos.Location = new System.Drawing.Point(19, 85);
+            this.listBoxPermisos.Location = new System.Drawing.Point(19, 63);
             this.listBoxPermisos.Name = "listBoxPermisos";
             this.listBoxPermisos.Size = new System.Drawing.Size(228, 264);
             this.listBoxPermisos.TabIndex = 85;
@@ -186,7 +189,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(484, 23);
+            this.label9.Location = new System.Drawing.Point(746, 23);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(39, 13);
             this.label9.TabIndex = 84;
@@ -196,7 +199,7 @@
             // 
             this.txtNombreFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNombreFamilia.Location = new System.Drawing.Point(487, 79);
+            this.txtNombreFamilia.Location = new System.Drawing.Point(749, 79);
             this.txtNombreFamilia.Name = "txtNombreFamilia";
             this.txtNombreFamilia.Size = new System.Drawing.Size(146, 20);
             this.txtNombreFamilia.TabIndex = 83;
@@ -206,7 +209,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(484, 63);
+            this.label5.Location = new System.Drawing.Point(746, 63);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(109, 13);
             this.label5.TabIndex = 82;
@@ -218,7 +221,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbFamilia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFamilia.FormattingEnabled = true;
-            this.cmbFamilia.Location = new System.Drawing.Point(487, 39);
+            this.cmbFamilia.Location = new System.Drawing.Point(749, 39);
             this.cmbFamilia.Name = "cmbFamilia";
             this.cmbFamilia.Size = new System.Drawing.Size(144, 21);
             this.cmbFamilia.TabIndex = 81;
@@ -230,28 +233,64 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(483, 3);
+            this.label3.Location = new System.Drawing.Point(745, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(155, 20);
             this.label3.TabIndex = 80;
             this.label3.Text = "Configurar Familia";
             // 
-            // listBoxFamilia
+            // listBoxFamiliaConfigurada
             // 
-            this.listBoxFamilia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBoxFamiliaConfigurada.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxFamilia.FormattingEnabled = true;
-            this.listBoxFamilia.Location = new System.Drawing.Point(487, 109);
-            this.listBoxFamilia.Name = "listBoxFamilia";
-            this.listBoxFamilia.Size = new System.Drawing.Size(228, 264);
-            this.listBoxFamilia.TabIndex = 79;
+            this.listBoxFamiliaConfigurada.FormattingEnabled = true;
+            this.listBoxFamiliaConfigurada.Location = new System.Drawing.Point(749, 109);
+            this.listBoxFamiliaConfigurada.Name = "listBoxFamiliaConfigurada";
+            this.listBoxFamiliaConfigurada.Size = new System.Drawing.Size(228, 303);
+            this.listBoxFamiliaConfigurada.TabIndex = 79;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(15, 343);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 20);
+            this.label4.TabIndex = 98;
+            this.label4.Text = "Familias";
+            // 
+            // btnAgregarFamilia
+            // 
+            this.btnAgregarFamilia.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAgregarFamilia.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAgregarFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarFamilia.Location = new System.Drawing.Point(267, 370);
+            this.btnAgregarFamilia.Name = "btnAgregarFamilia";
+            this.btnAgregarFamilia.Size = new System.Drawing.Size(80, 30);
+            this.btnAgregarFamilia.TabIndex = 97;
+            this.btnAgregarFamilia.Text = "Agregar >>";
+            this.btnAgregarFamilia.UseVisualStyleBackColor = false;
+            this.btnAgregarFamilia.Click += new System.EventHandler(this.btnAgregarFamilia_Click);
+            // 
+            // listBoxFamilias
+            // 
+            this.listBoxFamilias.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listBoxFamilias.FormattingEnabled = true;
+            this.listBoxFamilias.Location = new System.Drawing.Point(19, 370);
+            this.listBoxFamilias.Name = "listBoxFamilias";
+            this.listBoxFamilias.Size = new System.Drawing.Size(228, 147);
+            this.listBoxFamilias.TabIndex = 96;
             // 
             // frmGestionFamilias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(763, 480);
+            this.ClientSize = new System.Drawing.Size(1025, 529);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnAgregarFamilia);
+            this.Controls.Add(this.listBoxFamilias);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblModoOperacion);
@@ -268,7 +307,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbFamilia);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.listBoxFamilia);
+            this.Controls.Add(this.listBoxFamiliaConfigurada);
             this.Name = "frmGestionFamilias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmGestionFamilias_Load);
@@ -295,6 +334,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbFamilia;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox listBoxFamilia;
+        private System.Windows.Forms.ListBox listBoxFamiliaConfigurada;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnAgregarFamilia;
+        private System.Windows.Forms.ListBox listBoxFamilias;
     }
 }
