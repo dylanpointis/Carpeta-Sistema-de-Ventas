@@ -203,7 +203,7 @@ namespace Carpeta_Sistema_de_Ventas
                     SessionManager.GetInstance.LogOut();
                     this.Close();
                 }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noHaySesion")); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noHaySesion"), "", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             }
 
         }

@@ -44,6 +44,7 @@
             // 
             // lblNombreUsuario
             // 
+            this.lblNombreUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNombreUsuario.AutoSize = true;
             this.lblNombreUsuario.Location = new System.Drawing.Point(393, 80);
             this.lblNombreUsuario.Name = "lblNombreUsuario";
@@ -53,6 +54,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(384, 50);
@@ -63,6 +65,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(360, 128);
             this.label3.Name = "label3";
@@ -72,6 +75,7 @@
             // 
             // txtClaveActual
             // 
+            this.txtClaveActual.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtClaveActual.Location = new System.Drawing.Point(361, 144);
             this.txtClaveActual.Name = "txtClaveActual";
             this.txtClaveActual.PasswordChar = '*';
@@ -80,6 +84,7 @@
             // 
             // txtNuevaClave
             // 
+            this.txtNuevaClave.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNuevaClave.Location = new System.Drawing.Point(361, 254);
             this.txtNuevaClave.Name = "txtNuevaClave";
             this.txtNuevaClave.PasswordChar = '*';
@@ -88,6 +93,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(358, 238);
             this.label4.Name = "label4";
@@ -97,6 +103,7 @@
             // 
             // txtConfirmar
             // 
+            this.txtConfirmar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtConfirmar.Location = new System.Drawing.Point(362, 313);
             this.txtConfirmar.Name = "txtConfirmar";
             this.txtConfirmar.PasswordChar = '*';
@@ -105,6 +112,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(360, 297);
             this.label5.Name = "label5";
@@ -114,6 +122,7 @@
             // 
             // btnCambiarClave
             // 
+            this.btnCambiarClave.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCambiarClave.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnCambiarClave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCambiarClave.ForeColor = System.Drawing.Color.White;
@@ -127,6 +136,7 @@
             // 
             // btnMostrarClaveActual
             // 
+            this.btnMostrarClaveActual.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMostrarClaveActual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnMostrarClaveActual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMostrarClaveActual.Image = global::Carpeta_Sistema_de_Ventas.Properties.Resources.visible;
@@ -139,6 +149,7 @@
             // 
             // btnMostrarClaveNueva
             // 
+            this.btnMostrarClaveNueva.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMostrarClaveNueva.BackgroundImage = global::Carpeta_Sistema_de_Ventas.Properties.Resources.visible;
             this.btnMostrarClaveNueva.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnMostrarClaveNueva.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -151,6 +162,7 @@
             // 
             // btnMostrarConfirmarClave
             // 
+            this.btnMostrarConfirmarClave.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMostrarConfirmarClave.BackgroundImage = global::Carpeta_Sistema_de_Ventas.Properties.Resources.visible;
             this.btnMostrarConfirmarClave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnMostrarConfirmarClave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

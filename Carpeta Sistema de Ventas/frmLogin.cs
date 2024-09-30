@@ -27,6 +27,7 @@ namespace Carpeta_Sistema_de_Ventas
             txtNombreUsuario.Text = "Admin";
             txtClave.Text = "clave123";
             btnMostrarClave.Text = "";
+            txtNombreUsuario.Focus();
         }
 
         //Cuando carga por primera vez y cuando se vuelve a mostrar con el Metodo CerrandoFormulario() carga el archivo actual y lo agrega al sujeto
@@ -52,7 +53,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             if(txtNombreUsuario.Text == "" || txtClave.Text == "")
             {
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene"));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (SessionManager.GetInstance.ObtenerUsuario() == null)
@@ -89,21 +90,21 @@ namespace Carpeta_Sistema_de_Ventas
                         {
                             contClaveIncorrecta++;
                             bllUsuario.ModificarContFallido(user.NombreUsuario, contClaveIncorrecta);
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             if (contClaveIncorrecta == 3)
                             {
-                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seBloqueo"));
+                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seBloqueo"), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 bllUsuario.ModificarBloqueo(user.DNI, true);
 
                                 bllEvento.RegistrarEvento(new Evento(txtNombreUsuario.Text, "Sesiones", "Usuario bloqueado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             }
                         }
                     }
-                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("estaBloqueado")); }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("estaBloqueado"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                    
                     
                 }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro")); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro"), "", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaInicio")); }
         }
@@ -158,5 +159,31 @@ namespace Carpeta_Sistema_de_Ventas
             IdiomaManager.GetInstance().Quitar(this);
         }
 
+
+
+
+
+
+
+
+        //eventos para que cuando termine de escribir (presione ENTER) haga focus al otro textbox
+
+        private void txtNombreUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                txtClave.Focus();
+            }
+        }
+
+        private void txtClave_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                btnIniciar.Focus();
+            }
+        }
     }
 }

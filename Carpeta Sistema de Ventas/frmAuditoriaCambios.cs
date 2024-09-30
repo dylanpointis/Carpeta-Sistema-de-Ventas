@@ -4,6 +4,7 @@ using Services;
 using Services.Observer;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
@@ -82,7 +83,18 @@ namespace Carpeta_Sistema_de_Ventas
 
                 grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, borrado, activo);
             }
-            
+
+
+
+            grillaCambios.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN CELESTE A LOS ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW
+            foreach (DataGridViewRow row in grillaCambios.Rows)
+            {
+                if (row.Cells[11].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolTrue"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.PowderBlue; //pone en celeste el estado activo del producto
+                }
+            }
+
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -173,11 +185,11 @@ namespace Carpeta_Sistema_de_Ventas
 
                     bllProd.ModificarProducto(prod);
                     ActualizarGrilla();
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoActivado"));
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoActivado"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaEstaActivado")); } //tiene True en el bool Activado
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaEstaActivado"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //tiene True en el bool Activado
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionaGrid")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionaGrid"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
         }
     }

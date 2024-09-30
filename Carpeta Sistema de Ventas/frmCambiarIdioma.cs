@@ -31,22 +31,26 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(cmbIdioma.SelectedItem != null)
             {
-                if (cmbIdioma.Text == IdiomaManager.GetInstance().ConseguirTexto("esp"))
+                try
                 {
-                    IdiomaManager.GetInstance().PrimeraVez = true; //esto es para que traduzca el menuStrip
-                    SessionManager.IdiomaActual = "esp";
-                    IdiomaManager.GetInstance().PrimeraVez = false;  //una vez traducido lo pone en false asi no se traduce de vuelta al cambiar de form
+                    if (cmbIdioma.Text == IdiomaManager.GetInstance().ConseguirTexto("esp"))
+                    {
+                        IdiomaManager.GetInstance().PrimeraVez = true; //esto es para que traduzca el menuStrip
+                        SessionManager.IdiomaActual = "esp";
+                        IdiomaManager.GetInstance().PrimeraVez = false;  //una vez traducido lo pone en false asi no se traduce de vuelta al cambiar de form
+                    }
+                    else
+                    {
+                        IdiomaManager.GetInstance().PrimeraVez = true;
+                        SessionManager.IdiomaActual = "eng";
+                        IdiomaManager.GetInstance().PrimeraVez = false;
+                    }
                 }
-                else
-                {
-                    IdiomaManager.GetInstance().PrimeraVez = true;
-                    SessionManager.IdiomaActual = "eng";
-                    IdiomaManager.GetInstance().PrimeraVez = false;
-                }
+                catch (Exception ex) { MessageBox.Show($"Error: {ex.Message}", "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
                 CargarComboBox();
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionarIdioma")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionarIdioma"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
         private void frmCambiarIdioma_Load(object sender, EventArgs e)

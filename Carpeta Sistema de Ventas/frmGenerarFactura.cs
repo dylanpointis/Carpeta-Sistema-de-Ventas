@@ -241,7 +241,7 @@ namespace Carpeta_Sistema_de_Ventas
                         }
 
 
-                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"));
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Enabled = false; // deshabilita los botones
 
                     }

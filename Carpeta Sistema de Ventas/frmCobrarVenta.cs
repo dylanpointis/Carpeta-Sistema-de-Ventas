@@ -80,17 +80,21 @@ namespace Carpeta_Sistema_de_Ventas
 
 
                     //_factura.cobro = cobroDatos;
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaCobrada"));
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaCobrada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numTransOcupado")); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numTransOcupado"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
            
         }
 
         private bool ValidarCampos()
         {
+            if(txtNumTransaccion.Text == "")
+            {
+                return false;
+            }
 
             /*Si el metodo de pago es Mercado pago debe solamente poner el aliasMp, no los datos de la tarejeta.*/
             if (cmbMetodoPago.Text != "") 

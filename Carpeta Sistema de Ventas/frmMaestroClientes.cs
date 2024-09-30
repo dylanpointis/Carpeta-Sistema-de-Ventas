@@ -123,7 +123,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BloquearBotones();
                     lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {grillaClientes.CurrentRow.Cells[0].Value}";
                 }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar")); } //No se puede modificar a un cliente deshabilitado
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //No se puede modificar a un cliente deshabilitado
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
         }
@@ -181,10 +181,10 @@ namespace Carpeta_Sistema_de_Ventas
 
 
                             bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                 }
                 else
                 {
@@ -199,7 +199,7 @@ namespace Carpeta_Sistema_de_Ventas
                             bllCliente.EliminarCliente(dniCliente);
 
                             bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente eliminado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             
                         }
                     }
@@ -212,9 +212,9 @@ namespace Carpeta_Sistema_de_Ventas
                             bllCliente.ModificarCliente(cliente);
 
                             bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente modificado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar")); } //No se puede modificar a un cliente deshabilitado
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //No se puede modificar a un cliente deshabilitado
                     }
                     if(modoOperacion == EnumModoAplicar.Activar)
                     {
@@ -227,7 +227,7 @@ namespace Carpeta_Sistema_de_Ventas
                             bllCliente.HabilitarCliente(dni);
 
                             bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente habilitado", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -479,7 +479,7 @@ namespace Carpeta_Sistema_de_Ventas
                 listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre")}: {cli.Nombre}");
                 listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewApellido")}: {cli.Apellido}");
                 listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewMail")}: {cli.Mail}");
-                listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion")} : : {cli.Direccion}");
+                listBoxArchivoSerializado.Items.Add($"{IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion")}: {cli.Direccion}");
                 listBoxArchivoSerializado.Items.Add($"--------------------------");
             }
         }

@@ -73,7 +73,7 @@ namespace Carpeta_Sistema_de_Ventas
                                     bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cambio de clave", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
 
 
-                                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"),"", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
 
@@ -82,22 +82,22 @@ namespace Carpeta_Sistema_de_Ventas
                                     this.Close();
                                     _frmParent.Close();
                                 }
-                                catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error")); }
+                                catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
                             }
                             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("confirme")); }
                         }
                         else
                         {
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("masde8")); }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("masde8"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                    
                 }
                 else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeIniciar")); }
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("completar")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("completar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
 

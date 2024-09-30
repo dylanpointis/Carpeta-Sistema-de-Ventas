@@ -45,13 +45,14 @@ namespace Carpeta_Sistema_de_Ventas
                         bllCliente.RegistrarCliente(cliente);
 
                         bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.btnRegistrarCliente.Enabled = false;
                     }
-                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error")); }
+                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste")); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseCampos")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
         private bool ValidarDatos()

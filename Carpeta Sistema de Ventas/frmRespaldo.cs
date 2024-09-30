@@ -58,7 +58,7 @@ namespace Carpeta_Sistema_de_Ventas
                 try
                 {
                     bllRespaldo.RealizarBackUp(txtBackupRuta.Text);
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoBackUp"));
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoBackUp"),"", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtBackupRuta.Text = "";
 
                     bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Respaldos", "Backup realizado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
@@ -66,10 +66,10 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorBackUp") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorBackUp") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
                 }
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneRutaBackUp")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneRutaBackUp"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
         #endregion
 
@@ -93,7 +93,7 @@ namespace Carpeta_Sistema_de_Ventas
                 try
                 {
                     bllRespaldo.RealizarRestore(txtRestoreRuta.Text);
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoRestore"));
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoRestore"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtRestoreRuta.Text = "";
 
 
@@ -101,7 +101,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorRestore") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); } 
                 }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneRutaRestore")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneRutaRestore"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
         #endregion
     }

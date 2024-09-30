@@ -123,7 +123,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BloquearBotones();
                     lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {codProd}";
                 }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar")); } //No se puede modifcar un producto deshabilitado
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //No se puede modifcar un producto deshabilitado
                 
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccione")); }
@@ -174,10 +174,10 @@ namespace Carpeta_Sistema_de_Ventas
                             bllProducto.RegistrarProducto(prod);
 
                             bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                 }
                 else
                 {
@@ -192,7 +192,7 @@ namespace Carpeta_Sistema_de_Ventas
                             bllProducto.EliminarProducto(idProd);
 
                             bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto eliminado", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     if (modoOperacion == EnumModoAplicar.Activar)
@@ -206,7 +206,7 @@ namespace Carpeta_Sistema_de_Ventas
                             bllProducto.HabilitarProducto(idProd);
 
                             bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto habilitado", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
                     }
@@ -220,9 +220,9 @@ namespace Carpeta_Sistema_de_Ventas
                             bllProducto.ModificarProducto(prod);
 
                             bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
+                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar")); } //No se puede modifcar un producto deshabilitado
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //No se puede modifcar un producto deshabilitado
                     }
                 }
                 ResetearBotones();
