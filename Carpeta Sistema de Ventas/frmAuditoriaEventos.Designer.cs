@@ -39,9 +39,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtModulo = new System.Windows.Forms.ComboBox();
-            this.txtEvento = new System.Windows.Forms.ComboBox();
-            this.txtCriticidad = new System.Windows.Forms.ComboBox();
+            this.cmbModulo = new System.Windows.Forms.ComboBox();
+            this.cmbEvento = new System.Windows.Forms.ComboBox();
+            this.cmbCriticidad = new System.Windows.Forms.ComboBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
@@ -170,45 +170,46 @@
             this.label9.TabIndex = 66;
             this.label9.Text = "Fecha fin";
             // 
-            // txtModulo
+            // cmbModulo
             // 
-            this.txtModulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtModulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtModulo.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.txtModulo.FormattingEnabled = true;
-            this.txtModulo.Location = new System.Drawing.Point(71, 480);
-            this.txtModulo.Name = "txtModulo";
-            this.txtModulo.Size = new System.Drawing.Size(143, 21);
-            this.txtModulo.TabIndex = 68;
+            this.cmbModulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbModulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbModulo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbModulo.FormattingEnabled = true;
+            this.cmbModulo.Location = new System.Drawing.Point(71, 480);
+            this.cmbModulo.Name = "cmbModulo";
+            this.cmbModulo.Size = new System.Drawing.Size(143, 21);
+            this.cmbModulo.TabIndex = 68;
+            this.cmbModulo.SelectedIndexChanged += new System.EventHandler(this.cmbModulo_SelectedIndexChanged);
             // 
-            // txtEvento
+            // cmbEvento
             // 
-            this.txtEvento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtEvento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtEvento.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.txtEvento.FormattingEnabled = true;
-            this.txtEvento.Location = new System.Drawing.Point(256, 480);
-            this.txtEvento.Name = "txtEvento";
-            this.txtEvento.Size = new System.Drawing.Size(143, 21);
-            this.txtEvento.TabIndex = 70;
-            this.txtEvento.DropDown += new System.EventHandler(this.txtEvento_DropDown);
+            this.cmbEvento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbEvento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEvento.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbEvento.FormattingEnabled = true;
+            this.cmbEvento.Location = new System.Drawing.Point(256, 480);
+            this.cmbEvento.Name = "cmbEvento";
+            this.cmbEvento.Size = new System.Drawing.Size(143, 21);
+            this.cmbEvento.TabIndex = 70;
+            this.cmbEvento.DropDown += new System.EventHandler(this.txtEvento_DropDown);
             // 
-            // txtCriticidad
+            // cmbCriticidad
             // 
-            this.txtCriticidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCriticidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtCriticidad.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.txtCriticidad.FormattingEnabled = true;
-            this.txtCriticidad.Items.AddRange(new object[] {
+            this.cmbCriticidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmbCriticidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCriticidad.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbCriticidad.FormattingEnabled = true;
+            this.cmbCriticidad.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
             "4",
             "5"});
-            this.txtCriticidad.Location = new System.Drawing.Point(454, 480);
-            this.txtCriticidad.Name = "txtCriticidad";
-            this.txtCriticidad.Size = new System.Drawing.Size(143, 21);
-            this.txtCriticidad.TabIndex = 72;
+            this.cmbCriticidad.Location = new System.Drawing.Point(454, 480);
+            this.cmbCriticidad.Name = "cmbCriticidad";
+            this.cmbCriticidad.Size = new System.Drawing.Size(143, 21);
+            this.cmbCriticidad.TabIndex = 72;
             // 
             // btnLimpiar
             // 
@@ -303,9 +304,9 @@
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.txtCriticidad);
-            this.Controls.Add(this.txtEvento);
-            this.Controls.Add(this.txtModulo);
+            this.Controls.Add(this.cmbCriticidad);
+            this.Controls.Add(this.cmbEvento);
+            this.Controls.Add(this.cmbModulo);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -339,9 +340,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox txtModulo;
-        private System.Windows.Forms.ComboBox txtEvento;
-        private System.Windows.Forms.ComboBox txtCriticidad;
+        private System.Windows.Forms.ComboBox cmbModulo;
+        private System.Windows.Forms.ComboBox cmbEvento;
+        private System.Windows.Forms.ComboBox cmbCriticidad;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnImprimir;

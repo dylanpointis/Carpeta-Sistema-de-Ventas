@@ -34,6 +34,7 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
         BLLFactura bllFactura = new BLLFactura();
+        BLLEvento bLLEvento = new BLLEvento();
 
         private void frmReportes_Load(object sender, EventArgs e)
         {
@@ -90,6 +91,8 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaFacturas.SelectedRows.Count > 0)
             {
+                bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Impresión de factura", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+
                 BECliente cli = new BECliente(Convert.ToInt32(grillaFacturas.CurrentRow.Cells[1].Value), grillaFacturas.CurrentRow.Cells[10].Value.ToString(), grillaFacturas.CurrentRow.Cells[11].Value.ToString(), grillaFacturas.CurrentRow.Cells[12].Value.ToString(), grillaFacturas.CurrentRow.Cells[13].Value.ToString());
 
                 BECobro cobro = new BECobro() { NumTransaccionBancaria = Convert.ToInt32(grillaFacturas.CurrentRow.Cells[2].Value), MarcaTarjeta = grillaFacturas.CurrentRow.Cells[7].Value.ToString(), CantCuotas = Convert.ToInt32(grillaFacturas.CurrentRow.Cells[8].Value), AliasMP = grillaFacturas.CurrentRow.Cells[9].Value.ToString(), stringMetodoPago = grillaFacturas.CurrentRow.Cells[6].Value.ToString() };
@@ -110,6 +113,8 @@ namespace Carpeta_Sistema_de_Ventas
 
 
                 SaveFileDialog guardarArchivo = new SaveFileDialog();
+
+                guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
                 guardarArchivo.FileName = fac.NumFactura + "-" +DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
 
 

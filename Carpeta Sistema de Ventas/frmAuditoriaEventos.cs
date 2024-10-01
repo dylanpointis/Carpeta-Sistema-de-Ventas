@@ -30,8 +30,6 @@ namespace Carpeta_Sistema_de_Ventas
             fechaFin.Format = DateTimePickerFormat.Custom;
             fechaFin.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-3);
-
-
             IdiomaManager.GetInstance().archivoActual = "frmAuditoriaEventos";
             IdiomaManager.GetInstance().Agregar(this);
 
@@ -51,13 +49,13 @@ namespace Carpeta_Sistema_de_Ventas
         private void frmAuditoriaEventos_Load(object sender, EventArgs e)
         {
             grillaEventos.ColumnCount = 7;
-            grillaEventos.Columns[0].Name = "Id evento";
-            grillaEventos.Columns[1].Name = "Nombre usuario";
-            grillaEventos.Columns[2].Name = "Modulo";
-            grillaEventos.Columns[3].Name = "Evento";
-            grillaEventos.Columns[4].Name = "Criticidad";
-            grillaEventos.Columns[5].Name = "Fecha";
-            grillaEventos.Columns[6].Name = "Hora";
+            grillaEventos.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvId"); ;
+            grillaEventos.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("textoNombreUsuario");
+            grillaEventos.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("textoModulo");
+            grillaEventos.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("textoEvento"); ;
+            grillaEventos.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("textoCriticidad"); ;
+            grillaEventos.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("textoFecha"); ;
+            grillaEventos.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("textoHora"); ;
 
             grillaEventos.Columns[0].Width = 40;
             grillaEventos.Columns[4].Width = 40;
@@ -65,6 +63,10 @@ namespace Carpeta_Sistema_de_Ventas
             grillaEventos.Columns[6].Width = 50;
             ActualizarGrilla();
             LlenarComboBox();
+
+
+            cmbModulo.SelectedItem = null;
+            cmbEvento.SelectedItem = null;
         }
 
 
@@ -86,10 +88,25 @@ namespace Carpeta_Sistema_de_Ventas
         {
             string fechaInicial = fechaInicio.Value.ToString("yyyy-MM-dd");
             string fechaFinal = fechaFin.Value.ToString("yyyy-MM-dd");
-            
+
+            string modulo = "";
+            string evento = "";
 
 
-            listaEventos = bllEvento.FiltrarEventos(txtNombreUsuario.Text, txtModulo.Text, txtEvento.Text, txtCriticidad.Text, fechaInicial, fechaFinal);
+            if (cmbModulo.SelectedValue != null)
+            {
+                modulo = cmbModulo.SelectedValue.ToString();
+            }
+            else { modulo = ""; }
+
+            if (cmbEvento.SelectedValue != null)
+            {
+                evento = cmbEvento.SelectedValue.ToString();
+            }
+            else { evento = ""; }
+
+
+            listaEventos = bllEvento.FiltrarEventos(txtNombreUsuario.Text, modulo, evento, cmbCriticidad.Text, fechaInicial, fechaFinal);
             grillaEventos.Rows.Clear();
 
             foreach (Evento ev in listaEventos)
@@ -104,9 +121,9 @@ namespace Carpeta_Sistema_de_Ventas
             ActualizarGrilla();
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-3);
             txtNombreUsuario.Text = "";
-            txtModulo.SelectedItem = null;
-            txtEvento.SelectedItem = null;
-            txtCriticidad.SelectedItem = null;
+            cmbModulo.SelectedItem = null;
+            cmbEvento.SelectedItem = null;
+            cmbCriticidad.SelectedItem = null;
         }
 
         private void grillaEventos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -119,6 +136,7 @@ namespace Carpeta_Sistema_de_Ventas
                 lblNombre.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNombre")+ " " + user.Nombre;
                 lblApellido.Text = IdiomaManager.GetInstance().ConseguirTexto("lblApellido") + " " + user.Apellido;
                 lblDNI.Text = IdiomaManager.GetInstance().ConseguirTexto("lblDNI") + " " + user.DNI;
+                txtNombreUsuario.Text = user.NombreUsuario;
             }
         }
 
@@ -148,8 +166,9 @@ namespace Carpeta_Sistema_de_Ventas
             }
 
             SaveFileDialog guardarArchivo = new SaveFileDialog();
-            guardarArchivo.FileName = "Eventos-" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm") + ".pdf";
 
+            guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
+            guardarArchivo.FileName = "Eventos-" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm") + ".pdf";
 
             string paginahtml = Properties.Resources.htmlauditoriaevento.ToString();
 
@@ -227,71 +246,101 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void LlenarComboBox()
         {
+            //Crear el DataTable para cargar el comboBox
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Texto"); // La columna para el texto a mostrar
+            dt.Columns.Add("Valor"); // La columna para el valor real
 
-            txtModulo.Items.Add("Sesiones");
-            txtModulo.Items.Add("Gestión Usuarios");
-            txtModulo.Items.Add("Gestión Perfiles");
-            txtModulo.Items.Add("Ventas");
-            txtModulo.Items.Add("Productos");
-            txtModulo.Items.Add("Clientes");
-            txtModulo.Items.Add("Respaldos");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Sesiones"), "Sesiones");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Gestión Usuarios"), "Gestión Usuarios");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Gestión Perfiles"), "Gestión Perfiles");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Ventas"), "Ventas");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Productos"), "Productos");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Clientes"), "Clientes");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Respaldos"), "Respaldos");
+
+            cmbModulo.DataSource = dt;
+            cmbModulo.DisplayMember = "Texto"; // El texto que se mostrará
+            cmbModulo.ValueMember = "Valor";   // El valor real
+
         }
 
 
 
         private void txtEvento_DropDown(object sender, EventArgs e)
         {
-            if (txtModulo.Text != "")
+            if (cmbModulo.Text != "")
             {
-                txtEvento.Items.Clear();
-                string modulo = txtModulo.Text;
+                //Datatable para almacenar los eventos con su display y value real
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Texto"); //texto mostrado en el combo
+                dt.Columns.Add("Valor"); //valor real
+
+
+
+                cmbEvento.DataSource= null;
+                string modulo = cmbModulo.SelectedValue.ToString();
 
                 switch (modulo)
                 {
                     case "Sesiones":
-                        txtEvento.Items.Add("Inicio sesión");
-                        txtEvento.Items.Add("Cierre sesión");
-                        txtEvento.Items.Add("Cambio de clave");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Inicio sesión"), "Inicio sesión");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Cierre sesión"), "Cierre sesión");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Cambio de clave"), "Cambio de clave");
                         break;
                     case "Gestión Usuarios":
-                        txtEvento.Items.Add("Usuario creado");
-                        txtEvento.Items.Add("Usuario modificado");
-                        txtEvento.Items.Add("Usuario eliminado");
-                        txtEvento.Items.Add("Usuario activado");
-                        txtEvento.Items.Add("Usuario desbloqueado");
+
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Usuario creado"), "Usuario creado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Usuario modificado"), "Usuario modificado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Usuario eliminado"), "Usuario eliminado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Usuario activado"), "Usuario activado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Usuario desbloqueado"), "Usuario desbloqueado");
                         break;
                     case "Gestión Perfiles":
-                        txtEvento.Items.Add("Familia eliminada");
-                        txtEvento.Items.Add("Familia creada");
-                        txtEvento.Items.Add("Familia modificada");
-                        txtEvento.Items.Add("Perfil eliminado");
-                        txtEvento.Items.Add("Perfil creado");
-                        txtEvento.Items.Add("Perfil modificado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Familia eliminada"), "Familia eliminada");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Familia creada"), "Familia creada");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Familia modificada"), "Familia modificada");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Perfil eliminado"), "Perfil eliminado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Perfil creado"), "Perfil creado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Perfil modificado"), "Perfil modificado");
                         break;
                     case "Ventas":
-                        txtEvento.Items.Add("Factura generada");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Factura generada"), "Factura generada");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Impresión de factura"), "Impresión de factura");
                         break;
                     case "Productos":
-                        txtEvento.Items.Add("Producto creado");
-                        txtEvento.Items.Add("Producto eliminado");
-                        txtEvento.Items.Add("Producto habilitado");
-                        txtEvento.Items.Add("Producto modificado");
-                        txtEvento.Items.Add("Stock reducido");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Producto creado"), "Producto creado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Producto eliminado"), "Producto eliminado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Producto habilitado"), "Producto habilitado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Producto modificado"), "Producto modificado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Stock reducidoo"), "Stock reducido");
                         break;
                     case "Clientes":
-                        txtEvento.Items.Add("Cliente creado");
-                        txtEvento.Items.Add("Cliente eliminado");
-                        txtEvento.Items.Add("Cliente habilitado");
-                        txtEvento.Items.Add("Cliente modificado");
-                        txtEvento.Items.Add("Archivo serializado");
-                        txtEvento.Items.Add("Archivo deserializado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Cliente creado"), "Cliente creado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Cliente eliminado"), "Cliente eliminado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Cliente habilitado"), "Cliente habilitado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Cliente modificado"), "Cliente modificado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Archivo serializado"), "Archivo serializado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Archivo deserializado"), "Archivo deserializado");
                         break;
                     case "Respaldos":
-                        txtEvento.Items.Add("Backup realizado");
-                        txtEvento.Items.Add("Restore realizado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Backup realizado"), "Backup realizado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Restore realizado"), "Restore realizado");
+                        break;
+                    default:
+                        cmbEvento.DataSource = null;
                         break;
                 }
+
+                cmbEvento.DataSource = dt;
+                cmbEvento.DisplayMember = "Texto";  // Lo que el usuario ve (traducido)
+                cmbEvento.ValueMember = "Valor";      // El valor real (en español o código
             }
+        }
+
+        private void cmbModulo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbEvento.SelectedItem = null;
         }
     }
 }

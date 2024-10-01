@@ -32,6 +32,9 @@
   "gridViewDireccion": "Direccion",
   "btnSerializar": "Serializar",
   "btnDeserializar": "Deserializar",
+  "noHayRegistros": "No hay ningun registro en la grilla para serializar",
+  "exitoSerializacion": "Archivo serializado guardado exitosamente",
+  "exitoDeserializacion": "Archivo deserializado exitosamente",
 
 
   "noSePuedeModificar": "No se puede modificar a un cliente deshabilitado",

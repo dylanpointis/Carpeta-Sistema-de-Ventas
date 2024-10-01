@@ -32,6 +32,10 @@
   "gridViewDireccion": "Address",
   "btnSerializar": "Serialize",
   "btnDeserializar": "Deserialize",
+  "noHayRegistros": "There are no records in the grid to serialize",
+  "exitoSerializacion": "Serialized file saved successfully",
+  "exitoDeserializacion": "File deserialized successfully",
+
 
   "noSePuedeModificar": "Cannot modify a disabled customer",
   "habilitar": "Enable",

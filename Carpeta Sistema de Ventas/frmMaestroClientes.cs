@@ -339,6 +339,7 @@ namespace Carpeta_Sistema_de_Ventas
             btnDeserializar.Enabled = true;
 
             listaClientes = bllCliente.TraerListaCliente();
+            listBoxArchivoSerializado.Items.Clear();
         }
 
         private void grillaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -423,14 +424,14 @@ namespace Carpeta_Sistema_de_Ventas
                         MostrarArchivoSerializado(saveFileDialog.FileName);
                         bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo serializado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
 
-                        MessageBox.Show("Archivo serializado guardado exitosamente");
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoSerializacion"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         grillaClientes.Rows.Clear();
                     }
                 }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
                 
             }
-            else { MessageBox.Show("No hay ningun registro en la grilla para serializar"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noHayRegistros"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //No hay ningun registro en la grilla para serializar
         }
 
 
@@ -462,12 +463,13 @@ namespace Carpeta_Sistema_de_Ventas
 
                     MostrarDatosDeserializados(listaClientes);
 
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoDeserializacion"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo deserializado", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
                     grillaClientes.Rows.Clear();
                     ActualizarGrilla();
                 }
             }
-            catch(Exception ex) { MessageBox.Show("Error: " + ex.Message); }
+            catch(Exception ex) { MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void MostrarDatosDeserializados(List<BECliente> listaClientes)

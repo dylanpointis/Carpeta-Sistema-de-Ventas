@@ -17,12 +17,65 @@
   "fechaFinal": "La fecha final no puede ser menor a la inicial",
   "textoFecha": "Fecha",
   "textoIdEvento": "ID",
+  "dgvId": "ID Evento",
   "textoNombreUsuario": "Nombre usuario",
   "textoModulo": "Modulo",
   "textoEvento": "Evento",
   "textoCriticidad": "Criticidad",
   "textoHora": "Hora",
   "textoDetalleEvento": "Detalle evento:",
+
+
+
+
+
+  "Sesiones": "Sesiones",
+  "Gestión Usuarios": "Gestión Usuarios",
+  "Gestión Perfiles": "Gestión Perfiles",
+  "Ventas": "Ventas",
+  "Productos": "Productos",
+  "Clientes": "Clientes",
+  "Respaldos": "Respaldos",
+
+
+  "Inicio sesión": "Inicio sesión",
+  "Cierre sesión": "Cierre sesión",
+  "Cambio de clave": "Cambio de clave",
+  "Usuario creado": "Usuario creado",
+  "Usuario modificado": "Usuario modificado",
+  "Usuario eliminado": "Usuario eliminado",
+  "Usuario activado": "Usuario activado",
+  "Usuario desbloqueado": "Usuario desbloqueado",
+  "Familia eliminada": "Familia eliminada",
+  "Familia creada": "Familia creada",
+  "Familia modificada": "Familia modificada",
+  "Perfil eliminado": "Perfil eliminado",
+  "Perfil creado": "Perfil creado",
+  "Perfil modificado": "Perfil modificado",
+  "Factura generada": "Factura generada",
+  "Impresión de factura": "Impresión de factura",
+  "Producto creado": "Producto creado",
+  "Producto eliminado": "Producto eliminado",
+  "Producto habilitado": "Producto habilitado",
+  "Producto modificado": "Producto modificado",
+  "Stock reducido": "Stock reducido",
+  "Cliente creado": "Cliente creado",
+  "Cliente eliminado": "Cliente eliminado",
+  "Cliente habilitado": "Cliente habilitado",
+  "Cliente modificado": "Cliente modificado",
+  "Archivo serializado": "Archivo serializado",
+  "Archivo deserializado": "Archivo deserializado",
+  "Backup realizado": "Backup realizado",
+  "Restore realizado": "Restore realizado",
+
+
+
+
+
+
+
+
+
 
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
