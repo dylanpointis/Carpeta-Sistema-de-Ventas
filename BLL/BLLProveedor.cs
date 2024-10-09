@@ -11,7 +11,7 @@ namespace BLL
 {
     public class BLLProveedor
     {
-        public DALProveedor dalProv = new DALProveedor();
+        private DALProveedor dalProv = new DALProveedor();
 
         public List<BEProveedor> TraerListaProveedores()
         {

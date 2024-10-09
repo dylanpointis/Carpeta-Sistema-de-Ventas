@@ -21,6 +21,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         BLLProducto bllProd = new BLLProducto();
         BLLProveedor bllProv = new BLLProveedor();
+        BESolicitudCotizacion solicitudCoti = new BESolicitudCotizacion("Pendiente", DateTime.Now);
 
         private void COMPRAfrmGenerarSolicitudCotizacion_Load(object sender, EventArgs e)
         {
@@ -41,5 +42,17 @@ namespace Carpeta_Sistema_de_Ventas
 
         }
 
+        private void btnSeleccionarProveedor_Click(object sender, EventArgs e)
+        {
+            BEProveedor prov = new BEProveedor(grillaProveedores.CurrentRow.Cells[0].Value.ToString(), grillaProveedores.CurrentRow.Cells[1].Value.ToString(), 
+                grillaProveedores.CurrentRow.Cells[2].Value.ToString(), grillaProveedores.CurrentRow.Cells[3].Value.ToString(), grillaProveedores.CurrentRow.Cells[4].Value.ToString(),
+                grillaProveedores.CurrentRow.Cells[5].Value.ToString(), grillaProveedores.CurrentRow.Cells[6].Value.ToString());
+
+
+            solicitudCoti.Proveedor = prov;
+
+
+
+        }
     }
 }

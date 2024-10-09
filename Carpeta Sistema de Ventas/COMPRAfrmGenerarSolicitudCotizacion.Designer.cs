@@ -99,6 +99,7 @@
             this.btnSeleccionarProveedor.TabIndex = 29;
             this.btnSeleccionarProveedor.Text = "Seleccionar";
             this.btnSeleccionarProveedor.UseVisualStyleBackColor = false;
+            this.btnSeleccionarProveedor.Click += new System.EventHandler(this.btnSeleccionarProveedor_Click);
             // 
             // label4
             // 

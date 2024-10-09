@@ -9,7 +9,7 @@ namespace DAL
 {
     public class DALProveedor
     {
-        DALConexion dalCon = new DALConexion();
+        private DALConexion dalCon = new DALConexion();
 
         public DataTable TraerListaProveedores()
         {
