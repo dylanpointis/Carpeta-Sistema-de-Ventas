@@ -85,7 +85,7 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     BEProducto producto = new BEProducto(Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value), grillaProductos.CurrentRow.Cells[1].Value.ToString(), grillaProductos.CurrentRow.Cells[2].Value.ToString(), grillaProductos.CurrentRow.Cells[3].Value.ToString(),
                         grillaProductos.CurrentRow.Cells[4].Value.ToString(), Convert.ToDouble(grillaProductos.CurrentRow.Cells[5].Value),
-                        Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[7].Value),true);
+                        Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[7].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[8].Value), Convert.ToInt32(grillaProductos.CurrentRow.Cells[9].Value), true);
                    
                     if(YaEstaElProductoAgregado(producto.CodigoProducto) == false)
                     {

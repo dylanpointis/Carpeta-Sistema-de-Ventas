@@ -258,6 +258,7 @@ namespace Carpeta_Sistema_de_Ventas
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Productos"), "Productos");
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Clientes"), "Clientes");
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Respaldos"), "Respaldos");
+            dt.Rows.Add("-", "");
 
             cmbModulo.DataSource = dt;
             cmbModulo.DisplayMember = "Texto"; // El texto que se mostrará
@@ -331,6 +332,7 @@ namespace Carpeta_Sistema_de_Ventas
                         cmbEvento.DataSource = null;
                         break;
                 }
+                dt.Rows.Add("-", "");
 
                 cmbEvento.DataSource = dt;
                 cmbEvento.DisplayMember = "Texto";  // Lo que el usuario ve (traducido)

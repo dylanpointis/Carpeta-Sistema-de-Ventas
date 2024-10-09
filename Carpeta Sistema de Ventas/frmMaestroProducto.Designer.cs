@@ -53,11 +53,17 @@
             this.txtAlmacenamiento = new System.Windows.Forms.NumericUpDown();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtStockMin = new System.Windows.Forms.NumericUpDown();
+            this.txtStockMax = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigoProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAlmacenamiento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockMax)).BeginInit();
             this.SuspendLayout();
             // 
             // btnActualizar
@@ -77,7 +83,7 @@
             this.lblMensaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMensaje.AutoSize = true;
             this.lblMensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensaje.Location = new System.Drawing.Point(12, 480);
+            this.lblMensaje.Location = new System.Drawing.Point(553, 481);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(279, 29);
             this.lblMensaje.TabIndex = 54;
@@ -161,7 +167,7 @@
             "Xiaomi",
             "LG",
             "Motorola"});
-            this.cmbMarca.Location = new System.Drawing.Point(397, 426);
+            this.cmbMarca.Location = new System.Drawing.Point(203, 490);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(143, 21);
             this.cmbMarca.TabIndex = 45;
@@ -171,7 +177,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(394, 406);
+            this.label8.Location = new System.Drawing.Point(200, 470);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 16);
             this.label8.TabIndex = 44;
@@ -182,7 +188,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(201, 406);
+            this.label7.Location = new System.Drawing.Point(394, 406);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(130, 16);
             this.label7.TabIndex = 43;
@@ -229,7 +235,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(575, 338);
+            this.label4.Location = new System.Drawing.Point(394, 470);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 16);
             this.label4.TabIndex = 37;
@@ -285,7 +291,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(575, 405);
+            this.label10.Location = new System.Drawing.Point(9, 467);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(39, 16);
             this.label10.TabIndex = 52;
@@ -294,7 +300,7 @@
             // txtColor
             // 
             this.txtColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtColor.Location = new System.Drawing.Point(578, 428);
+            this.txtColor.Location = new System.Drawing.Point(12, 490);
             this.txtColor.Name = "txtColor";
             this.txtColor.Size = new System.Drawing.Size(142, 20);
             this.txtColor.TabIndex = 56;
@@ -303,7 +309,7 @@
             // 
             this.txtPrecio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtPrecio.DecimalPlaces = 2;
-            this.txtPrecio.Location = new System.Drawing.Point(578, 358);
+            this.txtPrecio.Location = new System.Drawing.Point(397, 490);
             this.txtPrecio.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -324,14 +330,14 @@
             0,
             0});
             this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(142, 20);
+            this.txtStock.Size = new System.Drawing.Size(96, 20);
             this.txtStock.TabIndex = 58;
             this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
             // 
             // txtAlmacenamiento
             // 
             this.txtAlmacenamiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtAlmacenamiento.Location = new System.Drawing.Point(204, 428);
+            this.txtAlmacenamiento.Location = new System.Drawing.Point(397, 428);
             this.txtAlmacenamiento.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -361,12 +367,64 @@
             this.label1.TabIndex = 60;
             this.label1.Text = "Descripción";
             // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(122, 410);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 16);
+            this.label9.TabIndex = 62;
+            this.label9.Text = "Stock minimo";
+            // 
+            // txtStockMin
+            // 
+            this.txtStockMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtStockMin.Location = new System.Drawing.Point(125, 429);
+            this.txtStockMin.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.txtStockMin.Name = "txtStockMin";
+            this.txtStockMin.Size = new System.Drawing.Size(96, 20);
+            this.txtStockMin.TabIndex = 63;
+            // 
+            // txtStockMax
+            // 
+            this.txtStockMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtStockMax.Location = new System.Drawing.Point(250, 429);
+            this.txtStockMax.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.txtStockMax.Name = "txtStockMax";
+            this.txtStockMax.Size = new System.Drawing.Size(96, 20);
+            this.txtStockMax.TabIndex = 65;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(247, 410);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(91, 16);
+            this.label11.TabIndex = 64;
+            this.label11.Text = "Stock maximo";
+            // 
             // frmMaestroProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(988, 535);
+            this.Controls.Add(this.txtStockMax);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txtStockMin);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtAlmacenamiento);
@@ -400,6 +458,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAlmacenamiento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockMax)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,5 +491,9 @@
         private System.Windows.Forms.NumericUpDown txtAlmacenamiento;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown txtStockMin;
+        private System.Windows.Forms.NumericUpDown txtStockMax;
+        private System.Windows.Forms.Label label11;
     }
 }

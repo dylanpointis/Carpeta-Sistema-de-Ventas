@@ -31,7 +31,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void frmAuditoriaCambios_Load(object sender, EventArgs e)
         {
-            grillaCambios.ColumnCount = 12;
+            grillaCambios.ColumnCount = 14;
 
 
 
@@ -44,9 +44,11 @@ namespace Carpeta_Sistema_de_Ventas
             grillaCambios.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvColor");
             grillaCambios.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvPrecio");
             grillaCambios.Columns[8].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvStock");
-            grillaCambios.Columns[9].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvAlmacenamiento");
-            grillaCambios.Columns[10].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvBorrado");
-            grillaCambios.Columns[11].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvActivo");
+            grillaCambios.Columns[9].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvSMin");
+            grillaCambios.Columns[10].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvSMax");
+            grillaCambios.Columns[11].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvAlmacenamiento");
+            grillaCambios.Columns[12].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvBorrado");
+            grillaCambios.Columns[13].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvActivo");
 
 
 
@@ -81,7 +83,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 else { borrado = IdiomaManager.GetInstance().ConseguirTexto("boolBorrado"); }
 
-                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, borrado, activo);
+                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.StockMin, prodC.Producto.StockMax, prodC.Producto.Almacenamiento, borrado, activo);
             }
 
 
@@ -89,7 +91,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaCambios.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN CELESTE A LOS ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW
             foreach (DataGridViewRow row in grillaCambios.Rows)
             {
-                if (row.Cells[11].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolTrue"))
+                if (row.Cells[13].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolTrue"))
                 {
                     row.DefaultCellStyle.BackColor = Color.PowderBlue; //pone en celeste el estado activo del producto
                 }
@@ -127,7 +129,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 else { borrado = IdiomaManager.GetInstance().ConseguirTexto("boolBorrado"); }
 
-                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.Almacenamiento, borrado, activo);
+                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.StockMin, prodC.Producto.StockMax, prodC.Producto.Almacenamiento, borrado, activo);
             }
         }
 
@@ -165,7 +167,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaCambios.SelectedRows.Count > 0) 
             {
-                if (grillaCambios.CurrentRow.Cells[11].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolFalse"))
+                if (grillaCambios.CurrentRow.Cells[13].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolFalse"))
                 {
                     long codProd = Convert.ToInt64(grillaCambios.CurrentRow.Cells[0].Value);
                     string modelo = grillaCambios.CurrentRow.Cells[3].Value.ToString();
@@ -174,14 +176,16 @@ namespace Carpeta_Sistema_de_Ventas
                     string color = grillaCambios.CurrentRow.Cells[6].Value.ToString();
                     double precio = Convert.ToDouble(grillaCambios.CurrentRow.Cells[7].Value);
                     int stock = Convert.ToInt32(grillaCambios.CurrentRow.Cells[8].Value);
-                    int alm = Convert.ToInt32(grillaCambios.CurrentRow.Cells[9].Value);
+                    int stockmin = Convert.ToInt32(grillaCambios.CurrentRow.Cells[9].Value);
+                    int stockmax = Convert.ToInt32(grillaCambios.CurrentRow.Cells[10].Value);
+                    int alm = Convert.ToInt32(grillaCambios.CurrentRow.Cells[11].Value);
 
                
-                    bool borrado = grillaCambios.CurrentRow.Cells[10].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolHabilitado") ? true : false;
+                    bool borrado = grillaCambios.CurrentRow.Cells[12].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("boolHabilitado") ? true : false;
                     
                     //si dice "Habilitado" es porque no esta borrado entonces se le pone true al bool.
 
-                    BEProducto prod = new BEProducto(codProd, modelo, descripcion, marca, color, precio, stock, alm, borrado);
+                    BEProducto prod = new BEProducto(codProd, modelo, descripcion, marca, color, precio, stock,stockmin,stockmax, alm, borrado);
 
                     bllProd.ModificarProducto(prod);
                     ActualizarGrilla();

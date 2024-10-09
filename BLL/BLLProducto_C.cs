@@ -24,11 +24,11 @@ namespace BLL
             foreach(DataRow row in tabla.Rows)
             {
                 BEProducto prod = new BEProducto(Convert.ToInt64(row[1]), row[4].ToString(), row[5].ToString(),
-                    row[6].ToString(), row[7].ToString(), Convert.ToDouble(row[8]), Convert.ToInt32(row[9]), Convert.ToInt32(row[10]), Convert.ToBoolean(row[11]));
+                    row[6].ToString(), row[7].ToString(), Convert.ToDouble(row[8]), Convert.ToInt32(row[9]), Convert.ToInt32(row[10]), Convert.ToInt32(row[11]), Convert.ToInt32(row[12]), Convert.ToBoolean(row[13]));
 
 
 
-                Producto_C prodC = new Producto_C(prod, Convert.ToInt32(row[0]), row[2].ToString(), row[3].ToString(), Convert.ToBoolean(row[12]));
+                Producto_C prodC = new Producto_C(prod, Convert.ToInt32(row[0]), row[2].ToString(), row[3].ToString(), Convert.ToBoolean(row[14]));
 
 
                 lista.Add(prodC);
@@ -47,11 +47,11 @@ namespace BLL
             foreach (DataRow row in tabla.Rows) 
             {
                 BEProducto prod = new BEProducto(Convert.ToInt64(row[1]), row[4].ToString(), row[5].ToString(),
-                    row[6].ToString(), row[7].ToString(), Convert.ToDouble(row[8]), Convert.ToInt32(row[9]), Convert.ToInt32(row[10]), Convert.ToBoolean(row[11]));
+                    row[6].ToString(), row[7].ToString(), Convert.ToDouble(row[8]), Convert.ToInt32(row[9]), Convert.ToInt32(row[10]), Convert.ToInt32(row[11]), Convert.ToInt32(row[12]), Convert.ToBoolean(row[13]));
 
 
 
-                Producto_C prodC = new Producto_C(prod, Convert.ToInt32(row[0]), row[2].ToString(), row[3].ToString(), Convert.ToBoolean(row[12]));
+                Producto_C prodC = new Producto_C(prod, Convert.ToInt32(row[0]), row[2].ToString(), row[3].ToString(), Convert.ToBoolean(row[14]));
 
 
                 listaCambios.Add(prodC);

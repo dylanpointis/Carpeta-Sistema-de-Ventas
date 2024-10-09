@@ -25,6 +25,8 @@ Marca varchar(50) NOT NULL,
 Color varchar(50) NOT NULL,
 Precio float NOT NULL,
 Stock smallint NOT NULL,
+StockMinimo smallint NOT NULL,
+StockMaximo smallint NOT NULL,
 Almacenamiento smallint NOT NULL,
 BorradoLogico bit
 )
@@ -289,11 +291,14 @@ CREATE PROCEDURE RegistrarProducto
 	@Color varchar(50),
 	@Precio float,
 	@Stock smallint,
+	@StockMinimo smallint,
+	@StockMaximo smallint,
 	@Almacenamiento smallint
 
 AS
 BEGIN
-    INSERT INTO Productos VALUES (@CodigoProducto,@Modelo,@Descripcion,@Marca,@Color,@Precio,@Stock, @Almacenamiento,1)
+    INSERT INTO Productos VALUES (@CodigoProducto,@Modelo,@Descripcion,@Marca,
+	@Color,@Precio,@Stock, @StockMinimo, @StockMaximo, @Almacenamiento,1)
 END
 GO
 
@@ -322,12 +327,16 @@ CREATE PROCEDURE ModificarProducto
 	@Color varchar(50),
 	@Precio float,
 	@Stock smallint,
+	@StockMinimo smallint,
+	@StockMaximo smallint,
 	@Almacenamiento smallint,
 	@Borrado bit
 
 AS
 BEGIN
-    UPDATE Productos SET Modelo = @Modelo, Descripcion = @Descripcion, Marca = @Marca, Color = @Color, Precio = @Precio, Stock = @Stock, Almacenamiento = @Almacenamiento, BorradoLogico = @Borrado where CodigoProducto = @CodigoProducto
+    UPDATE Productos SET Modelo = @Modelo, Descripcion = @Descripcion, Marca = @Marca, 
+	Color = @Color, Precio = @Precio, Stock = @Stock, StockMinimo = @StockMinimo, 
+	StockMaximo = @StockMaximo, Almacenamiento = @Almacenamiento, BorradoLogico = @Borrado where CodigoProducto = @CodigoProducto
 END
 GO
 
@@ -640,6 +649,8 @@ Marca varchar(50) NOT NULL,
 Color varchar(50) NOT NULL,
 Precio float NOT NULL,
 Stock smallint NOT NULL,
+StockMinimo smallint NOT NULL,
+StockMaximo smallint NOT NULL,
 Almacenamiento smallint NOT NULL,
 BorradoLogico bit,
 Act bit
@@ -652,8 +663,8 @@ AS
 BEGIN
 UPDATE Productos_C SET Productos_C.Act = 0 FROM inserted where Productos_C.CodigoProducto = inserted.CodigoProducto
 
-INSERT INTO Productos_C (CodigoProducto, Fecha, Hora, Modelo, Descripcion, Marca, Color, Precio, Stock, Almacenamiento, BorradoLogico, Act)
-SELECT CodigoProducto, CONVERT(VARCHAR(11),GETDATE(),120), CONVERT(VARCHAR(5),GETDATE(),114), Modelo, Descripcion, Marca, Color, Precio, Stock, Almacenamiento, BorradoLogico, 1 
+INSERT INTO Productos_C (CodigoProducto, Fecha, Hora, Modelo, Descripcion, Marca, Color, Precio, Stock, StockMinimo, StockMaximo, Almacenamiento, BorradoLogico, Act)
+SELECT CodigoProducto, CONVERT(VARCHAR(11),GETDATE(),120), CONVERT(VARCHAR(5),GETDATE(),114), Modelo, Descripcion, Marca, Color, Precio, Stock, StockMinimo, StockMaximo, Almacenamiento, BorradoLogico, 1 
 FROM inserted
 END
 GO
@@ -699,10 +710,10 @@ INSERT INTO Usuarios VALUES (11111111, 'Admin2', 'Admin2', 'admin2@gmail.com', '
 --Clave: 41256789Rodriguez
 INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 2, 0, 1,0);
 
-INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 256,1);
-INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26, 512,1);
-INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 256,1);
-INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 512,1);
+INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 10, 40, 256,1);
+INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26,  10, 40, 512,1);
+INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 10, 40, 256,1);
+INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 10, 40, 512,1);
 
 
 INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==',1);
@@ -711,11 +722,18 @@ INSERT INTO Clientes VALUES (44978545, 'Luis', 'Hernández', 'luishernandez@gmail
 INSERT INTO Clientes VALUES (40898122, 'Carla', 'Martínez', 'carlamartinez@gmail.com', 'NccLBubi03EOxcaLpcaPRg==', 1);
 
 
-INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-06-26 12:05', 'MercadoPago',null,1,'marcos','')
+INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-09-30 13:20', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)
 
-insert into Eventos values ('Esteban','Sesiones','Inicio sesión',1,'2024-08-26','12:15')
-insert into Eventos values ('Esteban','Ventas','Factura generada',2,'2024-08-26','13:20')
-insert into Eventos values ('Esteban','Sesiones','Cierre sesión',1,'2024-08-26','15:37')
-insert into Eventos values ('Admin','Sesiones','Inicio sesión',	1,'2024-08-27',	'15:40')
-insert into Eventos values ('Admin','Sesiones','Cierre sesión',	1,'2024-08-27',	'19:40')
+insert into Eventos values ('Esteban','Sesiones','Inicio sesión',1,'2024-09-30','12:15')
+insert into Eventos values ('Esteban','Ventas','Factura generada',2,'2024-09-30','13:20')
+insert into Eventos values ('Esteban','Ventas','Impresión de factura',2,'2024-09-30','13:23')
+insert into Eventos values ('Esteban','Sesiones','Cierre sesión',1,'2024-09-30','15:37')
+insert into Eventos values ('Admin','Sesiones','Inicio sesión',	1,'2024-10-01',	'15:40')
+insert into Eventos values ('Admin','Clientes','Cliente creado',1,'2024-10-01',	'15:45')
+insert into Eventos values ('Admin','Clientes','Archivo serializado',1,'2024-10-01',	'15:49')
+insert into Eventos values ('Admin','Clientes','Archivo deserializado',	1,'2024-10-01',	'15:52')
+insert into Eventos values ('Admin','Productos','Producto creado',	1,'2024-10-01',	'16:30')
+insert into Eventos values ('Admin','Sesiones','Cierre sesión',	1,'2024-10-01',	'19:40')
+
+

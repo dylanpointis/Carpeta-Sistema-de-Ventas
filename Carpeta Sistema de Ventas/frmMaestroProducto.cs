@@ -36,7 +36,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             modoOperacion = EnumModoAplicar.Consulta;
 
-            grillaProductos.ColumnCount = 9;
+            grillaProductos.ColumnCount = 11;
             grillaProductos.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
             grillaProductos.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
             grillaProductos.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDescripcion");
@@ -44,10 +44,12 @@ namespace Carpeta_Sistema_de_Ventas
             grillaProductos.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewColor");
             grillaProductos.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
             grillaProductos.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewStock");
-            grillaProductos.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewAlmacenamiento");
-            grillaProductos.Columns[8].Name = "Borrado";
+            grillaProductos.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSMin");
+            grillaProductos.Columns[8].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSMax");
+            grillaProductos.Columns[9].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewAlmacenamiento");
+            grillaProductos.Columns[10].Name = "Borrado";
 
-            grillaProductos.Columns[8].Visible = false;
+            grillaProductos.Columns[10].Visible = false;
 
 
 
@@ -59,6 +61,9 @@ namespace Carpeta_Sistema_de_Ventas
             grillaProductos.Columns[5].Width = 55;
             grillaProductos.Columns[6].Width = 55;
             grillaProductos.Columns[7].Width = 55;
+            grillaProductos.Columns[8].Width = 55;
+            grillaProductos.Columns[9].Width = 55;
+            grillaProductos.Columns[10].Width = 55;
         }
 
         private void ActualizarGrilla()
@@ -67,14 +72,14 @@ namespace Carpeta_Sistema_de_Ventas
             listaProd = bllProducto.TraerListaProductos();
             foreach (BEProducto p in listaProd)
             {
-                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento, p.BorradoLogico);
+                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock,p.StockMin,p.StockMax, p.Almacenamiento, p.BorradoLogico);
             }
 
 
             grillaProductos.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN ROJO A LOS NO ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW
             foreach (DataGridViewRow row in grillaProductos.Rows)
             {
-                if (row.Cells[8].Value != null && row.Cells[8].Value.ToString() == "False")
+                if (row.Cells[10].Value != null && row.Cells[10].Value.ToString() == "False")
                 {
                     row.DefaultCellStyle.BackColor = Color.Crimson; //pone en rojo el background
                 }
@@ -116,7 +121,7 @@ namespace Carpeta_Sistema_de_Ventas
             if (grillaProductos.SelectedRows.Count > 0)
             {
                 long codProd = Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value);
-                if (grillaProductos.CurrentRow.Cells[8].Value.ToString() == "True")
+                if (grillaProductos.CurrentRow.Cells[10].Value.ToString() == "True")
                 {
                     LlenarCampos();
                     modoOperacion = EnumModoAplicar.Modificar;
@@ -170,7 +175,7 @@ namespace Carpeta_Sistema_de_Ventas
                         }
                         else
                         {
-                            BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text),true);
+                            BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtStockMin.Text), Convert.ToInt32(txtStockMax.Text), Convert.ToInt32(txtAlmacenamiento.Text),true);
                             bllProducto.RegistrarProducto(prod);
 
                             bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
@@ -214,9 +219,9 @@ namespace Carpeta_Sistema_de_Ventas
 
                     if (modoOperacion == EnumModoAplicar.Modificar)
                     {
-                        if (grillaProductos.CurrentRow.Cells[8].Value.ToString() == "True")
+                        if (grillaProductos.CurrentRow.Cells[10].Value.ToString() == "True")
                         {
-                            BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtAlmacenamiento.Text), true);
+                            BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtStockMin.Text), Convert.ToInt32(txtStockMax.Text), Convert.ToInt32(txtAlmacenamiento.Text), true);
                             bllProducto.ModificarProducto(prod);
 
                             bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
@@ -236,7 +241,7 @@ namespace Carpeta_Sistema_de_Ventas
             List<BEProducto> lstConsulta = new List<BEProducto>();
             foreach (BEProducto prod in listaProd)
             {
-                if (prod.CodigoProducto.ToString() == txtCodigoProducto.Text || prod.Precio.ToString() == txtPrecio.Text || prod.Stock.ToString() == txtStock.Text || prod.Almacenamiento.ToString() == txtAlmacenamiento.Text || prod.Marca == cmbMarca.Text || prod.Color.ToLower() == txtColor.Text.ToLower())
+                if (prod.CodigoProducto.ToString() == txtCodigoProducto.Text || prod.Precio.ToString() == txtPrecio.Text || prod.Stock.ToString() == txtStock.Text || prod.StockMin.ToString() == txtStockMin.Text || prod.StockMax.ToString() == txtStockMax.Text || prod.Almacenamiento.ToString() == txtAlmacenamiento.Text || prod.Marca == cmbMarca.Text || prod.Color.ToLower() == txtColor.Text.ToLower())
                 {
                     lstConsulta.Add(prod);
                 }
@@ -260,7 +265,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             foreach (BEProducto p in lstConsulta)
             {
-                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento);
+                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.StockMin, p.StockMax, p.Almacenamiento);
             }
         }
 

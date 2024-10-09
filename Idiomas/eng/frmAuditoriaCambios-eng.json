@@ -20,6 +20,8 @@
   "dgvColor": "Color",
   "dgvPrecio": "Price",
   "dgvStock": "Stock",
+  "dgvSMin": "Minimum Stock",
+  "dgvSMax": "Maximum Stock",
   "dgvAlmacenamiento": "Storage",
   "dgvBorrado": "Deleted",
   "dgvActivo": "Active",

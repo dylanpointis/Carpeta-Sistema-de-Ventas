@@ -52,6 +52,7 @@
     <Compile Include="Composite\Permiso.cs" />
     <Compile Include="EnumMetodoPago.cs" />
     <Compile Include="EnumModoAplicar.cs" />
+    <Compile Include="Producto_C.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

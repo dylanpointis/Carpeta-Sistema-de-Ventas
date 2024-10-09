@@ -28,6 +28,8 @@ namespace DAL
                 new SqlParameter("@Color", prod.Color),
                 new SqlParameter("@Precio", prod.Precio),
                 new SqlParameter("@Stock", prod.Stock),
+                new SqlParameter("@StockMinimo", prod.StockMin),
+                new SqlParameter("@StockMaximo", prod.StockMax),
                 new SqlParameter("@Almacenamiento", prod.Almacenamiento)
             };
             dalCon.EjecutarProcAlmacenado("RegistrarProducto", parametros);
@@ -70,6 +72,8 @@ namespace DAL
                 new SqlParameter("@Color", prod.Color),
                 new SqlParameter("@Precio", prod.Precio),
                 new SqlParameter("@Stock", prod.Stock),
+                new SqlParameter("@StockMinimo", prod.StockMin),
+                new SqlParameter("@StockMaximo", prod.StockMax),
                 new SqlParameter("@Almacenamiento", prod.Almacenamiento),
                 new SqlParameter("@Borrado", prod.BorradoLogico),
 

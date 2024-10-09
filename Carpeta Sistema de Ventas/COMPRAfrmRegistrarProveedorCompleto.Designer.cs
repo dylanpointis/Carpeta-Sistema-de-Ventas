@@ -66,11 +66,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(170, 19);
+            this.label6.Location = new System.Drawing.Point(199, 20);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(246, 20);
+            this.label6.Size = new System.Drawing.Size(168, 20);
             this.label6.TabIndex = 58;
-            this.label6.Text = "Registrar proveedor completo";
+            this.label6.Text = "Registrar proveedor";
             // 
             // txtDNI
             // 
@@ -104,6 +104,7 @@
             // 
             // txtApellido
             // 
+            this.txtApellido.Enabled = false;
             this.txtApellido.Location = new System.Drawing.Point(329, 154);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(185, 20);
@@ -167,6 +168,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(60, 275);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(185, 20);
@@ -183,6 +185,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(329, 94);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(185, 20);
@@ -199,6 +202,7 @@
             // 
             // textBox3
             // 
+            this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(329, 275);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(185, 20);
