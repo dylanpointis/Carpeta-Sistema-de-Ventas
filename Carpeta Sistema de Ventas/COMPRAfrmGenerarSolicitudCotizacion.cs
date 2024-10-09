@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BE;
+using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +19,17 @@ namespace Carpeta_Sistema_de_Ventas
             InitializeComponent();
         }
 
+        BLLProducto bllProd = new BLLProducto();
+        BLLProveedor bllProv = new BLLProveedor();
+
+        private void COMPRAfrmGenerarSolicitudCotizacion_Load(object sender, EventArgs e)
+        {
+            List<BEProducto> listaProd = bllProd.TraerListaProductos().Where(p => (p.Stock - p.StockMin) <= 10).ToList();
+            grillaProdBajoStock.DataSource = listaProd;
+
+            grillaProveedores.DataSource = bllProv.TraerListaProveedores();
+        }
+
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
 
@@ -27,5 +40,6 @@ namespace Carpeta_Sistema_de_Ventas
         {
 
         }
+
     }
 }

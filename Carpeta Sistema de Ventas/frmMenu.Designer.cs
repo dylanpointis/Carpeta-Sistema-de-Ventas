@@ -52,6 +52,7 @@
             this.btnSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarSolicitudDeCotizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -202,6 +203,8 @@
             // 
             // Compras
             // 
+            this.Compras.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generarSolicitudDeCotizaciónToolStripMenuItem});
             this.Compras.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Compras.ForeColor = System.Drawing.Color.White;
             this.Compras.Name = "Compras";
@@ -269,6 +272,14 @@
             this.iniciarSesiónToolStripMenuItem.Text = "Iniciar sesión";
             this.iniciarSesiónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesiónToolStripMenuItem_Click);
             // 
+            // generarSolicitudDeCotizaciónToolStripMenuItem
+            // 
+            this.generarSolicitudDeCotizaciónToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generarSolicitudDeCotizaciónToolStripMenuItem.Name = "generarSolicitudDeCotizaciónToolStripMenuItem";
+            this.generarSolicitudDeCotizaciónToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
+            this.generarSolicitudDeCotizaciónToolStripMenuItem.Text = "Generar solicitud de cotización";
+            this.generarSolicitudDeCotizaciónToolStripMenuItem.Click += new System.EventHandler(this.generarSolicitudDeCotizaciónToolStripMenuItem_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,6 +331,7 @@
         private System.Windows.Forms.ToolStripMenuItem eventosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem respaldosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productosCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generarSolicitudDeCotizaciónToolStripMenuItem;
     }
 }
 

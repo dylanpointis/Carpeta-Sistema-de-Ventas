@@ -190,6 +190,14 @@ namespace Carpeta_Sistema_de_Ventas
             AbrirForm(new frmRespaldo());
         }
 
+        private void generarSolicitudDeCotizaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new COMPRAfrmGenerarSolicitudCotizacion());
+        }
+
+
+
+
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaCerrar"), IdiomaManager.GetInstance().ConseguirTexto("cerrar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);

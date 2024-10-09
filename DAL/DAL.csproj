@@ -50,6 +50,7 @@
     <Compile Include="DALFamilia.cs" />
     <Compile Include="DALPermiso.cs" />
     <Compile Include="DALProducto.cs" />
+    <Compile Include="DALProveedor.cs" />
     <Compile Include="DALRespaldo.cs" />
     <Compile Include="DALUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

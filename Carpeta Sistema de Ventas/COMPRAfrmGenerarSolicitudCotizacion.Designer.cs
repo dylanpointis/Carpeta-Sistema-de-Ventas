@@ -37,7 +37,7 @@
             this.lblNumTel = new System.Windows.Forms.Label();
             this.lblMail = new System.Windows.Forms.Label();
             this.lblRazonSocial = new System.Windows.Forms.Label();
-            this.grillaProductosAgregados = new System.Windows.Forms.DataGridView();
+            this.grillaProdBajoStock = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.grillaProveedores = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.grillaProductosAgregados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaProdBajoStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProveedores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,19 +151,19 @@
             this.lblRazonSocial.TabIndex = 37;
             this.lblRazonSocial.Text = "Razon social:";
             // 
-            // grillaProductosAgregados
+            // grillaProdBajoStock
             // 
-            this.grillaProductosAgregados.AllowUserToAddRows = false;
-            this.grillaProductosAgregados.AllowUserToDeleteRows = false;
-            this.grillaProductosAgregados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grillaProductosAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaProductosAgregados.Location = new System.Drawing.Point(12, 88);
-            this.grillaProductosAgregados.MultiSelect = false;
-            this.grillaProductosAgregados.Name = "grillaProductosAgregados";
-            this.grillaProductosAgregados.ReadOnly = true;
-            this.grillaProductosAgregados.Size = new System.Drawing.Size(487, 256);
-            this.grillaProductosAgregados.TabIndex = 58;
+            this.grillaProdBajoStock.AllowUserToAddRows = false;
+            this.grillaProdBajoStock.AllowUserToDeleteRows = false;
+            this.grillaProdBajoStock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.grillaProdBajoStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaProdBajoStock.Location = new System.Drawing.Point(12, 88);
+            this.grillaProdBajoStock.MultiSelect = false;
+            this.grillaProdBajoStock.Name = "grillaProdBajoStock";
+            this.grillaProdBajoStock.ReadOnly = true;
+            this.grillaProdBajoStock.Size = new System.Drawing.Size(487, 256);
+            this.grillaProdBajoStock.TabIndex = 58;
             // 
             // label2
             // 
@@ -177,7 +177,7 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnQuitar.BackColor = System.Drawing.Color.Firebrick;
             this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitar.ForeColor = System.Drawing.Color.White;
@@ -236,7 +236,7 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(549, 70);
@@ -258,7 +258,7 @@
             this.Controls.Add(this.grillaProveedores);
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.lblRazonSocial);
-            this.Controls.Add(this.grillaProductosAgregados);
+            this.Controls.Add(this.grillaProdBajoStock);
             this.Controls.Add(this.lblMail);
             this.Controls.Add(this.lblNumTel);
             this.Controls.Add(this.lblNombre);
@@ -270,7 +270,8 @@
             this.Controls.Add(this.btnRegistrarProveedor);
             this.Name = "COMPRAfrmGenerarSolicitudCotizacion";
             this.Text = "COMPRAfrmGenerarSolicitudCotizacion";
-            ((System.ComponentModel.ISupportInitialize)(this.grillaProductosAgregados)).EndInit();
+            this.Load += new System.EventHandler(this.COMPRAfrmGenerarSolicitudCotizacion_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grillaProdBajoStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProveedores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -288,7 +289,7 @@
         private System.Windows.Forms.Label lblNumTel;
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.Label lblRazonSocial;
-        private System.Windows.Forms.DataGridView grillaProductosAgregados;
+        private System.Windows.Forms.DataGridView grillaProdBajoStock;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.Label label1;
