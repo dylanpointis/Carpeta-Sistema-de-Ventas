@@ -18,7 +18,11 @@ namespace BE
 
         public void AgregarProveedor(BEProveedor prov)
         {
-            ProveedoresSolicitud.Add(prov);
+            BEProveedor encontrado = ProveedoresSolicitud.FirstOrDefault(p => p.CUIT == prov.CUIT);
+            if(encontrado == null)
+            {
+                ProveedoresSolicitud.Add(prov);
+            }
         }
 
         public List<BEProveedor> obtenerProveedorSolicitud()

@@ -90,9 +90,12 @@ namespace Carpeta_Sistema_de_Ventas
 
 
                 solicitudCoti.AgregarProveedor(prov);
-                cmbProveedoresSeleccionados.DataSource = solicitudCoti.obtenerProveedorSolicitud();
-                cmbProveedoresSeleccionados.DisplayMember = "Nombre";
-                cmbProveedoresSeleccionados.ValueMember = "CBU";
+                cmbProveedoresSeleccionados.Items.Clear();
+                foreach(BEProveedor p in solicitudCoti.obtenerProveedorSolicitud())
+                {
+                    cmbProveedoresSeleccionados.Items.Add(p.Nombre);
+                    cmbProveedoresSeleccionados.Text = p.Nombre;
+                }
             }
         }
 

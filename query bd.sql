@@ -4,7 +4,6 @@ USE CarpetaIngSoftware
 GO
 
 
-
 /* VENTA */
 CREATE TABLE Clientes(
 DNICliente INT PRIMARY KEY NOT NULL,
@@ -792,6 +791,8 @@ INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram
 INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 10, 40, 512,1);
 
 INSERT INTO Proveedores VALUES ('0-68537634-9','Proveedor de Celulares S.A.', 'Proveedor de Celulares Sociedad Anónima', 'provcelular@gmail.com', '11 2568-1425', '01702046600000087865', 'Av. Siempre Viva 742', 'Banco Galicia');
+INSERT INTO Proveedores VALUES ('0-22588311-9','Proveedor Tech', 'Proveedor Tech S.A', 'provcelular2@gmail.com', '11 4433-3567', '0720003070000001234567', 'Alejandro Pereyra 244', 'Banco HSBC');
+
 
 INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==',1);
 INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==',1);
