@@ -336,7 +336,7 @@ namespace Carpeta_Sistema_de_Ventas
 
                 cmbEvento.DataSource = dt;
                 cmbEvento.DisplayMember = "Texto";  // Lo que el usuario ve (traducido)
-                cmbEvento.ValueMember = "Valor";      // El valor real (en español o código
+                cmbEvento.ValueMember = "Valor";      // El valor real (en español)
             }
         }
 

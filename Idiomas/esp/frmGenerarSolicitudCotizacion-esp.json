@@ -1,0 +1,50 @@
+{
+  "label2": "Buscar proveedores:",
+  "label1": "Productos agregados",
+  "label3": "Generar solicitud de cotización",
+  "label4": "Proveedores seleccionados",
+  "label5": "Proveedores",
+  "btnActualizar": "Actualizar",
+  "btnSeleccionarProveedor": "Seleccionar",
+  "btnRegistrarProveedor": "Registrar nuevo",
+  "btnAgregar": "Agregar",
+  "lblNeto": "Neto:",
+  "lblIVA": "I.V.A",
+  "lblTotal": "Total",
+  "btnFinalizar": "Finalizar",
+  "btnBuscar": "Buscar",
+  "btnQuitar": "Quitar",
+  "btnCancelar": "Cancelar",
+  "btnConfirmar": "Confirmar",
+  "numEntero": "Ingrese un número entero para la cantidad a reponer, menor a 4 cifras",
+  "btnCargarCant": "Cargar cantidad",  
+
+  "gridViewCodigo": "Código Producto",
+  "gridViewModelo": "Modelo",
+  "gridViewCantidadAReponer": "Cantidad a reponer",
+  "gridViewMarca": "Marca",
+  "gridViewPrecio": "Precio",
+  "gridViewStock": "Stock",
+  "gridViewSMin": "Stock mínimo",
+  "gridViewSMax": "Stock máximo",
+
+
+  "gridViewCUIT": "CUIT",
+  "gridViewNombre": "Nombre",
+  "gridViewRazonSocial": "Razón social",
+  "gridViewEmail": "Email",
+  "gridViewNumTelefono": "Número de telefono",
+  "gridViewDireccion": "Dirección",
+
+
+  "ingreseCant": "Ingrese la cantidad a reponer",
+  "superaStock": "La cantidad ingresada supera al stock maximo del producto",
+  "error": "Error al registrar la solicitud de cotización: ",
+  "exito": "Solicitud de cotización registrada con éxito",
+
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

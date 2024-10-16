@@ -1,6 +1,6 @@
 ﻿namespace Carpeta_Sistema_de_Ventas
 {
-    partial class COMPRAfrmRegistrarProveedorCompleto
+    partial class COMPRAfrmRegistrarProveedor
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnRegistrarCliente = new System.Windows.Forms.Button();
+            this.btnRegistrarProveedor = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -126,18 +126,19 @@
             this.label4.TabIndex = 51;
             this.label4.Text = "Mail:";
             // 
-            // btnRegistrarCliente
+            // btnRegistrarProveedor
             // 
-            this.btnRegistrarCliente.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnRegistrarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistrarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarCliente.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrarCliente.Location = new System.Drawing.Point(132, 339);
-            this.btnRegistrarCliente.Name = "btnRegistrarCliente";
-            this.btnRegistrarCliente.Size = new System.Drawing.Size(153, 42);
-            this.btnRegistrarCliente.TabIndex = 50;
-            this.btnRegistrarCliente.Text = "Registrar";
-            this.btnRegistrarCliente.UseVisualStyleBackColor = false;
+            this.btnRegistrarProveedor.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnRegistrarProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrarProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarProveedor.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrarProveedor.Location = new System.Drawing.Point(132, 339);
+            this.btnRegistrarProveedor.Name = "btnRegistrarProveedor";
+            this.btnRegistrarProveedor.Size = new System.Drawing.Size(153, 42);
+            this.btnRegistrarProveedor.TabIndex = 50;
+            this.btnRegistrarProveedor.Text = "Registrar";
+            this.btnRegistrarProveedor.UseVisualStyleBackColor = false;
+            this.btnRegistrarProveedor.Click += new System.EventHandler(this.btnRegistrarProveedor_Click);
             // 
             // label3
             // 
@@ -217,7 +218,7 @@
             this.label9.TabIndex = 64;
             this.label9.Text = "Banco:";
             // 
-            // COMPRAfrmRegistrarProveedorCompleto
+            // COMPRAfrmRegistrarProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -237,11 +238,11 @@
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnRegistrarCliente);
+            this.Controls.Add(this.btnRegistrarProveedor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "COMPRAfrmRegistrarProveedorCompleto";
+            this.Name = "COMPRAfrmRegistrarProveedor";
             this.Text = "COMPRAfrmRegistrarProveedorCompleto";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -259,7 +260,7 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnRegistrarCliente;
+        private System.Windows.Forms.Button btnRegistrarProveedor;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

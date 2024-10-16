@@ -8,6 +8,7 @@ namespace BE
 {
     public class BEProveedor
     {
+        public string CUIT { get; set; }
         public string Nombre { get; set; }
         public string RazonSocial { get; set; }
         public string Email { get; set; }
@@ -17,8 +18,9 @@ namespace BE
         public string Banco { get; set; }
 
 
-        public BEProveedor(string nombre, string razonSocial, string email, string numTelefono, string cbu, string direccion, string banco)
+        public BEProveedor(string cuit,string nombre, string razonSocial, string email, string numTelefono, string cbu, string direccion, string banco)
         {
+            CUIT = cuit;
             Nombre = nombre;
             RazonSocial = razonSocial;
             Email = email;

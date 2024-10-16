@@ -4,6 +4,7 @@ USE CarpetaIngSoftware
 GO
 
 
+
 /* VENTA */
 CREATE TABLE Clientes(
 DNICliente INT PRIMARY KEY NOT NULL,
@@ -710,6 +711,7 @@ GO
 /* COMPRA */
 CREATE TABLE Proveedores
 (
+	CUITProveedor varchar(14) PRIMARY KEY NOT NULL,
 	Nombre varchar(100),
 	RazonSocial varchar(100),
 	Email varchar(100),
@@ -718,6 +720,64 @@ CREATE TABLE Proveedores
 	Direccion varchar(100),
 	Banco varchar(50)
 )
+
+
+CREATE TABLE SolicitudCotizacion
+(
+	NumeroSolicitud INT PRIMARY KEY IDENTITY(1,1),
+	Fecha varchar(11),
+	Estado varchar(50)
+)
+
+CREATE TABLE Item_Solicitud
+(
+	CodItem_Solicitud INT PRIMARY KEY IDENTITY(1,1),
+	NumeroSolicitud INT FOREIGN KEY REFERENCES SolicitudCotizacion(NumeroSolicitud),
+	CodigoProducto varchar(14) FOREIGN KEY REFERENCES Productos(CodigoProducto),
+	Cantidad int
+)
+
+CREATE TABLE Solicitud_Proveedor
+(
+	CodSolicitud_Proveedor INT PRIMARY KEY IDENTITY(1,1),
+	NumeroSolicitud INT FOREIGN KEY REFERENCES SolicitudCotizacion(NumeroSolicitud),
+	CUITProveedor varchar(14) FOREIGN KEY REFERENCES Proveedores(CUITProveedor)
+)
+
+
+GO
+CREATE PROCEDURE RegistrarSolicitudCotizacion
+	@Estado varchar(11),
+	@Fecha varchar(11)
+AS
+BEGIN
+    INSERT INTO SolicitudCotizacion VALUES (@Fecha,@Estado)
+	SELECT SCOPE_IDENTITY()
+END
+GO
+
+
+
+CREATE PROCEDURE RegistrarItemSolicitud
+	@NumeroSolicitud int,
+	@CodigoProducto varchar(14),
+	@Cantidad int
+AS
+BEGIN
+    INSERT INTO Item_Solicitud VALUES (@NumeroSolicitud, @CodigoProducto, @Cantidad)
+END
+GO
+
+CREATE PROCEDURE RegistrarProveedorSolicitud
+	@NumeroSolicitud int,
+	@CUITProveedor varchar(14)
+AS
+BEGIN
+    INSERT INTO Solicitud_Proveedor VALUES (@NumeroSolicitud, @CUITProveedor)
+END
+GO
+
+
 
 /*CLAVE: clave123*/
 INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1,0);
@@ -731,7 +791,7 @@ INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram
 INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 10, 40, 256,1);
 INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 10, 40, 512,1);
 
-INSERT INTO Proveedores VALUES ('Proveedor de Celulares S.A.', 'Proveedor de Celulares Sociedad Anónima', 'provcelular@gmail.com', '11 2568-1425', '01702046600000087865', 'Av. Siempre Viva 742', 'Banco Galicia');
+INSERT INTO Proveedores VALUES ('0-68537634-9','Proveedor de Celulares S.A.', 'Proveedor de Celulares Sociedad Anónima', 'provcelular@gmail.com', '11 2568-1425', '01702046600000087865', 'Av. Siempre Viva 742', 'Banco Galicia');
 
 INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==',1);
 INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com', '5ZZgvahyS8Hd8hi9gTZjDQ==',1);

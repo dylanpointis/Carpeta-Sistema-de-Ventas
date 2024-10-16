@@ -1,0 +1,50 @@
+{
+  "label2": "Search suppliers:",
+  "label1": "Added products",
+  "label3": "Generate quotation request",
+  "label4": "Selected suppliers",
+  "label5": "Suppliers",
+  "btnActualizar": "Update",
+  "btnSeleccionarProveedor": "Select",
+  "btnRegistrarProveedor": "Register new",
+  "btnAgregar": "Add",
+  "lblNeto": "Net:",
+  "lblIVA": "VAT",
+  "lblTotal": "Total",
+  "btnFinalizar": "Finalize",
+  "btnBuscar": "Search",
+  "btnQuitar": "Remove",
+  "btnCancelar": "Cancel",
+  "btnConfirmar": "Confirm",
+  "numEntero": "Enter an integer for the quantity to replenish, less than 4 digits",
+  "btnCargarCant": "Load quantity",
+
+
+
+  "gridViewCodigo": "Product Code",
+  "gridViewModelo": "Model",
+  "gridViewCantidadAReponer": "Quantity to replenish",
+  "gridViewMarca": "Brand",
+  "gridViewPrecio": "Price",
+  "gridViewStock": "Stock",
+  "ggridViewSMin": "Minimum stock",
+  "gridViewSMax": "Maximum stock",
+
+  "gridViewCUIT": "CUIT",
+  "gridViewNombre": "Name",
+  "gridViewRazonSocial": "Business Name",
+  "gridViewEmail": "Email",
+  "gridViewNumTelefono": "Phone Number",
+  "gridViewDireccion": "Address",
+
+  "ingreseCant": "Enter the quantity to replenish",
+  "superaStock": "The entered quantity exceeds the maximum stock of the product",
+  "error": "Error registering the quotation request: ",
+  "exito": "Quotation request registered successfully"
+
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
+}
+

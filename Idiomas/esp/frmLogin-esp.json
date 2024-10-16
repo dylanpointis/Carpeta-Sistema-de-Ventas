@@ -34,6 +34,7 @@
   "eventosToolStripMenuItem": "Eventos",
   "respaldosToolStripMenuItem": "Respaldos",
   "productosCToolStripMenuItem": "Productos-Cambios",
+  "generarSolicitudDeCotizaciónToolStripMenuItem": "Generar solicitud de cotización",
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

@@ -32,11 +32,6 @@
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnRegistrarProveedor = new System.Windows.Forms.Button();
             this.btnSeleccionarProveedor = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.lblNumTel = new System.Windows.Forms.Label();
-            this.lblMail = new System.Windows.Forms.Label();
-            this.lblRazonSocial = new System.Windows.Forms.Label();
             this.grillaProdBajoStock = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.btnQuitar = new System.Windows.Forms.Button();
@@ -45,6 +40,9 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.grillaProveedores = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
+            this.cmbProveedoresSeleccionados = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnCargarCant = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProdBajoStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProveedores)).BeginInit();
             this.SuspendLayout();
@@ -63,16 +61,16 @@
             // 
             this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFinalizar.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnFinalizar.Enabled = false;
             this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinalizar.ForeColor = System.Drawing.Color.White;
-            this.btnFinalizar.Location = new System.Drawing.Point(12, 447);
+            this.btnFinalizar.Location = new System.Drawing.Point(12, 423);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(185, 52);
             this.btnFinalizar.TabIndex = 54;
             this.btnFinalizar.Text = "Finalizar";
             this.btnFinalizar.UseVisualStyleBackColor = false;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // btnRegistrarProveedor
             // 
@@ -80,12 +78,13 @@
             this.btnRegistrarProveedor.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRegistrarProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarProveedor.ForeColor = System.Drawing.Color.Black;
-            this.btnRegistrarProveedor.Location = new System.Drawing.Point(800, 462);
+            this.btnRegistrarProveedor.Location = new System.Drawing.Point(766, 351);
             this.btnRegistrarProveedor.Name = "btnRegistrarProveedor";
             this.btnRegistrarProveedor.Size = new System.Drawing.Size(133, 37);
             this.btnRegistrarProveedor.TabIndex = 28;
             this.btnRegistrarProveedor.Text = "Registrar nuevo";
             this.btnRegistrarProveedor.UseVisualStyleBackColor = false;
+            this.btnRegistrarProveedor.Click += new System.EventHandler(this.btnRegistrarProveedor_Click);
             // 
             // btnSeleccionarProveedor
             // 
@@ -93,64 +92,13 @@
             this.btnSeleccionarProveedor.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSeleccionarProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeleccionarProveedor.ForeColor = System.Drawing.Color.White;
-            this.btnSeleccionarProveedor.Location = new System.Drawing.Point(585, 462);
+            this.btnSeleccionarProveedor.Location = new System.Drawing.Point(551, 351);
             this.btnSeleccionarProveedor.Name = "btnSeleccionarProveedor";
             this.btnSeleccionarProveedor.Size = new System.Drawing.Size(138, 37);
             this.btnSeleccionarProveedor.TabIndex = 29;
             this.btnSeleccionarProveedor.Text = "Seleccionar";
             this.btnSeleccionarProveedor.UseVisualStyleBackColor = false;
             this.btnSeleccionarProveedor.Click += new System.EventHandler(this.btnSeleccionarProveedor_Click);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(582, 352);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 15);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Detalle Proveedor:";
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(582, 386);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(47, 13);
-            this.lblNombre.TabIndex = 34;
-            this.lblNombre.Text = "Nombre:";
-            // 
-            // lblNumTel
-            // 
-            this.lblNumTel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNumTel.AutoSize = true;
-            this.lblNumTel.Location = new System.Drawing.Point(797, 435);
-            this.lblNumTel.Name = "lblNumTel";
-            this.lblNumTel.Size = new System.Drawing.Size(103, 13);
-            this.lblNumTel.TabIndex = 35;
-            this.lblNumTel.Text = "Número de telefono:";
-            // 
-            // lblMail
-            // 
-            this.lblMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(582, 435);
-            this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(32, 13);
-            this.lblMail.TabIndex = 36;
-            this.lblMail.Text = "Mail: ";
-            // 
-            // lblRazonSocial
-            // 
-            this.lblRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRazonSocial.AutoSize = true;
-            this.lblRazonSocial.Location = new System.Drawing.Point(797, 386);
-            this.lblRazonSocial.Name = "lblRazonSocial";
-            this.lblRazonSocial.Size = new System.Drawing.Size(71, 13);
-            this.lblRazonSocial.TabIndex = 37;
-            this.lblRazonSocial.Text = "Razon social:";
             // 
             // grillaProdBajoStock
             // 
@@ -182,12 +130,13 @@
             this.btnQuitar.BackColor = System.Drawing.Color.Firebrick;
             this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitar.ForeColor = System.Drawing.Color.White;
-            this.btnQuitar.Location = new System.Drawing.Point(12, 354);
+            this.btnQuitar.Location = new System.Drawing.Point(136, 351);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(99, 30);
             this.btnQuitar.TabIndex = 63;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = false;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // label1
             // 
@@ -246,25 +195,58 @@
             this.label5.TabIndex = 68;
             this.label5.Text = "Proveedores";
             // 
+            // cmbProveedoresSeleccionados
+            // 
+            this.cmbProveedoresSeleccionados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbProveedoresSeleccionados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProveedoresSeleccionados.FormattingEnabled = true;
+            this.cmbProveedoresSeleccionados.Location = new System.Drawing.Point(552, 447);
+            this.cmbProveedoresSeleccionados.Name = "cmbProveedoresSeleccionados";
+            this.cmbProveedoresSeleccionados.Size = new System.Drawing.Size(228, 21);
+            this.cmbProveedoresSeleccionados.TabIndex = 69;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(549, 423);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(178, 16);
+            this.label4.TabIndex = 70;
+            this.label4.Text = "Proveedores seleccionados";
+            // 
+            // btnCargarCant
+            // 
+            this.btnCargarCant.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCargarCant.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnCargarCant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarCant.ForeColor = System.Drawing.Color.White;
+            this.btnCargarCant.Location = new System.Drawing.Point(12, 350);
+            this.btnCargarCant.Name = "btnCargarCant";
+            this.btnCargarCant.Size = new System.Drawing.Size(118, 30);
+            this.btnCargarCant.TabIndex = 71;
+            this.btnCargarCant.Text = "Cargar cantidad";
+            this.btnCargarCant.UseVisualStyleBackColor = false;
+            this.btnCargarCant.Click += new System.EventHandler(this.btnCargarCant_Click);
+            // 
             // COMPRAfrmGenerarSolicitudCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(1025, 529);
+            this.Controls.Add(this.btnCargarCant);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cmbProveedoresSeleccionados);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtProveedor);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.grillaProveedores);
             this.Controls.Add(this.btnQuitar);
-            this.Controls.Add(this.lblRazonSocial);
             this.Controls.Add(this.grillaProdBajoStock);
-            this.Controls.Add(this.lblMail);
-            this.Controls.Add(this.lblNumTel);
-            this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.btnSeleccionarProveedor);
             this.Controls.Add(this.label3);
@@ -285,11 +267,6 @@
         private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.Button btnRegistrarProveedor;
         private System.Windows.Forms.Button btnSeleccionarProveedor;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Label lblNumTel;
-        private System.Windows.Forms.Label lblMail;
-        private System.Windows.Forms.Label lblRazonSocial;
         private System.Windows.Forms.DataGridView grillaProdBajoStock;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnQuitar;
@@ -298,5 +275,8 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridView grillaProveedores;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbProveedoresSeleccionados;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnCargarCant;
     }
 }

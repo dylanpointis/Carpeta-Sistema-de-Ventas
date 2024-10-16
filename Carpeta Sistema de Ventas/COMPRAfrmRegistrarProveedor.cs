@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class COMPRAfrmSeleccionarProducto : Form
+    public partial class COMPRAfrmRegistrarProveedor : Form
     {
-        public COMPRAfrmSeleccionarProducto()
+        public COMPRAfrmRegistrarProveedor()
         {
             InitializeComponent();
+        }
+
+        private void btnRegistrarProveedor_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -17,6 +17,7 @@
   "eventosToolStripMenuItem": "Events",
   "respaldosToolStripMenuItem": "Backups",
   "productosCToolStripMenuItem": "Product-Changes",
+  "generarSolicitudDeCotizaciónToolStripMenuItem": "Generate quotation request",
   "btnSesion": "Session",
   "iniciarSesiónToolStripMenuItem": "Log In",
   "cerrarSesionToolStripMenuItem": "Log Out",

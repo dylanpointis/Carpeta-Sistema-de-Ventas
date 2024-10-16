@@ -21,13 +21,14 @@ namespace BLL
             foreach (DataRow row in tabla.Rows)
             {
                 BEProveedor proveedor = new BEProveedor(
-                    row[0].ToString(),  // Nombre
-                    row[1].ToString(),  // RazonSocial
-                    row[2].ToString(),  // Email
-                    row[3].ToString(),  // NumTelefono
-                    row[4].ToString(),  // CBU
-                    row[5].ToString(),  // Direccion
-                    row[6].ToString()   // Banco
+                    row[0].ToString(), //cuit
+                    row[1].ToString(),  //nombre
+                    row[2].ToString(),  //razonSocial
+                    row[3].ToString(),  //email
+                    row[4].ToString(),  //numTelefono
+                    row[5].ToString(),  //cBU
+                    row[6].ToString(),  //direccion
+                    row[7].ToString()   //banco
                 );
 
                 lista.Add(proveedor);
