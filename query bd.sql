@@ -758,6 +758,15 @@ CREATE TABLE OrdenesCompra
 	NumeroFactura int
 )
 
+CREATE TABLE Item_OrdenCompra
+(
+	CodItem_OrdenCompra INT PRIMARY KEY IDENTITY(1,1),
+	NumeroOrdenCompra INT FOREIGN KEY REFERENCES OrdenesCompra(NumeroOrdenCompra),
+	CodigoProducto varchar(14) FOREIGN KEY REFERENCES Productos(CodigoProducto),
+	Cantidad int,
+	Precio float
+)
+
 
 
 
@@ -808,6 +817,36 @@ CREATE PROCEDURE TraerItemsSolicitud
 AS
 BEGIN
    SELECT * FROM Item_Solicitud S INNER JOIN Productos P ON S.CodigoProducto = P.CodigoProducto WHERE NumeroSolicitud = @NumeroSolicitud
+END
+GO
+
+
+CREATE PROCEDURE RegistrarOrdenCompra
+	@CUITProveedor varchar(14),
+	@NumeroSolicitud int,
+	@FechaRegistro varchar(18),
+	@FechaEntrega varchar(18),
+	@Estado varchar(50),
+	@NumeroTransferencia int,
+	@MetodoPago varchar(50),
+	@MontoTotal float,
+	@CantidadTotal int,
+	@NumeroFactura int
+AS
+BEGIN
+    INSERT INTO OrdenesCompra VALUES(@CUITProveedor, @NumeroSolicitud, @FechaRegistro, @FechaEntrega, @Estado, @NumeroTransferencia, @MetodoPago, @MontoTotal, @CantidadTotal, @NumeroFactura)
+	SELECT SCOPE_IDENTITY()
+END
+GO
+
+CREATE PROCEDURE RegistrarItemOrden
+	@NumeroOrdenCompra int,
+	@CodigoProducto varchar(14),
+	@Cantidad int,
+	@PrecioCompra float
+AS
+BEGIN
+    INSERT INTO Item_OrdenCompra VALUES (@NumeroOrdenCompra, @CodigoProducto, @Cantidad, @PrecioCompra)
 END
 GO
 

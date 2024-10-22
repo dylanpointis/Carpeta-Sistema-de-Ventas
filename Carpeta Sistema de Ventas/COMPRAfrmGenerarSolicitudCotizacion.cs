@@ -1,6 +1,7 @@
 ﻿using BE;
 using BLL;
 using Microsoft.VisualBasic;
+using Services;
 using Services.Observer;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace Carpeta_Sistema_de_Ventas
             IdiomaManager.ActualizarControles(this);
         }
 
+        BLLEvento bllEv = new BLLEvento();
         BLLProducto bllProd = new BLLProducto();
         BLLProveedor bllProv = new BLLProveedor();
         BLLSolicitudCotizacion bLLSolicitudCotizacion = new BLLSolicitudCotizacion();
@@ -116,6 +118,7 @@ namespace Carpeta_Sistema_de_Ventas
                     bLLSolicitudCotizacion.RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
                 }
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Solicitud de cotización generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
             }
             catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
           

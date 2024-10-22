@@ -36,6 +36,7 @@
   "Productos": "Productos",
   "Clientes": "Clientes",
   "Respaldos": "Respaldos",
+  "Compras": "Compras",
 
 
   "Inicio sesión": "Inicio sesión",
@@ -67,6 +68,8 @@
   "Archivo deserializado": "Archivo deserializado",
   "Backup realizado": "Backup realizado",
   "Restore realizado": "Restore realizado",
+  "Solicitud de cotización generada": "Solicitud de cotización generada",
+  "Orden de compra generada": "Orden de compra generada",
 
 
 

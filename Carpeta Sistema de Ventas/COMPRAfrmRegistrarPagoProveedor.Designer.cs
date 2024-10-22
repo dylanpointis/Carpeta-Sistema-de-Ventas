@@ -28,48 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtNumTransaccion = new System.Windows.Forms.TextBox();
+            this.txtCBU = new System.Windows.Forms.TextBox();
+            this.lblCBU = new System.Windows.Forms.Label();
+            this.txtNumTransferencia = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbMetodoPago = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.btnRegistrarPago = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtNumFactura = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblProveedor = new System.Windows.Forms.Label();
+            this.txtBanco = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtCBU
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 206);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 20);
-            this.textBox1.TabIndex = 63;
+            this.txtCBU.Enabled = false;
+            this.txtCBU.Location = new System.Drawing.Point(105, 243);
+            this.txtCBU.Name = "txtCBU";
+            this.txtCBU.Size = new System.Drawing.Size(185, 20);
+            this.txtCBU.TabIndex = 63;
             // 
-            // label7
+            // lblCBU
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(102, 190);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 62;
-            this.label7.Text = "CBU:";
+            this.lblCBU.AutoSize = true;
+            this.lblCBU.Location = new System.Drawing.Point(102, 227);
+            this.lblCBU.Name = "lblCBU";
+            this.lblCBU.Size = new System.Drawing.Size(32, 13);
+            this.lblCBU.TabIndex = 62;
+            this.lblCBU.Text = "CBU:";
             // 
-            // txtNumTransaccion
+            // txtNumTransferencia
             // 
-            this.txtNumTransaccion.Enabled = false;
-            this.txtNumTransaccion.Location = new System.Drawing.Point(105, 157);
-            this.txtNumTransaccion.Name = "txtNumTransaccion";
-            this.txtNumTransaccion.Size = new System.Drawing.Size(185, 20);
-            this.txtNumTransaccion.TabIndex = 66;
+            this.txtNumTransferencia.Location = new System.Drawing.Point(105, 194);
+            this.txtNumTransferencia.Name = "txtNumTransferencia";
+            this.txtNumTransferencia.Size = new System.Drawing.Size(185, 20);
+            this.txtNumTransferencia.TabIndex = 66;
+            this.txtNumTransferencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTransferencia_KeyPress);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(102, 141);
+            this.label10.Location = new System.Drawing.Point(102, 178);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(123, 13);
             this.label10.TabIndex = 65;
@@ -78,21 +80,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(102, 247);
+            this.label1.Location = new System.Drawing.Point(102, 284);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 68;
             this.label1.Text = "Banco";
-            // 
-            // cmbMetodoPago
-            // 
-            this.cmbMetodoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMetodoPago.Enabled = false;
-            this.cmbMetodoPago.FormattingEnabled = true;
-            this.cmbMetodoPago.Location = new System.Drawing.Point(105, 263);
-            this.cmbMetodoPago.Name = "cmbMetodoPago";
-            this.cmbMetodoPago.Size = new System.Drawing.Size(185, 21);
-            this.cmbMetodoPago.TabIndex = 67;
             // 
             // label2
             // 
@@ -104,81 +96,101 @@
             this.label2.TabIndex = 69;
             this.label2.Text = "Registrar Pago";
             // 
-            // label3
+            // lblTotal
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(102, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
-            this.label3.TabIndex = 70;
-            this.label3.Text = "Proveedor: ";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(102, 96);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(37, 13);
+            this.lblTotal.TabIndex = 70;
+            this.lblTotal.Text = "Total: ";
             // 
-            // button1
+            // btnRegistrarPago
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.button1.Enabled = false;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(62, 324);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 52);
-            this.button1.TabIndex = 71;
-            this.button1.Text = "Registrar pago";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnRegistrarPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRegistrarPago.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnRegistrarPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrarPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarPago.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrarPago.Location = new System.Drawing.Point(62, 350);
+            this.btnRegistrarPago.Name = "btnRegistrarPago";
+            this.btnRegistrarPago.Size = new System.Drawing.Size(121, 52);
+            this.btnRegistrarPago.TabIndex = 71;
+            this.btnRegistrarPago.Text = "Registrar pago";
+            this.btnRegistrarPago.UseVisualStyleBackColor = false;
+            this.btnRegistrarPago.Click += new System.EventHandler(this.btnRegistrarPago_Click);
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.BackColor = System.Drawing.Color.Firebrick;
-            this.button2.Enabled = false;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(209, 324);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 52);
-            this.button2.TabIndex = 72;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancelar.BackColor = System.Drawing.Color.Firebrick;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.White;
+            this.btnCancelar.Location = new System.Drawing.Point(209, 350);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(121, 52);
+            this.btnCancelar.TabIndex = 72;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // textBox2
+            // txtNumFactura
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(105, 109);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 20);
-            this.textBox2.TabIndex = 74;
+            this.txtNumFactura.Location = new System.Drawing.Point(105, 146);
+            this.txtNumFactura.Name = "txtNumFactura";
+            this.txtNumFactura.Size = new System.Drawing.Size(185, 20);
+            this.txtNumFactura.TabIndex = 74;
+            this.txtNumFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumFactura_KeyPress);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(102, 93);
+            this.label4.Location = new System.Drawing.Point(102, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 13);
             this.label4.TabIndex = 73;
             this.label4.Text = "Número de factura";
             // 
+            // lblProveedor
+            // 
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.Location = new System.Drawing.Point(102, 66);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(62, 13);
+            this.lblProveedor.TabIndex = 75;
+            this.lblProveedor.Text = "Proveedor: ";
+            // 
+            // txtBanco
+            // 
+            this.txtBanco.Enabled = false;
+            this.txtBanco.Location = new System.Drawing.Point(105, 300);
+            this.txtBanco.Name = "txtBanco";
+            this.txtBanco.Size = new System.Drawing.Size(185, 20);
+            this.txtBanco.TabIndex = 76;
+            // 
             // COMPRAfrmRegistrarPagoProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 402);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(419, 428);
+            this.Controls.Add(this.txtBanco);
+            this.Controls.Add(this.lblProveedor);
+            this.Controls.Add(this.txtNumFactura);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnRegistrarPago);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmbMetodoPago);
-            this.Controls.Add(this.txtNumTransaccion);
+            this.Controls.Add(this.txtNumTransferencia);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtCBU);
+            this.Controls.Add(this.lblCBU);
+            this.MaximizeBox = false;
             this.Name = "COMPRAfrmRegistrarPagoProveedor";
-            this.Text = "COMPRAfrmRegistrarPagoProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.COMPRAfrmRegistrarPagoProveedor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,17 +198,18 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtNumTransaccion;
+        private System.Windows.Forms.TextBox txtCBU;
+        private System.Windows.Forms.Label lblCBU;
+        private System.Windows.Forms.TextBox txtNumTransferencia;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbMetodoPago;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Button btnRegistrarPago;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.TextBox txtNumFactura;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblProveedor;
+        private System.Windows.Forms.TextBox txtBanco;
     }
 }

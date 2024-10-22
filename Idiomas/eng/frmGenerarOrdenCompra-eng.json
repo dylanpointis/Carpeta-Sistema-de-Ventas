@@ -1,4 +1,27 @@
 {
+  "label1": "Products to replenish:",
+  "label3": "Pending quote requests:",
+  "label6": "Final supplier:",
+  "label4": "Supplier details:",
+  "btnRegistrarProveedor": "Register completely",
+  "label2": "Purchase price",
+  "label5": "Quantity to replenish",
+  "btnCargar": "Load purchase price",
+  "btnRegistarPago": "Register payment",
+  "btnFinalizar": "Finish",
+  "btnModificarCant": "Modify quantity to replenish",
+  "lblFechaEntrega": "Delivery date of products",
+
+  "lblNeto": "Net: ",
+  "lblIVA": "I.V.A (21%): ",
+  "lblTotal": "Total: ",
+
+  "lblNombreProv": "Name:",
+  "lblRazonSocial": "Business name:",
+  "lblMailProv": "Email:",
+  "lblNumTel": "Phone number:",
+  "lblCBU": "CBU:",
+  "lblCUIT": "CUIT:",
 
   "gridViewCodigo": "Product Code",
   "gridViewModelo": "Model",
@@ -6,23 +29,26 @@
   "gridViewMarca": "Brand",
   "gridViewPrecio": "Price",
   "gridViewStock": "Current stock",
-  "ggridViewSMin": "Minimum stock",
+  "gridViewSMin": "Minimum stock",
   "gridViewSMax": "Maximum stock",
-
+  "gridViewPrecioUnit": "Unit purchase price",
 
   "gridViewCUIT": "CUIT",
   "gridViewNombre": "Name",
-  "gridViewRazonSocial": "Business Name",
+  "gridViewRazonSocial": "Business name",
   "gridViewEmail": "Email",
-  "gridViewNumTelefono": "Phone Number",
+  "gridViewNumTelefono": "Phone number",
   "gridViewDireccion": "Address",
 
-
-
   "ingreseCant": "Enter the final quantity to replenish",
-  "superaStock": "TThe entered amount added to the current stock exceeds the maximum stock of the product",
-  "error": "Error registering the quotation request: ",
-  "exito": "Quotation request registered successfully",
+  "ingresePrecio": "Enter the unit purchase price of the product",
+  "superaStock": "The entered quantity plus the current stock exceeds the maximum stock of the product",
+
+  "error": "Error registering the purchase order: ",
+  "exito": "Purchase order registered successfully",
+  "seleccioneProv": "Select the final supplier to register the payment",
+  "carguePreciosYCant": "Load all purchase prices and final quantities",
+  "numEntero": "Enter an integer for the quantity, less than 5 digits",
 
 
   "cerrar": "Log out",

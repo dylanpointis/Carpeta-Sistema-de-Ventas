@@ -1,0 +1,38 @@
+{
+  "label2": "Registrar Pago",
+  "lblProveedor": "Proveedor: ",
+  "btnRegistrarPago": "Registrar Pago",
+  "btnCancelar": "Cancelar",
+  "btnCargar": "Cargar precio de compra",
+  "btnRegistarPago": "Registar pago",
+  "btnFinalizar": "Finalizar",
+  "btnModificarCant": "Modificar cantidad a reponer",
+
+  "lblNeto": "Neto: ",
+  "lblIVA": "I.V.A (21%): ",
+  "lblTotal": "Total: ",
+
+
+  "label4": "Número de factura: ",
+  "label10": "Número de transferencia: ",
+  "lblNombreProv": "Nombre:",
+  "lblRazonSocial": "Razón social:",
+  "lblMailProv": "Mail:",
+  "lblNumTel": "Número de telefono:",
+  "lblNumTel": "Número de telefono:",
+  "lblCBU": "CBU:",
+  "label1": "Banco",
+  "lblCUIT": "CUIT:",
+
+
+
+  "completeCampos": "Complete todos los campos: ",
+  "error": "Ocurrió un error: ",
+  "exito": "Pago registrado con éxito: ",
+
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

@@ -8,9 +8,9 @@
   "btnSeleccionarProveedor": "Seleccionar",
   "btnRegistrarProveedor": "Registrar nuevo",
   "btnAgregar": "Agregar",
-  "lblNeto": "Neto:",
-  "lblIVA": "I.V.A",
-  "lblTotal": "Total",
+  "lblNeto": "Neto: ",
+  "lblIVA": "I.V.A (21%): ",
+  "lblTotal": "Total: ",
   "btnFinalizar": "Finalizar",
   "btnBuscar": "Buscar",
   "btnQuitar": "Quitar",
@@ -41,7 +41,6 @@
   "superaStock": "La cantidad ingresada sumada al stock actual supera al stock maximo del producto",
   "error": "Error al registrar la solicitud de cotización: ",
   "exito": "Solicitud de cotización registrada con éxito",
-
 
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",

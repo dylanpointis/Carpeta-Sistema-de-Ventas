@@ -1,0 +1,34 @@
+{
+  "label2": "Register Payment",
+  "lblProveedor": "Supplier: ",
+  "btnRegistrarPago": "Register Payment",
+  "btnCancelar": "Cancel",
+  "btnCargar": "Load purchase price",
+  "btnRegistarPago": "Register payment",
+  "btnFinalizar": "Finish",
+  "btnModificarCant": "Modify quantity to replenish",
+
+  "lblNeto": "Net: ",
+  "lblIVA": "I.V.A (21%): ",
+  "lblTotal": "Total: ",
+
+  "label4": "Invoice number: ",
+  "label10": "Transfer number: ",
+  "lblNombreProv": "Name:",
+  "lblRazonSocial": "Business name:",
+  "lblMailProv": "Email:",
+  "lblNumTel": "Phone number:",
+  "lblCBU": "CBU:",
+  "label1": "Bank",
+  "lblCUIT": "CUIT:",
+
+  "completeCampos": "Complete all fields: ",
+  "error": "An error occurred: ",
+  "exito": "Payment successfully registered: "
+
+
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
+}

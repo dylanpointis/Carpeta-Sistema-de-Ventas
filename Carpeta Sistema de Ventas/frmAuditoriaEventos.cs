@@ -258,6 +258,7 @@ namespace Carpeta_Sistema_de_Ventas
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Productos"), "Productos");
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Clientes"), "Clientes");
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Respaldos"), "Respaldos");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Compras"), "Compras");
             dt.Rows.Add("-", "");
 
             cmbModulo.DataSource = dt;
@@ -327,6 +328,10 @@ namespace Carpeta_Sistema_de_Ventas
                     case "Respaldos":
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Backup realizado"), "Backup realizado");
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Restore realizado"), "Restore realizado");
+                        break;
+                    case "Compras":
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Solicitud de cotización generada"), "Solicitud de cotización generada");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Orden de compra generada"), "Orden de compra generada");
                         break;
                     default:
                         cmbEvento.DataSource = null;

@@ -32,6 +32,7 @@
   "Productos": "Products",
   "Clientes": "Clients",
   "Respaldos": "Backups",
+  "Compras": "Stock purchase",
 
   "Inicio sesión": "Login",
   "Cierre sesión": "Logout",
@@ -62,6 +63,8 @@
   "Archivo deserializado": "File Deserialized",
   "Backup realizado": "Backup Completed",
   "Restore realizado": "Restore Completed",
+  "Solicitud de cotización generada": "Quote request generated",
+  "Orden de compra generada": "Purchase order generated",
 
   "cerrar": "Log Out",
   "deseaCerrar": "Do you want to log out?",

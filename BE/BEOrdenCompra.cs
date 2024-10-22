@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,27 +10,27 @@ namespace BE
     public class BEOrdenCompra
     {
         public int NumeroOrdenCompra { get; set; }
-        public int NumeroFactura { get; set; }
+        public long NumeroFactura { get; set; }
 
-        public string CUITProveedor { get; set; }
         public int NumeroSolicitudCompra { get; set; }
 
         public int CantidadTotal {  get; set; }
         public string Estado { get; set; }
         public DateTime FechaEntrega { get; set; }
         public DateTime FechaRegistro { get; set; }
+        public string MetodoPago { get; set; }
         public double MontoTotal { get; set; }
-        public int NumeroTransferencia { get; set; }
+        public long NumeroTransferencia { get; set; }
 
+        public BEProveedor proveedor { get; set; }
 
 
         public List<BEItemOrdenCompra> itemsOrdenCompra { get; set; }
 
 
 
-        public BEOrdenCompra(string cuitProv, int numSolicitud, int cantidadTotal, string estado, DateTime fechaEntrega, DateTime fechaRegistro, double montoTotal)
+        public BEOrdenCompra(int numSolicitud, int cantidadTotal, string estado, DateTime fechaEntrega, DateTime fechaRegistro, double montoTotal)
         {
-            CUITProveedor = cuitProv;
             NumeroSolicitudCompra = numSolicitud;
             CantidadTotal = cantidadTotal;
             Estado = estado;

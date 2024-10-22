@@ -34,8 +34,9 @@ namespace Carpeta_Sistema_de_Ventas
         List<BECliente> listaClientes = new List<BECliente>();
         BLLCliente bllCliente = new BLLCliente();
         BLLEvento bllEvento = new BLLEvento();
+        Serializacion serializacion = new Serializacion();
 
-        EnumModoAplicar modoOperacion;
+EnumModoAplicar modoOperacion;
 
 
         private void frmMaestroClientes_Load(object sender, EventArgs e)
@@ -410,23 +411,11 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 try
                 {
-                    SaveFileDialog saveFileDialog = new SaveFileDialog();
-                    saveFileDialog.Filter = "XML Files|*.xml";
-                    saveFileDialog.FileName = DateTime.Now.ToString("yyyy-MM-dd HH_mm");
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                        {
-                            XmlSerializer serializer = new XmlSerializer(typeof(List<BECliente>));
-                            serializer.Serialize(fs, listaClientes);
-                        }
-
-                        MostrarArchivoSerializado(saveFileDialog.FileName);
-                        bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo serializado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
-
-                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoSerializacion"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        grillaClientes.Rows.Clear();
-                    }
+                    string nombreArchivo = serializacion.SerializarClientes(listaClientes);
+                    MostrarArchivoSerializado(nombreArchivo);
+                    grillaClientes.Rows.Clear();
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoSerializacion"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo serializado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
                 }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
                 
@@ -451,23 +440,15 @@ namespace Carpeta_Sistema_de_Ventas
         {
             try
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "XML Files|*.xml";
-                if(openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open))
-                    {
-                        XmlSerializer serializer = new XmlSerializer(typeof (List<BECliente>));
-                        listaClientes = (List<BECliente>) serializer.Deserialize(fs);
-                    }
+                listaClientes = serializacion.Deseriaizar();
 
-                    MostrarDatosDeserializados(listaClientes);
+                MostrarDatosDeserializados(listaClientes);
 
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoDeserializacion"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo deserializado", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
-                    grillaClientes.Rows.Clear();
-                    ActualizarGrilla();
-                }
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoDeserializacion"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bllEvento.RegistrarEvento((new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Archivo deserializado", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm"))));
+                grillaClientes.Rows.Clear();
+                ActualizarGrilla();
+                
             }
             catch(Exception ex) { MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
