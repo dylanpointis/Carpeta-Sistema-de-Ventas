@@ -721,17 +721,17 @@ CREATE TABLE Proveedores
 )
 
 
-CREATE TABLE SolicitudCotizacion
+CREATE TABLE SolicitudesCotizacion
 (
 	NumeroSolicitud INT PRIMARY KEY IDENTITY(1,1),
-	Fecha varchar(11),
+	Fecha varchar(18),
 	Estado varchar(50)
 )
 
 CREATE TABLE Item_Solicitud
 (
 	CodItem_Solicitud INT PRIMARY KEY IDENTITY(1,1),
-	NumeroSolicitud INT FOREIGN KEY REFERENCES SolicitudCotizacion(NumeroSolicitud),
+	NumeroSolicitud INT FOREIGN KEY REFERENCES SolicitudesCotizacion(NumeroSolicitud),
 	CodigoProducto varchar(14) FOREIGN KEY REFERENCES Productos(CodigoProducto),
 	Cantidad int
 )
@@ -739,23 +739,40 @@ CREATE TABLE Item_Solicitud
 CREATE TABLE Solicitud_Proveedor
 (
 	CodSolicitud_Proveedor INT PRIMARY KEY IDENTITY(1,1),
-	NumeroSolicitud INT FOREIGN KEY REFERENCES SolicitudCotizacion(NumeroSolicitud),
+	NumeroSolicitud INT FOREIGN KEY REFERENCES SolicitudesCotizacion(NumeroSolicitud),
 	CUITProveedor varchar(14) FOREIGN KEY REFERENCES Proveedores(CUITProveedor)
 )
 
+CREATE TABLE OrdenesCompra
+(
+	NumeroOrdenCompra INT PRIMARY KEY IDENTITY(1,1),
+	CUITProveedor varchar(14) FOREIGN KEY REFERENCES Proveedores(CUITProveedor),
+	NumeroSolicitud INT FOREIGN KEY REFERENCES SolicitudesCotizacion(NumeroSolicitud),
+	FechaRegistro varchar(18),
+	FechEntrega varchar(18),
+	Estado varchar(50),
+	NumeroTransferencia int,
+	MetodoPago varchar(50),
+	MontoTotal float,
+	CantidadTotal int,
+	NumeroFactura int
+)
+
+
+
+
 
 GO
+
 CREATE PROCEDURE RegistrarSolicitudCotizacion
 	@Estado varchar(11),
-	@Fecha varchar(11)
+	@Fecha varchar(18)
 AS
 BEGIN
-    INSERT INTO SolicitudCotizacion VALUES (@Fecha,@Estado)
+    INSERT INTO SolicitudesCotizacion VALUES (@Fecha,@Estado)
 	SELECT SCOPE_IDENTITY()
 END
 GO
-
-
 
 CREATE PROCEDURE RegistrarItemSolicitud
 	@NumeroSolicitud int,
@@ -767,6 +784,7 @@ BEGIN
 END
 GO
 
+
 CREATE PROCEDURE RegistrarProveedorSolicitud
 	@NumeroSolicitud int,
 	@CUITProveedor varchar(14)
@@ -775,6 +793,24 @@ BEGIN
     INSERT INTO Solicitud_Proveedor VALUES (@NumeroSolicitud, @CUITProveedor)
 END
 GO
+
+
+CREATE PROCEDURE TraerProveedoresSolicitud
+	@NumeroSolicitud int
+AS
+BEGIN
+   SELECT * FROM Solicitud_Proveedor S INNER JOIN Proveedores P ON S.CUITProveedor = P.CUITProveedor WHERE NumeroSolicitud = @NumeroSolicitud
+END
+GO
+
+CREATE PROCEDURE TraerItemsSolicitud
+	@NumeroSolicitud int
+AS
+BEGIN
+   SELECT * FROM Item_Solicitud S INNER JOIN Productos P ON S.CodigoProducto = P.CodigoProducto WHERE NumeroSolicitud = @NumeroSolicitud
+END
+GO
+
 
 
 

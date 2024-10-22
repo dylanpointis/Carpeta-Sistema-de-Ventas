@@ -1,23 +1,25 @@
 {
-  "label2": "Productos bajos de stock",
-  "label1": "Buscar proveedores:",
-  "label3": "Generar solicitud de cotización",
-  "label4": "Proveedores seleccionados",
-  "label5": "Proveedores",
-  "btnActualizar": "Actualizar",
-  "btnSeleccionarProveedor": "Seleccionar",
-  "btnRegistrarProveedor": "Registrar nuevo",
-  "btnAgregar": "Agregar",
-  "lblNeto": "Neto:",
-  "lblIVA": "I.V.A",
-  "lblTotal": "Total",
+  "label1": "Productos a reponer:",
+  "label3": "Solicitudes de cotización:",
+  "label6": "Proveedor final:",
+  "label4": "Detalle proveedor:",
+  "btnRegistrarProveedor": "Registrar completamente",
+  "label2": "Precio de compra",
+  "label5": "Cantidad a reponer",
+  "btnCargar": "Cargar precio de compra",
+  "btnRegistarPago": "Registar pago",
   "btnFinalizar": "Finalizar",
-  "btnBuscar": "Buscar",
-  "btnQuitar": "Quitar",
-  "btnCancelar": "Cancelar",
-  "btnConfirmar": "Confirmar",
-  "numEntero": "Ingrese un número entero para la cantidad a reponer, menor a 4 cifras",
-  "btnCargarCant": "Cargar cantidad",  
+  "btnModificarCant": "Modificar cantidad a reponer",
+
+  "lblNombreProv": "Nombre:",
+  "lblRazonSocial": "Razón social:",
+  "lblMailProv": "Mail:",
+  "lblNumTel": "Número de telefono:",
+  "lblNumTel": "Número de telefono:",
+  "lblCBU": "CBU:",
+  "lblCUIT": "CUIT:",
+
+
 
   "gridViewCodigo": "Código Producto",
   "gridViewModelo": "Modelo",
@@ -27,6 +29,7 @@
   "gridViewStock": "Stock actual",
   "gridViewSMin": "Stock mínimo",
   "gridViewSMax": "Stock máximo",
+  "gridViewPrecioUnit": "Precio de compra unitario",
 
 
   "gridViewCUIT": "CUIT",
@@ -37,7 +40,8 @@
   "gridViewDireccion": "Dirección",
 
 
-  "ingreseCant": "Ingrese la cantidad a reponer",
+  "ingreseCant": "Ingrese la cantidad final a reponer",
+  "ingresePrecio": "Ingrese el precio de compra unitario del producto",
   "superaStock": "La cantidad ingresada sumada al stock actual supera al stock maximo del producto",
   "error": "Error al registrar la solicitud de cotización: ",
   "exito": "Solicitud de cotización registrada con éxito",

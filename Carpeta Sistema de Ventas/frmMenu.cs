@@ -194,7 +194,23 @@ namespace Carpeta_Sistema_de_Ventas
         {
             AbrirForm(new COMPRAfrmGenerarSolicitudCotizacion());
         }
+        private void generarOrdenDeCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+            AbrirForm(new COMPRAfrmGenerarOrdenCompra());
+        }
+
+        private void corroborarRecepciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            AbrirForm(new COMPRAfrmConfirmarRecepcion());
+        }
+
+
+        private void productosCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new frmAuditoriaCambios());
+        }
 
 
 
@@ -214,11 +230,6 @@ namespace Carpeta_Sistema_de_Ventas
                 else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noHaySesion"), "", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             }
 
-        }
-
-        private void productosCToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AbrirForm(new frmAuditoriaCambios());
         }
 
 

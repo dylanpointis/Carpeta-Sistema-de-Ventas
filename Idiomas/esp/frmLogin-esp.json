@@ -35,6 +35,8 @@
   "respaldosToolStripMenuItem": "Respaldos",
   "productosCToolStripMenuItem": "Productos-Cambios",
   "generarSolicitudDeCotizaciónToolStripMenuItem": "Generar solicitud de cotización",
+  "generarOrdenDeCompraToolStripMenuItem": "Generar orden de compra",
+  "corroborarRecepciónToolStripMenuItem": "Corroborar recepción",
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

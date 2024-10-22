@@ -26,7 +26,7 @@
   "gridViewCantidadAReponer": "Quantity to replenish",
   "gridViewMarca": "Brand",
   "gridViewPrecio": "Price",
-  "gridViewStock": "Stock",
+  "gridViewStock": "Current stock",
   "ggridViewSMin": "Minimum stock",
   "gridViewSMax": "Maximum stock",
 
@@ -38,9 +38,9 @@
   "gridViewDireccion": "Address",
 
   "ingreseCant": "Enter the quantity to replenish",
-  "superaStock": "The entered quantity exceeds the maximum stock of the product",
+  "superaStock": "The entered amount added to the current stock exceeds the maximum stock of the product",
   "error": "Error registering the quotation request: ",
-  "exito": "Quotation request registered successfully"
+  "exito": "Quotation request registered successfully",
 
   "cerrar": "Log out",
   "deseaCerrar": "Are you sure you want to Log Out?",

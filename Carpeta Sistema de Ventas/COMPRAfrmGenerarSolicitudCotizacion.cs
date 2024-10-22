@@ -104,16 +104,16 @@ namespace Carpeta_Sistema_de_Ventas
             try
             {
                 int idSolicitud = bLLSolicitudCotizacion.RegistrarSolicitudCotizacion(solicitudCoti);
-                solicitudCoti.IDSolicitud = idSolicitud;
+                solicitudCoti.NumSolicitud = idSolicitud;
 
                 foreach (BEItemSolicitud item in solicitudCoti.obtenerItems())
                 {
-                    bLLSolicitudCotizacion.RegistrarItemSolicitud(item, solicitudCoti.IDSolicitud);
+                    bLLSolicitudCotizacion.RegistrarItemSolicitud(item, solicitudCoti.NumSolicitud);
                 }
 
                 foreach (BEProveedor prov in solicitudCoti.obtenerProveedorSolicitud())
                 {
-                    bLLSolicitudCotizacion.RegistrarProveedorSolicitud(prov, solicitudCoti.IDSolicitud);
+                    bLLSolicitudCotizacion.RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
                 }
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -155,29 +155,44 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     //obtengo el item
                     BEItemSolicitud item = solicitudCoti.obtenerItems().FirstOrDefault(p => p.Producto.CodigoProducto == Convert.ToInt32(codProd));
-                    //me fijo si supera el stock Maximo del producto
-                    if (Convert.ToInt16(cantIngresada) > item.Producto.StockMax)
+                    //me fijo si el stock actual + agregado supera el stock Maximo del producto
+                    if ((Convert.ToInt16(cantIngresada) + item.Producto.Stock) > item.Producto.StockMax)
                     {
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("superaStock"));
                     }
                     else
                     {
                         //modifica la cantidad a reponer
-                        solicitudCoti.modificarCantidad(Convert.ToInt64(codProd), Convert.ToInt16(cantIngresada));
+                        solicitudCoti.modificarCantidadItem(Convert.ToInt64(codProd), Convert.ToInt16(cantIngresada));
 
-                        foreach (DataGridViewRow row in grillaProdBajoStock.Rows)
-                        {
-                            if (row.Cells[0].Value.ToString() == codProd)
-                            {
-                                row.Cells[6].Value = cantIngresada; //muestra la cantidad en la grilla
-                            }
-                        }
+                        grillaProdBajoStock.CurrentRow.Cells[6].Value = cantIngresada;
                     }
                 }
                 else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numEntero")); }
+            }
+        }
 
 
 
+
+        //esto es para que se vea bien cuando agrando o achico la pantalla
+
+        private void COMPRAfrmGenerarSolicitudCotizacion_Resize(object sender, EventArgs e)
+        {
+            if (this.ClientSize.Width > 1500)
+            {
+                grillaProdBajoStock.Width = 787;
+                grillaProdBajoStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                grillaProveedores.Width = 648;
+            }
+            else
+            {
+
+                grillaProdBajoStock.Width = 487;
+                grillaProdBajoStock.Height = 256;
+                grillaProveedores.Width = 448;
+                grillaProveedores.Height = 244;
             }
         }
     }

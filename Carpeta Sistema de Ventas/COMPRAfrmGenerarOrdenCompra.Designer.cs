@@ -30,21 +30,15 @@
         {
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.CodProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantMinima = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantMax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantAReponer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCambiarClave = new System.Windows.Forms.Button();
+            this.grillaItems = new System.Windows.Forms.DataGridView();
+            this.btnCargar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnFinalizar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lblDNICliente = new System.Windows.Forms.Label();
-            this.lblMailCliente = new System.Windows.Forms.Label();
-            this.lblApellidoCliente = new System.Windows.Forms.Label();
-            this.lblNombreCliente = new System.Windows.Forms.Label();
+            this.btnRegistarPago = new System.Windows.Forms.Button();
+            this.cmbSolicitudesCotizacion = new System.Windows.Forms.ComboBox();
+            this.lblRazonSocial = new System.Windows.Forms.Label();
+            this.lblMailProv = new System.Windows.Forms.Label();
+            this.lblCUIT = new System.Windows.Forms.Label();
+            this.lblNombreProv = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblNumTel = new System.Windows.Forms.Label();
@@ -53,11 +47,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnRegistrarProveedor = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.btnFinalizar = new System.Windows.Forms.Button();
+            this.cmbProveedorFinal = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnModificarCant = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaItems)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +61,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 38);
+            this.label3.Location = new System.Drawing.Point(12, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(248, 24);
             this.label3.TabIndex = 47;
@@ -80,141 +75,107 @@
             this.numericUpDown1.Size = new System.Drawing.Size(144, 20);
             this.numericUpDown1.TabIndex = 49;
             // 
-            // dataGridView2
+            // grillaItems
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CodProducto,
-            this.CantidadActual,
-            this.CantMinima,
-            this.CantMax,
-            this.CantAReponer,
-            this.PrecioUnitario});
-            this.dataGridView2.Location = new System.Drawing.Point(345, 78);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(656, 316);
-            this.dataGridView2.TabIndex = 50;
+            this.grillaItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaItems.Location = new System.Drawing.Point(312, 78);
+            this.grillaItems.Name = "grillaItems";
+            this.grillaItems.Size = new System.Drawing.Size(701, 316);
+            this.grillaItems.TabIndex = 50;
             // 
-            // CodProducto
+            // btnCargar
             // 
-            this.CodProducto.HeaderText = "CodProducto";
-            this.CodProducto.Name = "CodProducto";
-            // 
-            // CantidadActual
-            // 
-            this.CantidadActual.HeaderText = "CantidadActual";
-            this.CantidadActual.Name = "CantidadActual";
-            // 
-            // CantMinima
-            // 
-            this.CantMinima.HeaderText = "CantMinima";
-            this.CantMinima.Name = "CantMinima";
-            // 
-            // CantMax
-            // 
-            this.CantMax.HeaderText = "CantMax";
-            this.CantMax.Name = "CantMax";
-            // 
-            // CantAReponer
-            // 
-            this.CantAReponer.HeaderText = "CantAReponer";
-            this.CantAReponer.Name = "CantAReponer";
-            // 
-            // PrecioUnitario
-            // 
-            this.PrecioUnitario.HeaderText = "PrecioUnitario";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            // 
-            // btnCambiarClave
-            // 
-            this.btnCambiarClave.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnCambiarClave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarClave.ForeColor = System.Drawing.Color.White;
-            this.btnCambiarClave.Location = new System.Drawing.Point(514, 423);
-            this.btnCambiarClave.Name = "btnCambiarClave";
-            this.btnCambiarClave.Size = new System.Drawing.Size(156, 32);
-            this.btnCambiarClave.TabIndex = 51;
-            this.btnCambiarClave.Text = "Cargar";
-            this.btnCambiarClave.UseVisualStyleBackColor = false;
+            this.btnCargar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnCargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar.ForeColor = System.Drawing.Color.White;
+            this.btnCargar.Location = new System.Drawing.Point(514, 423);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(156, 32);
+            this.btnCargar.TabIndex = 51;
+            this.btnCargar.Text = "Cargar precio de compra";
+            this.btnCargar.UseVisualStyleBackColor = false;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(341, 38);
+            this.label1.Location = new System.Drawing.Point(308, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(207, 24);
             this.label1.TabIndex = 52;
             this.label1.Text = "Productos a reponer:";
             // 
-            // btnFinalizar
+            // btnRegistarPago
             // 
-            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFinalizar.BackColor = System.Drawing.SystemColors.Control;
-            this.btnFinalizar.Enabled = false;
-            this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFinalizar.ForeColor = System.Drawing.Color.Black;
-            this.btnFinalizar.Location = new System.Drawing.Point(742, 417);
-            this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(132, 52);
-            this.btnFinalizar.TabIndex = 53;
-            this.btnFinalizar.Text = "Registrar pago";
-            this.btnFinalizar.UseVisualStyleBackColor = false;
+            this.btnRegistarPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRegistarPago.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRegistarPago.Enabled = false;
+            this.btnRegistarPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistarPago.ForeColor = System.Drawing.Color.Black;
+            this.btnRegistarPago.Location = new System.Drawing.Point(742, 417);
+            this.btnRegistarPago.Name = "btnRegistarPago";
+            this.btnRegistarPago.Size = new System.Drawing.Size(132, 52);
+            this.btnRegistarPago.TabIndex = 53;
+            this.btnRegistarPago.Text = "Registrar pago";
+            this.btnRegistarPago.UseVisualStyleBackColor = false;
             // 
-            // comboBox1
+            // cmbSolicitudesCotizacion
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(32, 100);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(217, 21);
-            this.comboBox1.TabIndex = 54;
+            this.cmbSolicitudesCotizacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSolicitudesCotizacion.FormattingEnabled = true;
+            this.cmbSolicitudesCotizacion.Location = new System.Drawing.Point(16, 100);
+            this.cmbSolicitudesCotizacion.Name = "cmbSolicitudesCotizacion";
+            this.cmbSolicitudesCotizacion.Size = new System.Drawing.Size(217, 21);
+            this.cmbSolicitudesCotizacion.TabIndex = 54;
+            this.cmbSolicitudesCotizacion.SelectedIndexChanged += new System.EventHandler(this.cmbSolicitudesCotizacion_SelectedIndexChanged);
             // 
-            // lblDNICliente
+            // lblRazonSocial
             // 
-            this.lblDNICliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDNICliente.AutoSize = true;
-            this.lblDNICliente.Location = new System.Drawing.Point(181, 25);
-            this.lblDNICliente.Name = "lblDNICliente";
-            this.lblDNICliente.Size = new System.Drawing.Size(71, 13);
-            this.lblDNICliente.TabIndex = 59;
-            this.lblDNICliente.Text = "Razon social:";
+            this.lblRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRazonSocial.AutoSize = true;
+            this.lblRazonSocial.Location = new System.Drawing.Point(181, 25);
+            this.lblRazonSocial.Name = "lblRazonSocial";
+            this.lblRazonSocial.Size = new System.Drawing.Size(71, 13);
+            this.lblRazonSocial.TabIndex = 59;
+            this.lblRazonSocial.Text = "Razon social:";
             // 
-            // lblMailCliente
+            // lblMailProv
             // 
-            this.lblMailCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMailCliente.AutoSize = true;
-            this.lblMailCliente.Location = new System.Drawing.Point(2, 78);
-            this.lblMailCliente.Name = "lblMailCliente";
-            this.lblMailCliente.Size = new System.Drawing.Size(32, 13);
-            this.lblMailCliente.TabIndex = 58;
-            this.lblMailCliente.Text = "Mail: ";
+            this.lblMailProv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMailProv.AutoSize = true;
+            this.lblMailProv.Location = new System.Drawing.Point(2, 78);
+            this.lblMailProv.Name = "lblMailProv";
+            this.lblMailProv.Size = new System.Drawing.Size(32, 13);
+            this.lblMailProv.TabIndex = 58;
+            this.lblMailProv.Text = "Mail: ";
             // 
-            // lblApellidoCliente
+            // lblCUIT
             // 
-            this.lblApellidoCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblApellidoCliente.AutoSize = true;
-            this.lblApellidoCliente.Location = new System.Drawing.Point(181, 138);
-            this.lblApellidoCliente.Name = "lblApellidoCliente";
-            this.lblApellidoCliente.Size = new System.Drawing.Size(35, 13);
-            this.lblApellidoCliente.TabIndex = 57;
-            this.lblApellidoCliente.Text = "CUIT:";
+            this.lblCUIT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCUIT.AutoSize = true;
+            this.lblCUIT.Location = new System.Drawing.Point(181, 138);
+            this.lblCUIT.Name = "lblCUIT";
+            this.lblCUIT.Size = new System.Drawing.Size(35, 13);
+            this.lblCUIT.TabIndex = 57;
+            this.lblCUIT.Text = "CUIT:";
             // 
-            // lblNombreCliente
+            // lblNombreProv
             // 
-            this.lblNombreCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNombreCliente.AutoSize = true;
-            this.lblNombreCliente.Location = new System.Drawing.Point(2, 25);
-            this.lblNombreCliente.Name = "lblNombreCliente";
-            this.lblNombreCliente.Size = new System.Drawing.Size(47, 13);
-            this.lblNombreCliente.TabIndex = 56;
-            this.lblNombreCliente.Text = "Nombre:";
+            this.lblNombreProv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNombreProv.AutoSize = true;
+            this.lblNombreProv.Location = new System.Drawing.Point(2, 25);
+            this.lblNombreProv.Name = "lblNombreProv";
+            this.lblNombreProv.Size = new System.Drawing.Size(47, 13);
+            this.lblNombreProv.TabIndex = 56;
+            this.lblNombreProv.Text = "Nombre:";
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(32, 228);
+            this.label4.Location = new System.Drawing.Point(16, 228);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(126, 15);
             this.label4.TabIndex = 55;
@@ -224,11 +185,11 @@
             // 
             this.groupBox1.Controls.Add(this.lblNumTel);
             this.groupBox1.Controls.Add(this.lblCBU);
-            this.groupBox1.Controls.Add(this.lblApellidoCliente);
-            this.groupBox1.Controls.Add(this.lblDNICliente);
-            this.groupBox1.Controls.Add(this.lblNombreCliente);
-            this.groupBox1.Controls.Add(this.lblMailCliente);
-            this.groupBox1.Location = new System.Drawing.Point(32, 256);
+            this.groupBox1.Controls.Add(this.lblCUIT);
+            this.groupBox1.Controls.Add(this.lblRazonSocial);
+            this.groupBox1.Controls.Add(this.lblNombreProv);
+            this.groupBox1.Controls.Add(this.lblMailProv);
+            this.groupBox1.Location = new System.Drawing.Point(16, 256);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(290, 172);
             this.groupBox1.TabIndex = 60;
@@ -285,72 +246,88 @@
             this.btnRegistrarProveedor.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRegistrarProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarProveedor.ForeColor = System.Drawing.Color.Black;
-            this.btnRegistrarProveedor.Location = new System.Drawing.Point(32, 446);
+            this.btnRegistrarProveedor.Location = new System.Drawing.Point(16, 446);
             this.btnRegistrarProveedor.Name = "btnRegistrarProveedor";
             this.btnRegistrarProveedor.Size = new System.Drawing.Size(100, 37);
             this.btnRegistrarProveedor.TabIndex = 64;
             this.btnRegistrarProveedor.Text = "Registrar completamente";
             this.btnRegistrarProveedor.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnFinalizar
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.button1.Enabled = false;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(880, 417);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 52);
-            this.button1.TabIndex = 65;
-            this.button1.Text = "Finalizar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFinalizar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnFinalizar.Enabled = false;
+            this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizar.ForeColor = System.Drawing.Color.White;
+            this.btnFinalizar.Location = new System.Drawing.Point(880, 417);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(121, 52);
+            this.btnFinalizar.TabIndex = 65;
+            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.UseVisualStyleBackColor = false;
             // 
-            // comboBox2
+            // cmbProveedorFinal
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(32, 193);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(217, 21);
-            this.comboBox2.TabIndex = 66;
+            this.cmbProveedorFinal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProveedorFinal.FormattingEnabled = true;
+            this.cmbProveedorFinal.Location = new System.Drawing.Point(16, 193);
+            this.cmbProveedorFinal.Name = "cmbProveedorFinal";
+            this.cmbProveedorFinal.Size = new System.Drawing.Size(217, 21);
+            this.cmbProveedorFinal.TabIndex = 66;
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(29, 172);
+            this.label6.Location = new System.Drawing.Point(13, 172);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 15);
             this.label6.TabIndex = 67;
             this.label6.Text = "Proveedor final:";
+            // 
+            // btnModificarCant
+            // 
+            this.btnModificarCant.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnModificarCant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificarCant.ForeColor = System.Drawing.Color.White;
+            this.btnModificarCant.Location = new System.Drawing.Point(514, 474);
+            this.btnModificarCant.Name = "btnModificarCant";
+            this.btnModificarCant.Size = new System.Drawing.Size(156, 32);
+            this.btnModificarCant.TabIndex = 68;
+            this.btnModificarCant.Text = "Modificar cantidad a reponer";
+            this.btnModificarCant.UseVisualStyleBackColor = false;
+            this.btnModificarCant.Click += new System.EventHandler(this.btnModificarCant_Click);
             // 
             // COMPRAfrmGenerarOrdenCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 529);
+            this.Controls.Add(this.btnModificarCant);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cmbProveedorFinal);
+            this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.btnRegistrarProveedor);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.btnFinalizar);
+            this.Controls.Add(this.cmbSolicitudesCotizacion);
+            this.Controls.Add(this.btnRegistarPago);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnCambiarClave);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.btnCargar);
+            this.Controls.Add(this.grillaItems);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label3);
             this.Name = "COMPRAfrmGenerarOrdenCompra";
             this.Text = "COMPRAfrmGenerarOrdenCompra";
+            this.Load += new System.EventHandler(this.COMPRAfrmGenerarOrdenCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaItems)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -363,31 +340,26 @@
 
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button btnCambiarClave;
+        private System.Windows.Forms.DataGridView grillaItems;
+        private System.Windows.Forms.Button btnCargar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnFinalizar;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label lblDNICliente;
-        private System.Windows.Forms.Label lblMailCliente;
-        private System.Windows.Forms.Label lblApellidoCliente;
-        private System.Windows.Forms.Label lblNombreCliente;
+        private System.Windows.Forms.Button btnRegistarPago;
+        private System.Windows.Forms.ComboBox cmbSolicitudesCotizacion;
+        private System.Windows.Forms.Label lblRazonSocial;
+        private System.Windows.Forms.Label lblMailProv;
+        private System.Windows.Forms.Label lblCUIT;
+        private System.Windows.Forms.Label lblNombreProv;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantidadActual;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantMinima;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantMax;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantAReponer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblCBU;
         private System.Windows.Forms.Button btnRegistrarProveedor;
         private System.Windows.Forms.Label lblNumTel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button btnFinalizar;
+        private System.Windows.Forms.ComboBox cmbProveedorFinal;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnModificarCant;
     }
 }

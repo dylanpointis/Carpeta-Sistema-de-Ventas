@@ -26,6 +26,9 @@
   "eventosToolStripMenuItem": "Eventos",
   "respaldosToolStripMenuItem": "Respaldos",
   "productosCToolStripMenuItem": "Productos-Cambios",
+  "generarSolicitudDeCotizaciónToolStripMenuItem": "Generar solicitud de cotización",
+  "generarOrdenDeCompraToolStripMenuItem": "Generar orden de compra",
+  "corroborarRecepciónToolStripMenuItem": "Corroborar recepción",
 
 
   "btnSesion": "Sesión",

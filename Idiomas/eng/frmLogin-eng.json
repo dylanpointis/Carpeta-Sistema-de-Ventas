@@ -32,6 +32,8 @@
   "respaldosToolStripMenuItem": "Backups",
   "productosCToolStripMenuItem": "Product-Changes",
   "generarSolicitudDeCotizaciónToolStripMenuItem": "Generate quotation request",
+  "generarOrdenDeCompraToolStripMenuItem": "Generate purchase order",
+  "corroborarRecepciónToolStripMenuItem": "Verify products receipt",
   "btnSesion": "Session",
   "iniciarSesiónToolStripMenuItem": "Log In",
   "cerrarSesionToolStripMenuItem": "Log Out",

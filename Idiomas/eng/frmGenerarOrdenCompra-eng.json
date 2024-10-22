@@ -1,0 +1,32 @@
+{
+
+  "gridViewCodigo": "Product Code",
+  "gridViewModelo": "Model",
+  "gridViewCantidadAReponer": "Quantity to replenish",
+  "gridViewMarca": "Brand",
+  "gridViewPrecio": "Price",
+  "gridViewStock": "Current stock",
+  "ggridViewSMin": "Minimum stock",
+  "gridViewSMax": "Maximum stock",
+
+
+  "gridViewCUIT": "CUIT",
+  "gridViewNombre": "Name",
+  "gridViewRazonSocial": "Business Name",
+  "gridViewEmail": "Email",
+  "gridViewNumTelefono": "Phone Number",
+  "gridViewDireccion": "Address",
+
+
+
+  "ingreseCant": "Enter the final quantity to replenish",
+  "superaStock": "TThe entered amount added to the current stock exceeds the maximum stock of the product",
+  "error": "Error registering the quotation request: ",
+  "exito": "Quotation request registered successfully",
+
+
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
+}

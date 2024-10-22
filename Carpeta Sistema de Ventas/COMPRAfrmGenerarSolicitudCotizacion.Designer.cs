@@ -130,7 +130,7 @@
             this.btnQuitar.BackColor = System.Drawing.Color.Firebrick;
             this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitar.ForeColor = System.Drawing.Color.White;
-            this.btnQuitar.Location = new System.Drawing.Point(136, 351);
+            this.btnQuitar.Location = new System.Drawing.Point(136, 359);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(99, 30);
             this.btnQuitar.TabIndex = 63;
@@ -218,11 +218,11 @@
             // 
             // btnCargarCant
             // 
-            this.btnCargarCant.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCargarCant.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCargarCant.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnCargarCant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargarCant.ForeColor = System.Drawing.Color.White;
-            this.btnCargarCant.Location = new System.Drawing.Point(12, 350);
+            this.btnCargarCant.Location = new System.Drawing.Point(12, 358);
             this.btnCargarCant.Name = "btnCargarCant";
             this.btnCargarCant.Size = new System.Drawing.Size(118, 30);
             this.btnCargarCant.TabIndex = 71;
@@ -254,6 +254,7 @@
             this.Name = "COMPRAfrmGenerarSolicitudCotizacion";
             this.Text = "COMPRAfrmGenerarSolicitudCotizacion";
             this.Load += new System.EventHandler(this.COMPRAfrmGenerarSolicitudCotizacion_Load);
+            this.Resize += new System.EventHandler(this.COMPRAfrmGenerarSolicitudCotizacion_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.grillaProdBajoStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProveedores)).EndInit();
             this.ResumeLayout(false);

@@ -8,7 +8,7 @@ namespace BE
 {
     public class BESolicitudCotizacion
     {
-        public int IDSolicitud {  get; set; }
+        public int NumSolicitud {  get; set; }
         public string Estado {  get; set; }
         public DateTime Fecha {  get; set; }
 
@@ -44,7 +44,7 @@ namespace BE
             itemsSolicitud.Remove(item);
         }
 
-        public void modificarCantidad(long codProd, int cant)
+        public void modificarCantidadItem(long codProd, int cant)
         {     
             BEItemSolicitud item = itemsSolicitud.FirstOrDefault(p => p.Producto.CodigoProducto == codProd);
             item.Cantidad = cant;

@@ -44,7 +44,9 @@
     <Compile Include="BECliente.cs" />
     <Compile Include="BEFactura.cs" />
     <Compile Include="BEItemFactura.cs" />
+    <Compile Include="BEItemOrdenCompra.cs" />
     <Compile Include="BEItemSolicitud.cs" />
+    <Compile Include="BEOrdenCompra.cs" />
     <Compile Include="BEProducto.cs" />
     <Compile Include="BEProveedor.cs" />
     <Compile Include="BESolicitudCotizacion.cs" />
