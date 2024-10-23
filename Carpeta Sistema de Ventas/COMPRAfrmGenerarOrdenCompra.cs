@@ -32,6 +32,7 @@ namespace Carpeta_Sistema_de_Ventas
         BLLEvento bllEvento = new BLLEvento();
         BLLSolicitudCotizacion bllSolC = new BLLSolicitudCotizacion();
         BLLOrdenCompra bllOrdenC = new BLLOrdenCompra();
+        BEProveedor provFinal;
         BEOrdenCompra ordenC = new BEOrdenCompra(0,0,"Pendiente", DateTime.Today, DateTime.Now, 0);
         private void COMPRAfrmGenerarOrdenCompra_Load(object sender, EventArgs e)
         {
@@ -222,16 +223,16 @@ namespace Carpeta_Sistema_de_Ventas
             string cuit = partes[0].Trim();
 
             //asigna el proveedor final seleccionado a la entidad ordenCompra
-            BEProveedor prov = lista.Where(p => p.CUIT == cuit).FirstOrDefault();
-            ordenC.proveedor = prov;
+            provFinal = lista.Where(p => p.CUIT == cuit).FirstOrDefault();
+            ordenC.proveedor = provFinal;
 
             //muestra el detalle del proveedor en pantalla
-            lblNombreProv.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNombreProv") + $"\n{prov.Nombre}";
-            lblRazonSocial.Text = IdiomaManager.GetInstance().ConseguirTexto("lblRazonSocial") + $"\n{prov.RazonSocial}";
-            lblMailProv.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMailProv") + $"\n{prov.Email}";
-            lblNumTel.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNumTel") + $"\n{prov.NumTelefono}";
-            lblCBU.Text = IdiomaManager.GetInstance().ConseguirTexto("lblCBU") + $"\n{prov.CBU}";
-            lblCUIT.Text = IdiomaManager.GetInstance().ConseguirTexto("lblCUIT") + $"\n{prov.CUIT}";
+            lblNombreProv.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNombreProv") + $"\n{provFinal.Nombre}";
+            lblRazonSocial.Text = IdiomaManager.GetInstance().ConseguirTexto("lblRazonSocial") + $"\n{provFinal.RazonSocial}";
+            lblMailProv.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMailProv") + $"\n{provFinal.Email}";
+            lblNumTel.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNumTel") + $"\n{provFinal.NumTelefono}";
+            lblCBU.Text = IdiomaManager.GetInstance().ConseguirTexto("lblCBU") + $"\n{provFinal.CBU}";
+            lblCUIT.Text = IdiomaManager.GetInstance().ConseguirTexto("lblCUIT") + $"\n{provFinal.CUIT}";
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
@@ -257,6 +258,16 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 catch(Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message,"",MessageBoxButtons.OK,MessageBoxIcon.Error); }
             }
+        }
+
+        private void btnRegistrarProveedor_Click(object sender, EventArgs e)
+        {
+            if (provFinal != null)
+            {
+                COMPRAfrmRegistrarProveedor form = new COMPRAfrmRegistrarProveedor(false, provFinal);
+                form.ShowDialog();
+            }
+            else { MessageBox.Show("Seleccione el proveedor final para terminar de registrarlo"); }
         }
     }
 }

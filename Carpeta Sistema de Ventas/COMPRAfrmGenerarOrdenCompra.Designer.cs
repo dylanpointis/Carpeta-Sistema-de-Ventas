@@ -226,6 +226,7 @@
             this.btnRegistrarProveedor.TabIndex = 64;
             this.btnRegistrarProveedor.Text = "Registrar completamente";
             this.btnRegistrarProveedor.UseVisualStyleBackColor = false;
+            this.btnRegistrarProveedor.Click += new System.EventHandler(this.btnRegistrarProveedor_Click);
             // 
             // btnFinalizar
             // 

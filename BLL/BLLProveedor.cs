@@ -14,6 +14,16 @@ namespace BLL
     {
         private DALProveedor dalProv = new DALProveedor();
 
+        public void ModificarProveedor(BEProveedor prov)
+        {
+            dalProv.ModificarProveedor(prov);
+        }
+
+        public void RegistrarProveedor(BEProveedor prov)
+        {
+            dalProv.RegistrarProveedor(prov);
+        }
+
         public List<BEProveedor> TraerListaProveedores()
         {
             List<BEProveedor> lista = new List<BEProveedor>();

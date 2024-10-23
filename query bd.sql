@@ -897,6 +897,42 @@ BEGIN
 END
 GO
 
+
+CREATE PROCEDURE RegistrarProveedor
+	@CUITProveedor varchar(14),
+	@Nombre varchar(100),
+	@RazonSocial varchar(100),
+	@Email varchar(100),
+	@NumTelefono varchar(15),
+	@CBU varchar(100),
+	@Direccion varchar(100),
+	@Banco varchar(50)
+
+AS
+BEGIN
+    INSERT INTO Proveedores VALUES (@CUITProveedor, @Nombre, @RazonSocial, @Email, @NumTelefono, @CBU, @Direccion, @Banco)
+END
+GO
+
+
+CREATE PROCEDURE ModificarProveedor
+	@CUITProveedor varchar(14),
+	@Nombre varchar(100),
+	@RazonSocial varchar(100),
+	@Email varchar(100),
+	@NumTelefono varchar(15),
+	@CBU varchar(100),
+	@Direccion varchar(100),
+	@Banco varchar(50)
+
+AS
+BEGIN
+    UPDATE Proveedores  SET Nombre = @Nombre, RazonSocial = @RazonSocial,Email=  @Email, NumTelefono= @NumTelefono, CBU= @CBU, Direccion= @Direccion, Banco = @Banco
+	where CUITProveedor = @CUITProveedor
+END
+GO
+
+
 /*CLAVE: clave123*/
 INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1,0);
 --clave: claveadmin2

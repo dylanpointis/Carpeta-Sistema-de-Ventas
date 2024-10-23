@@ -129,7 +129,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnRegistrarProveedor_Click(object sender, EventArgs e)
         {
-            COMPRAfrmRegistrarProveedor form = new COMPRAfrmRegistrarProveedor();
+            COMPRAfrmRegistrarProveedor form = new COMPRAfrmRegistrarProveedor(true, null);
             form.ShowDialog();
         }
 

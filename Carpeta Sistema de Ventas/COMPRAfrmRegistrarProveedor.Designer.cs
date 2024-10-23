@@ -30,22 +30,22 @@
         {
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtDNI = new System.Windows.Forms.TextBox();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.txtCUIT = new System.Windows.Forms.TextBox();
+            this.txtNumTelefono = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
-            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnRegistrarProveedor = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCBU = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtBanco = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             this.btnCancelar.TabIndex = 59;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label6
             // 
@@ -72,19 +73,19 @@
             this.label6.TabIndex = 58;
             this.label6.Text = "Registrar proveedor";
             // 
-            // txtDNI
+            // txtCUIT
             // 
-            this.txtDNI.Location = new System.Drawing.Point(59, 94);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(185, 20);
-            this.txtDNI.TabIndex = 57;
+            this.txtCUIT.Location = new System.Drawing.Point(59, 94);
+            this.txtCUIT.Name = "txtCUIT";
+            this.txtCUIT.Size = new System.Drawing.Size(185, 20);
+            this.txtCUIT.TabIndex = 57;
             // 
-            // txtDireccion
+            // txtNumTelefono
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(60, 210);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(185, 20);
-            this.txtDireccion.TabIndex = 56;
+            this.txtNumTelefono.Location = new System.Drawing.Point(60, 210);
+            this.txtNumTelefono.Name = "txtNumTelefono";
+            this.txtNumTelefono.Size = new System.Drawing.Size(185, 20);
+            this.txtNumTelefono.TabIndex = 56;
             // 
             // label5
             // 
@@ -102,13 +103,12 @@
             this.txtMail.Size = new System.Drawing.Size(185, 20);
             this.txtMail.TabIndex = 54;
             // 
-            // txtApellido
+            // txtRazonSocial
             // 
-            this.txtApellido.Enabled = false;
-            this.txtApellido.Location = new System.Drawing.Point(329, 154);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(185, 20);
-            this.txtApellido.TabIndex = 53;
+            this.txtRazonSocial.Location = new System.Drawing.Point(329, 154);
+            this.txtRazonSocial.Name = "txtRazonSocial";
+            this.txtRazonSocial.Size = new System.Drawing.Size(185, 20);
+            this.txtRazonSocial.TabIndex = 53;
             // 
             // txtNombre
             // 
@@ -167,13 +167,12 @@
             this.label1.TabIndex = 47;
             this.label1.Text = "CUIT:";
             // 
-            // textBox1
+            // txtCBU
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(60, 275);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 20);
-            this.textBox1.TabIndex = 61;
+            this.txtCBU.Location = new System.Drawing.Point(60, 275);
+            this.txtCBU.Name = "txtCBU";
+            this.txtCBU.Size = new System.Drawing.Size(185, 20);
+            this.txtCBU.TabIndex = 61;
             // 
             // label7
             // 
@@ -184,13 +183,12 @@
             this.label7.TabIndex = 60;
             this.label7.Text = "CBU:";
             // 
-            // textBox2
+            // txtDireccion
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(329, 94);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 20);
-            this.textBox2.TabIndex = 63;
+            this.txtDireccion.Location = new System.Drawing.Point(329, 94);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(185, 20);
+            this.txtDireccion.TabIndex = 63;
             // 
             // label8
             // 
@@ -201,13 +199,12 @@
             this.label8.TabIndex = 62;
             this.label8.Text = "Dirección:";
             // 
-            // textBox3
+            // txtBanco
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(329, 275);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(185, 20);
-            this.textBox3.TabIndex = 65;
+            this.txtBanco.Location = new System.Drawing.Point(329, 275);
+            this.txtBanco.Name = "txtBanco";
+            this.txtBanco.Size = new System.Drawing.Size(185, 20);
+            this.txtBanco.TabIndex = 65;
             // 
             // label9
             // 
@@ -223,19 +220,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 450);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtBanco);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCBU);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtDNI);
-            this.Controls.Add(this.txtDireccion);
+            this.Controls.Add(this.txtCUIT);
+            this.Controls.Add(this.txtNumTelefono);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtMail);
-            this.Controls.Add(this.txtApellido);
+            this.Controls.Add(this.txtRazonSocial);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnRegistrarProveedor);
@@ -244,6 +241,7 @@
             this.Controls.Add(this.label1);
             this.Name = "COMPRAfrmRegistrarProveedor";
             this.Text = "COMPRAfrmRegistrarProveedorCompleto";
+            this.Load += new System.EventHandler(this.COMPRAfrmRegistrarProveedor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,22 +251,22 @@
 
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtDNI;
-        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.TextBox txtCUIT;
+        private System.Windows.Forms.TextBox txtNumTelefono;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtMail;
-        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox txtRazonSocial;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnRegistrarProveedor;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCBU;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtBanco;
         private System.Windows.Forms.Label label9;
     }
 }
