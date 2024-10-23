@@ -18,6 +18,7 @@
   "btnConfirmar": "Confirm",
   "numEntero": "Enter an integer for the quantity to replenish, less than 4 digits",
   "btnCargarCant": "Load quantity",
+  "ingreseCantidades": "Enter quantities to replenish the products from the quotation request",
 
 
 

@@ -9,13 +9,14 @@ namespace BE
     public class BEItemOrdenCompra
     {
         public BEProducto Producto { get; set; }
-        public int Cantidad { get; set; }
+        public int CantidadSolicitada { get; set; }
         public double PrecioCompra { get; set; }
+        public int CantidadRecibida { get; set; }
 
-        public BEItemOrdenCompra(BEProducto prod, int cant, double precioCompra)
+        public BEItemOrdenCompra(BEProducto prod, int cantSolicitada, double precioCompra)
         {
             this.Producto = prod;
-            this.Cantidad = cant;
+            this.CantidadSolicitada = cantSolicitada;
             PrecioCompra = precioCompra;
         }
     }

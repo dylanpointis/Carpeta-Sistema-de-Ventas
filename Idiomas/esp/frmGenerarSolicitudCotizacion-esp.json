@@ -18,6 +18,7 @@
   "btnConfirmar": "Confirmar",
   "numEntero": "Ingrese un número entero para la cantidad a reponer, menor a 4 cifras",
   "btnCargarCant": "Cargar cantidad",  
+  "ingreseCantidades": "Ingrese cantidades para reponer a los productos de la solicitud de cotización",
 
   "gridViewCodigo": "Código Producto",
   "gridViewModelo": "Modelo",

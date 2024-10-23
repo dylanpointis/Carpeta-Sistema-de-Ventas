@@ -57,11 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="COMPRAfrmConfirmarRecepcion.cs">
+    <Compile Include="COMPRAfrmCorroborarRecepcion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="COMPRAfrmConfirmarRecepcion.Designer.cs">
-      <DependentUpon>COMPRAfrmConfirmarRecepcion.cs</DependentUpon>
+    <Compile Include="COMPRAfrmCorroborarRecepcion.Designer.cs">
+      <DependentUpon>COMPRAfrmCorroborarRecepcion.cs</DependentUpon>
     </Compile>
     <Compile Include="COMPRAfrmGenerarOrdenCompra.cs">
       <SubType>Form</SubType>
@@ -203,8 +203,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="COMPRAfrmConfirmarRecepcion.resx">
-      <DependentUpon>COMPRAfrmConfirmarRecepcion.cs</DependentUpon>
+    <EmbeddedResource Include="COMPRAfrmCorroborarRecepcion.resx">
+      <DependentUpon>COMPRAfrmCorroborarRecepcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="COMPRAfrmGenerarOrdenCompra.resx">
       <DependentUpon>COMPRAfrmGenerarOrdenCompra.cs</DependentUpon>

@@ -168,7 +168,7 @@ namespace Carpeta_Sistema_de_Ventas
             foreach(BEItemOrdenCompra item in ordenC.itemsOrdenCompra)
             {
                 //cant * precio compra
-                montoNeto += item.Cantidad * item.PrecioCompra;
+                montoNeto += item.CantidadSolicitada * item.PrecioCompra;
             }
 
             //foreach (DataGridViewRow row in grillaItems.Rows) 
@@ -196,7 +196,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(ordenC.proveedor != null)
             {
-                if (ordenC.itemsOrdenCompra.TrueForAll(i => i.Cantidad > 0 && i.PrecioCompra > 0))
+                if (ordenC.itemsOrdenCompra.TrueForAll(i => i.CantidadSolicitada > 0 && i.PrecioCompra > 0))
                 {
                     COMPRAfrmRegistrarPagoProveedor form = new COMPRAfrmRegistrarPagoProveedor(ordenC);
                     form.ShowDialog();
@@ -241,7 +241,7 @@ namespace Carpeta_Sistema_de_Ventas
                 try
                 {
                     ordenC.FechaEntrega = txtFechaEntrega.Value;
-                    ordenC.CantidadTotal = ordenC.itemsOrdenCompra.Count();
+                    ordenC.CantidadTotal = ordenC.itemsOrdenCompra.Sum(i => i.CantidadSolicitada);
 
                     int numeroOrdenC = bllOrdenC.RegistrarOrdenCompra(ordenC);
 

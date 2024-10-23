@@ -313,6 +313,7 @@
             // 
             // txtFechaEntrega
             // 
+            this.txtFechaEntrega.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFechaEntrega.Location = new System.Drawing.Point(742, 497);
             this.txtFechaEntrega.Name = "txtFechaEntrega";
             this.txtFechaEntrega.Size = new System.Drawing.Size(200, 20);

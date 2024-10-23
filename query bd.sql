@@ -743,6 +743,7 @@ CREATE TABLE Solicitud_Proveedor
 	CUITProveedor varchar(14) FOREIGN KEY REFERENCES Proveedores(CUITProveedor)
 )
 
+
 CREATE TABLE OrdenesCompra
 (
 	NumeroOrdenCompra INT PRIMARY KEY IDENTITY(1,1),
@@ -763,8 +764,9 @@ CREATE TABLE Item_OrdenCompra
 	CodItem_OrdenCompra INT PRIMARY KEY IDENTITY(1,1),
 	NumeroOrdenCompra INT FOREIGN KEY REFERENCES OrdenesCompra(NumeroOrdenCompra),
 	CodigoProducto varchar(14) FOREIGN KEY REFERENCES Productos(CodigoProducto),
-	Cantidad int,
-	Precio float
+	CantidadSolicitada int,
+	PrecioCompra float,
+	CantidadRecibida int
 )
 
 
@@ -846,12 +848,54 @@ CREATE PROCEDURE RegistrarItemOrden
 	@PrecioCompra float
 AS
 BEGIN
-    INSERT INTO Item_OrdenCompra VALUES (@NumeroOrdenCompra, @CodigoProducto, @Cantidad, @PrecioCompra)
+    INSERT INTO Item_OrdenCompra VALUES (@NumeroOrdenCompra, @CodigoProducto, @Cantidad, @PrecioCompra,0)
+END
+GO
+
+CREATE PROCEDURE TraerProveedorOrden
+	@NumeroOrdenCompra INT
+AS
+BEGIN
+    SELECT * FROM OrdenesCompra O INNER JOIN Proveedores P ON O.CUITProveedor = P.CUITProveedor
+	WHERE NumeroOrdenCompra = @NumeroOrdenCompra
+END
+GO
+
+CREATE PROCEDURE TraerProductosOrden
+	@NumeroOrdenCompra INT
+AS
+BEGIN
+   SELECT * FROM Item_OrdenCompra O INNER JOIN Productos P ON O.CodigoProducto = P.CodigoProducto WHERE NumeroOrdenCompra = @NumeroOrdenCompra
+END
+GO
+
+CREATE PROCEDURE MarcarOrdenComoEntregada
+	@NumeroOrdenCompra INT
+AS
+BEGIN
+	UPDATE OrdenesCompra SET Estado = 'Entregada' WHERE NumeroOrdenCompra = @NumeroOrdenCompra
+END
+GO
+
+CREATE PROCEDURE ModificarCantidadRecibidaItem
+	@NumeroOrdenCompra INT,
+	@CodigoProducto varchar(14),
+	@CantidadRecibida INT
+AS
+BEGIN
+	UPDATE Item_OrdenCompra SET CantidadRecibida = @CantidadRecibida WHERE NumeroOrdenCompra = @NumeroOrdenCompra AND CodigoProducto = @CodigoProducto
 END
 GO
 
 
 
+CREATE PROCEDURE VerificarProveedor
+	@CUITProveedor varchar(14)
+AS
+BEGIN
+    SELECT * FROM Proveedores WHERE CUITProveedor = @CUITProveedor
+END
+GO
 
 /*CLAVE: clave123*/
 INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1,0);

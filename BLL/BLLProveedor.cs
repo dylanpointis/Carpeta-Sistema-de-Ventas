@@ -38,5 +38,11 @@ namespace BLL
             return lista;
         }
 
+
+        public BEProveedor VerificarProveedor(string CUITProv)
+        {
+            return dalProv.VerificarProveedor( CUITProv );
+        }
+
     }
 }

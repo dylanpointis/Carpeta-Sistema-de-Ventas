@@ -1,0 +1,60 @@
+{
+  "label1": "Total amount received: ",
+  "label2": "Total amount requested: ",
+  "label3": "Pending quotation requests:",
+  "label6": "Pending purchase orders for delivery:",
+  "label4": "Supplier details:",
+  "btnRegistrarProveedor": "Register completely",
+  "label2": "Purchase price",
+  "label5": "Quantity received",
+  "btnCargarCantidadRecibida": "Load purchase price",
+  "btnRegistarPago": "Register payment",
+  "btnFinalizar": "Finish",
+  "btnModificarCant": "Modify quantity to replenish",
+  "lblFechaEntrega": "Product delivery date",
+
+  "lblNeto": "Net: ",
+  "lblIVA": "I.V.A (21%): ",
+  "lblTotal": "Total: ",
+
+  "lblNombreProv": "Name:",
+  "lblRazonSocial": "Business name:",
+  "lblMailProv": "Email:",
+  "lblNumTel": "Phone number:",
+  "lblCBU": "CBU:",
+  "lblCUIT": "CUIT:",
+
+  "gridViewCodigo": "Product Code",
+  "gridViewModelo": "Model",
+  "gridViewCantidadSolicitada": "Requested quantity",
+  "gridViewMarca": "Brand",
+  "gridViewPrecio": "Price",
+  "gridViewStock": "Current stock",
+  "gridViewSMin": "Minimum stock",
+  "gridViewSMax": "Maximum stock",
+  "gridViewPrecioUnit": "Unit purchase price",
+  "gridViewCantidadRecibida": "Quantity received",
+
+  "gridViewCUIT": "CUIT",
+  "gridViewNombre": "Name",
+  "gridViewRazonSocial": "Business name",
+  "gridViewEmail": "Email",
+  "gridViewNumTelefono": "Phone number",
+  "gridViewDireccion": "Address",
+
+  "ingreseCant": "Enter the final quantity to replenish",
+  "ingresePrecio": "Enter the unit purchase price of the product",
+  "superaStock": "The entered quantity added to the current stock exceeds the maximum stock of the product",
+
+  "error": "Error registering product delivery: ",
+  "exito": "Product delivery registered successfully",
+  "seleccioneProv": "Select the final supplier to register the payment",
+  "carguePreciosYCant": "Load all purchase prices and final quantities",
+  "numEntero": "Enter an integer for the quantity, less than 5 digits",
+
+
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
+}

@@ -203,7 +203,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void corroborarRecepciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            AbrirForm(new COMPRAfrmConfirmarRecepcion());
+            AbrirForm(new COMPRAfrmCorroborarRecepcion());
         }
 
 

@@ -45,7 +45,7 @@ namespace BE
         public void modificarCantidadItem(long codProd, int cant)
         {
             BEItemOrdenCompra item = itemsOrdenCompra.FirstOrDefault(p => p.Producto.CodigoProducto == codProd);
-            item.Cantidad = cant;
+            item.CantidadSolicitada = cant;
 
         }
 

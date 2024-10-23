@@ -103,26 +103,28 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            try
+            if (solicitudCoti.obtenerItems().TrueForAll(i => i.Cantidad > 0))
             {
-                int idSolicitud = bLLSolicitudCotizacion.RegistrarSolicitudCotizacion(solicitudCoti);
-                solicitudCoti.NumSolicitud = idSolicitud;
-
-                foreach (BEItemSolicitud item in solicitudCoti.obtenerItems())
+                try
                 {
-                    bLLSolicitudCotizacion.RegistrarItemSolicitud(item, solicitudCoti.NumSolicitud);
-                }
+                    int idSolicitud = bLLSolicitudCotizacion.RegistrarSolicitudCotizacion(solicitudCoti);
+                    solicitudCoti.NumSolicitud = idSolicitud;
 
-                foreach (BEProveedor prov in solicitudCoti.obtenerProveedorSolicitud())
-                {
-                    bLLSolicitudCotizacion.RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
+                    foreach (BEItemSolicitud item in solicitudCoti.obtenerItems())
+                    {
+                        bLLSolicitudCotizacion.RegistrarItemSolicitud(item, solicitudCoti.NumSolicitud);
+                    }
+
+                    foreach (BEProveedor prov in solicitudCoti.obtenerProveedorSolicitud())
+                    {
+                        bLLSolicitudCotizacion.RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
+                    }
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Solicitud de cotización generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                 }
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Solicitud de cotización generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-          
-
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseCantidades")); }
         }
 
         private void btnRegistrarProveedor_Click(object sender, EventArgs e)
