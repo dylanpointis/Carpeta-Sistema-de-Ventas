@@ -33,9 +33,10 @@ namespace BLL
             //dalProd.ModificarStock(produto, stock);
         }
 
-        public void ModificarStock(BEProducto produto, int stock)
+        public void ModificarStock(BEProducto producto, int stock)
         {
-            dalProd.ModificarStock(produto, stock);
+            if(producto.Stock - stock >= 0)
+            dalProd.ModificarStock(producto, stock);
         }
 
         public void RegistrarProducto(BEProducto prod)

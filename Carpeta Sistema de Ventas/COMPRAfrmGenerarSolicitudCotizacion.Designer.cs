@@ -104,8 +104,9 @@
             // 
             this.grillaProdBajoStock.AllowUserToAddRows = false;
             this.grillaProdBajoStock.AllowUserToDeleteRows = false;
-            this.grillaProdBajoStock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.grillaProdBajoStock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaProdBajoStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaProdBajoStock.Location = new System.Drawing.Point(12, 88);
             this.grillaProdBajoStock.MultiSelect = false;
@@ -168,6 +169,7 @@
             this.btnBuscar.TabIndex = 65;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // grillaProveedores
             // 

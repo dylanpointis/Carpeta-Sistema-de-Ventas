@@ -31,7 +31,11 @@ namespace BLL
 
         public void RegistrarCliente(BECliente cliente)
         {
-            dalCliente.RegistrarCliente(cliente);
+            BECliente clienteEncontrado = VerificarCliente(cliente.DniCliente);
+            if (clienteEncontrado != null)
+            {
+                dalCliente.RegistrarCliente(cliente);
+            }
         }
 
         public List<BECliente> TraerListaCliente()

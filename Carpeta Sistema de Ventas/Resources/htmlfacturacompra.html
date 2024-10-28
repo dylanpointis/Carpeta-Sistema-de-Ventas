@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Factura</title>
@@ -13,40 +13,19 @@
         <tr>
             <td style="font-size: 20px">@textoFactura: @NroFactura</td>
             <td style="font-size: 20px">@textoFecha: @Fecha</td>
+            <td style="font-size: 20px">@textofechaEntrega: @FechaEntrega</td>
         </tr>
     </table>
 
-    <h2>@textoDetalleCliente</h2>
+    <h2>@textoDetalleOrdenCompra</h2>
     <table border="1" style="width: 100%; margin-top: 15px">
         <thead>
             <tr>
-                <th>@textoDNI</th>
-                <th>@textoNombre</th>
-                <th>@textoApellido</th>
-                <th>@textoEmail</th>
-                <th>@textoDireccion</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@DNI</td>
-                <td>@Nombre</td>
-                <td>@Apellido</td>
-                <td>@Email</td>
-                <td>@Direccion</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>@textoDetalleProductos</h2>
-    <table border="1" style="width: 100%; margin-top: 15px">
-        <thead>
-            <tr>
-                <th>@textoCodigoproducto</th>
-                <th>@textoModelo</th>
-                <th>@textoPrecio</th>
-                <th>@textoCantidad</th>
-                <th>@textoSubTotal</th>
+                <th>@gridViewCodigo</th>
+                <th>@gridViewModelo</th>
+                <th>@gridViewPrecioUnit</th>
+                <th>@textoCantidadSolicitada</th>
+                <th>@textoCantidadRecibida</th>
             </tr>
         </thead>
         <tbody>
@@ -54,15 +33,32 @@
         </tbody>
     </table>
 
+    <h2>@textoDetalleProveedor</h2>
+    <table border="1" style="width: 100%; margin-top: 15px">
+        <thead>
+            <tr>
+                <th>@gridViewCUIT</th>
+                <th>@textoNombreProveedor</th>
+                <th>@gridViewRazonSocial</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@CUIT</td>
+                <td>@NombreProveedor</td>
+                <td>@RazonSocial</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
     <hr style="margin-top: 60px" />
     <h2>@textoDetallePago</h2>
-    <h3>@textoNeto: @Neto</h3>
-    <h3>@textoIVA: @Iva</h3>
+    <h3>@textoNeto @Neto</h3>
+    <h3>@textoIVA @Iva</h3>
     <h3>@textoMontoTotal @Total</h3>
-    <h3>@textoMetodo: @Metodo</h3>
-    <h3>@textoMarca: @Marca</h3>
-    <h3>@textoAlias: @Alias</h3>
-    <h3>@textoCantCuotas: @CantCuotas</h3>
+    <h3>@textoNumeroTransferencia: @NumTransferencia</h3>
 
 
 

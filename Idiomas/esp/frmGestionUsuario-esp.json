@@ -35,6 +35,7 @@
   "estaSeguroEliminar": "¿Está seguro que desea desactivar al usuario DNI:",
   "estaSeguroActivar": "¿Está seguro que desea activar al usuario DNI:",
   "estaSeguroDesbloquear": "¿Está seguro que desea desbloquear al usuario DNI:",
+  "errorAlModificarClave": "Error al modificar la clave.",
   "llenarCampos": "Llene los campos",	
   "operacionExitosa": "Operación exitosa",
   "true": "Si",

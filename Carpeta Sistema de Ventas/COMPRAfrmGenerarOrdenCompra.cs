@@ -1,5 +1,8 @@
 ﻿using BE;
 using BLL;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using iTextSharp.tool.xml;
 using Microsoft.VisualBasic;
 using Services;
 using Services.Observer;
@@ -8,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -85,11 +89,11 @@ namespace Carpeta_Sistema_de_Ventas
                 //traigo los productos de la solicitud
                 List<BEItemSolicitud> listaItems = bllSolC.TraerItemsSolicitud(numSol);
                 grillaItems.Rows.Clear();
-                ordenC.itemsOrdenCompra.Clear();
+                ordenC.obtenerItems().Clear();
 
                 foreach (var item in listaItems)
                 {
-                    ordenC.itemsOrdenCompra.Add(new BEItemOrdenCompra(item.Producto, item.Cantidad,0));
+                    ordenC.AgregarItem(item.Producto, item.Cantidad, 0);
                     grillaItems.Rows.Add(item.Producto.CodigoProducto, item.Producto.Modelo, item.Producto.Stock, item.Producto.StockMin, item.Producto.StockMax, item.Cantidad, 0);
                 }
             }
@@ -115,7 +119,7 @@ namespace Carpeta_Sistema_de_Ventas
                 if (Regex.IsMatch(precioCompra.ToString(), @"^\d{1,5}(\.\d+)?$") && (Convert.ToDouble(precioCompra) > 0))  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 5 CIFRAS
                 {
                     //obtengo el item
-                    BEItemOrdenCompra item = ordenC.itemsOrdenCompra.FirstOrDefault(i => i.Producto.CodigoProducto == Convert.ToInt32(codProd));
+                    BEItemOrdenCompra item = ordenC.obtenerItems().FirstOrDefault(i => i.Producto.CodigoProducto == Convert.ToInt32(codProd));
 
                     //modifica la cantidad a reponer
                     ordenC.modificarPrecioItem(Convert.ToInt64(codProd), Convert.ToDouble(precioCompra));
@@ -142,7 +146,7 @@ namespace Carpeta_Sistema_de_Ventas
                 if (Regex.IsMatch(cantIngresada.ToString(), @"^\d{1,3}$") && (Convert.ToInt16(cantIngresada) > 0))  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 3 CIFRAS
                 {
                     //obtengo el item
-                    BEItemOrdenCompra item = ordenC.itemsOrdenCompra.FirstOrDefault(i => i.Producto.CodigoProducto == Convert.ToInt32(codProd));
+                    BEItemOrdenCompra item = ordenC.obtenerItems().FirstOrDefault(i => i.Producto.CodigoProducto == Convert.ToInt32(codProd));
                     //me fijo si el stock actual + agregado  supera el stock Maximo del producto
                     if ((Convert.ToInt16(cantIngresada)) + item.Producto.Stock > item.Producto.StockMax)
                     {
@@ -151,7 +155,7 @@ namespace Carpeta_Sistema_de_Ventas
                     else
                     {
                         //modifica la cantidad a reponer
-                        ordenC.modificarCantidadItem(Convert.ToInt64(codProd), Convert.ToInt16(cantIngresada));
+                        ordenC.modificarCantidadItem(Convert.ToInt64(codProd), Convert.ToInt16(cantIngresada), false);
 
                         grillaItems.CurrentRow.Cells[5].Value = cantIngresada;
                     }
@@ -166,7 +170,7 @@ namespace Carpeta_Sistema_de_Ventas
             double montoNeto = 0;
             double iva = 0;
 
-            foreach(BEItemOrdenCompra item in ordenC.itemsOrdenCompra)
+            foreach(BEItemOrdenCompra item in ordenC.obtenerItems())
             {
                 //cant * precio compra
                 montoNeto += item.CantidadSolicitada * item.PrecioCompra;
@@ -197,7 +201,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(ordenC.proveedor != null)
             {
-                if (ordenC.itemsOrdenCompra.TrueForAll(i => i.CantidadSolicitada > 0 && i.PrecioCompra > 0))
+                if (ordenC.obtenerItems().TrueForAll(i => i.CantidadSolicitada > 0 && i.PrecioCompra > 0))
                 {
                     COMPRAfrmRegistrarPagoProveedor form = new COMPRAfrmRegistrarPagoProveedor(ordenC);
                     form.ShowDialog();
@@ -242,23 +246,25 @@ namespace Carpeta_Sistema_de_Ventas
                 try
                 {
                     ordenC.FechaEntrega = txtFechaEntrega.Value;
-                    ordenC.CantidadTotal = ordenC.itemsOrdenCompra.Sum(i => i.CantidadSolicitada);
 
                     int numeroOrdenC = bllOrdenC.RegistrarOrdenCompra(ordenC);
 
-                    foreach(BEItemOrdenCompra item in ordenC.itemsOrdenCompra)
+                    foreach(BEItemOrdenCompra item in ordenC.obtenerItems())
                     {
                         bllOrdenC.RegistrarItemOrden(numeroOrdenC, item);
                     }
-                    
 
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"),"",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    bllSolC.ModificarEstadoSolicitud(ordenC.NumeroSolicitudCompra, "Cotizada"); //marca el estado de la solicitud en Cotizada
+
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Orden de compra generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
 
+                    GenerarFactura();
                 }
                 catch(Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message,"",MessageBoxButtons.OK,MessageBoxIcon.Error); }
             }
         }
+
 
         private void btnRegistrarProveedor_Click(object sender, EventArgs e)
         {
@@ -268,6 +274,98 @@ namespace Carpeta_Sistema_de_Ventas
                 form.ShowDialog();
             }
             else { MessageBox.Show("Seleccione el proveedor final para terminar de registrarlo"); }
+        }
+
+
+        private void GenerarFactura()
+        {
+            SaveFileDialog guardarArchivo = new SaveFileDialog();
+
+            guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
+            guardarArchivo.FileName = ordenC.NumeroFactura + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
+
+
+            string paginahtml = Properties.Resources.htmlfacturacompra.ToString();
+
+
+            paginahtml = paginahtml.Replace("@NroFactura", ordenC.NumeroFactura.ToString());
+            paginahtml = paginahtml.Replace("@Fecha", ordenC.FechaRegistro.ToString("dd/MM/yyyy HH:mm"));
+            paginahtml = paginahtml.Replace("@FechaEntrega", ordenC.FechaEntrega.ToString("dd/MM/yyyy HH:mm"));
+
+
+            paginahtml = paginahtml.Replace("@CUIT", ordenC.proveedor.CUIT);
+            paginahtml = paginahtml.Replace("@NombreProveedor", ordenC.proveedor.Nombre);
+            paginahtml = paginahtml.Replace("@RazonSocial", ordenC.proveedor.RazonSocial);
+
+            string filas = "";
+            double subtotalfactura = 0;
+            foreach (BEItemOrdenCompra item in ordenC.obtenerItems())
+            {
+                BEProducto prod = item.Producto;
+                int cantidad = item.CantidadSolicitada;
+                double subtotal = cantidad * item.PrecioCompra;
+                subtotalfactura += subtotal;
+
+                filas += "<tr>";
+                filas += "<td>" + prod.CodigoProducto.ToString() + "</td>";
+                filas += "<td>" + prod.Modelo + "</td>";
+                filas += "<td>" + item.PrecioCompra.ToString() + "</td>";
+                filas += "<td>" + cantidad.ToString() + "</td>";
+                filas += "<td>" + item.CantidadRecibida + "</td>";
+                filas += "</tr>";
+            }
+
+            paginahtml = paginahtml.Replace("@FILAS", filas);
+            paginahtml = paginahtml.Replace("@Neto", subtotalfactura.ToString());
+            paginahtml = paginahtml.Replace("@Iva", (subtotalfactura * 0.21).ToString());
+            paginahtml = paginahtml.Replace("@Total", ordenC.MontoTotal.ToString());
+            paginahtml = paginahtml.Replace("@NumTransferencia", ordenC.NumeroTransferencia.ToString());
+
+            //traducciones
+            paginahtml = paginahtml.Replace("@textoDetalleOrdenCompra", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleOrdenCompra"));
+            paginahtml = paginahtml.Replace("@textoDetalleProveedor", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleProveedor"));
+            paginahtml = paginahtml.Replace("@gridViewCodigo", IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo"));
+            paginahtml = paginahtml.Replace("@gridViewModelo", IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo"));
+            paginahtml = paginahtml.Replace("@gridViewPrecioUnit", IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecioUnit"));
+            paginahtml = paginahtml.Replace("@textoCantidadSolicitada", IdiomaManager.GetInstance().ConseguirTexto("textoCantidadSolicitada"));
+            paginahtml = paginahtml.Replace("@textoCantidadRecibida", IdiomaManager.GetInstance().ConseguirTexto("textoCantidadRecibida"));
+            paginahtml = paginahtml.Replace("@gridViewCUIT", IdiomaManager.GetInstance().ConseguirTexto("gridViewCUIT"));
+            paginahtml = paginahtml.Replace("@textoNombreProveedor", IdiomaManager.GetInstance().ConseguirTexto("textoNombreProveedor"));
+            paginahtml = paginahtml.Replace("@gridViewRazonSocial", IdiomaManager.GetInstance().ConseguirTexto("gridViewRazonSocial"));
+            paginahtml = paginahtml.Replace("@textoDetallePago", IdiomaManager.GetInstance().ConseguirTexto("textoDetallePago"));
+            paginahtml = paginahtml.Replace("@textoNeto", IdiomaManager.GetInstance().ConseguirTexto("lblNeto"));
+            paginahtml = paginahtml.Replace("@textoIVA", IdiomaManager.GetInstance().ConseguirTexto("lblIVA"));
+            paginahtml = paginahtml.Replace("@textoMontoTotal", IdiomaManager.GetInstance().ConseguirTexto("lblTotal"));
+            paginahtml = paginahtml.Replace("@textoNumeroTransferencia", IdiomaManager.GetInstance().ConseguirTexto("textoNumeroTransferencia"));
+            paginahtml = paginahtml.Replace("@textoFactura", IdiomaManager.GetInstance().ConseguirTexto("textoFactura"));
+            paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
+            paginahtml = paginahtml.Replace("@textofechaEntrega", IdiomaManager.GetInstance().ConseguirTexto("textoFechaEntrega"));
+
+            if (guardarArchivo.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
+                {
+                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
+
+                    pdf.Open();
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.logo, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(80, 60);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
+                    pdf.Add(img);
+
+                    using (StringReader lector = new StringReader(paginahtml))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
+                    }
+
+
+                    pdf.Close();
+                    stream.Close();
+                }
+            }
         }
     }
 }

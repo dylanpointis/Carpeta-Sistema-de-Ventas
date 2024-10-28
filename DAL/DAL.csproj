@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALDigitoVerificador.cs" />
     <Compile Include="DALOrdenCompra.cs" />
     <Compile Include="DALProducto_C.cs" />
     <Compile Include="DALCliente.cs" />

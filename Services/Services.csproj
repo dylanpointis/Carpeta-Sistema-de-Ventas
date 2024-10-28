@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DV_Object.cs" />
     <Compile Include="Encriptador.cs" />
     <Compile Include="Evento.cs" />
     <Compile Include="Observer\IdiomaManager.cs" />

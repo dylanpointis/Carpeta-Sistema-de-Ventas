@@ -25,7 +25,7 @@ namespace BE
         public BEProveedor proveedor { get; set; }
 
 
-        public List<BEItemOrdenCompra> itemsOrdenCompra { get; set; }
+        private List<BEItemOrdenCompra> itemsOrdenCompra { get; set; }
 
 
 
@@ -42,10 +42,14 @@ namespace BE
         }
 
 
-        public void modificarCantidadItem(long codProd, int cant)
+        public void modificarCantidadItem(long codProd, int cant, bool boolRecepcion)
         {
             BEItemOrdenCompra item = itemsOrdenCompra.FirstOrDefault(p => p.Producto.CodigoProducto == codProd);
-            item.CantidadSolicitada = cant;
+            if(boolRecepcion == false)
+            {
+                item.CantidadSolicitada = cant;
+            }
+            else { item.CantidadRecibida = cant; } //si es el formulario de corroborar recepcion modifca la cantidad recibida, no la solicitada
 
         }
 
@@ -54,5 +58,22 @@ namespace BE
             BEItemOrdenCompra item = itemsOrdenCompra.FirstOrDefault(p => p.Producto.CodigoProducto == codProd);
             item.PrecioCompra = precioCompra;
         }
+
+
+        public List<BEItemOrdenCompra> obtenerItems()
+        {
+            return itemsOrdenCompra;
+        }
+
+        public void AgregarItem(BEProducto producto, int cantSolicitada, int cantRecibida)
+        {
+            BEItemOrdenCompra itemEncontrado = itemsOrdenCompra.FirstOrDefault(i => i.Producto.CodigoProducto == producto.CodigoProducto);
+            if(itemEncontrado == null)
+            {
+                itemsOrdenCompra.Add(new BEItemOrdenCompra(producto, cantSolicitada, cantRecibida));
+                CantidadTotal += cantSolicitada;
+            }
+        }
+
     }
 }

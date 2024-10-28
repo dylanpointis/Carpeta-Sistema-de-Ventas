@@ -96,5 +96,10 @@ namespace BLL
 
             return lista;
         }
+
+        public void ModificarEstadoSolicitud(int numeroSolicitudCompra, string estado)
+        {
+            dalSolC.ModificarEstadoSolicitud(numeroSolicitudCompra, estado);
+        }
     }
 }

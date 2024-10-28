@@ -869,11 +869,21 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE MarcarOrdenComoEntregada
-	@NumeroOrdenCompra INT
+CREATE PROCEDURE ModificarEstadoOrden
+	@NumeroOrdenCompra INT,
+	@Estado varchar(50)
 AS
 BEGIN
-	UPDATE OrdenesCompra SET Estado = 'Entregada' WHERE NumeroOrdenCompra = @NumeroOrdenCompra
+	UPDATE OrdenesCompra SET Estado = @Estado WHERE NumeroOrdenCompra = @NumeroOrdenCompra
+END
+GO
+
+CREATE PROCEDURE ModificarEstadoSolicitud
+	@NumeroSolicitud INT,
+	@Estado varchar(50)
+AS
+BEGIN
+	UPDATE SolicitudesCotizacion SET Estado = @Estado WHERE NumeroSolicitud = @NumeroSolicitud
 END
 GO
 
@@ -933,6 +943,33 @@ END
 GO
 
 
+
+
+
+
+CREATE TABLE DigitoVerificador
+(
+NombreTabla VARCHAR(50) PRIMARY KEY,
+DVH VARCHAR(100),
+DVV VARCHAR(100)
+)
+GO
+
+
+CREATE PROCEDURE PersistirDV
+    @NombreTabla VARCHAR(50),
+	@DVH VARCHAR(100),
+	@DVV VARCHAR(100)
+AS
+BEGIN
+    UPDATE DigitoVerificador SET DVH = @DVH, DVV = @DVV WHERE NombreTabla = @NombreTabla
+END
+GO
+
+
+
+
+
 /*CLAVE: clave123*/
 INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Admin', '5ac0852e770506dcd80f1a36d20ba7878bf82244b836d9324593bd14bc56dcb5', 1, 0, 1,0);
 --clave: claveadmin2
@@ -957,6 +994,20 @@ INSERT INTO Clientes VALUES (40898122, 'Carla', 'Martínez', 'carlamartinez@gmail
 
 INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-09-30 13:20', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)
+
+
+
+
+INSERT INTO DigitoVerificador VALUES ('Clientes','','')
+INSERT INTO DigitoVerificador VALUES ('Productos','','')
+INSERT INTO DigitoVerificador VALUES ('Facturas','','')
+INSERT INTO DigitoVerificador VALUES ('Item_Factura','','')
+INSERT INTO DigitoVerificador VALUES ('Proveedores','','')
+INSERT INTO DigitoVerificador VALUES ('SolicitudesCotizacion','','')
+INSERT INTO DigitoVerificador VALUES ('Item_Solicitud','','')
+INSERT INTO DigitoVerificador VALUES ('Solicitud_Proveedor','','')
+INSERT INTO DigitoVerificador VALUES ('OrdenesCompra','','')
+INSERT INTO DigitoVerificador VALUES ('Item_OrdenesCompra','','')
 
 insert into Eventos values ('Esteban','Sesiones','Inicio sesión',1,'2024-09-30','12:15')
 insert into Eventos values ('Esteban','Ventas','Factura generada',2,'2024-09-30','13:20')

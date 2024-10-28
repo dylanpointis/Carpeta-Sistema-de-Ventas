@@ -35,6 +35,7 @@
   "estaSeguroEliminar": "Are you sure you want to deactivate the user DNI:",
   "estaSeguroActivar": "Are you sure you want to activate the user DNI:",
   "estaSeguroDesbloquear": "Are you sure you want to unlock the user DNI:",
+  "errorAlModificarClave": "Error upon modifying key.",
   "llenarCampos": "Fill in the fields",
   "operacionExitosa": "Successful operation",
   "true": "Yes",

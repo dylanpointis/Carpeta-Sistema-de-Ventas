@@ -34,6 +34,7 @@ namespace Carpeta_Sistema_de_Ventas
         BLLProducto bllProd = new BLLProducto();
         BLLProveedor bllProv = new BLLProveedor();
         BLLSolicitudCotizacion bLLSolicitudCotizacion = new BLLSolicitudCotizacion();
+        List<BEProveedor> listaProv = new List<BEProveedor>();
 
         BESolicitudCotizacion solicitudCoti = new BESolicitudCotizacion("Pendiente", DateTime.Now);
 
@@ -58,8 +59,20 @@ namespace Carpeta_Sistema_de_Ventas
             grillaProveedores.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewNumTelefono");
             grillaProveedores.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion");
 
-            ActualizarGrilla();
 
+            listaProv = bllProv.TraerListaProveedores();
+            ActualizarGrilla();
+            ActualizarGrillaProveedores();
+
+        }
+
+        private void ActualizarGrillaProveedores()
+        {
+            grillaProveedores.Rows.Clear();
+            foreach (var prov in listaProv)
+            {
+                grillaProveedores.Rows.Add(prov.CUIT, prov.Nombre, prov.RazonSocial, prov.Email, prov.NumTelefono, prov.Direccion);
+            }
         }
 
         private void ActualizarGrilla()
@@ -71,14 +84,6 @@ namespace Carpeta_Sistema_de_Ventas
                 grillaProdBajoStock.Rows.Add(item.CodigoProducto,item.Modelo, item.Marca, item.Stock, item.StockMin, item.StockMax);
                 solicitudCoti.AgregarItem(item,0);
             }
-
-
-            List<BEProveedor> listaProv = bllProv.TraerListaProveedores();
-            foreach (var prov in listaProv) 
-            {
-                grillaProveedores.Rows.Add(prov.CUIT, prov.Nombre, prov.RazonSocial, prov.Email, prov.NumTelefono, prov.Direccion);
-            }
-
         }
 
 
@@ -131,6 +136,8 @@ namespace Carpeta_Sistema_de_Ventas
         {
             COMPRAfrmRegistrarProveedor form = new COMPRAfrmRegistrarProveedor(true, null);
             form.ShowDialog();
+            listaProv = bllProv.TraerListaProveedores();
+            ActualizarGrillaProveedores();
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
@@ -199,6 +206,32 @@ namespace Carpeta_Sistema_de_Ventas
                 grillaProveedores.Width = 448;
                 grillaProveedores.Height = 244;
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            listaProv = bllProv.TraerListaProveedores();
+            List<BEProveedor> listaConsulta = new List<BEProveedor>();
+          
+            foreach(BEProveedor prov in listaProv)
+            {
+                if (prov.Nombre.ToLower().Contains(txtProveedor.Text.ToLower()))
+                {
+                    listaConsulta.Add(prov);
+                }
+                if (prov.CUIT == txtProveedor.Text.ToLower())
+                {
+                    listaConsulta.Add(prov);
+                }
+            }
+
+            if (listaConsulta.Count > 0) 
+            {
+                listaProv = listaConsulta;
+                ActualizarGrillaProveedores();
+            }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontraronCoincidencias")); }
+            
         }
     }
 }

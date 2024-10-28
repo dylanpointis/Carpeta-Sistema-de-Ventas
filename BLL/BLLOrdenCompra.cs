@@ -13,9 +13,9 @@ namespace BLL
     {
         private DALOrdenCompra dalOrdC = new DALOrdenCompra();
 
-        public void MarcarOrdenComoEntregada(BEOrdenCompra ordenC)
+        public void ModificarEstadoOrden(BEOrdenCompra ordenC)
         {
-            dalOrdC.MarcarOrdenComoEntregada(ordenC);
+            dalOrdC.ModificarEstadoOrden(ordenC);
         }
 
         public void RegistrarItemOrden(int numeroOrdenC, BEItemOrdenCompra item)

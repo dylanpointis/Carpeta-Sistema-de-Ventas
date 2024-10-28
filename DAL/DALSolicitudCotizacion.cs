@@ -13,6 +13,7 @@ namespace DAL
     {
         private DALConexion dalCon = new DALConexion();
 
+
         public void RegistrarItemSolicitud(BEItemSolicitud item, int idSolicitud)
         {
             SqlParameter[] parametros = new SqlParameter[]
@@ -56,6 +57,18 @@ namespace DAL
             };
 
             return dalCon.ConsultaProcAlmacenado("TraerItemsSolicitud", parametros);
+        }
+
+
+        public void ModificarEstadoSolicitud(int numeroSolicitudCompra, string estado)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@NumeroSolicitud", numeroSolicitudCompra),
+                new SqlParameter("@Estado", estado)
+            };
+
+             dalCon.EjecutarProcAlmacenado("ModificarEstadoSolicitud", parametros);
         }
 
         public DataTable TraerListaSolicitudes()

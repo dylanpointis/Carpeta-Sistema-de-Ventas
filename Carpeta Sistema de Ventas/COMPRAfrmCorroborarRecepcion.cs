@@ -29,7 +29,8 @@ namespace Carpeta_Sistema_de_Ventas
 
         BLLOrdenCompra bllOrdenC = new BLLOrdenCompra();
         BLLProveedor bllProv = new BLLProveedor();
-        BEOrdenCompra ordenC;
+        BLLProducto bllProducto = new BLLProducto();
+       BEOrdenCompra ordenC;
 
         private void COMPRAfrmCorroborarRecepcion_Load(object sender, EventArgs e)
         {
@@ -75,9 +76,12 @@ namespace Carpeta_Sistema_de_Ventas
 
 
 
-            //Busca los items
+            //Busca los items de la orden de compra y los carga en la variable interna
             List<BEItemOrdenCompra> lista = bllOrdenC.TraerProductosOrden(numOrden);
-            ordenC.itemsOrdenCompra = lista;
+            foreach(BEItemOrdenCompra item in lista)
+            {
+                ordenC.AgregarItem(item.Producto, item.CantidadSolicitada, item.CantidadRecibida);
+            }
 
             label2.Text = IdiomaManager.GetInstance().ConseguirTexto("label2") + ordenC.CantidadTotal;
             ActualizarGrilla();
@@ -88,7 +92,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             grillaRecepcion.Rows.Clear();
             int cantTotalRecibida = 0;
-            foreach (BEItemOrdenCompra item in ordenC.itemsOrdenCompra)
+            foreach (BEItemOrdenCompra item in ordenC.obtenerItems())
             {
                 grillaRecepcion.Rows.Add(item.Producto.CodigoProducto, item.Producto.Modelo, item.Producto.Stock, item.Producto.StockMin, item.Producto.StockMax, item.CantidadSolicitada, item.CantidadRecibida);
                 cantTotalRecibida += item.CantidadRecibida;
@@ -105,8 +109,7 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     long codProd = Convert.ToInt64(grillaRecepcion.CurrentRow.Cells[0].Value);
 
-                    BEItemOrdenCompra item = ordenC.itemsOrdenCompra.FirstOrDefault(i => i.Producto.CodigoProducto == codProd);
-                    item.CantidadRecibida = cantRecibida;
+                    ordenC.modificarCantidadItem(codProd, cantRecibida, true);
                     ActualizarGrilla();
                 }
             }
@@ -115,11 +118,21 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if (ordenC.itemsOrdenCompra.TrueForAll(i => i.CantidadRecibida > 0))
+            if (ordenC.obtenerItems().TrueForAll(i => i.CantidadRecibida > 0))
             {
                 try
                 {
-                    bllOrdenC.MarcarOrdenComoEntregada(ordenC);
+                    ordenC.Estado = "Entregada";
+                    bllOrdenC.ModificarEstadoOrden(ordenC);
+
+                    //modificar el stock de cada producto
+                    foreach(var item in ordenC.obtenerItems())
+                    {
+                        //suma el stock actual + el recibido
+                        item.Producto.Stock += item.CantidadRecibida;
+                        bllProducto.ModificarProducto(item.Producto);
+                    }
+
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }

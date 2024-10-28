@@ -1,19 +1,19 @@
 {
-  "label1": "Products to replenish:",
-  "label3": "Pending quote requests:",
+  "label1": "Products to restock:",
+  "label3": "Pending quotation requests:",
   "label6": "Final supplier:",
   "label4": "Supplier details:",
   "btnRegistrarProveedor": "Register completely",
   "label2": "Purchase price",
-  "label5": "Quantity to replenish",
+  "label5": "Quantity to restock",
   "btnCargar": "Load purchase price",
   "btnRegistarPago": "Register payment",
   "btnFinalizar": "Finish",
-  "btnModificarCant": "Modify quantity to replenish",
-  "lblFechaEntrega": "Delivery date of products",
+  "btnModificarCant": "Modify quantity to restock",
+  "lblFechaEntrega": "Product delivery date",
 
   "lblNeto": "Net: ",
-  "lblIVA": "I.V.A (21%): ",
+  "lblIVA": "VAT (21%): ",
   "lblTotal": "Total: ",
 
   "lblNombreProv": "Name:",
@@ -25,7 +25,7 @@
 
   "gridViewCodigo": "Product Code",
   "gridViewModelo": "Model",
-  "gridViewCantidadAReponer": "Quantity to replenish",
+  "gridViewCantidadAReponer": "Quantity to restock",
   "gridViewMarca": "Brand",
   "gridViewPrecio": "Price",
   "gridViewStock": "Current stock",
@@ -40,9 +40,9 @@
   "gridViewNumTelefono": "Phone number",
   "gridViewDireccion": "Address",
 
-  "ingreseCant": "Enter the final quantity to replenish",
+  "ingreseCant": "Enter the final quantity to restock",
   "ingresePrecio": "Enter the unit purchase price of the product",
-  "superaStock": "The entered quantity plus the current stock exceeds the maximum stock of the product",
+  "superaStock": "The entered quantity added to the current stock exceeds the maximum stock of the product",
 
   "error": "Error registering the purchase order: ",
   "exito": "Purchase order registered successfully",
@@ -50,6 +50,16 @@
   "carguePreciosYCant": "Load all purchase prices and final quantities",
   "numEntero": "Enter an integer for the quantity, less than 5 digits",
 
+  "textoDetalleOrdenCompra": "Purchase order details",
+  "textoDetalleProveedor": "Supplier details",
+  "textoFactura": "Invoice number",
+  "textoFecha": "Date",
+  "textofechaEntrega": "Delivery date",
+  "textoCantidadSolicitada": "Requested quantity",
+  "textoCantidadRecibida": "Received quantity",
+  "textoNombreProveedor": "Supplier name",
+  "textoDetallePago": "Payment details",
+  "textoNumeroTransferencia": "Transfer number",
 
   "cerrar": "Log out",
   "deseaCerrar": "Are you sure you want to Log Out?",

@@ -74,7 +74,7 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
         ///&lt;html&gt;
         ///&lt;head&gt;
-        ///    &lt;title&gt;Online HTML Editor&lt;/title&gt;
+        ///    &lt;title&gt;Factura&lt;/title&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
         ///
@@ -90,7 +90,7 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         ///    &lt;/table&gt;
         ///
         ///    &lt;h2&gt;@textoDetalleEvento&lt;/h2&gt;
-        ///    &lt;table border=&quot;1&quot; s [resto de la cadena truncado]&quot;;.
+        ///    &lt;table border=&quot;1&quot; style=&quot;width [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string htmlauditoriaevento {
             get {
@@ -102,7 +102,7 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
         ///&lt;html&gt;
         ///&lt;head&gt;
-        ///    &lt;title&gt;Online HTML Editor&lt;/title&gt;
+        ///    &lt;title&gt;Factura&lt;/title&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
         ///
@@ -118,11 +118,36 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         ///    &lt;/table&gt;
         ///
         ///    &lt;h2&gt;@textoDetalleCliente&lt;/h2&gt;
-        ///    &lt;table b [resto de la cadena truncado]&quot;;.
+        ///    &lt;table border=&quot;1&quot; s [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string htmlfactura {
             get {
                 return ResourceManager.GetString("htmlfactura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Factura&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///
+        ///    &lt;div style=&quot;width: 80%; background-color:lightskyblue; padding: 10px&quot;&gt;
+        ///        &lt;h1 style=&quot;color: white&quot;&gt;Alta Gama&lt;/h1&gt;
+        ///    &lt;/div&gt;
+        ///
+        ///    &lt;table style=&quot;width: 100%; margin-top: 10px&quot;&gt;
+        ///        &lt;tr&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFactura: @NroFactura&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFecha: @Fecha&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFechaEntrega: @FechaEntrega&lt;/td&gt;
+        ///        &lt; [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string htmlfacturacompra {
+            get {
+                return ResourceManager.GetString("htmlfacturacompra", resourceCulture);
             }
         }
         

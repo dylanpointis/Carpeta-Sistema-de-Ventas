@@ -65,7 +65,7 @@ namespace Carpeta_Sistema_de_Ventas
         private void ActualizarGrilla()
         {
             grillaCambios.Rows.Clear();
-            List<Producto_C> listaCambios = bllCambios.TraerListaCambios();
+            List<BEProducto_C> listaCambios = bllCambios.TraerListaCambios();
 
             foreach(var prodC in listaCambios)
             {
@@ -110,10 +110,10 @@ namespace Carpeta_Sistema_de_Ventas
             string fechaFinal = fechaFin.Value.ToString("yyyy-MM-dd");
 
 
-            List<Producto_C> list = bllCambios.FiltrarCambios(txtCodigoProd.Text, txtModelo.Text, fechaInicial, fechaFinal);
+            List<BEProducto_C> list = bllCambios.FiltrarCambios(txtCodigoProd.Text, txtModelo.Text, fechaInicial, fechaFinal);
             grillaCambios.Rows.Clear();
 
-            foreach (Producto_C prodC in list)
+            foreach (BEProducto_C prodC in list)
             {
                 string activo = ""; //El elemento activo es el que tiene el estado actual del producto, los antiguos no son activos
                 if (prodC.Activo == true)

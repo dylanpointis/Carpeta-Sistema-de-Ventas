@@ -92,16 +92,17 @@ namespace DAL
             return tabla;
         }
 
-        public void MarcarOrdenComoEntregada(BEOrdenCompra ordenC)
+        public void ModificarEstadoOrden(BEOrdenCompra ordenC)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@NumeroOrdenCompra", ordenC.NumeroOrdenCompra)
+                new SqlParameter("@NumeroOrdenCompra", ordenC.NumeroOrdenCompra),
+                new SqlParameter("@Estado", ordenC.Estado)
             };
-            dalCon.EjecutarProcAlmacenado("MarcarOrdenComoEntregada", parametros);
+            dalCon.EjecutarProcAlmacenado("ModificarEstadoOrden", parametros);
 
 
-            foreach(BEItemOrdenCompra item in ordenC.itemsOrdenCompra)
+            foreach(BEItemOrdenCompra item in ordenC.obtenerItems())
             {
                 parametros = new SqlParameter[]
                 {

@@ -48,7 +48,7 @@ namespace Carpeta_Sistema_de_Ventas
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.btnRegistrarCliente.Enabled = false;
                     }
-                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + $". {ex.Message}", "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
                 else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }

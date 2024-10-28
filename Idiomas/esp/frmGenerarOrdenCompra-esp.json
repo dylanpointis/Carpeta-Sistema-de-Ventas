@@ -57,6 +57,21 @@
   "numEntero": "Ingrese un número entero para la cantidad, menor a 5 cifras",
 
 
+  "textoDetalleOrdenCompra": "Detalle orden de compra",
+  "textoDetalleProveedor": "Detalle proveedor",
+  "textoFactura": "Número factura",
+  "textoFecha": "Fecha",
+  "textofechaEntrega": "Fecha entrega",
+  "textoCantidadSolicitada": "Cantidad solicitada",
+  "textoCantidadRecibida": "Cantidad recibida",
+  "textoNombreProveedor": "Nombre proveedor",
+  "textoDetallePago": "Detalle del pago",
+  "textoNumeroTransferencia": "Número de transferencia",
+
+
+
+
+
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

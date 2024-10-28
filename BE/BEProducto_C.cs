@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Producto_C
+    public class BEProducto_C
     {
         public int idCambio {  get; set; }
         public string Fecha {  get; set; }
@@ -17,7 +17,7 @@ namespace BE
         
         public bool Activo { get; set; }
 
-        public Producto_C(BEProducto prod, int idcambio, string fecha, string hora, bool activo) 
+        public BEProducto_C(BEProducto prod, int idcambio, string fecha, string hora, bool activo) 
         { 
             this.idCambio = idcambio;
             this.Fecha = fecha;

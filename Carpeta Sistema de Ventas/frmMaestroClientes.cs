@@ -36,7 +36,7 @@ namespace Carpeta_Sistema_de_Ventas
         BLLEvento bllEvento = new BLLEvento();
         Serializacion serializacion = new Serializacion();
 
-EnumModoAplicar modoOperacion;
+        EnumModoAplicar modoOperacion;
 
 
         private void frmMaestroClientes_Load(object sender, EventArgs e)

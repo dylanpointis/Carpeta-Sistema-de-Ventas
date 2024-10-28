@@ -15,10 +15,10 @@ namespace BLL
     {
         DALProducto_C dalCambio = new DALProducto_C();
 
-        public List<Producto_C> FiltrarCambios(string codProd, string modeloProd, string fechaInicial, string fechaFinal)
+        public List<BEProducto_C> FiltrarCambios(string codProd, string modeloProd, string fechaInicial, string fechaFinal)
         {
 
-            List<Producto_C> lista = new List<Producto_C>();
+            List<BEProducto_C> lista = new List<BEProducto_C>();
             DataTable tabla = dalCambio.FiltrarCambios(codProd, modeloProd, fechaInicial, fechaFinal);
 
             foreach(DataRow row in tabla.Rows)
@@ -28,7 +28,7 @@ namespace BLL
 
 
 
-                Producto_C prodC = new Producto_C(prod, Convert.ToInt32(row[0]), row[2].ToString(), row[3].ToString(), Convert.ToBoolean(row[14]));
+                BEProducto_C prodC = new BEProducto_C(prod, Convert.ToInt32(row[0]), row[2].ToString(), row[3].ToString(), Convert.ToBoolean(row[14]));
 
 
                 lista.Add(prodC);
@@ -39,10 +39,10 @@ namespace BLL
 
         }
 
-        public List<Producto_C> TraerListaCambios()
+        public List<BEProducto_C> TraerListaCambios()
         {
             DataTable tabla = dalCambio.TraerListaCambios();
-            List<Producto_C> listaCambios = new List<Producto_C>();
+            List<BEProducto_C> listaCambios = new List<BEProducto_C>();
 
             foreach (DataRow row in tabla.Rows) 
             {
@@ -51,7 +51,7 @@ namespace BLL
 
 
 
-                Producto_C prodC = new Producto_C(prod, Convert.ToInt32(row[0]), row[2].ToString(), row[3].ToString(), Convert.ToBoolean(row[14]));
+                BEProducto_C prodC = new BEProducto_C(prod, Convert.ToInt32(row[0]), row[2].ToString(), row[3].ToString(), Convert.ToBoolean(row[14]));
 
 
                 listaCambios.Add(prodC);

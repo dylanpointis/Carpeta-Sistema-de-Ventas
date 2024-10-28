@@ -464,7 +464,7 @@ namespace Carpeta_Sistema_de_Ventas
                         bllUsuario.ModificarContFallido(username, 0);
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
-                    catch (Exception ex) { MessageBox.Show("Error al modificar la clave"); }
+                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorAlModificarClave") + $" {ex.Message}"); }
                 }
             }
         }

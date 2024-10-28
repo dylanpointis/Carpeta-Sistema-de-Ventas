@@ -35,6 +35,8 @@ namespace BE
 
         public void AgregarItem(BEProducto prod, int cant)
         {
+            BEItemSolicitud itemEncontrado = itemsSolicitud.FirstOrDefault(i => i.Producto.CodigoProducto == prod.CodigoProducto);
+            if(itemEncontrado == null)
             itemsSolicitud.Add(new BEItemSolicitud(prod, cant));
         }
 
@@ -48,7 +50,6 @@ namespace BE
         {     
             BEItemSolicitud item = itemsSolicitud.FirstOrDefault(p => p.Producto.CodigoProducto == codProd);
             item.Cantidad = cant;
-
         }
 
 

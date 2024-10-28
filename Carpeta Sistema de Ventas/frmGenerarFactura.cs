@@ -230,7 +230,7 @@ namespace Carpeta_Sistema_de_Ventas
                         //registra cada item de la factura
                         //registra en la bitacora de eventos
                         bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Factura generada", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-
+                        //reduce el stock
                         foreach (var item in _factura.listaProductosAgregados)
                         {
                             BEProducto prod = item.producto;
