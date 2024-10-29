@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class COMPRAfrmRegistrarPagoProveedor : Form, IObserver
+    public partial class frmRegistrarPagoProveedor : Form, IObserver
     {
         BEOrdenCompra ordenC = null;
-        public COMPRAfrmRegistrarPagoProveedor(BEOrdenCompra ordenCompra)
+        public frmRegistrarPagoProveedor(BEOrdenCompra ordenCompra)
         {
             ordenC = ordenCompra;
 
@@ -98,7 +98,8 @@ namespace Carpeta_Sistema_de_Ventas
             }
         }
 
-        private void txtNumTransferencia_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void txtNumTransferencia_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             TextBox textBox = sender as TextBox;
 
@@ -119,6 +120,12 @@ namespace Carpeta_Sistema_de_Ventas
                     }
                 }
             }
+
+        }
+
+        private void frmRegistrarPagoProveedor_Shown(object sender, EventArgs e)
+        {
+            txtNumFactura.Focus();
         }
     }
 }

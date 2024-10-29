@@ -20,9 +20,9 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class COMPRAfrmGenerarOrdenCompra : Form, IObserver
+    public partial class frmGenerarOrdenCompra : Form, IObserver
     {
-        public COMPRAfrmGenerarOrdenCompra()
+        public frmGenerarOrdenCompra()
         {
             InitializeComponent();
             IdiomaManager.GetInstance().archivoActual = "frmGenerarOrdenCompra";
@@ -203,15 +203,19 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (ordenC.obtenerItems().TrueForAll(i => i.CantidadSolicitada > 0 && i.PrecioCompra > 0))
                 {
-                    COMPRAfrmRegistrarPagoProveedor form = new COMPRAfrmRegistrarPagoProveedor(ordenC);
-                    form.ShowDialog();
+                    if (ordenC.proveedor.CBU != "")// si el prov esta registrado completamente
+                    {
+                        frmRegistrarPagoProveedor form = new frmRegistrarPagoProveedor(ordenC);
+                        form.ShowDialog();
 
 
-                    //vuelve a cargar el idioma una vez que se cierra el form dialog
-                    IdiomaManager.GetInstance().archivoActual = "frmGenerarOrdenCompra";
-                    IdiomaManager.GetInstance().Agregar(this);
-                    ActualizarLabelsTotal();
-                    btnFinalizar.Enabled = true;
+                        //vuelve a cargar el idioma una vez que se cierra el form dialog
+                        IdiomaManager.GetInstance().archivoActual = "frmGenerarOrdenCompra";
+                        IdiomaManager.GetInstance().Agregar(this);
+                        ActualizarLabelsTotal();
+                        btnFinalizar.Enabled = true;
+                    }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("provNoRegistradoCompleto"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                 }
                 else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("carguePreciosYCant"));}//Cargue todos los precios de compra y cants
             }
@@ -231,6 +235,12 @@ namespace Carpeta_Sistema_de_Ventas
             ordenC.proveedor = provFinal;
 
             //muestra el detalle del proveedor en pantalla
+            MostrarDetalleProveedor();
+            
+        }
+
+        private void MostrarDetalleProveedor()
+        {
             lblNombreProv.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNombreProv") + $"\n{provFinal.Nombre}";
             lblRazonSocial.Text = IdiomaManager.GetInstance().ConseguirTexto("lblRazonSocial") + $"\n{provFinal.RazonSocial}";
             lblMailProv.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMailProv") + $"\n{provFinal.Email}";
@@ -243,25 +253,26 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(ordenC.NumeroFactura > 0 && ordenC.NumeroTransferencia > 0) //si ya registro el pago
             {
-                try
-                {
-                    ordenC.FechaEntrega = txtFechaEntrega.Value;
-
-                    int numeroOrdenC = bllOrdenC.RegistrarOrdenCompra(ordenC);
-
-                    foreach(BEItemOrdenCompra item in ordenC.obtenerItems())
+                
+                    try
                     {
-                        bllOrdenC.RegistrarItemOrden(numeroOrdenC, item);
+                        ordenC.FechaEntrega = txtFechaEntrega.Value;
+
+                        int numeroOrdenC = bllOrdenC.RegistrarOrdenCompra(ordenC);
+
+                        foreach (BEItemOrdenCompra item in ordenC.obtenerItems())
+                        {
+                            bllOrdenC.RegistrarItemOrden(numeroOrdenC, item);
+                        }
+
+                        bllSolC.ModificarEstadoSolicitud(ordenC.NumeroSolicitudCompra, "Cotizada"); //marca el estado de la solicitud en Cotizada
+
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Orden de compra generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+
+                        GenerarFactura();
                     }
-
-                    bllSolC.ModificarEstadoSolicitud(ordenC.NumeroSolicitudCompra, "Cotizada"); //marca el estado de la solicitud en Cotizada
-
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Orden de compra generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-
-                    GenerarFactura();
-                }
-                catch(Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message,"",MessageBoxButtons.OK,MessageBoxIcon.Error); }
+                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
         }
 
@@ -270,10 +281,14 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (provFinal != null)
             {
-                COMPRAfrmRegistrarProveedor form = new COMPRAfrmRegistrarProveedor(false, provFinal);
-                form.ShowDialog();
+                frmRegistrarProveedor form = new frmRegistrarProveedor(false, provFinal);
+                form.ShowDialog();  
+                //vuelve a cargar el idioma
+                IdiomaManager.GetInstance().archivoActual = "frmGenerarOrdenCompra";
+                IdiomaManager.GetInstance().Agregar(this);
+                MostrarDetalleProveedor();
             }
-            else { MessageBox.Show("Seleccione el proveedor final para terminar de registrarlo"); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneProvParaRegistrarlo")); }
         }
 
 

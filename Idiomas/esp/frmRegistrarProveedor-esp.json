@@ -1,0 +1,27 @@
+{
+  "label1": "CUIT:",
+  "label8": "Dirección:",
+  "label2": "Nombre:",
+  "label3": "Razón social:",
+  "label5": "Número telefono:",
+  "label4": "Mail:",
+  "label7": "CBU:",
+  "label9": "Banco:",
+  "lblTitulo": "Registrar proveedor",
+  "textoPreRegistrar": "Pre-Registrar proveedor",
+  "btnRegistrarProveedor": "Registrar",
+  "btnCancelar": "Cancelar",
+  "exitoPreRegistro": "Proveedor Pre-registrado con éxito",
+  "exitoRegistro": "Proveedor registrado completamente con éxito",
+
+
+
+
+  "errorMail": "Formato del email incorrecto",
+  "llenarCampos": "Llene los campos",	
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

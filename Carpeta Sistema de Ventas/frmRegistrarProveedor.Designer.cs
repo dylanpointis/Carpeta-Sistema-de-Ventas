@@ -1,6 +1,6 @@
 ﻿namespace Carpeta_Sistema_de_Ventas
 {
-    partial class COMPRAfrmRegistrarProveedor
+    partial class frmRegistrarProveedor
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.txtCUIT = new System.Windows.Forms.TextBox();
             this.txtNumTelefono = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -63,15 +63,15 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // label6
+            // lblTitulo
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(199, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(168, 20);
-            this.label6.TabIndex = 58;
-            this.label6.Text = "Registrar proveedor";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(199, 20);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(168, 20);
+            this.lblTitulo.TabIndex = 58;
+            this.lblTitulo.Text = "Registrar proveedor";
             // 
             // txtCUIT
             // 
@@ -79,6 +79,7 @@
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(185, 20);
             this.txtCUIT.TabIndex = 57;
+            this.txtCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCUIT_KeyPress);
             // 
             // txtNumTelefono
             // 
@@ -86,6 +87,7 @@
             this.txtNumTelefono.Name = "txtNumTelefono";
             this.txtNumTelefono.Size = new System.Drawing.Size(185, 20);
             this.txtNumTelefono.TabIndex = 56;
+            this.txtNumTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTelefono_KeyPress);
             // 
             // label5
             // 
@@ -173,6 +175,7 @@
             this.txtCBU.Name = "txtCBU";
             this.txtCBU.Size = new System.Drawing.Size(185, 20);
             this.txtCBU.TabIndex = 61;
+            this.txtCBU.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCBU_KeyPress);
             // 
             // label7
             // 
@@ -215,7 +218,7 @@
             this.label9.TabIndex = 64;
             this.label9.Text = "Banco:";
             // 
-            // COMPRAfrmRegistrarProveedor
+            // frmRegistrarProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -227,7 +230,7 @@
             this.Controls.Add(this.txtCBU);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.txtCUIT);
             this.Controls.Add(this.txtNumTelefono);
             this.Controls.Add(this.label5);
@@ -239,8 +242,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "COMPRAfrmRegistrarProveedor";
-            this.Text = "COMPRAfrmRegistrarProveedorCompleto";
+            this.Name = "frmRegistrarProveedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.COMPRAfrmRegistrarProveedor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -250,7 +253,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.TextBox txtCUIT;
         private System.Windows.Forms.TextBox txtNumTelefono;
         private System.Windows.Forms.Label label5;

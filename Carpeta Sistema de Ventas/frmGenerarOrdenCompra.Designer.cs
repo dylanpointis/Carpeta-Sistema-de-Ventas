@@ -1,6 +1,6 @@
 ﻿namespace Carpeta_Sistema_de_Ventas
 {
-    partial class COMPRAfrmGenerarOrdenCompra
+    partial class frmGenerarOrdenCompra
     {
         /// <summary>
         /// Required designer variable.
@@ -68,11 +68,16 @@
             // 
             // grillaItems
             // 
+            this.grillaItems.AllowUserToAddRows = false;
+            this.grillaItems.AllowUserToDeleteRows = false;
             this.grillaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaItems.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grillaItems.Location = new System.Drawing.Point(312, 78);
+            this.grillaItems.MultiSelect = false;
             this.grillaItems.Name = "grillaItems";
+            this.grillaItems.ReadOnly = true;
             this.grillaItems.Size = new System.Drawing.Size(701, 316);
             this.grillaItems.TabIndex = 50;
             // 

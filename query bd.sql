@@ -997,7 +997,6 @@ INSERT INTO Item_Factura VALUES (1,123,1,1100)
 
 
 
-
 INSERT INTO DigitoVerificador VALUES ('Clientes','','')
 INSERT INTO DigitoVerificador VALUES ('Productos','','')
 INSERT INTO DigitoVerificador VALUES ('Facturas','','')
@@ -1007,7 +1006,7 @@ INSERT INTO DigitoVerificador VALUES ('SolicitudesCotizacion','','')
 INSERT INTO DigitoVerificador VALUES ('Item_Solicitud','','')
 INSERT INTO DigitoVerificador VALUES ('Solicitud_Proveedor','','')
 INSERT INTO DigitoVerificador VALUES ('OrdenesCompra','','')
-INSERT INTO DigitoVerificador VALUES ('Item_OrdenesCompra','','')
+INSERT INTO DigitoVerificador VALUES ('Item_OrdenCompra','','')
 
 insert into Eventos values ('Esteban','Sesiones','Inicio sesión',1,'2024-09-30','12:15')
 insert into Eventos values ('Esteban','Ventas','Factura generada',2,'2024-09-30','13:20')

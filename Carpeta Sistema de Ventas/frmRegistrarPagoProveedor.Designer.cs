@@ -1,6 +1,6 @@
 ﻿namespace Carpeta_Sistema_de_Ventas
 {
-    partial class COMPRAfrmRegistrarPagoProveedor
+    partial class frmRegistrarPagoProveedor
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,6 @@
         {
             this.txtCBU = new System.Windows.Forms.TextBox();
             this.lblCBU = new System.Windows.Forms.Label();
-            this.txtNumTransferencia = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblProveedor = new System.Windows.Forms.Label();
             this.txtBanco = new System.Windows.Forms.TextBox();
+            this.txtNumTransferencia = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtCBU
@@ -59,14 +59,6 @@
             this.lblCBU.Size = new System.Drawing.Size(32, 13);
             this.lblCBU.TabIndex = 62;
             this.lblCBU.Text = "CBU:";
-            // 
-            // txtNumTransferencia
-            // 
-            this.txtNumTransferencia.Location = new System.Drawing.Point(105, 194);
-            this.txtNumTransferencia.Name = "txtNumTransferencia";
-            this.txtNumTransferencia.Size = new System.Drawing.Size(185, 20);
-            this.txtNumTransferencia.TabIndex = 66;
-            this.txtNumTransferencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTransferencia_KeyPress);
             // 
             // label10
             // 
@@ -169,11 +161,20 @@
             this.txtBanco.Size = new System.Drawing.Size(185, 20);
             this.txtBanco.TabIndex = 76;
             // 
-            // COMPRAfrmRegistrarPagoProveedor
+            // txtNumTransferencia
+            // 
+            this.txtNumTransferencia.Location = new System.Drawing.Point(105, 204);
+            this.txtNumTransferencia.Name = "txtNumTransferencia";
+            this.txtNumTransferencia.Size = new System.Drawing.Size(185, 20);
+            this.txtNumTransferencia.TabIndex = 77;
+            this.txtNumTransferencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTransferencia_KeyPress_1);
+            // 
+            // frmRegistrarPagoProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 428);
+            this.Controls.Add(this.txtNumTransferencia);
             this.Controls.Add(this.txtBanco);
             this.Controls.Add(this.lblProveedor);
             this.Controls.Add(this.txtNumFactura);
@@ -183,14 +184,14 @@
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtNumTransferencia);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtCBU);
             this.Controls.Add(this.lblCBU);
             this.MaximizeBox = false;
-            this.Name = "COMPRAfrmRegistrarPagoProveedor";
+            this.Name = "frmRegistrarPagoProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.COMPRAfrmRegistrarPagoProveedor_Load);
+            this.Shown += new System.EventHandler(this.frmRegistrarPagoProveedor_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,7 +201,6 @@
 
         private System.Windows.Forms.TextBox txtCBU;
         private System.Windows.Forms.Label lblCBU;
-        private System.Windows.Forms.TextBox txtNumTransferencia;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -211,5 +211,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblProveedor;
         private System.Windows.Forms.TextBox txtBanco;
+        private System.Windows.Forms.TextBox txtNumTransferencia;
     }
 }

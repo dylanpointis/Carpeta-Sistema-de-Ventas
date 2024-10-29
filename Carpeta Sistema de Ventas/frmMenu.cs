@@ -192,18 +192,18 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void generarSolicitudDeCotizaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbrirForm(new COMPRAfrmGenerarSolicitudCotizacion());
+            AbrirForm(new frmGenerarSolicitudCotizacion());
         }
         private void generarOrdenDeCompraToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            AbrirForm(new COMPRAfrmGenerarOrdenCompra());
+            AbrirForm(new frmGenerarOrdenCompra());
         }
 
         private void corroborarRecepciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            AbrirForm(new COMPRAfrmCorroborarRecepcion());
+            AbrirForm(new frmCorroborarRecepcion());
         }
 
 

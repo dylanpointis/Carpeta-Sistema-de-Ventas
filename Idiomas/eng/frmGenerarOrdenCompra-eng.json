@@ -43,10 +43,12 @@
   "ingreseCant": "Enter the final quantity to restock",
   "ingresePrecio": "Enter the unit purchase price of the product",
   "superaStock": "The entered quantity added to the current stock exceeds the maximum stock of the product",
+  "provNoRegistradoCompleto": "The provider is not fully registered",
 
   "error": "Error registering the purchase order: ",
   "exito": "Purchase order registered successfully",
   "seleccioneProv": "Select the final supplier to register the payment",
+  "seleccioneProvParaRegistrarlo": "Select the final supplier to finish registering it",
   "carguePreciosYCant": "Load all purchase prices and final quantities",
   "numEntero": "Enter an integer for the quantity, less than 5 digits",
 
@@ -54,7 +56,7 @@
   "textoDetalleProveedor": "Supplier details",
   "textoFactura": "Invoice number",
   "textoFecha": "Date",
-  "textofechaEntrega": "Delivery date",
+  "textoFechaEntrega": "Delivery date",
   "textoCantidadSolicitada": "Requested quantity",
   "textoCantidadRecibida": "Received quantity",
   "textoNombreProveedor": "Supplier name",

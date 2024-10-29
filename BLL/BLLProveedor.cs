@@ -13,15 +13,18 @@ namespace BLL
     public class BLLProveedor
     {
         private DALProveedor dalProv = new DALProveedor();
+        private BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
 
         public void ModificarProveedor(BEProveedor prov)
         {
             dalProv.ModificarProveedor(prov);
+            bllDV.PersistirDV(dalProv.TraerListaProveedores());
         }
 
         public void RegistrarProveedor(BEProveedor prov)
         {
             dalProv.RegistrarProveedor(prov);
+            bllDV.PersistirDV(dalProv.TraerListaProveedores());
         }
 
         public List<BEProveedor> TraerListaProveedores()

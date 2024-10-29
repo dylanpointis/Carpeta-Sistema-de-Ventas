@@ -127,7 +127,7 @@ namespace BLL
         }
 
 
-        private DataTable TraerTablaAConsultarDV(string tablaAConsultarDV)
+        public DataTable TraerTablaAConsultarDV(string tablaAConsultarDV)
         {
             return dalDV.TraerTablaAConsultarDV(tablaAConsultarDV);
         }

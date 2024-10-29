@@ -49,10 +49,13 @@
   "ingreseCant": "Ingrese la cantidad final a reponer",
   "ingresePrecio": "Ingrese el precio de compra unitario del producto",
   "superaStock": "La cantidad ingresada sumada al stock actual supera al stock maximo del producto",
+  "provNoRegistradoCompleto": "El proveedor no está registrado completamente",
+
 
   "error": "Error al registrar la orden de compra: ",
   "exito": "Orden de compra registrada con éxito",
   "seleccioneProv": "Seleccione el proveedor final para registrar el pago",
+  "seleccioneProvParaRegistrarlo": "Seleccione el proveedor final para terminar de registrarlo",
   "carguePreciosYCant": "Cargue todos los precios de compra y cantidades finales",
   "numEntero": "Ingrese un número entero para la cantidad, menor a 5 cifras",
 
@@ -61,7 +64,7 @@
   "textoDetalleProveedor": "Detalle proveedor",
   "textoFactura": "Número factura",
   "textoFecha": "Fecha",
-  "textofechaEntrega": "Fecha entrega",
+  "textoFechaEntrega": "Fecha entrega",
   "textoCantidadSolicitada": "Cantidad solicitada",
   "textoCantidadRecibida": "Cantidad recibida",
   "textoNombreProveedor": "Nombre proveedor",

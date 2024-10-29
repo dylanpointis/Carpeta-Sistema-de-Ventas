@@ -304,6 +304,8 @@ namespace Carpeta_Sistema_de_Ventas
             txtColor.Text = "";
             txtPrecio.Text = "0.00";
             txtStock.Text = "";
+            txtStockMax.Text = "";
+            txtStockMin.Text = "";
             txtAlmacenamiento.Text = "";
             cmbMarca.SelectedItem = null;
 
@@ -346,7 +348,9 @@ namespace Carpeta_Sistema_de_Ventas
             txtColor.Text = grillaProductos.CurrentRow.Cells[4].Value.ToString();
             txtPrecio.Text = grillaProductos.CurrentRow.Cells[5].Value.ToString();
             txtStock.Text = grillaProductos.CurrentRow.Cells[6].Value.ToString();
-            txtAlmacenamiento.Text = grillaProductos.CurrentRow.Cells[7].Value.ToString();
+            txtStockMin.Text = grillaProductos.CurrentRow.Cells[7].Value.ToString();
+            txtStockMax.Text = grillaProductos.CurrentRow.Cells[8].Value.ToString();
+            txtAlmacenamiento.Text = grillaProductos.CurrentRow.Cells[9].Value.ToString();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

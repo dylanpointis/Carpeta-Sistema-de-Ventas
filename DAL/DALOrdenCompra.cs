@@ -114,5 +114,11 @@ namespace DAL
             }
 
         }
+
+        //Esto es para que el digito verificador persista en la tabla Item_OrdenCompra 
+        public DataTable traerTablaItemOrden()
+        {
+            return dalCon.TraerTabla("Item_OrdenCompra");
+        }
     }
 }

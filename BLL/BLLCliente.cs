@@ -13,20 +13,25 @@ namespace BLL
     public class BLLCliente
     {
         DALCliente dalCliente = new DALCliente();
+        BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
+
 
         public void EliminarCliente(int dniCliente)
         {
             dalCliente.EliminarCliente(dniCliente);
+            bllDV.PersistirDV(dalCliente.TraerListaCliente());
         }
 
         public void HabilitarCliente(int dni)
         {
             dalCliente.HabilitarCliente(dni);
+            bllDV.PersistirDV(dalCliente.TraerListaCliente());
         }
 
         public void ModificarCliente(BECliente cliente)
         {
             dalCliente.ModificarCliente(cliente);
+            bllDV.PersistirDV(dalCliente.TraerListaCliente());
         }
 
         public void RegistrarCliente(BECliente cliente)
@@ -35,6 +40,7 @@ namespace BLL
             if (clienteEncontrado != null)
             {
                 dalCliente.RegistrarCliente(cliente);
+                bllDV.PersistirDV(dalCliente.TraerListaCliente());
             }
         }
 
@@ -58,9 +64,9 @@ namespace BLL
         }
 
 
-        public bool VerificarSiClienteTieneFacturas(int dniCliente)
-        {
-            return dalCliente.VerificarSiClienteTieneFacturas(dniCliente);
-        }
+        //public bool VerificarSiClienteTieneFacturas(int dniCliente)
+        //{
+        //    return dalCliente.VerificarSiClienteTieneFacturas(dniCliente);
+        //}
     }
 }

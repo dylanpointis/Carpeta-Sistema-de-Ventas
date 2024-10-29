@@ -13,6 +13,7 @@ namespace BLL
     public class BLLProducto
     {
         DALProducto dalProd = new DALProducto();
+        BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
         public List<BEProducto> TraerListaProductos()
         {
             List<BEProducto> lista = new List<BEProducto> ();
@@ -28,42 +29,49 @@ namespace BLL
             return lista;
         }
 
-        public void ConsultarStock(BEProducto produto)
-        {
-            //dalProd.ModificarStock(produto, stock);
-        }
+        //public void ConsultarStock(BEProducto produto)
+        //{
+        //    //dalProd.ModificarStock(produto, stock);
+        //}
 
         public void ModificarStock(BEProducto producto, int stock)
         {
-            if(producto.Stock - stock >= 0)
-            dalProd.ModificarStock(producto, stock);
+            if(producto.Stock - stock >= 0) 
+            {
+                dalProd.ModificarStock(producto, stock);
+                bllDV.PersistirDV(dalProd.TraerListaProducto());
+            }
         }
 
         public void RegistrarProducto(BEProducto prod)
         {
             dalProd.RegistrarProducto(prod);
+            bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 
         public void EliminarProducto(long idProd)
         {
             dalProd.EliminarProducto(idProd);
+            bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 
 
         public void HabilitarProducto(long idProd)
         {
             dalProd.HabilitarProducto(idProd);
+            bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 
 
         public void ModificarProducto(BEProducto prod)
         {
             dalProd.ModificarProducto(prod);
+            bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 
-        public bool VerificarSiProductoTieneFacturas(long codigoProducto)
-        {
-            return dalProd.VerificarSiProductoTieneFacturas(codigoProducto);
-        }
+        //public bool VerificarSiProductoTieneFacturas(long codigoProducto)
+        //{
+        //    return dalProd.VerificarSiProductoTieneFacturas(codigoProducto);
+        //}
     }
 }

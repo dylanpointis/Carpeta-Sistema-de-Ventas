@@ -87,36 +87,13 @@ namespace DAL
             }
         }
 
-        public List<BEFactura> TraerFacturas()
+        public DataTable TraerFacturas()
         {
             SqlParameter[] parametros = new SqlParameter[]
             { };
 
             DataTable tabla = dalCon.ConsultaProcAlmacenado("TraerUltimas100Facturas", parametros);
-            List<BEFactura> listaFacturas = new List<BEFactura>();
-
-            foreach (DataRow row in tabla.Rows)
-            {
-                BECliente cli = new BECliente(Convert.ToInt32(row[11]), row[12].ToString(), row[13].ToString(), row[14].ToString(), Encriptador.DesencriptarAES(row[15].ToString()));
-
-                BECobro cobro = new BECobro() { NumTransaccionBancaria = Convert.ToInt32(row[2]), MarcaTarjeta = row[7].ToString(), CantCuotas = Convert.ToInt32(row[8]), AliasMP = row[9].ToString(), ComentarioAdicional = row[10].ToString(), stringMetodoPago = row[6].ToString() };
-
-
-                BEFactura fac = new BEFactura()
-                {
-                    NumFactura = Convert.ToInt32(row[0]),
-                    clienteFactura = cli,
-                    cobro = cobro,
-                    Fecha = Convert.ToDateTime(row[5].ToString()),
-                    MontoTotal = Convert.ToDouble(row[3]),
-                    Impuesto = Convert.ToDouble(row[4]),
-                };
-
-
-                listaFacturas.Add(fac);
-            }
-
-            return listaFacturas;
+            return tabla;
         }
 
         public BEFactura TraerItemsFactura(BEFactura fac)
@@ -154,5 +131,17 @@ namespace DAL
             }
             return IdFactura;
         }
+
+
+        //Esto es para que el digito verificador persista en la tabla Item_Factura 
+        public DataTable TraerTablaItems()
+        {
+            return dalCon.TraerTabla("Item_Factura");
+        }
+        public DataTable TraerTablaFacturas()
+        {
+            return dalCon.TraerTabla("Facturas");
+        }
+
     }
 }

@@ -1,0 +1,24 @@
+{
+  "label1": "CUIT:",
+  "label8": "Address:",
+  "label2": "Name:",
+  "label3": "Business Name:",
+  "label5": "Phone Number:",
+  "label4": "Email:",
+  "label7": "CBU:",
+  "label9": "Bank:",
+  "lblTitulo": "Register Supplier",
+  "textoPreRegistrar": "Pre-Register Supplier",
+  "btnRegistrarProveedor": "Register",
+  "btnCancelar": "Cancel",
+  "exitoPreRegistro": "Supplier pre-registered successfully",
+  "exitoRegistro": "Supplier registered successfully",
+  "errorMail": "Incorrect email format",
+  "llenarCampos": "Fill in the fields",
+
+
+  "cerrar": "Log Out",
+  "deseaCerrar": "Do you want to log out?",
+  "noHaySesion": "No session started",
+  "haySesion": "A session is already established"
+}

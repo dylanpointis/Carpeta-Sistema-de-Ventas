@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class COMPRAfrmCorroborarRecepcion : Form, IObserver
+    public partial class frmCorroborarRecepcion : Form, IObserver
     {
-        public COMPRAfrmCorroborarRecepcion()
+        public frmCorroborarRecepcion()
         {
             IdiomaManager.GetInstance().archivoActual = "frmCorroborarRecepcion";
             IdiomaManager.GetInstance().Agregar(this);

@@ -1,6 +1,6 @@
 ﻿namespace Carpeta_Sistema_de_Ventas
 {
-    partial class COMPRAfrmCorroborarRecepcion
+    partial class frmCorroborarRecepcion
     {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,6 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(19, 43);
@@ -63,9 +62,14 @@
             // 
             // grillaRecepcion
             // 
+            this.grillaRecepcion.AllowUserToAddRows = false;
+            this.grillaRecepcion.AllowUserToDeleteRows = false;
             this.grillaRecepcion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaRecepcion.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grillaRecepcion.Location = new System.Drawing.Point(265, 43);
+            this.grillaRecepcion.MultiSelect = false;
             this.grillaRecepcion.Name = "grillaRecepcion";
+            this.grillaRecepcion.ReadOnly = true;
             this.grillaRecepcion.Size = new System.Drawing.Size(748, 336);
             this.grillaRecepcion.TabIndex = 69;
             // 
@@ -196,7 +200,6 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(22, 191);

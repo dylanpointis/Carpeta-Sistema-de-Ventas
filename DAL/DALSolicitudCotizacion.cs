@@ -86,5 +86,16 @@ namespace DAL
 
             return dalCon.ConsultaProcAlmacenado("TraerProveedoresSolicitud", parametros);
         }
+
+        public DataTable traerTablaItemSolicitud()
+        {
+            DataTable tabla = dalCon.TraerTabla("Item_Solicitud");
+            return tabla;
+        }
+
+        public DataTable traerTablaProveedorSolicitud()
+        {
+            return dalCon.TraerTabla("Solicitud_Proveedor");
+        }
     }
 }

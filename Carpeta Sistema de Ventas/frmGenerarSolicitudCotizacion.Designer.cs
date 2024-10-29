@@ -1,6 +1,6 @@
 ﻿namespace Carpeta_Sistema_de_Ventas
 {
-    partial class COMPRAfrmGenerarSolicitudCotizacion
+    partial class frmGenerarSolicitudCotizacion
     {
         /// <summary>
         /// Required designer variable.

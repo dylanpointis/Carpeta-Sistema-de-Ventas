@@ -16,9 +16,9 @@ using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class COMPRAfrmGenerarSolicitudCotizacion : Form, IObserver
+    public partial class frmGenerarSolicitudCotizacion : Form, IObserver
     {
-        public COMPRAfrmGenerarSolicitudCotizacion()
+        public frmGenerarSolicitudCotizacion()
         {
             InitializeComponent();
 
@@ -134,8 +134,12 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnRegistrarProveedor_Click(object sender, EventArgs e)
         {
-            COMPRAfrmRegistrarProveedor form = new COMPRAfrmRegistrarProveedor(true, null);
+            frmRegistrarProveedor form = new frmRegistrarProveedor(true, null);
             form.ShowDialog();
+
+            //vuelve a cargar el idioma
+            IdiomaManager.GetInstance().archivoActual = "frmGenerarSolicitudCotizacion";
+            IdiomaManager.GetInstance().Agregar(this);
             listaProv = bllProv.TraerListaProveedores();
             ActualizarGrillaProveedores();
         }
@@ -191,7 +195,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void COMPRAfrmGenerarSolicitudCotizacion_Resize(object sender, EventArgs e)
         {
-            if (this.ClientSize.Width > 1500)
+            if (this.ClientSize.Width > 1300)
             {
                 grillaProdBajoStock.Width = 787;
                 grillaProdBajoStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

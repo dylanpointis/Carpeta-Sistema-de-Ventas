@@ -34,8 +34,8 @@
   "noSeEncontraron": "No products matching the search were found",
 
 
-  "cerrar": "Cerrar sesión",
-  "deseaCerrar": "¿Desea cerrar sesión?",
-  "noHaySesion": "No hay una sesión iniciada",
-  "haySesion": "Ya hay una sesión iniciada"
+  "cerrar": "Log out",
+  "deseaCerrar": "Are you sure you want to Log Out?",
+  "noHaySesion": "No session logged",
+  "haySesion": "Session is already established"
 }

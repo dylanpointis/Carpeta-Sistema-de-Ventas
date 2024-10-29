@@ -13,10 +13,12 @@ namespace BLL
     public class BLLSolicitudCotizacion
     {
         private DALSolicitudCotizacion dalSolC = new DALSolicitudCotizacion();
+        private BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
 
         public int RegistrarSolicitudCotizacion(BESolicitudCotizacion solicitudCoti)
         {
             int id =dalSolC.RegistrarSolicitudCotizacion(solicitudCoti);
+            bllDV.PersistirDV(dalSolC.TraerListaSolicitudes());
             return id;
         }
 
@@ -24,12 +26,15 @@ namespace BLL
         public void RegistrarItemSolicitud(BEItemSolicitud item, int idSolicitud)
         {
             dalSolC.RegistrarItemSolicitud(item, idSolicitud);
+            bllDV.PersistirDV(traerTablaItemSolicitud());
         }
 
         public void RegistrarProveedorSolicitud(BEProveedor prov, int idSolicitud)
         {
             dalSolC.RegistrarProveedorSolicitud(prov, idSolicitud);
+            bllDV.PersistirDV(traerTablaProveedorSolicitud());
         }
+
 
         public List<BESolicitudCotizacion> TraerListaSolicitudes()
         {
@@ -100,6 +105,18 @@ namespace BLL
         public void ModificarEstadoSolicitud(int numeroSolicitudCompra, string estado)
         {
             dalSolC.ModificarEstadoSolicitud(numeroSolicitudCompra, estado);
+            bllDV.PersistirDV(dalSolC.TraerListaSolicitudes());
+        }
+
+
+        //estos metodos son para hacer persistir el digito verificador en la tabla Item_Solicitud e Solicitud_Proveedor
+        private DataTable traerTablaItemSolicitud()
+        {
+            return dalSolC.traerTablaItemSolicitud();
+        }
+        private DataTable traerTablaProveedorSolicitud()
+        {
+            return dalSolC.traerTablaProveedorSolicitud();
         }
     }
 }

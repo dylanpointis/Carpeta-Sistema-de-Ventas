@@ -12,20 +12,25 @@ namespace BLL
     public class BLLOrdenCompra
     {
         private DALOrdenCompra dalOrdC = new DALOrdenCompra();
+        private BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
 
         public void ModificarEstadoOrden(BEOrdenCompra ordenC)
         {
             dalOrdC.ModificarEstadoOrden(ordenC);
+            bllDV.PersistirDV(dalOrdC.TraerListaOrdenes());
         }
 
         public void RegistrarItemOrden(int numeroOrdenC, BEItemOrdenCompra item)
         {
             dalOrdC.RegistrarItemOrden(numeroOrdenC,item);
+            bllDV.PersistirDV(traerTablaItemOrden());
         }
 
         public int RegistrarOrdenCompra(BEOrdenCompra ordenCompra)
         {
-            return dalOrdC.RegistrarOrdenCompra(ordenCompra);
+            int numOrden = dalOrdC.RegistrarOrdenCompra(ordenCompra);
+            bllDV.PersistirDV(dalOrdC.TraerListaOrdenes());
+            return numOrden;
         }
 
         public List<BEOrdenCompra> TraerListaOrdenes()
@@ -89,7 +94,13 @@ namespace BLL
             List<BEProveedor> lista = new List<BEProveedor>();
             BEProveedor prov = dalOrdC.TraerProveedorOrden(numOrden);
             return prov;
-           
+        }
+
+        //este metodo es para traer la tabla Item_OrdenesCompra para persistirla en digito verificador
+
+        private DataTable traerTablaItemOrden()
+        {
+            return dalOrdC.traerTablaItemOrden();
         }
     }
 }
