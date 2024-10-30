@@ -1,6 +1,7 @@
 ﻿using BE;
 using DAL;
 using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,7 +15,7 @@ namespace BLL
     {
         DALCliente dalCliente = new DALCliente();
         BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
-
+        BLLEvento bllEvento = new BLLEvento();
 
         public void EliminarCliente(int dniCliente)
         {
@@ -37,11 +38,16 @@ namespace BLL
         public void RegistrarCliente(BECliente cliente)
         {
             BECliente clienteEncontrado = VerificarCliente(cliente.DniCliente);
-            if (clienteEncontrado != null)
+            if (clienteEncontrado == null)
             {
-                dalCliente.RegistrarCliente(cliente);
-                bllDV.PersistirDV(dalCliente.TraerListaCliente());
+                try
+                {
+                    dalCliente.RegistrarCliente(cliente);
+                    bllDV.PersistirDV(dalCliente.TraerListaCliente());
+                    bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 4, "", ""));
+                } catch (Exception ex) { throw ex; }
             }
+            else{ throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExiste")); }
         }
 
         public List<BECliente> TraerListaCliente()

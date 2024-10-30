@@ -18,6 +18,7 @@ namespace BLL
         {
             dalOrdC.ModificarEstadoOrden(ordenC);
             bllDV.PersistirDV(dalOrdC.TraerListaOrdenes());
+            bllDV.PersistirDV(dalOrdC.traerTablaItemOrden());
         }
 
         public void RegistrarItemOrden(int numeroOrdenC, BEItemOrdenCompra item)

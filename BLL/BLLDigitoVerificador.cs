@@ -1,5 +1,7 @@
-﻿using DAL;
+﻿using BE;
+using DAL;
 using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,11 +14,10 @@ namespace BLL
     public class BLLDigitoVerificador
     {
         DALDigitoVerificador dalDV = new DALDigitoVerificador();
+        BLLUsuario bLLUsuario = new BLLUsuario();
 
-        public string[] CalcularDVHActual()
+        public string[] CalcularDVHActual(DataTable tablaDVGlobal)
         {
-            DataTable tablaDVGlobal = TraerTablaDV();
-
             List<string> DVH = new List<string>();
 
             foreach (DataRow row in tablaDVGlobal.Rows) //recorre cada fila de la tabla DigitoVerificador global
@@ -38,9 +39,10 @@ namespace BLL
             return DVH.ToArray();
         }
 
-        public string[] CalcularDVVActual()
+
+
+        public string[] CalcularDVVActual(DataTable tablaDVGlobal)
         {
-            DataTable tablaDVGlobal = TraerTablaDV();
 
             List<string> DVV = new List<string>();
 
@@ -62,27 +64,38 @@ namespace BLL
                 }
                 DVV.Add(Encriptador.EncriptarSHA256(dvvTablaActual)); //lo agrega al vector DVH global
             }
-
-
             return DVV.ToArray();
-
         }
 
-        //recibe un vector dvh y un vector dvv con los valores calculados dvh y dvv de todas las tablas
-        public bool CompararDV(string[] DVHCalculado, string[] DVVCalculado)
+
+
+        public void CompararDV(string nombreusuario)
         {
             DataTable tablaDVGlobal = TraerTablaDV();
+            //consigue un vector dvh y un vector dvv con los valores calculados dvh y dvv de todas las tablas
+            string[] DVHCalculado = CalcularDVHActual(tablaDVGlobal);
+            string[] DVVCalculado = CalcularDVVActual(tablaDVGlobal);
+
+            BEUsuario user = bLLUsuario.ValidarUsuario(nombreusuario,0,"");
+
             int i = 0;
             foreach (DataRow row in tablaDVGlobal.Rows)
             {
                 //compara el dvh y dvv global con el calculado
                 if (row[1].ToString() != DVHCalculado[i] && row[2].ToString() != DVVCalculado[i])
                 {
-                    return false;
+                    if(user.Rol.Nombre == "Admin")
+                    {
+                        throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin") + row[0].ToString());
+                        //en la ui muestra el formulario reparar DV para el admin
+                    }
+                    else
+                    {
+                        throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV"));//para un usuario normal solo muestra error.
+                    }
                 }
                 i++;
             }
-            return true;
         }
 
         public void PersistirDV(DataTable dataTable)

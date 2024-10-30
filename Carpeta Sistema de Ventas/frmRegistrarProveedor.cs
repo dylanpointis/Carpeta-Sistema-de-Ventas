@@ -58,6 +58,9 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (ValidarCampos())
             {
+                //FALTA VERIFICAR QUE NO EXISTA EL PROVEEDOR CON CUIT Y CBU
+
+
                 provedor.CUIT = txtCUIT.Text;
                 provedor.Nombre = txtNombre.Text;
                 provedor.RazonSocial = txtRazonSocial.Text;

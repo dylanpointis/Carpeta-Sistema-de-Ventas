@@ -373,7 +373,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 if (modoOperacion == EnumModoAplicar.Modificar)
                 {
-                    if (grillaProductos.CurrentRow.Cells[8].Value.ToString() == "True") //Si esta habilitado se puede modificar
+                    if (grillaProductos.CurrentRow.Cells[10].Value.ToString() == "True") //Si esta habilitado se puede modificar
                     {
                         LlenarCampos();
                         lblMensaje.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("modoModificar")}: {codProd}";
@@ -385,7 +385,7 @@ namespace Carpeta_Sistema_de_Ventas
                     }
                 }
 
-                if (grillaProductos.CurrentRow.Cells[8].Value.ToString() == "False") 
+                if (grillaProductos.CurrentRow.Cells[10].Value.ToString() == "False") 
                 { 
                     btnEliminar.Text = IdiomaManager.GetInstance().ConseguirTexto("habilitar");
                 } else { btnEliminar.Text = IdiomaManager.GetInstance().ConseguirTexto("deshabilitar"); }

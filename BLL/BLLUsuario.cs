@@ -1,6 +1,8 @@
 ﻿using BE;
 using BE.Composite;
 using DAL;
+using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +16,46 @@ namespace BLL
     public class BLLUsuario
     {
         DALUsuario dalUsuario = new DALUsuario();
+        BLLEvento bllEv = new BLLEvento();
+        BLLFamilia bllFamilia = new BLLFamilia();
+
+        public void Login(string username, string clave)
+        {
+            if (SessionManager.GetInstance.ObtenerUsuario() != null)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaInicio"));
+
+
+            BEUsuario user = ValidarUsuario(username, 0, ""); //verifica si existe el usuario por el username
+
+            if (user == null)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro"));
+
+            if (user.Activo == false || user.Bloqueado == true)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
+
+
+
+            if (user.Clave != Encriptador.EncriptarSHA256(clave))
+            {
+                ModificarContFallido(user.NombreUsuario, ++user.ContFallidos);
+                if (user.ContFallidos >= 3)
+                {
+                    ModificarBloqueo(user.DNI, true);
+                    bllEv.RegistrarEvento(new Evento(username, "Sesiones", "Usuario bloqueado", 1,"",""));
+                    throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("seBloqueo"));
+                }
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"));
+            }
+
+            //si pasa todo
+            ModificarContFallido(username, 0);
+            user.listaPermisosRol = bllFamilia.TraerListaPermisosRol(user.codRol);
+            SessionManager.GetInstance.LogIn(user);
+            bllEv.RegistrarEvento(new Evento(username, "Sesiones", "Inicio sesión", 1,"",""));
+        }
+
+
+
 
         public BEUsuario ValidarUsuario(string nombreusuario, int dni, string email)
         {

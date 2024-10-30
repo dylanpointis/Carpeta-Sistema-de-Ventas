@@ -56,14 +56,16 @@ PrecioVenta float
 )
 GO
 
-CREATE PROCEDURE VerificarUsuario
+CREATE PROCEDURE ValidarUsuario
     @NombreUsuario varchar(50),
 	@DNI int,
 	@Email varchar(50)
 AS
 BEGIN
+    SELECT * FROM Usuarios U 
+	INNER JOIN Roles R ON U.Rol = R.CodRol
+	WHERE NombreUsuario = @NombreUsuario OR DNI = @DNI OR Mail = @Email
 
-    SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario OR DNI = @DNI OR Mail = @Email;
 END
 GO
 
@@ -388,7 +390,7 @@ CodHijo INT FOREIGN KEY REFERENCES Permisos(CodPermiso)
 )
 GO
 
-CREATE TABLE Roles
+CREATE TABLE `
 (
 CodRol INT PRIMARY KEY IDENTITY(1,1),
 Nombre VARCHAR(50)
@@ -1018,5 +1020,3 @@ insert into Eventos values ('Admin','Clientes','Archivo serializado',1,'2024-10-
 insert into Eventos values ('Admin','Clientes','Archivo deserializado',	1,'2024-10-01',	'15:52')
 insert into Eventos values ('Admin','Productos','Producto creado',	1,'2024-10-01',	'16:30')
 insert into Eventos values ('Admin','Sesiones','Cierre sesión',	1,'2024-10-01',	'19:40')
-
-

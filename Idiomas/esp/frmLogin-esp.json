@@ -11,6 +11,8 @@
   "noSeEncontro": "No se encontró al usuario ingresado",
   "yaInicio": "Ya hay una sesión iniciada",
   "llene": "Complete los campos",
+  "inconsistenciaDVAdmin": "Inconsistencia presente en la Base de datos del sistema.\nTabla: ",
+  "inconsistenciaDV": "El sistema no se encuentra disponible en estos momentos. Contacte con el administrador",
 
 
   "Admin": "Admin",

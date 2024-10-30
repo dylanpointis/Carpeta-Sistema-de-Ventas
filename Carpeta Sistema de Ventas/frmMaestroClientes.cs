@@ -170,20 +170,13 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (ValidarCampos())
                     {
-                        BECliente clienteEncontrado = bllCliente.VerificarCliente(Convert.ToInt32(txtDNI.Text));
-                        if (clienteEncontrado != null)
-                        {
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste")); return;
-                        }
-                        else
+                        try
                         {
                             BECliente cli = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
                             bllCliente.RegistrarCliente(cli);
-
-
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
+                        catch (Exception ex){ MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
                     }
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                 }

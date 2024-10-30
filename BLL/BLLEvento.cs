@@ -16,6 +16,8 @@ namespace BLL
 
         public void RegistrarEvento(Evento evento)
         {
+            evento.Fecha = DateTime.Today.ToString("yyyy-MM-dd");
+            evento.Hora = DateTime.Now.ToString("HH:mm");
             dalEv.RegistrarEvento(evento);
         }
 

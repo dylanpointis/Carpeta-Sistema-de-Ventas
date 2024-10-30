@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,10 +45,8 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
         BLLUsuario bllUsuario = new BLLUsuario();
-        BLLFamilia bllFamilia = new BLLFamilia();
+        BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
         BLLEvento bllEvento = new BLLEvento();
-      
-
         private void btnIniciar_Click(object sender, EventArgs e)
         {
 
@@ -56,57 +55,27 @@ namespace Carpeta_Sistema_de_Ventas
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (SessionManager.GetInstance.ObtenerUsuario() == null)
+
+            try
             {
-                BEUsuario user = bllUsuario.ValidarUsuario(txtNombreUsuario.Text, 0, ""); //verifica si existe el usuario por el username
+                bllDV.CompararDV(txtNombreUsuario.Text);
+                bllUsuario.Login(txtNombreUsuario.Text, txtClave.Text); //LOGICA LOGIN
+                this.Hide(); //oculta el formulario actual
+                frmMenu frmMenu = new frmMenu();
+                frmMenu.Show();
 
-                if(user != null)
-                {
-                    if(user.Bloqueado == false && user.Activo == true)
-                    {
-                        int contClaveIncorrecta = user.ContFallidos;
-                        if (user.Clave == Encriptador.EncriptarSHA256(txtClave.Text))
-                        {
-                            //trae los permisos segun su rol
-                            List<Componente> listaPermisos = bllFamilia.TraerListaPermisosRol(user.codRol);
-                            user.listaPermisosRol = listaPermisos;
-
-
-                            SessionManager.GetInstance.LogIn(user);
-                            IdiomaManager.GetInstance().PrimeraVez = true;
-
-                            bllUsuario.ModificarContFallido(user.NombreUsuario, 0);
-
-                            bllEvento.RegistrarEvento(new Evento(txtNombreUsuario.Text, "Sesiones", "Inicio sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-
-                            this.Hide(); //oculta el formulario actual
-                            frmMenu frmMenu = new frmMenu();
-                            frmMenu.Show();
-
-                            frmMenu.FormClosing += CerrandoFormulario; //cuando se cierra el formulario menu ejecuta la funcion CerrandoFormulario que vuelve a mostrar el form login
-
-                        }
-                        else
-                        {
-                            contClaveIncorrecta++;
-                            bllUsuario.ModificarContFallido(user.NombreUsuario, contClaveIncorrecta);
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if (contClaveIncorrecta == 3)
-                            {
-                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seBloqueo"), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                bllUsuario.ModificarBloqueo(user.DNI, true);
-
-                                bllEvento.RegistrarEvento(new Evento(txtNombreUsuario.Text, "Sesiones", "Usuario bloqueado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                            }
-                        }
-                    }
-                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("estaBloqueado"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                   
-                    
-                }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro"), "", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                frmMenu.FormClosing += CerrandoFormulario; //cuando se cierra el formulario menu ejecuta la funcion CerrandoFormulario que vuelve a mostrar el form 
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaInicio")); }
+            catch (Exception ex)
+            {
+                // Muestra el mensaje de error desde la excepción.
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(ex.Message != IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV")) //"inconsistenciaDV" es el mensaje que muestra al usuario normal. No admin
+                {
+                    frmRepararDigitoVerificador form = new frmRepararDigitoVerificador();
+                    form.ShowDialog();
+                }
+            }
         }
 
 
@@ -121,11 +90,10 @@ namespace Carpeta_Sistema_de_Ventas
 
             if (SessionManager.GetInstance.ObtenerUsuario() != null)
             {
-                BLLEvento bLLEvento = new BLLEvento();
-                bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1, "", ""));
+                SessionManager.GetInstance.LogOut();
             }
 
-            SessionManager.GetInstance.LogOut();
             this.Show(); //vuelve a mostrar este form de login
         }
 

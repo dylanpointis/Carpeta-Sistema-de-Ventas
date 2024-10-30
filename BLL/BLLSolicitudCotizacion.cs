@@ -1,6 +1,7 @@
 ﻿using BE;
 using DAL;
 using Services;
+using Services.Observer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,9 +18,18 @@ namespace BLL
 
         public int RegistrarSolicitudCotizacion(BESolicitudCotizacion solicitudCoti)
         {
-            int id =dalSolC.RegistrarSolicitudCotizacion(solicitudCoti);
-            bllDV.PersistirDV(dalSolC.TraerListaSolicitudes());
-            return id;
+            if (solicitudCoti.obtenerProveedorSolicitud().Count == 0)
+            {
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("seleccioneAlMenosUnProv"));
+            }
+
+            if (solicitudCoti.obtenerItems().TrueForAll(i => i.Cantidad > 0))
+            {
+                int id = dalSolC.RegistrarSolicitudCotizacion(solicitudCoti);
+                bllDV.PersistirDV(dalSolC.TraerListaSolicitudes());
+                return id;
+            }
+            throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("ingreseCantidades"));
         }
 
 

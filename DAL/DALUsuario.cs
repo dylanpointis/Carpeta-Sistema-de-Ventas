@@ -1,4 +1,5 @@
 ﻿using BE;
+using BE.Composite;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -80,13 +81,18 @@ namespace DAL
              };
 
 
-            DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarUsuario", parametros);
+            DataTable tabla = dalCon.ConsultaProcAlmacenado("ValidarUsuario", parametros);
 
             BEUsuario user = null;
             foreach (DataRow dr in tabla.Rows)
             {
                 user = new BEUsuario(Convert.ToInt32(dr[0]), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), Convert.ToInt32(dr[6]), Convert.ToBoolean(dr[7]), Convert.ToBoolean(dr[8]));
                 user.ContFallidos = Convert.ToInt16(dr[9]);
+
+                //busca el rol del usuario. Solamente carga el nombre del Rol
+                Familia familia = new Familia();
+                familia.Nombre = Convert.ToString(dr[11]);
+                user.Rol = familia;
                 break;
                 //Solo agarra el primer registro que coincida nombreusuario
             }

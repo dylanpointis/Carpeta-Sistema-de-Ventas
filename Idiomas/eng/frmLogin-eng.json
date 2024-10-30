@@ -11,6 +11,9 @@
   "noSeEncontro": "The entered user was not found",
   "yaInicio": "There is already a session started",
   "llene": "Fill in the fields",
+  "inconsistenciaDVAdmin": "Inconsistency present in the system database.\nTable: ",
+  "inconsistenciaDV": "The system is currently unavailable. Please contact the administrator."
+
 
 
   "Admin": "Admin",

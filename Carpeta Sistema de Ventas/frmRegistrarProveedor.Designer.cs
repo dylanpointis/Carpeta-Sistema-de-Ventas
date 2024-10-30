@@ -47,6 +47,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtBanco = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -171,7 +172,7 @@
             // 
             // txtCBU
             // 
-            this.txtCBU.Location = new System.Drawing.Point(60, 275);
+            this.txtCBU.Location = new System.Drawing.Point(60, 286);
             this.txtCBU.Name = "txtCBU";
             this.txtCBU.Size = new System.Drawing.Size(185, 20);
             this.txtCBU.TabIndex = 61;
@@ -180,7 +181,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(57, 259);
+            this.label7.Location = new System.Drawing.Point(57, 270);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 60;
@@ -204,7 +205,7 @@
             // 
             // txtBanco
             // 
-            this.txtBanco.Location = new System.Drawing.Point(329, 275);
+            this.txtBanco.Location = new System.Drawing.Point(329, 286);
             this.txtBanco.Name = "txtBanco";
             this.txtBanco.Size = new System.Drawing.Size(185, 20);
             this.txtBanco.TabIndex = 65;
@@ -212,17 +213,27 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(326, 259);
+            this.label9.Location = new System.Drawing.Point(326, 270);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 13);
             this.label9.TabIndex = 64;
             this.label9.Text = "Banco:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(60, 241);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(469, 13);
+            this.label6.TabIndex = 66;
+            this.label6.Text = "_____________________________________________________________________________";
             // 
             // frmRegistrarProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 450);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtBanco);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtDireccion);
@@ -271,5 +282,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtBanco;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label6;
     }
 }

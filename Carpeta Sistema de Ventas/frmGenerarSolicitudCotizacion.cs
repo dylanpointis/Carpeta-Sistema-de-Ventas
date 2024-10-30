@@ -108,28 +108,24 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if (solicitudCoti.obtenerItems().TrueForAll(i => i.Cantidad > 0))
+            try
             {
-                try
+                int idSolicitud = bLLSolicitudCotizacion.RegistrarSolicitudCotizacion(solicitudCoti);
+                solicitudCoti.NumSolicitud = idSolicitud;
+
+                foreach (BEItemSolicitud item in solicitudCoti.obtenerItems())
                 {
-                    int idSolicitud = bLLSolicitudCotizacion.RegistrarSolicitudCotizacion(solicitudCoti);
-                    solicitudCoti.NumSolicitud = idSolicitud;
-
-                    foreach (BEItemSolicitud item in solicitudCoti.obtenerItems())
-                    {
-                        bLLSolicitudCotizacion.RegistrarItemSolicitud(item, solicitudCoti.NumSolicitud);
-                    }
-
-                    foreach (BEProveedor prov in solicitudCoti.obtenerProveedorSolicitud())
-                    {
-                        bLLSolicitudCotizacion.RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
-                    }
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Solicitud de cotización generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                    bLLSolicitudCotizacion.RegistrarItemSolicitud(item, solicitudCoti.NumSolicitud);
                 }
-                catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+                foreach (BEProveedor prov in solicitudCoti.obtenerProveedorSolicitud())
+                {
+                    bLLSolicitudCotizacion.RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
+                }
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Solicitud de cotización generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ingreseCantidades")); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void btnRegistrarProveedor_Click(object sender, EventArgs e)
