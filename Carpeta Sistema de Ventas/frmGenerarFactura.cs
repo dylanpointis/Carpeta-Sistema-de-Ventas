@@ -210,9 +210,6 @@ namespace Carpeta_Sistema_de_Ventas
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeSeleccionar")); }
         }
 
-        private void btnFinalizar_Click(object sender, EventArgs e)
-        {
-        }
 
         private void btnFinalizar_Click_1(object sender, EventArgs e)
         {
@@ -242,6 +239,11 @@ namespace Carpeta_Sistema_de_Ventas
 
 
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        Reportes reportes = new Reportes(Properties.Resources.logo);
+                        string paginahtml = Properties.Resources.htmlfactura.ToString();
+                        reportes.GenerarReporteVenta(_factura, paginahtml);
+
                         this.Enabled = false; // deshabilita los botones
 
                     }

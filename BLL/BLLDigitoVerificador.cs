@@ -73,8 +73,8 @@ namespace BLL
         {
             DataTable tablaDVGlobal = TraerTablaDV();
             //consigue un vector dvh y un vector dvv con los valores calculados dvh y dvv de todas las tablas
-            string[] DVHCalculado = CalcularDVHActual(tablaDVGlobal);
-            string[] DVVCalculado = CalcularDVVActual(tablaDVGlobal);
+            string[] DVHCalculado = CalcularDVHActual(tablaDVGlobal); //vector con los dvh de todas las tablas
+            string[] DVVCalculado = CalcularDVVActual(tablaDVGlobal); //vector con los dvv de todas las tablas
 
             BEUsuario user = bLLUsuario.ValidarUsuario(nombreusuario,0,"");
 
@@ -86,7 +86,8 @@ namespace BLL
                 {
                     if(user.Rol.Nombre == "Admin")
                     {
-                        throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin") + row[0].ToString());
+                        //row[0].ToString() tabla que da error
+                        throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin"));
                         //en la ui muestra el formulario reparar DV para el admin
                     }
                     else

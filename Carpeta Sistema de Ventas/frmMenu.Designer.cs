@@ -46,6 +46,8 @@
             this.generarFacturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Compras = new System.Windows.Forms.ToolStripMenuItem();
             this.generarSolicitudDeCotizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarOrdenDeCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.corroborarRecepciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Reportes = new System.Windows.Forms.ToolStripMenuItem();
             this.generarReporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Ayuda = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,8 +55,6 @@
             this.btnSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generarOrdenDeCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.corroborarRecepciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -223,6 +223,22 @@
             this.generarSolicitudDeCotizaciónToolStripMenuItem.Text = "Generar solicitud de cotización";
             this.generarSolicitudDeCotizaciónToolStripMenuItem.Click += new System.EventHandler(this.generarSolicitudDeCotizaciónToolStripMenuItem_Click);
             // 
+            // generarOrdenDeCompraToolStripMenuItem
+            // 
+            this.generarOrdenDeCompraToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generarOrdenDeCompraToolStripMenuItem.Name = "generarOrdenDeCompraToolStripMenuItem";
+            this.generarOrdenDeCompraToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
+            this.generarOrdenDeCompraToolStripMenuItem.Text = "Generar orden de compra";
+            this.generarOrdenDeCompraToolStripMenuItem.Click += new System.EventHandler(this.generarOrdenDeCompraToolStripMenuItem_Click);
+            // 
+            // corroborarRecepciónToolStripMenuItem
+            // 
+            this.corroborarRecepciónToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.corroborarRecepciónToolStripMenuItem.Name = "corroborarRecepciónToolStripMenuItem";
+            this.corroborarRecepciónToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
+            this.corroborarRecepciónToolStripMenuItem.Text = "Corroborar recepción";
+            this.corroborarRecepciónToolStripMenuItem.Click += new System.EventHandler(this.corroborarRecepciónToolStripMenuItem_Click);
+            // 
             // Reportes
             // 
             this.Reportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -237,8 +253,8 @@
             // 
             this.generarReporteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generarReporteToolStripMenuItem.Name = "generarReporteToolStripMenuItem";
-            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
-            this.generarReporteToolStripMenuItem.Text = "Generar reporte";
+            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.generarReporteToolStripMenuItem.Text = "Generar reporte ventas";
             this.generarReporteToolStripMenuItem.Click += new System.EventHandler(this.generarReporteToolStripMenuItem_Click);
             // 
             // Ayuda
@@ -283,22 +299,6 @@
             this.iniciarSesiónToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.iniciarSesiónToolStripMenuItem.Text = "Iniciar sesión";
             this.iniciarSesiónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesiónToolStripMenuItem_Click);
-            // 
-            // generarOrdenDeCompraToolStripMenuItem
-            // 
-            this.generarOrdenDeCompraToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generarOrdenDeCompraToolStripMenuItem.Name = "generarOrdenDeCompraToolStripMenuItem";
-            this.generarOrdenDeCompraToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
-            this.generarOrdenDeCompraToolStripMenuItem.Text = "Generar orden de compra";
-            this.generarOrdenDeCompraToolStripMenuItem.Click += new System.EventHandler(this.generarOrdenDeCompraToolStripMenuItem_Click);
-            // 
-            // corroborarRecepciónToolStripMenuItem
-            // 
-            this.corroborarRecepciónToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.corroborarRecepciónToolStripMenuItem.Name = "corroborarRecepciónToolStripMenuItem";
-            this.corroborarRecepciónToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
-            this.corroborarRecepciónToolStripMenuItem.Text = "Corroborar recepción";
-            this.corroborarRecepciónToolStripMenuItem.Click += new System.EventHandler(this.corroborarRecepciónToolStripMenuItem_Click);
             // 
             // frmMenu
             // 

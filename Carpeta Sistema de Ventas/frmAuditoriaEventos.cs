@@ -143,7 +143,9 @@ namespace Carpeta_Sistema_de_Ventas
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             string filas = "";
-            foreach(DataGridViewRow row in grillaEventos.Rows)
+            List<Evento> lista = new List<Evento>();
+
+            foreach (DataGridViewRow row in grillaEventos.Rows)
             {
                 string idevento = row.Cells[0].Value.ToString();
                 string nombreusuario = row.Cells[1].Value.ToString();
@@ -153,69 +155,13 @@ namespace Carpeta_Sistema_de_Ventas
                 string fecha = row.Cells[5].Value.ToString();
                 string hora = row.Cells[6].Value.ToString();
 
-
-                filas += "<tr>";
-                filas += "<td>" + idevento + "</td>";
-                filas += "<td>" + nombreusuario + "</td>";
-                filas += "<td>" + modulo + "</td>";
-                filas += "<td>" + eventodesc + "</td>";
-                filas += "<td>" + criticidad + "</td>";
-                filas += "<td>" + fecha + "</td>";
-                filas += "<td>" + hora + "</td>";
-                filas += "</tr>";
+                lista.Add(new Evento(nombreusuario, modulo, eventodesc, criticidad, fecha, hora));
             }
-
-            SaveFileDialog guardarArchivo = new SaveFileDialog();
-
-            guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
-            guardarArchivo.FileName = "Eventos-" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm") + ".pdf";
 
             string paginahtml = Properties.Resources.htmlauditoriaevento.ToString();
 
-
-            paginahtml = paginahtml.Replace("@FILAS", filas);
-            paginahtml = paginahtml.Replace("@auditoriaFecha", DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
- 
-
-
-            paginahtml = paginahtml.Replace("@label2", IdiomaManager.GetInstance().ConseguirTexto("label2"));
-            paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
-            paginahtml = paginahtml.Replace("@textoDetalleEvento", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleEvento"));
-            paginahtml = paginahtml.Replace("@textoIdEvento", IdiomaManager.GetInstance().ConseguirTexto("textoIdEvento"));
-            paginahtml = paginahtml.Replace("@textoNombreUsuario", IdiomaManager.GetInstance().ConseguirTexto("textoNombreUsuario"));
-            paginahtml = paginahtml.Replace("@textoModulo", IdiomaManager.GetInstance().ConseguirTexto("textoModulo"));
-            paginahtml = paginahtml.Replace("@textoEvento", IdiomaManager.GetInstance().ConseguirTexto("textoEvento"));
-            paginahtml = paginahtml.Replace("@textoCriticidad", IdiomaManager.GetInstance().ConseguirTexto("textoCriticidad"));
-            paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
-            paginahtml = paginahtml.Replace("@textoHora", IdiomaManager.GetInstance().ConseguirTexto("textoHora"));
-
-
-
-            if (guardarArchivo.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
-                {
-                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
-
-                    pdf.Open();
-                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Properties.Resources.logo, System.Drawing.Imaging.ImageFormat.Png);
-                    img.ScaleToFit(80, 60);
-                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
-                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
-                    pdf.Add(img);
-
-                    using (StringReader lector = new StringReader(paginahtml))
-                    {
-                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
-                    }
-
-
-                    pdf.Close();
-                    stream.Close();
-                }
-            }
+            Reportes reportes = new Reportes(Properties.Resources.logo);
+            reportes.GenerarReporteEventos(lista, paginahtml);
             
         }
 

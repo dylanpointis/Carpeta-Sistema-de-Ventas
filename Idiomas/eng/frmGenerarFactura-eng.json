@@ -41,6 +41,38 @@
 
 
 
+
+  "dgvNumFactura": "Invoice Number",
+  "dgvDNI": "Client DNI",
+  "dgvTran": "Transaction Number",
+  "dgvTotal": "Total",
+  "dgvImpuesto": "Tax",
+  "dgvFecha": "Date",
+  "dgvMetodo": "Payment Method",
+  "dgvMarca": "Card brand",
+  "dgvCantCuotas": "Installments",
+  "dgvAlias": "MP Alias",
+  "dgvNombre": "First Name",
+  "dgvApellido": "Last Name",
+  "dgvEmail": "Email",
+  "dgvDireccion": "Address",
+  "dgvCodigo": "Product Code",
+  "dgvModelo": "Model",
+  "dgvCantidad": "Quantity",
+  "dgvPrecio": "Price",
+  "dgvSubtotal": "Subtotal",
+
+  "htmlFechaVenta": "Date of sale",
+  "htmlDetalleCliente": "Customer details:",
+  "htmlDetalleProductos": "Product details:",
+  "htmlDetallePago": "Payment details:",
+  "htmlMontoTotal": "Total amount:",
+  "htmlAlias": "Mercado Pago Alias",
+  "htmlNeto": "Net amount",
+  "htmlIVA": "VAT",
+
+
+
   "cerrar": "Log out",
   "deseaCerrar": "Are you sure you want to Log Out?",
   "noHaySesion": "No session logged",

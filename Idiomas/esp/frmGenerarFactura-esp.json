@@ -44,6 +44,42 @@
 
 
 
+
+
+ "dgvNumFactura": "Número factura",
+  "dgvDNI": "DNI cliente",
+  "dgvTran": "Número transacción",
+  "dgvTotal": "Total",
+  "dgvImpuesto": "Impuesto",
+  "dgvFecha": "Fecha",
+  "dgvMetodo": "Método pago",
+  "dgvMarca": "Marca tarjeta",
+  "dgvCantCuotas": "Cantidad cuotas",
+  "dgvAlias": "Alias MP",
+  "dgvNombre": "Nombre",
+  "dgvApellido": "Apellido",
+  "dgvEmail": "Email",
+  "dgvDireccion": "Dirección",
+
+  "dgvCodigo": "Código producto",
+  "dgvModelo": "Modelo",
+  "dgvCantidad": "Cantidad",
+  "dgvPrecio": "Precio",
+  "dgvSubtotal": "Subtotal",
+
+
+  "htmlFechaVenta": "Fecha venta",
+  "htmlDetalleCliente": "Detalle cliente:",
+  "htmlDetalleProductos": "Detalle productos:",
+  "htmlDetallePago": "Detalle pago:",
+  "htmlMontoTotal": "Monto Total:",
+  "htmlAlias": "Alias Mercado Pago",
+  "htmlNeto": "Monto neto",
+  "htmlIVA": "I.V.A",
+
+
+
+
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

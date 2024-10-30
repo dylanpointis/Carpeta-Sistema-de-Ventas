@@ -49,8 +49,7 @@ namespace Carpeta_Sistema_de_Ventas
         BLLEvento bllEvento = new BLLEvento();
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-
-            if(txtNombreUsuario.Text == "" || txtClave.Text == "")
+            if (txtNombreUsuario.Text == "" || txtClave.Text == "")
             {
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llene"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -70,7 +69,7 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 // Muestra el mensaje de error desde la excepción.
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if(ex.Message != IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV")) //"inconsistenciaDV" es el mensaje que muestra al usuario normal. No admin
+                if(ex.Message == IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV")) //"inconsistenciaDV" es el mensaje que muestra al usuario normal. No admin
                 {
                     frmRepararDigitoVerificador form = new frmRepararDigitoVerificador();
                     form.ShowDialog();

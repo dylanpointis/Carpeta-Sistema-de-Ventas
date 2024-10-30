@@ -13,7 +13,7 @@
   "cambiarClaveToolStripMenuItem": "Change Password",
   "cambiarIdiomaToolStripMenuItem": "Change Language",
   "generarFacturaToolStripMenuItem": "Generate Invoice",
-  "generarReporteToolStripMenuItem": "Generate report",
+  "generarReporteToolStripMenuItem": "Generate sales report",
   "eventosToolStripMenuItem": "Events",
   "respaldosToolStripMenuItem": "Backups",
   "productosCToolStripMenuItem": "Product-Changes",
