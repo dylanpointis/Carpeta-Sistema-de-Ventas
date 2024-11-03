@@ -1,0 +1,21 @@
+{
+  "lblTitulo": "Inconsistencia presente en la \nBase de datos del sistema",
+  "btnRecalcularDV": "RECALCULAR DV",
+  "btnRestaurarBD": "RESTAURAR BD",
+  "btnSalir": "Salir",
+  "estaSeguroRecalcular": "¿Está seguro que desea recalcular el Dígito Verificador? Esto hará que se pueda seguir utilizando el sistema con normalidad, pero no resolverá la inconsistencia encontrada",
+  "exitoRestore": "Restauración realizada exitosamente",
+  "errorRestore": "Error al realizar la restauración: ",
+  "exitoRecalcularDV": "Dígito Verificador recalculado exitosamente",
+
+
+
+
+  "btnIniciar": "Iniciar",
+  "btnSalir": "Salir",
+  "label1": "Nombre de usuario",
+  "label2": "Clave",
+  "label3": "Iniciar sesión",
+  "btnMostrarClave": ""
+
+}

@@ -1,0 +1,19 @@
+{
+  "lblTitulo": "Inconsistency present in the system's database",
+  "btnRecalcularDV": "RECALCULATE CD",
+  "btnRestaurarBD": "RESTORE DB",
+  "btnSalir": "Exit",
+  "estaSeguroRecalcular": "Are you sure you want to recalculate the Check Digit? This will allow the system to be used normally, but it will not resolve the found inconsistency.",
+  "exitoRestore": "Restore performed successfully",
+  "errorRestore": "Error performing the restore: "
+  "exitoRecalcularDV": "Check Digit successfully recalculated,
+
+
+  "btnIniciar": "Start",
+  "btnSalir": "Exit",
+  "label1": "Username",
+  "label2": "Password",
+  "label3": "Log in",
+  "btnMostrarClave": ""
+}
+

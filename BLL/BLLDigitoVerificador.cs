@@ -27,6 +27,7 @@ namespace BLL
                 int CantColumnas = tablaActual.Columns.Count;
 
                 string dvhTablaActual = "";
+               
                 foreach (DataRow rowTablaActual in tablaActual.Rows) //calcula el DVH de la tabla actual pk
                 {
                     for (int i = 0; i < CantColumnas; i++)
@@ -35,6 +36,7 @@ namespace BLL
                     }
                 }
                 DVH.Add(Encriptador.EncriptarSHA256(dvhTablaActual)); //lo agrega al vector DVH global
+               
             }
             return DVH.ToArray();
         }
@@ -55,6 +57,7 @@ namespace BLL
                 int CantFilas = tablaActual.Rows.Count;
 
                 string dvvTablaActual = "";
+
                 foreach (DataColumn column in tablaActual.Columns)
                 {
                     for (int i = 0; i < CantFilas; i++)
@@ -77,22 +80,33 @@ namespace BLL
             string[] DVVCalculado = CalcularDVVActual(tablaDVGlobal); //vector con los dvv de todas las tablas
 
             BEUsuario user = bLLUsuario.ValidarUsuario(nombreusuario,0,"");
+            if (user == null)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro"));
+            if (user.Bloqueado == true || user.Activo == false)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("estaBloqueado"));
 
             int i = 0;
             foreach (DataRow row in tablaDVGlobal.Rows)
             {
-                //compara el dvh y dvv global con el calculado
-                if (row[1].ToString() != DVHCalculado[i] && row[2].ToString() != DVVCalculado[i])
-                {
-                    if(user.Rol.Nombre == "Admin")
+                string tablaaaaa = row[0].ToString();
+                string dvhhhhhhhhhhh = row[1].ToString();
+                string dvvvvvvv = row[2].ToString();
+
+                if (row[1].ToString() != "" && row[2].ToString() != "") //si ya se les persistio algun DV continua. Si no, lo saltea
+                { 
+                    //compara el dvh y dvv global con el calculado
+                    if (row[1].ToString() != DVHCalculado[i] && row[2].ToString() != DVVCalculado[i])
                     {
-                        //row[0].ToString() tabla que da error
-                        throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin"));
-                        //en la ui muestra el formulario reparar DV para el admin
-                    }
-                    else
-                    {
-                        throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV"));//para un usuario normal solo muestra error.
+                        if (user.Rol.Nombre == "Admin")
+                        {
+                            string tablaError = row[0].ToString(); //tabla que da error
+                            throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin") + tablaError);
+                            //en la ui muestra el formulario reparar DV para el admin
+                        }
+                        else
+                        {
+                            throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV"));//para un usuario normal solo muestra error.
+                        }
                     }
                 }
                 i++;
@@ -107,32 +121,34 @@ namespace BLL
             string DVH = "";
             string DVV = "";
 
-
-            //CALCULAR DVH
-            foreach (DataRow row in dataTable.Rows)
-            {
-                for (int i = 0; i < CantColumnas; i++)
+            if(CantFilas > 0) // si la tabla no esta vacia
+            {  
+                //CALCULAR DVH
+                foreach (DataRow row in dataTable.Rows)
                 {
-                    DVH += row[i].ToString();
+                    for (int i = 0; i < CantColumnas; i++)
+                    {
+                        DVH += row[i].ToString();
+                    }
                 }
-            }
 
-            DVH = Encriptador.EncriptarSHA256(DVH);
+                DVH = Encriptador.EncriptarSHA256(DVH);
 
-            //CALCULAR DVV
-            foreach (DataColumn column in dataTable.Columns)
-            {
-                for (int i = 0; i < CantFilas; i++)
+                //CALCULAR DVV
+                foreach (DataColumn column in dataTable.Columns)
                 {
-                    DVV += dataTable.Rows[i][column].ToString();
+                    for (int i = 0; i < CantFilas; i++)
+                    {
+                        DVV += dataTable.Rows[i][column].ToString();
+                    }
                 }
+
+                DVV = Encriptador.EncriptarSHA256(DVV);
+
+                DV_Object dvObj = new DV_Object(DVH, DVV);
+
+                dalDV.PersistirDV(dvObj, dataTable.TableName);
             }
-
-            DVV = Encriptador.EncriptarSHA256(DVV);
-
-            DV_Object dvObj = new DV_Object(DVH, DVV);
-
-            dalDV.PersistirDV(dvObj, dataTable.TableName);
         }
 
         public DataTable TraerTablaDV()
@@ -146,5 +162,15 @@ namespace BLL
             return dalDV.TraerTablaAConsultarDV(tablaAConsultarDV);
         }
 
+        public void RecalcularDV()
+        {
+            DataTable tablaDVGlobal = TraerTablaDV(); //trae la tabla DV global
+            foreach (DataRow row in tablaDVGlobal.Rows)
+            {
+                PersistirDV(TraerTablaAConsultarDV(row[0].ToString())); 
+                //persiste de vuelta el dv de cada registro (cada tabla) asi se puede seguir utilizando el sistema
+            }
+
+        }
     }
 }

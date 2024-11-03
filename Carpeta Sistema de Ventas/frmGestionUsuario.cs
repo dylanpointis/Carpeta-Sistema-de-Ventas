@@ -346,6 +346,11 @@ namespace Carpeta_Sistema_de_Ventas
             grillaUsuarios.BindingContext = new BindingContext(); //ESTO ES PARA COLOREAR EN ROJO A LOS NO ACTIVOS. ASEGURA QUE SE LLENEN BIEN LOS DATOS DEL GRIDVIEW
             foreach (DataGridViewRow row in grillaUsuarios.Rows)
             {
+                //colorea en gris los bloqeuados
+                if (row.Cells[6].Value != null && row.Cells[6].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("true"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGray; //pone en rojo el background
+                }
                 if (row.Cells[7].Value != null && row.Cells[7].Value.ToString() == IdiomaManager.GetInstance().ConseguirTexto("false"))
                 {
                     row.DefaultCellStyle.BackColor = Color.Crimson; //pone en rojo el background

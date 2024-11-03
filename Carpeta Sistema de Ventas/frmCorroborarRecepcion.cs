@@ -32,7 +32,6 @@ namespace Carpeta_Sistema_de_Ventas
         }
 
         BLLOrdenCompra bllOrdenC = new BLLOrdenCompra();
-        BLLProveedor bllProv = new BLLProveedor();
         BLLProducto bllProducto = new BLLProducto();
         BEOrdenCompra ordenC;
         List<BEOrdenCompra> listaOrdenesPendientes = new List<BEOrdenCompra>();

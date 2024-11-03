@@ -11,7 +11,7 @@ namespace DAL
 {
     public class DALConexion
     {
-        SqlConnection con = new SqlConnection("Data Source=localhost;Initial Catalog=CarpetaIngSoftware;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=localhost;Initial Catalog=SistemaAltaGama;Integrated Security=True");
 
         private void Conectar()
         {

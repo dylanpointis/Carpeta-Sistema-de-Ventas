@@ -57,7 +57,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             try
             {
-                //bllDV.CompararDV(txtNombreUsuario.Text);
+                bllDV.CompararDV(txtNombreUsuario.Text);
                 bllUsuario.Login(txtNombreUsuario.Text, txtClave.Text); //LOGICA LOGIN
                 this.Hide(); //oculta el formulario actual
                 frmMenu frmMenu = new frmMenu();
@@ -69,10 +69,13 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 // Muestra el mensaje de error desde la excepción.
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if(ex.Message == IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV")) //"inconsistenciaDV" es el mensaje que muestra al usuario normal. No admin
+                if(ex.Message.StartsWith(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin"))) //si falla el DV y es admin
                 {
-                    frmRepararDigitoVerificador form = new frmRepararDigitoVerificador();
+                    frmRepararDigitoVerificador form = new frmRepararDigitoVerificador(txtNombreUsuario.Text);
                     form.ShowDialog();
+                    //vuelve a cargar el idioma
+                    IdiomaManager.GetInstance().archivoActual = "frmLogin";
+                    IdiomaManager.GetInstance().Agregar(this);
                 }
             }
         }

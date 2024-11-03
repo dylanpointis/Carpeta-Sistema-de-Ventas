@@ -31,7 +31,7 @@ namespace BLL
                 throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro"));
 
             if (user.Activo == false || user.Bloqueado == true)
-                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("estaBloqueado"));
 
 
 

@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRepararDigitoVerificador));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.btnRecalcularDV = new System.Windows.Forms.Button();
             this.btnRestaurarBD = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(61, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(289, 48);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Inconsistencia presente en la \r\nBase de datos del sistema";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(61, 31);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(289, 48);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Inconsistencia presente en la \r\nBase de datos del sistema";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnRecalcularDV
             // 
@@ -58,6 +58,7 @@
             this.btnRecalcularDV.TabIndex = 30;
             this.btnRecalcularDV.Text = "RECALCULAR DV";
             this.btnRecalcularDV.UseVisualStyleBackColor = false;
+            this.btnRecalcularDV.Click += new System.EventHandler(this.btnRecalcularDV_Click);
             // 
             // btnRestaurarBD
             // 
@@ -71,6 +72,7 @@
             this.btnRestaurarBD.TabIndex = 31;
             this.btnRestaurarBD.Text = "RESTAURAR BD";
             this.btnRestaurarBD.UseVisualStyleBackColor = false;
+            this.btnRestaurarBD.Click += new System.EventHandler(this.btnRestaurarBD_Click);
             // 
             // btnSalir
             // 
@@ -84,6 +86,7 @@
             this.btnSalir.TabIndex = 32;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // frmRepararDigitoVerificador
             // 
@@ -93,7 +96,7 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnRestaurarBD);
             this.Controls.Add(this.btnRecalcularDV);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTitulo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRepararDigitoVerificador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -104,7 +107,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnRecalcularDV;
         private System.Windows.Forms.Button btnRestaurarBD;
         private System.Windows.Forms.Button btnSalir;

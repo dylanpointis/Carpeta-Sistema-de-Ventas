@@ -1,6 +1,6 @@
-CREATE DATABASE CarpetaIngSoftware
+CREATE DATABASE SistemaAltaGama
 GO
-USE CarpetaIngSoftware
+USE SistemaAltaGama
 GO
 
 
