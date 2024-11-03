@@ -41,7 +41,7 @@ namespace BLL
                 if (user.ContFallidos >= 3)
                 {
                     ModificarBloqueo(user.DNI, true);
-                    bllEv.RegistrarEvento(new Evento(username, "Sesiones", "Usuario bloqueado", 1,"",""));
+                    bllEv.RegistrarEvento(new Evento(username, "Sesiones", "Usuario bloqueado", 1));
                     throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("seBloqueo"));
                 }
                 throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"));
@@ -51,7 +51,7 @@ namespace BLL
             ModificarContFallido(username, 0);
             user.listaPermisosRol = bllFamilia.TraerListaPermisosRol(user.codRol);
             SessionManager.GetInstance.LogIn(user);
-            bllEv.RegistrarEvento(new Evento(username, "Sesiones", "Inicio sesión", 1,"",""));
+            bllEv.RegistrarEvento(new Evento(username, "Sesiones", "Inicio sesión", 1));
         }
 
 
@@ -108,9 +108,27 @@ namespace BLL
             dalUsuario.EliminarUsuario(DNICliente);
         }
 
-        public void CambiarClave(int DNICliente, string clave)
+        public void CambiarClave(int DNICliente, string clave, string claveActual)
         {
-            dalUsuario.CambiarClave(DNICliente, clave);
+            BEUsuario usuarioActual = SessionManager.GetInstance.ObtenerUsuario();
+            if (usuarioActual == null)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("debeIniciar"));
+
+
+            if(claveActual != "")
+            {
+                if (Encriptador.EncriptarSHA256(claveActual) != SessionManager.GetInstance.ObtenerUsuario().Clave)
+                { 
+                    throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"));
+                }
+            }
+
+
+            if (clave.Length < 8)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("masde8"));
+            
+            dalUsuario.CambiarClave(DNICliente, Encriptador.EncriptarSHA256(clave));
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cambio de clave", 1));
         }
 
         public void ActivarUsuario(int DNICliente)
@@ -121,6 +139,18 @@ namespace BLL
         public void ModificarContFallido(string nombreUsuario, int contClaveIncorrecta)
         {
             dalUsuario.ModificarContFallido(nombreUsuario, contClaveIncorrecta);
+        }
+
+
+        public void ResetearClavePorDefecto(int DNI)
+        {
+            BEUsuario user = ValidarUsuario("", DNI, "");
+            string clave = DNI.ToString() + user.Apellido;
+
+            CambiarClave(DNI, clave,"");
+            //resetea el contador de fallidos a 0
+            ModificarContFallido(user.NombreUsuario, 0);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario desbloqueado", 1));
         }
     }
 }

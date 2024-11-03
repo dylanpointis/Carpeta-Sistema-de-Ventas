@@ -69,22 +69,16 @@ namespace DAL
         }
 
 
-        public void RegistrarItemFactura(BEFactura factura)
+        public void RegistrarItemFactura(BEFactura factura, BEItemFactura item)
         {
-            foreach (BEItemFactura item in factura.listaProductosAgregados)
+            SqlParameter[] parametros = new SqlParameter[]
             {
-                BEProducto prod = item.producto;
-                int cantidad = item.cantidad;
-
-                SqlParameter[] parametros = new SqlParameter[]
-                {
                 new SqlParameter("@NumFactura", factura.NumFactura),
-                new SqlParameter("@CodigoProducto", prod.CodigoProducto),
-                new SqlParameter("@Cant", cantidad),
-                new SqlParameter("@PrecioVenta", prod.Precio)
-                };
-                dalCon.EjecutarProcAlmacenado("RegistrarItemFactura", parametros);
-            }
+                new SqlParameter("@CodigoProducto", item.producto.CodigoProducto),
+                new SqlParameter("@Cant", item.cantidad),
+                new SqlParameter("@PrecioVenta", item.producto.Precio)
+            };
+            dalCon.EjecutarProcAlmacenado("RegistrarItemFactura", parametros);
         }
 
         public DataTable TraerFacturas()

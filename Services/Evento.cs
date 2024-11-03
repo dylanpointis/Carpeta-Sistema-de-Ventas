@@ -16,14 +16,12 @@ namespace Services
         public string Fecha { get; set; }
         public string Hora { get; set; }
 
-        public Evento(string nombreUsuario, string modulo, string evento, int criticidad, string fecha, string hora)
+        public Evento(string nombreUsuario, string modulo, string evento, int criticidad)
         {
             NombreUsuario = nombreUsuario;
             this.evento = evento;
             Modulo = modulo;
             Criticidad = criticidad;
-            Fecha = fecha;
-            Hora = hora;
         }
     }
 }

@@ -51,7 +51,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaItems.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecioUnit");
 
             txtFechaEntrega.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
-            txtFechaEntrega.Value = DateTime.Today;
+            txtFechaEntrega.Value = DateTime.Today.AddDays(7);
 
 
             List<BESolicitudCotizacion> listaSol = bllSolC.TraerListaSolicitudes();
@@ -122,7 +122,7 @@ namespace Carpeta_Sistema_de_Ventas
                     //obtengo el item
                     BEItemOrdenCompra item = ordenC.obtenerItems().FirstOrDefault(i => i.Producto.CodigoProducto == Convert.ToInt32(codProd));
 
-                    //modifica la cantidad a reponer
+                    //modifica el precio de compra
                     ordenC.modificarPrecioItem(Convert.ToInt64(codProd), Convert.ToDouble(precioCompra));
 
                     grillaItems.CurrentRow.Cells[6].Value = precioCompra;
@@ -161,7 +161,7 @@ namespace Carpeta_Sistema_de_Ventas
                         grillaItems.CurrentRow.Cells[5].Value = cantIngresada;
                     }
                 }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numEntero")); }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numEnteroCant")); }
             }
         }
 
@@ -252,30 +252,22 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if(ordenC.NumeroFactura > 0 && ordenC.NumeroTransferencia > 0) //si ya registro el pago
+            if(ordenC.NumeroTransferencia > 0) //si ya registro el pago
             {
-                    try
-                    {
-                        ordenC.FechaEntrega = txtFechaEntrega.Value;
+                try
+                {
+                    ordenC.FechaEntrega = txtFechaEntrega.Value;
 
-                        int numeroOrdenC = bllOrdenC.RegistrarOrdenCompra(ordenC);
+                    //logica Registrar orden de compra
+                    int numeroOrdenC = bllOrdenC.RegistrarOrdenCompra(ordenC);
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        foreach (BEItemOrdenCompra item in ordenC.obtenerItems())
-                        {
-                            bllOrdenC.RegistrarItemOrden(numeroOrdenC, item);
-                        }
-
-                        bllSolC.ModificarEstadoSolicitud(ordenC.NumeroSolicitudCompra, "Cotizada"); //marca el estado de la solicitud en Cotizada
-
-                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Orden de compra generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-
-                        Reportes reportes = new Reportes(Properties.Resources.logo);
-                        string paginahtml = Properties.Resources.htmlfacturacompra.ToString();
-                        ;
-                        reportes.GenerarReporteOrden(ordenC, paginahtml);
-                    }
-                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                    //genera el reporte pdf
+                    string paginahtml = Properties.Resources.htmlfacturacompra.ToString();
+                    Reportes.GenerarReporteOrden(ordenC, paginahtml, Properties.Resources.logo);
+                    btnFinalizar.Enabled = false;
+                }
+                catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
         }
 

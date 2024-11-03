@@ -52,50 +52,23 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnCambiarClave_Click(object sender, EventArgs e)
         {
-
             if (txtClaveActual.Text != "" && txtNuevaClave.Text != "" && txtConfirmar.Text != "")
             {
-                if (usuarioActual != null)
+                if (txtNuevaClave.Text == txtConfirmar.Text)
                 {
-                    if(txtNuevaClave.Text.Length >= 8 && txtConfirmar.Text.Length >= 8)
+                    try
                     {
-                        if (Encriptador.EncriptarSHA256(txtClaveActual.Text) == usuarioActual.Clave)
-                        {
-                            if (txtNuevaClave.Text == txtConfirmar.Text)
-                            {
-                                try
-                                {
-                                    bllUsuario.CambiarClave(usuarioActual.DNI, Encriptador.EncriptarSHA256(txtNuevaClave.Text));
-                                    bllUsuario.ModificarContFallido(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, 0); //resetea el contador de intentos fallidos
+                        bllUsuario.CambiarClave(usuarioActual.DNI, txtNuevaClave.Text, txtClaveActual.Text);
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                                    BLLEvento bllEv = new BLLEvento();
-                                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cambio de clave", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-
-
-                                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"),"", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
-                                    //Cierra sesion automaticamente
-                                    SessionManager.GetInstance.LogOut();
-                                    this.Close();
-                                    _frmParent.Close();
-                                }
-                                catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error"), "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-
-                            }
-                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("confirme")); }
-                        }
-                        else
-                        {
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("incorrecta"), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        //Cierra sesion automaticamente
+                        SessionManager.GetInstance.LogOut();
+                        this.Close();
+                        _frmParent.Close();
                     }
-                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("masde8"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                   
-                }
-                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeIniciar")); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                } 
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("confirme"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("completar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }

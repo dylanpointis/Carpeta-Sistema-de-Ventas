@@ -14,12 +14,28 @@ namespace BLL
     {
         DALFactura dalFac = new DALFactura();
         BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
-
+        BLLEvento bLLEvento = new BLLEvento();
+        BLLProducto bllProducto = new BLLProducto();
 
         public int RegistrarFactura(BEFactura factura) //devuelve el num factura
         {
             int numFac = dalFac.RegistrarFactura(factura);
+            factura.NumFactura = numFac;
             bllDV.PersistirDV(TraerTablaFacturas());
+
+
+            RegistrarItemFactura(factura);
+
+
+            //reduce el stock
+            foreach (var item in factura.listaProductosAgregados)
+            {
+                bllProducto.ModificarStock(item.producto, item.producto.Stock - item.cantidad);
+            }
+
+
+            //registra en la bitacora de eventos
+            bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Factura generada", 2));
             return numFac;
         }
 
@@ -27,7 +43,10 @@ namespace BLL
 
         public void RegistrarItemFactura(BEFactura factura)
         {
-            dalFac.RegistrarItemFactura(factura);
+            foreach (BEItemFactura item in factura.listaProductosAgregados)
+            {
+                dalFac.RegistrarItemFactura(factura, item);
+            }
             bllDV.PersistirDV(bllDV.TraerTablaAConsultarDV("Item_Factura"));
         }
 

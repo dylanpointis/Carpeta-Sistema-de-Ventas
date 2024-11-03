@@ -315,7 +315,7 @@ namespace Carpeta_Sistema_de_Ventas
                     bllFamilia.EliminarHijos(FamiliaConfigurada.Id); //primero elimina sus hijos y luego la familia
                     bllFamilia.EliminarFamilia(FamiliaConfigurada.Id);
 
-                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia eliminada", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia eliminada", 1));
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                 }
 
@@ -338,7 +338,7 @@ namespace Carpeta_Sistema_de_Ventas
                                 }
 
 
-                                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia creada", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia creada", 1));
                                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                             }
                             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }
@@ -358,7 +358,7 @@ namespace Carpeta_Sistema_de_Ventas
                             {
                                 bllFamilia.RegistrarHijos(FamiliaConfigurada.Id, hijo.Id);
                             }
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia modificada", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión Perfiles", "Familia modificada", 1));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"));
                         }
                         else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaOcupado")); }

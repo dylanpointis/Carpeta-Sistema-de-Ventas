@@ -331,11 +331,11 @@
             this.lblFechaEntrega.AutoSize = true;
             this.lblFechaEntrega.Location = new System.Drawing.Point(739, 481);
             this.lblFechaEntrega.Name = "lblFechaEntrega";
-            this.lblFechaEntrega.Size = new System.Drawing.Size(156, 13);
+            this.lblFechaEntrega.Size = new System.Drawing.Size(201, 13);
             this.lblFechaEntrega.TabIndex = 66;
-            this.lblFechaEntrega.Text = "Fecha de entrega de productos";
+            this.lblFechaEntrega.Text = "Fecha de entrega estimada de productos";
             // 
-            // COMPRAfrmGenerarOrdenCompra
+            // frmGenerarOrdenCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -358,7 +358,7 @@
             this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.grillaItems);
             this.Controls.Add(this.label3);
-            this.Name = "COMPRAfrmGenerarOrdenCompra";
+            this.Name = "frmGenerarOrdenCompra";
             this.Text = "COMPRAfrmGenerarOrdenCompra";
             this.Load += new System.EventHandler(this.COMPRAfrmGenerarOrdenCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaItems)).EndInit();

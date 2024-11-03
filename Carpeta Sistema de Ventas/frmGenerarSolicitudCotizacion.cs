@@ -113,19 +113,10 @@ namespace Carpeta_Sistema_de_Ventas
                 int idSolicitud = bLLSolicitudCotizacion.RegistrarSolicitudCotizacion(solicitudCoti);
                 solicitudCoti.NumSolicitud = idSolicitud;
 
-                foreach (BEItemSolicitud item in solicitudCoti.obtenerItems())
-                {
-                    bLLSolicitudCotizacion.RegistrarItemSolicitud(item, solicitudCoti.NumSolicitud);
-                }
-
-                foreach (BEProveedor prov in solicitudCoti.obtenerProveedorSolicitud())
-                {
-                    bLLSolicitudCotizacion.RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
-                }
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Solicitud de cotización generada", 5, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                btnFinalizar.Enabled = false;
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
         private void btnRegistrarProveedor_Click(object sender, EventArgs e)

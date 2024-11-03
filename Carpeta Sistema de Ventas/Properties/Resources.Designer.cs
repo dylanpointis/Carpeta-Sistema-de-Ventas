@@ -140,14 +140,39 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         ///
         ///    &lt;table style=&quot;width: 100%; margin-top: 10px&quot;&gt;
         ///        &lt;tr&gt;
-        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFactura: @NroFactura&lt;/td&gt;
-        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFecha: @Fecha&lt;/td&gt;
-        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFechaEntrega: @FechaEntrega&lt;/td&gt;
-        ///        &lt; [resto de la cadena truncado]&quot;;.
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoNumOrden: @NumOrden&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFecha: @fecha&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textfechaEntrega: @FechaEntrega&lt;/td&gt;
+        ///        &lt;/t [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string htmlfacturacompra {
             get {
                 return ResourceManager.GetString("htmlfacturacompra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Factura&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///
+        ///    &lt;div style=&quot;width: 80%; background-color:lightskyblue; padding: 10px&quot;&gt;
+        ///        &lt;h1 style=&quot;color: white&quot;&gt;Alta Gama&lt;/h1&gt;
+        ///    &lt;/div&gt;
+        ///
+        ///    &lt;table style=&quot;width: 100%; margin-top: 10px&quot;&gt;
+        ///        &lt;tr&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoNumOrden: @NumOrden&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFactura: @NroFactura&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFecha: @fecha&lt;/td&gt;
+        ///            &lt;td s [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string htmlfacturaRecepcion {
+            get {
+                return ResourceManager.GetString("htmlfacturaRecepcion", resourceCulture);
             }
         }
         

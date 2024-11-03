@@ -223,7 +223,7 @@ namespace Carpeta_Sistema_de_Ventas
                 if (SessionManager.GetInstance.ObtenerUsuario() != null)
                 {
                     BLLEvento bLLEvento = new BLLEvento();
-                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                    bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1));
                     SessionManager.GetInstance.LogOut();
                     this.Close();
                 }

@@ -221,31 +221,15 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     try
                     {
+                        //logica de registrar factura
                         _factura.NumFactura = bllFactura.RegistrarFactura(_factura);
-                        bllFactura.RegistrarItemFactura(_factura);
-
-                        //registra cada item de la factura
-                        //registra en la bitacora de eventos
-                        bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Factura generada", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                        //reduce el stock
-                        foreach (var item in _factura.listaProductosAgregados)
-                        {
-                            BEProducto prod = item.producto;
-                            int cantidad = item.cantidad;
-
-                            bllProducto.ModificarStock(prod, prod.Stock - cantidad);
-                            bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Stock reducido", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
-                        }
-
-
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaFinalizada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        Reportes reportes = new Reportes(Properties.Resources.logo);
+                        //genera el pdf
                         string paginahtml = Properties.Resources.htmlfactura.ToString();
-                        reportes.GenerarReporteVenta(_factura, paginahtml);
+                        Reportes.GenerarReporteVenta(_factura, paginahtml, Properties.Resources.logo);
 
-                        this.Enabled = false; // deshabilita los botones
-
+                        this.Enabled = false; // deshabilita los botones=
                     }
                     catch (Exception ex) { MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }

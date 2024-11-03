@@ -95,7 +95,7 @@ namespace Carpeta_Sistema_de_Ventas
                             BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, Encriptador.EncriptarSHA256(clave), rol.Id, false, true);
                             bllUsuario.RegistrarUsuario(user);
 
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario creado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario creado", 1));
 
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                         }
@@ -124,7 +124,7 @@ namespace Carpeta_Sistema_de_Ventas
 
                                     BEUsuario user = new BEUsuario(dni, txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, rol.Id, bloqueado, true);
                                     bllUsuario.ModificarUsuario(user);
-                                    bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario modificado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                                    bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario modificado", 1));
                                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                                 }
 
@@ -140,7 +140,7 @@ namespace Carpeta_Sistema_de_Ventas
                     if (resultado == DialogResult.Yes)
                     {
                         bllUsuario.EliminarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
-                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario eliminado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario eliminado", 1));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
@@ -151,7 +151,7 @@ namespace Carpeta_Sistema_de_Ventas
                     if (resultado == DialogResult.Yes)
                     {
                         bllUsuario.ActivarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
-                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario activado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario activado", 1));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
@@ -168,10 +168,8 @@ namespace Carpeta_Sistema_de_Ventas
                         bllUsuario.ModificarContFallido(username, 0); //resetea el cont de intenos fallidos a 0
 
                         //Cuando bloquea un usuario porque se olvido la clave, al desbloquearlo se le reseta a la clave por defecto
-                        string apellido = grillaUsuarios.CurrentRow.Cells[2].Value.ToString();
-                        string clave = DNI + apellido; // CLAVE COMBINA DNI + APELLIDO
-                        bllUsuario.CambiarClave(DNI, Encriptador.EncriptarSHA256(clave));
-                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario desbloqueado", 1, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                        bllUsuario.ResetearClavePorDefecto(DNI);
+                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario desbloqueado", 1));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
@@ -451,20 +449,16 @@ namespace Carpeta_Sistema_de_Ventas
             if (grillaUsuarios.SelectedRows.Count > 0)
             {
                 int DNI = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
-                string apellido = grillaUsuarios.CurrentRow.Cells[2].Value.ToString();
-                string clave = DNI + apellido;
 
                 DialogResult resultado = MessageBox.Show($"{IdiomaManager.GetInstance().ConseguirTexto("estaSeguroClave")} {DNI}?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado == DialogResult.Yes)
                 {
                     try
                     {
-                        string username = grillaUsuarios.CurrentRow.Cells[4].Value.ToString();
-                        bllUsuario.CambiarClave(DNI, Encriptador.EncriptarSHA256(clave));
-                        bllUsuario.ModificarContFallido(username, 0);
+                        bllUsuario.ResetearClavePorDefecto(DNI);
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
-                    catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorAlModificarClave") + $" {ex.Message}"); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); } 
                 }
             }
         }

@@ -15,6 +15,7 @@ namespace BLL
     {
         private DALSolicitudCotizacion dalSolC = new DALSolicitudCotizacion();
         private BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
+        private BLLEvento bllEv = new BLLEvento();
 
         public int RegistrarSolicitudCotizacion(BESolicitudCotizacion solicitudCoti)
         {
@@ -25,11 +26,25 @@ namespace BLL
 
             if (solicitudCoti.obtenerItems().TrueForAll(i => i.Cantidad > 0))
             {
-                int id = dalSolC.RegistrarSolicitudCotizacion(solicitudCoti);
-                bllDV.PersistirDV(dalSolC.TraerListaSolicitudes());
-                return id;
+                solicitudCoti.NumSolicitud = dalSolC.RegistrarSolicitudCotizacion(solicitudCoti);
+                bllDV.PersistirDV(dalSolC.TraerListaSolicitudes()); 
+                
+                //registrar items de la solicitud
+                foreach (BEItemSolicitud item in solicitudCoti.obtenerItems())
+                {
+                    RegistrarItemSolicitud(item, solicitudCoti.NumSolicitud);
+                }
+
+                //registrar proveedores de la solicitud
+                foreach (BEProveedor prov in solicitudCoti.obtenerProveedorSolicitud())
+                {
+                    RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
+                }
+                //registra evento
+                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Solicitud de cotización generada", 5));
+                return solicitudCoti.NumSolicitud;
             }
-            throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("ingreseCantidades"));
+            else {  throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("ingreseCantidades"));}
         }
 
 

@@ -91,7 +91,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaFacturas.SelectedRows.Count > 0)
             {
-                bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Impresión de factura", 4, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Impresión de factura", 4));
 
                 BECliente cli = new BECliente(Convert.ToInt32(grillaFacturas.CurrentRow.Cells[1].Value), grillaFacturas.CurrentRow.Cells[10].Value.ToString(), grillaFacturas.CurrentRow.Cells[11].Value.ToString(), grillaFacturas.CurrentRow.Cells[12].Value.ToString(), grillaFacturas.CurrentRow.Cells[13].Value.ToString());
 
@@ -110,10 +110,9 @@ namespace Carpeta_Sistema_de_Ventas
                 //busca y carga los items en la factura
                 fac = bllFactura.TraerItemsFactura(fac);
 
-
-                Reportes reportes = new Reportes(Properties.Resources.logo);
+                //genera el reporte pdf
                 string paginahtml = Properties.Resources.htmlfactura.ToString();
-                reportes.GenerarReporteVenta(fac, paginahtml);
+                Reportes.GenerarReporteVenta(fac, paginahtml, Properties.Resources.logo);
             }
             else
             {

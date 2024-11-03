@@ -55,8 +55,22 @@
   "exito": "Entrega de productos registrada con éxito",
   "seleccioneProv": "Seleccione el proveedor final para registrar el pago",
   "carguePreciosYCant": "Cargue todos los precios de compra y cantidades finales",
-  "numEntero": "Ingrese un número entero para la cantidad, menor a 5 cifras",
+  "numEntero": "Ingrese un número entero para la factura, menor a 10 digitos",
+  "ingreseNumFactura": "Ingrese el número de factura de la recepción",
 
+
+
+  "textoNumOrden": "Número de orden de compra",
+  "textoDetalleRecepcion": "Detalle recepción",
+  "textoDetalleProveedor": "Detalle proveedor",
+  "textoFactura": "Número factura",
+  "textoFecha": "Fecha orden",
+  "textoFechaEntrega": "Fecha entrega",
+  "textoCantidadSolicitada": "Cantidad solicitada",
+  "textoCantidadRecibida": "Cantidad recibida",
+  "textoNombreProveedor": "Nombre proveedor",
+  "textoDetallePago": "Detalle del pago",
+  "textoNumeroTransferencia": "Número de transferencia",
 
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",

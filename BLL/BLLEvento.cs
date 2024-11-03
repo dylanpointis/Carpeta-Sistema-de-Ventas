@@ -29,7 +29,11 @@ namespace BLL
 
             foreach (DataRow row in tabla.Rows)
             {
-                Evento evento = new Evento(row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToInt32(row[4]), row[5].ToString(), row[6].ToString());
+                Evento evento = new Evento(row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToInt32(row[4]));
+
+                evento.Fecha =  row[5].ToString();
+                evento.Hora = row[6].ToString();
+
                 evento.IdEvento = Convert.ToInt32(row[0]);
                 lista.Add(evento);
             }
@@ -45,8 +49,11 @@ namespace BLL
 
             foreach (DataRow row in tabla.Rows)
             {
-                Evento e = new Evento(row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToInt32(row[4]), row[5].ToString(), row[6].ToString());
+                Evento e = new Evento(row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToInt32(row[4]));
+
                 e.IdEvento = Convert.ToInt32(row[0]);
+                e.Fecha = row[5].ToString();
+                e.Hora = row[6].ToString();
                 lista.Add(e);
             }
             return lista;

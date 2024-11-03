@@ -390,7 +390,7 @@ CodHijo INT FOREIGN KEY REFERENCES Permisos(CodPermiso)
 )
 GO
 
-CREATE TABLE `
+CREATE TABLE Roles
 (
 CodRol INT PRIMARY KEY IDENTITY(1,1),
 Nombre VARCHAR(50)
@@ -571,6 +571,16 @@ INSERT INTO Rol_Permiso VALUES (2,9)
 
 
 
+INSERT INTO Permisos VALUES('FamiliaCompras',1)
+Insert into Permiso_Componente VALUES(10, 2)
+Insert into Permiso_Componente VALUES(10, 3)
+Insert into Permiso_Componente VALUES(10, 5)
+Insert into Permiso_Componente VALUES(10, 6)
+Insert into Permiso_Componente VALUES(10, 7)
+
+
+INSERT INTO Roles VALUES('Comprador')
+INSERT INTO Rol_Permiso VALUES (3,10)
 
 
 CREATE TABLE Usuarios(
@@ -871,12 +881,13 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE ModificarEstadoOrden
+CREATE PROCEDURE MarcarOrdenEntregada
 	@NumeroOrdenCompra INT,
-	@Estado varchar(50)
+	@Estado varchar(50),
+	@NumFactura INT
 AS
 BEGIN
-	UPDATE OrdenesCompra SET Estado = @Estado WHERE NumeroOrdenCompra = @NumeroOrdenCompra
+	UPDATE OrdenesCompra SET Estado = @Estado, NumeroFactura = @NumFactura WHERE NumeroOrdenCompra = @NumeroOrdenCompra
 END
 GO
 
@@ -978,6 +989,8 @@ INSERT INTO Usuarios VALUES (12345678, 'Admin', 'Admin', 'admin@gmail.com', 'Adm
 INSERT INTO Usuarios VALUES (11111111, 'Admin2', 'Admin2', 'admin2@gmail.com', 'Admin2', '18776097b125be86e05255df301827a91cdd34564b26cb8538f61cf781db5471', 1, 0, 1,0);
 --Clave: 41256789Rodriguez
 INSERT INTO Usuarios VALUES (41256789, 'Esteban', 'Rodriguez', 'estebanrodriguez@gmail.com', 'Esteban', 'c0f7d327744518249a4db0aee5e4096c8b42e9858e6d9104fd048cf7decd127e', 2, 0, 1,0);
+--Clave: 40334227Perez
+INSERT INTO Usuarios VALUES (40334227, 'Horacio', 'Perez', 'horacioperez@gmail.com', 'Horacio', 'f350068aca75e6a6fa6b8e898f42b707bd7fe1233518959181e6ca621e1c9f44', 3, 0, 1,0);
 
 INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 10, 40, 256,1);
 INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26,  10, 40, 512,1);
@@ -994,7 +1007,7 @@ INSERT INTO Clientes VALUES (44978545, 'Luis', 'Hernández', 'luishernandez@gmail
 INSERT INTO Clientes VALUES (40898122, 'Carla', 'Martínez', 'carlamartinez@gmail.com', 'NccLBubi03EOxcaLpcaPRg==', 1);
 
 
-INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-09-30 13:20', 'MercadoPago',null,1,'marcos','')
+INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-10-28 13:20', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)
 
 
@@ -1010,13 +1023,13 @@ INSERT INTO DigitoVerificador VALUES ('Solicitud_Proveedor','','')
 INSERT INTO DigitoVerificador VALUES ('OrdenesCompra','','')
 INSERT INTO DigitoVerificador VALUES ('Item_OrdenCompra','','')
 
-insert into Eventos values ('Esteban','Sesiones','Inicio sesión',1,'2024-09-30','12:15')
-insert into Eventos values ('Esteban','Ventas','Factura generada',2,'2024-09-30','13:20')
-insert into Eventos values ('Esteban','Ventas','Impresión de factura',2,'2024-09-30','13:23')
-insert into Eventos values ('Esteban','Sesiones','Cierre sesión',1,'2024-09-30','15:37')
-insert into Eventos values ('Admin','Sesiones','Inicio sesión',	1,'2024-10-01',	'15:40')
-insert into Eventos values ('Admin','Clientes','Cliente creado',1,'2024-10-01',	'15:45')
-insert into Eventos values ('Admin','Clientes','Archivo serializado',1,'2024-10-01',	'15:49')
-insert into Eventos values ('Admin','Clientes','Archivo deserializado',	1,'2024-10-01',	'15:52')
-insert into Eventos values ('Admin','Productos','Producto creado',	1,'2024-10-01',	'16:30')
-insert into Eventos values ('Admin','Sesiones','Cierre sesión',	1,'2024-10-01',	'19:40')
+insert into Eventos values ('Esteban','Sesiones','Inicio sesión',1,'2024-10-28','12:15')
+insert into Eventos values ('Esteban','Ventas','Factura generada',2,'2024-10-28','13:20')
+insert into Eventos values ('Esteban','Ventas','Impresión de factura',2,'2024-10-28','13:23')
+insert into Eventos values ('Esteban','Sesiones','Cierre sesión',1,'2024-10-28','15:37')
+insert into Eventos values ('Admin','Sesiones','Inicio sesión',	1,'2024-10-29',	'15:40')
+insert into Eventos values ('Admin','Clientes','Cliente creado',1,'2024-10-29',	'15:45')
+insert into Eventos values ('Admin','Clientes','Archivo serializado',1,'2024-10-29',	'15:49')
+insert into Eventos values ('Admin','Clientes','Archivo deserializado',	1,'2024-10-29',	'15:52')
+insert into Eventos values ('Admin','Productos','Producto creado',	1,'2024-10-29',	'16:30')
+insert into Eventos values ('Admin','Sesiones','Cierre sesión',	1,'2024-10-29',	'19:40')

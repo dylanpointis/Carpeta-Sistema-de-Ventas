@@ -10,7 +10,7 @@
   "btnRegistarPago": "Registar pago",
   "btnFinalizar": "Finalizar",
   "btnModificarCant": "Modificar cantidad a reponer",
-  "lblFechaEntrega": "Fecha de entrega de productos",
+  "lblFechaEntrega": "Fecha de entrega estimada de productos",
 
   "lblNeto": "Neto: ",
   "lblIVA": "I.V.A (21%): ",
@@ -58,13 +58,15 @@
   "seleccioneProvParaRegistrarlo": "Seleccione el proveedor final para terminar de registrarlo",
   "carguePreciosYCant": "Cargue todos los precios de compra y cantidades finales",
   "numEntero": "Ingrese un número entero para la cantidad, menor a 5 cifras",
+  "numEnteroCant": "Ingrese un número entero para la cantidad, menor a 3 cifras",
 
 
+  "textoNumOrden": "Número de orden de compra",
   "textoDetalleOrdenCompra": "Detalle orden de compra",
   "textoDetalleProveedor": "Detalle proveedor",
   "textoFactura": "Número factura",
-  "textoFecha": "Fecha",
-  "textoFechaEntrega": "Fecha entrega",
+  "textoFecha": "Fecha orden",
+  "textoFechaEntrega": "Fecha de entrega estimada",
   "textoCantidadSolicitada": "Cantidad solicitada",
   "textoCantidadRecibida": "Cantidad recibida",
   "textoNombreProveedor": "Nombre proveedor",

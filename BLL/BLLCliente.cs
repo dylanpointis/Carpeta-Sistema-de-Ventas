@@ -44,7 +44,7 @@ namespace BLL
                 {
                     dalCliente.RegistrarCliente(cliente);
                     bllDV.PersistirDV(dalCliente.TraerListaCliente());
-                    bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 4, "", ""));
+                    bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 4));
                 } catch (Exception ex) { throw ex; }
             }
             else{ throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExiste")); }

@@ -36,8 +36,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.btnRegistrarPago = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtNumFactura = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.lblProveedor = new System.Windows.Forms.Label();
             this.txtBanco = new System.Windows.Forms.TextBox();
             this.txtNumTransferencia = new System.Windows.Forms.TextBox();
@@ -63,7 +61,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(102, 178);
+            this.label10.Location = new System.Drawing.Point(102, 180);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(123, 13);
             this.label10.TabIndex = 65;
@@ -91,7 +89,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(102, 96);
+            this.lblTotal.Location = new System.Drawing.Point(102, 124);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(37, 13);
             this.lblTotal.TabIndex = 70;
@@ -127,27 +125,10 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // txtNumFactura
-            // 
-            this.txtNumFactura.Location = new System.Drawing.Point(105, 146);
-            this.txtNumFactura.Name = "txtNumFactura";
-            this.txtNumFactura.Size = new System.Drawing.Size(185, 20);
-            this.txtNumFactura.TabIndex = 74;
-            this.txtNumFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumFactura_KeyPress);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(102, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 13);
-            this.label4.TabIndex = 73;
-            this.label4.Text = "Número de factura";
-            // 
             // lblProveedor
             // 
             this.lblProveedor.AutoSize = true;
-            this.lblProveedor.Location = new System.Drawing.Point(102, 66);
+            this.lblProveedor.Location = new System.Drawing.Point(102, 89);
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(62, 13);
             this.lblProveedor.TabIndex = 75;
@@ -163,7 +144,7 @@
             // 
             // txtNumTransferencia
             // 
-            this.txtNumTransferencia.Location = new System.Drawing.Point(105, 204);
+            this.txtNumTransferencia.Location = new System.Drawing.Point(105, 196);
             this.txtNumTransferencia.Name = "txtNumTransferencia";
             this.txtNumTransferencia.Size = new System.Drawing.Size(185, 20);
             this.txtNumTransferencia.TabIndex = 77;
@@ -177,8 +158,6 @@
             this.Controls.Add(this.txtNumTransferencia);
             this.Controls.Add(this.txtBanco);
             this.Controls.Add(this.lblProveedor);
-            this.Controls.Add(this.txtNumFactura);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnRegistrarPago);
             this.Controls.Add(this.lblTotal);
@@ -191,7 +170,6 @@
             this.Name = "frmRegistrarPagoProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.COMPRAfrmRegistrarPagoProveedor_Load);
-            this.Shown += new System.EventHandler(this.frmRegistrarPagoProveedor_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,8 +185,6 @@
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnRegistrarPago;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox txtNumFactura;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblProveedor;
         private System.Windows.Forms.TextBox txtBanco;
         private System.Windows.Forms.TextBox txtNumTransferencia;

@@ -37,7 +37,7 @@ namespace Carpeta_Sistema_de_Ventas
             lblProveedor.Text += ordenC.proveedor.Nombre;
             txtCBU.Text = ordenC.proveedor.CBU;
             txtBanco.Text = ordenC.proveedor.Banco;
-            txtNumFactura.Focus();
+            txtNumTransferencia.Focus();
         }
 
         private void btnRegistrarPago_Click(object sender, EventArgs e)
@@ -46,7 +46,6 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 try
                 {
-                    ordenC.NumeroFactura = Convert.ToInt64(txtNumFactura.Text);
                     ordenC.NumeroTransferencia = Convert.ToInt64(txtNumTransferencia.Text);
                     ordenC.MetodoPago = "Transferencia";
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -59,7 +58,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private bool ValidarCampos()
         {
-            if(txtNumTransferencia.Text == "" || txtNumFactura.Text == "" || txtCBU.Text == "" || txtBanco.Text == "")
+            if(txtNumTransferencia.Text == "" || txtCBU.Text == "" || txtBanco.Text == "")
             {
                 return false;
             }
@@ -120,12 +119,6 @@ namespace Carpeta_Sistema_de_Ventas
                     }
                 }
             }
-
-        }
-
-        private void frmRegistrarPagoProveedor_Shown(object sender, EventArgs e)
-        {
-            txtNumFactura.Focus();
         }
     }
 }

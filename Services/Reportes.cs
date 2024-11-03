@@ -17,23 +17,20 @@ namespace Services
 {
     public class Reportes
     {
-        Bitmap Logo;
-        public Reportes(Bitmap logo)
+        public Reportes()
         {
-            this.Logo = logo;
         }
 
 
-        public void GenerarReporteOrden(BEOrdenCompra ordenC, string paginahtml)
+        public static void GenerarReporteOrden(BEOrdenCompra ordenC, string paginahtml, Bitmap Logo)
         {
             SaveFileDialog guardarArchivo = new SaveFileDialog();
 
             guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
-            guardarArchivo.FileName = ordenC.NumeroFactura + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
+            guardarArchivo.FileName = ordenC.NumeroOrdenCompra + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
 
-
-            paginahtml = paginahtml.Replace("@NroFactura", ordenC.NumeroFactura.ToString());
-            paginahtml = paginahtml.Replace("@Fecha", ordenC.FechaRegistro.ToString("dd/MM/yyyy HH:mm"));
+            paginahtml = paginahtml.Replace("@NumOrden", ordenC.NumeroOrdenCompra.ToString());
+            paginahtml = paginahtml.Replace("@fecha", ordenC.FechaRegistro.ToString("dd/MM/yyyy HH:mm"));
             paginahtml = paginahtml.Replace("@FechaEntrega", ordenC.FechaEntrega.ToString("dd/MM/yyyy HH:mm"));
 
 
@@ -55,7 +52,6 @@ namespace Services
                 filas += "<td>" + prod.Modelo + "</td>";
                 filas += "<td>" + item.PrecioCompra.ToString() + "</td>";
                 filas += "<td>" + cantidad.ToString() + "</td>";
-                filas += "<td>" + item.CantidadRecibida + "</td>";
                 filas += "</tr>";
             }
 
@@ -66,6 +62,8 @@ namespace Services
             paginahtml = paginahtml.Replace("@NumTransferencia", ordenC.NumeroTransferencia.ToString());
 
             //traducciones
+
+            paginahtml = paginahtml.Replace("@textoNumOrden", IdiomaManager.GetInstance().ConseguirTexto("textoNumOrden"));
             paginahtml = paginahtml.Replace("@textoDetalleOrdenCompra", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleOrdenCompra"));
             paginahtml = paginahtml.Replace("@textoDetalleProveedor", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleProveedor"));
             paginahtml = paginahtml.Replace("@gridViewCodigo", IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo"));
@@ -83,7 +81,7 @@ namespace Services
             paginahtml = paginahtml.Replace("@textoNumeroTransferencia", IdiomaManager.GetInstance().ConseguirTexto("textoNumeroTransferencia"));
             paginahtml = paginahtml.Replace("@textoFactura", IdiomaManager.GetInstance().ConseguirTexto("textoFactura"));
             paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
-            paginahtml = paginahtml.Replace("@textofechaEntrega", IdiomaManager.GetInstance().ConseguirTexto("textoFechaEntrega"));
+            paginahtml = paginahtml.Replace("@textfechaEntrega", IdiomaManager.GetInstance().ConseguirTexto("textoFechaEntrega"));
 
             if (guardarArchivo.ShowDialog() == DialogResult.OK)
             {
@@ -113,7 +111,97 @@ namespace Services
         }
 
 
-        public void GenerarReporteVenta(BEFactura fac, string paginahtml)
+
+        public static void GenerarReporteRecepcion(BEOrdenCompra ordenC, string paginahtml, Bitmap Logo)
+        {
+            SaveFileDialog guardarArchivo = new SaveFileDialog();
+
+            guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
+            guardarArchivo.FileName = ordenC.NumeroFactura + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
+
+            paginahtml = paginahtml.Replace("@NroFactura", ordenC.NumeroFactura.ToString());
+            paginahtml = paginahtml.Replace("@NumOrden", ordenC.NumeroOrdenCompra.ToString());
+            paginahtml = paginahtml.Replace("@fecha", ordenC.FechaRegistro.ToString("dd/MM/yyyy HH:mm"));
+            paginahtml = paginahtml.Replace("@FechaEntrega", ordenC.FechaEntrega.ToString("dd/MM/yyyy HH:mm"));
+
+
+            paginahtml = paginahtml.Replace("@CUIT", ordenC.proveedor.CUIT);
+            paginahtml = paginahtml.Replace("@NombreProveedor", ordenC.proveedor.Nombre);
+            paginahtml = paginahtml.Replace("@RazonSocial", ordenC.proveedor.RazonSocial);
+
+            string filas = "";
+            double subtotalfactura = 0;
+            foreach (BEItemOrdenCompra item in ordenC.obtenerItems())
+            {
+                BEProducto prod = item.Producto;
+                int cantidad = item.CantidadSolicitada;
+                double subtotal = cantidad * item.PrecioCompra;
+                subtotalfactura += subtotal;
+
+                filas += "<tr>";
+                filas += "<td>" + prod.CodigoProducto.ToString() + "</td>";
+                filas += "<td>" + prod.Modelo + "</td>";
+                filas += "<td>" + cantidad.ToString() + "</td>";
+                filas += "<td>" + item.CantidadRecibida + "</td>";
+                filas += "</tr>";
+            }
+
+            paginahtml = paginahtml.Replace("@FILAS", filas);
+            paginahtml = paginahtml.Replace("@Total", ordenC.MontoTotal.ToString());
+            paginahtml = paginahtml.Replace("@NumTransferencia", ordenC.NumeroTransferencia.ToString());
+
+            //traducciones
+          
+            paginahtml = paginahtml.Replace("@textoDetalleOrdenCompra", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleRecepcion"));
+            paginahtml = paginahtml.Replace("@textoNumOrden", IdiomaManager.GetInstance().ConseguirTexto("textoNumOrden"));
+
+            paginahtml = paginahtml.Replace("@textoDetalleProveedor", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleProveedor"));
+            paginahtml = paginahtml.Replace("@gridViewCodigo", IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo"));
+            paginahtml = paginahtml.Replace("@gridViewModelo", IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo"));
+            paginahtml = paginahtml.Replace("@gridViewPrecioUnit", IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecioUnit"));
+            paginahtml = paginahtml.Replace("@textoCantidadSolicitada", IdiomaManager.GetInstance().ConseguirTexto("textoCantidadSolicitada"));
+            paginahtml = paginahtml.Replace("@textoCantidadRecibida", IdiomaManager.GetInstance().ConseguirTexto("textoCantidadRecibida"));
+            paginahtml = paginahtml.Replace("@gridViewCUIT", IdiomaManager.GetInstance().ConseguirTexto("gridViewCUIT"));
+            paginahtml = paginahtml.Replace("@textoNombreProveedor", IdiomaManager.GetInstance().ConseguirTexto("textoNombreProveedor"));
+            paginahtml = paginahtml.Replace("@gridViewRazonSocial", IdiomaManager.GetInstance().ConseguirTexto("gridViewRazonSocial"));
+            paginahtml = paginahtml.Replace("@textoDetallePago", IdiomaManager.GetInstance().ConseguirTexto("textoDetallePago"));
+            paginahtml = paginahtml.Replace("@textoNeto", IdiomaManager.GetInstance().ConseguirTexto("lblNeto"));
+            paginahtml = paginahtml.Replace("@textoIVA", IdiomaManager.GetInstance().ConseguirTexto("lblIVA"));
+            paginahtml = paginahtml.Replace("@textoMontoTotal", IdiomaManager.GetInstance().ConseguirTexto("lblTotal"));
+            paginahtml = paginahtml.Replace("@textoNumeroTransferencia", IdiomaManager.GetInstance().ConseguirTexto("textoNumeroTransferencia"));
+            paginahtml = paginahtml.Replace("@textoFactura", IdiomaManager.GetInstance().ConseguirTexto("textoFactura"));
+            paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
+            paginahtml = paginahtml.Replace("@textfechaEntrega", IdiomaManager.GetInstance().ConseguirTexto("textoFechaEntrega"));
+
+            if (guardarArchivo.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
+                {
+                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
+
+                    pdf.Open();
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Logo, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(80, 60);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
+                    pdf.Add(img);
+
+                    using (StringReader lector = new StringReader(paginahtml))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
+                    }
+
+
+                    pdf.Close();
+                    stream.Close();
+                }
+            }
+        }
+
+
+        public static void GenerarReporteVenta(BEFactura fac, string paginahtml, Bitmap Logo)
         {
             SaveFileDialog guardarArchivo = new SaveFileDialog();
 
@@ -161,6 +249,7 @@ namespace Services
             {
                 paginahtml = paginahtml.Replace("@Marca", fac.cobro.MarcaTarjeta.ToString());
             }
+            else { paginahtml = paginahtml.Replace("@Marca", "");}
 
 
             if (fac.cobro.AliasMP != null)
@@ -225,7 +314,7 @@ namespace Services
         }
 
 
-        public void GenerarReporteEventos(List<Evento> lista, string paginahtml)
+        public static void GenerarReporteEventos(List<Evento> lista, string paginahtml, Bitmap Logo)
         {
             string filas = "";
             foreach (Evento ev in lista)

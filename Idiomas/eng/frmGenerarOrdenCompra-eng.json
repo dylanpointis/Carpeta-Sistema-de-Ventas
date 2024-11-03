@@ -10,7 +10,7 @@
   "btnRegistarPago": "Register payment",
   "btnFinalizar": "Finish",
   "btnModificarCant": "Modify quantity to restock",
-  "lblFechaEntrega": "Product delivery date",
+  "lblFechaEntrega": "Estimated Product delivery date",
 
   "lblNeto": "Net: ",
   "lblIVA": "VAT (21%): ",

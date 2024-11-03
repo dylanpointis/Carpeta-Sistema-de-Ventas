@@ -318,6 +318,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Resources\htmlfacturaRecepcion.html" />
     <Content Include="Resources\htmlfacturacompra.html" />
     <None Include="icons\foldericon2.png" />
     <Content Include="icons\invisible.png" />

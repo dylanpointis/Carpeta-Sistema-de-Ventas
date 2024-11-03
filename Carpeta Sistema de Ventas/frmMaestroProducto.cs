@@ -178,7 +178,7 @@ namespace Carpeta_Sistema_de_Ventas
                             BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtStockMin.Text), Convert.ToInt32(txtStockMax.Text), Convert.ToInt32(txtAlmacenamiento.Text),true);
                             bllProducto.RegistrarProducto(prod);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 3));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -196,7 +196,7 @@ namespace Carpeta_Sistema_de_Ventas
                            
                             bllProducto.EliminarProducto(idProd);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto eliminado", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto eliminado", 2));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -210,7 +210,7 @@ namespace Carpeta_Sistema_de_Ventas
 
                             bllProducto.HabilitarProducto(idProd);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto habilitado", 2, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto habilitado", 2));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
@@ -224,7 +224,7 @@ namespace Carpeta_Sistema_de_Ventas
                             BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtStockMin.Text), Convert.ToInt32(txtStockMax.Text), Convert.ToInt32(txtAlmacenamiento.Text), true);
                             bllProducto.ModificarProducto(prod);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 3, DateTime.Today.ToString("yyyy-MM-dd"), DateTime.Now.ToString("HH:mm")));
+                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 3));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //No se puede modifcar un producto deshabilitado

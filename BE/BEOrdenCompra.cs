@@ -71,7 +71,6 @@ namespace BE
             if(itemEncontrado == null)
             {
                 itemsOrdenCompra.Add(new BEItemOrdenCompra(producto, cantSolicitada, cantRecibida));
-                CantidadTotal += cantSolicitada;
             }
         }
 

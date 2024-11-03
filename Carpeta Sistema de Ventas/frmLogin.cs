@@ -57,7 +57,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             try
             {
-                bllDV.CompararDV(txtNombreUsuario.Text);
+                //bllDV.CompararDV(txtNombreUsuario.Text);
                 bllUsuario.Login(txtNombreUsuario.Text, txtClave.Text); //LOGICA LOGIN
                 this.Hide(); //oculta el formulario actual
                 frmMenu frmMenu = new frmMenu();
@@ -89,7 +89,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             if (SessionManager.GetInstance.ObtenerUsuario() != null)
             {
-                bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1, "", ""));
+                bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1));
                 SessionManager.GetInstance.LogOut();
             }
 

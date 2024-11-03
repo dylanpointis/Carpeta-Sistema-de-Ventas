@@ -1,5 +1,8 @@
 ﻿using BE;
 using BLL;
+using Carpeta_Sistema_de_Ventas.Properties;
+using Microsoft.VisualBasic;
+using Services;
 using Services.Observer;
 using System;
 using System.Collections.Generic;
@@ -8,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,7 +34,8 @@ namespace Carpeta_Sistema_de_Ventas
         BLLOrdenCompra bllOrdenC = new BLLOrdenCompra();
         BLLProveedor bllProv = new BLLProveedor();
         BLLProducto bllProducto = new BLLProducto();
-       BEOrdenCompra ordenC;
+        BEOrdenCompra ordenC;
+        List<BEOrdenCompra> listaOrdenesPendientes = new List<BEOrdenCompra>();
 
         private void COMPRAfrmCorroborarRecepcion_Load(object sender, EventArgs e)
         {
@@ -50,7 +55,8 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (ord.Estado == "Pendiente")
                 {
-                    cmbOrdenesCompra.Items.Add(+ord.NumeroOrdenCompra + "  |  " + ord.FechaEntrega);
+                    listaOrdenesPendientes.Add(ord);
+                    cmbOrdenesCompra.Items.Add(ord.NumeroOrdenCompra + "  |  " + ord.FechaEntrega);
                 }
             }
         }
@@ -60,8 +66,7 @@ namespace Carpeta_Sistema_de_Ventas
             string[] partes = cmbOrdenesCompra.SelectedItem.ToString().Split(new string[] { "  |  " }, StringSplitOptions.RemoveEmptyEntries);
             int numOrden = Convert.ToInt32(partes[0].Trim());
 
-            ordenC = new BEOrdenCompra(0,0,"Pendiente", DateTime.Now, DateTime.Now, 0); //CAMBIAR POR VALORES REALES
-            ordenC.NumeroOrdenCompra = numOrden;
+            ordenC = listaOrdenesPendientes.FirstOrDefault(o => o.NumeroOrdenCompra == numOrden);
 
             //Muestra el detalle del proveedor
             BEProveedor prov = bllOrdenC.TraerProveedorOrden(numOrden);
@@ -118,22 +123,22 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if (ordenC.obtenerItems().TrueForAll(i => i.CantidadRecibida > 0))
+            if (ordenC.obtenerItems().TrueForAll(i => i.CantidadRecibida >= 0))
             {
+                string numFactura = Interaction.InputBox(IdiomaManager.GetInstance().ConseguirTexto("ingreseNumFactura"));
+                if (!Regex.IsMatch(numFactura.ToString(), @"^\d{1,9}$") && (Convert.ToInt64(numFactura) > 0))//COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 9
+                {
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numEntero"));
+                }
+
+                ordenC.NumeroFactura = Convert.ToInt32(numFactura);
                 try
                 {
-                    ordenC.Estado = "Entregada";
-                    bllOrdenC.ModificarEstadoOrden(ordenC);
-
-                    //modificar el stock de cada producto
-                    foreach(var item in ordenC.obtenerItems())
-                    {
-                        //suma el stock actual + el recibido
-                        item.Producto.Stock += item.CantidadRecibida;
-                        bllProducto.ModificarProducto(item.Producto);
-                    }
+                    bllOrdenC.ConfirmarRecepcion(ordenC);
 
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Reportes.GenerarReporteRecepcion(ordenC, Properties.Resources.htmlfacturaRecepcion.ToString(), Properties.Resources.logo);
+                    btnFinalizar.Enabled = false;
                 }
                 catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }

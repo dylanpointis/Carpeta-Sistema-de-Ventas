@@ -155,13 +155,12 @@ namespace Carpeta_Sistema_de_Ventas
                 string fecha = row.Cells[5].Value.ToString();
                 string hora = row.Cells[6].Value.ToString();
 
-                lista.Add(new Evento(nombreusuario, modulo, eventodesc, criticidad, fecha, hora));
+                lista.Add(new Evento(nombreusuario, modulo, eventodesc, criticidad));
             }
 
             string paginahtml = Properties.Resources.htmlauditoriaevento.ToString();
 
-            Reportes reportes = new Reportes(Properties.Resources.logo);
-            reportes.GenerarReporteEventos(lista, paginahtml);
+            Reportes.GenerarReporteEventos(lista, paginahtml, Properties.Resources.logo);
             
         }
 
@@ -278,6 +277,7 @@ namespace Carpeta_Sistema_de_Ventas
                     case "Compras":
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Solicitud de cotización generada"), "Solicitud de cotización generada");
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Orden de compra generada"), "Orden de compra generada");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Productos de orden recibidos"), "Productos de orden recibidos");
                         break;
                     default:
                         cmbEvento.DataSource = null;
