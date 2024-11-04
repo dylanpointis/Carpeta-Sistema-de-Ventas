@@ -41,7 +41,6 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void frmMaestroClientes_Load(object sender, EventArgs e)
         {
-
             grillaClientes.ColumnCount = 6;
             grillaClientes.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDNI");
             grillaClientes.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre");
@@ -201,6 +200,7 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         if(grillaClientes.CurrentRow.Cells[5].Value.ToString() == "True") // si esta habilitado se puede modificar
                         {
+                            if (!ValidarCampos()) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                             BECliente cliente = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, Encriptador.EncriptarAES(txtDireccion.Text));
                             cliente.BorradoLogico = true;
                             bllCliente.ModificarCliente(cliente);

@@ -15,6 +15,11 @@
   "exitoRegistro": "Supplier registered successfully",
   "errorMail": "Incorrect email format",
   "llenarCampos": "Fill in the fields",
+  "yaExisteCUIT": "A supplier with the entered CUIT already exists",
+  "yaExisteCBU": "A supplier with the entered CBU already exists",
+  "yaExisteEmail": "A supplier with the entered Email already exists",
+  "longCBU": "The valid CBU length is 22 digits",
+  "formatoCUIT": "The CUIT format is not valid (XX-XXXXXXXX-X)",
 
 
   "cerrar": "Log Out",

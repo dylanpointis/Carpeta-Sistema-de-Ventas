@@ -113,7 +113,7 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     string texto = textBox.Text;
 
-                    if (texto.Length >= 20)
+                    if (texto.Length >= 9)
                     {
                         e.Handled = true;
                     }

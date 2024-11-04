@@ -129,7 +129,6 @@ namespace BLL
 
         public BEProveedor TraerProveedorOrden(int numOrden)
         {
-            List<BEProveedor> lista = new List<BEProveedor>();
             BEProveedor prov = dalOrdC.TraerProveedorOrden(numOrden);
             return prov;
         }

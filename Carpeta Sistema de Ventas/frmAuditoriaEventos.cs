@@ -204,6 +204,7 @@ namespace Carpeta_Sistema_de_Ventas
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Clientes"), "Clientes");
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Respaldos"), "Respaldos");
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Compras"), "Compras");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Proveedores"), "Proveedores");
             dt.Rows.Add("-", "");
 
             cmbModulo.DataSource = dt;
@@ -278,6 +279,12 @@ namespace Carpeta_Sistema_de_Ventas
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Solicitud de cotización generada"), "Solicitud de cotización generada");
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Orden de compra generada"), "Orden de compra generada");
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Productos de orden recibidos"), "Productos de orden recibidos");
+                        break;
+                    case "Proveedores":
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Proveedor creado"), "Proveedor creado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Proveedor habilitado"), "Proveedor habilitado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Proveedor eliminado"), "Proveedor habilitado");
+                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Proveedor modificado"), "Proveedor habilitado");
                         break;
                     default:
                         cmbEvento.DataSource = null;

@@ -37,6 +37,7 @@
   "Clientes": "Clientes",
   "Respaldos": "Respaldos",
   "Compras": "Compras",
+  "Proveedores": "Proveedores",
 
 
   "Inicio sesión": "Inicio sesión",
@@ -71,6 +72,10 @@
   "Solicitud de cotización generada": "Solicitud de cotización generada",
   "Orden de compra generada": "Orden de compra generada",
   "Productos de orden recibidos": "Productos de orden recibidos",
+  "Proveedor creado": "Proveedor creado",
+  "Proveedor habilitado": "Proveedor habilitado",
+  "Proveedor eliminado": "Proveedor eliminado",
+  "Proveedor modificado": "Proveedor modificado",
 
 
 

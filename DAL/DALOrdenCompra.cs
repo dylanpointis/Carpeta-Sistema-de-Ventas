@@ -73,9 +73,9 @@ namespace DAL
                     row[13].ToString(),  //razonSocial
                     row[14].ToString(),  //email
                     row[15].ToString(),  //numTelefono
-                    row[16].ToString(),  //cBU
-                    row[17].ToString(),  //direccion
-                    row[18].ToString()   //banco
+                    row[16].ToString(),  //direccion
+                    row[17].ToString(),  //banco
+                    row[18].ToString()   //cbu
                 );
                 break;
             }

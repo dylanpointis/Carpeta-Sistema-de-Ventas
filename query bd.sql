@@ -718,7 +718,6 @@ GO
 
 
 
-
 /* COMPRA */
 CREATE TABLE Proveedores
 (
@@ -727,9 +726,10 @@ CREATE TABLE Proveedores
 	RazonSocial varchar(100),
 	Email varchar(100),
 	NumTelefono varchar(15), 
-	CBU varchar(100),
 	Direccion varchar(100),
-	Banco varchar(50)
+	Banco varchar(50),
+	CBU varchar(100),
+	BorradoLogico bit
 )
 
 
@@ -913,12 +913,15 @@ GO
 
 
 CREATE PROCEDURE VerificarProveedor
-	@CUITProveedor varchar(14)
+	@CUITProveedor varchar(14),
+	@CBU varchar(100),
+	@Email varchar(100)
 AS
 BEGIN
-    SELECT * FROM Proveedores WHERE CUITProveedor = @CUITProveedor
+    SELECT * FROM Proveedores WHERE CUITProveedor = @CUITProveedor OR CBU = @CBU OR Email = @Email
 END
 GO
+
 
 
 CREATE PROCEDURE RegistrarProveedor
@@ -933,7 +936,7 @@ CREATE PROCEDURE RegistrarProveedor
 
 AS
 BEGIN
-    INSERT INTO Proveedores VALUES (@CUITProveedor, @Nombre, @RazonSocial, @Email, @NumTelefono, @CBU, @Direccion, @Banco)
+    INSERT INTO Proveedores VALUES (@CUITProveedor, @Nombre, @RazonSocial, @Email, @NumTelefono, @Direccion, @Banco, @CBU, 1)
 END
 GO
 
@@ -947,7 +950,6 @@ CREATE PROCEDURE ModificarProveedor
 	@CBU varchar(100),
 	@Direccion varchar(100),
 	@Banco varchar(50)
-
 AS
 BEGIN
     UPDATE Proveedores  SET Nombre = @Nombre, RazonSocial = @RazonSocial,Email=  @Email, NumTelefono= @NumTelefono, CBU= @CBU, Direccion= @Direccion, Banco = @Banco
@@ -955,9 +957,21 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE EliminarProveedor
+	@CUITProveedor varchar(14)
+AS
+BEGIN
+    UPDATE Proveedores  SET BorradoLogico = 0 where CUITProveedor = @CUITProveedor
+END
+GO
 
-
-
+CREATE PROCEDURE HabilitarProveedor
+	@CUITProveedor varchar(14)
+AS
+BEGIN
+    UPDATE Proveedores  SET BorradoLogico = 1 where CUITProveedor = @CUITProveedor
+END
+GO
 
 
 CREATE TABLE DigitoVerificador
@@ -997,8 +1011,9 @@ INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram
 INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 10, 40, 256,1);
 INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 10, 40, 512,1);
 
-INSERT INTO Proveedores VALUES ('0-68537634-9','Proveedor de Celulares S.A.', 'Proveedor de Celulares Sociedad Anónima', 'provcelular@gmail.com', '11 2568-1425', '01702046600000087865', 'Av. Siempre Viva 742', 'Banco Galicia');
-INSERT INTO Proveedores VALUES ('0-22588311-9','Proveedor Tech', 'Proveedor Tech S.A', 'provcelular2@gmail.com', '11 4433-3567', '0720003070000001234567', 'Alejandro Pereyra 244', 'Banco HSBC');
+
+INSERT INTO Proveedores VALUES ('30-68537634-9','Proveedor de Celulares S.A.','Proveedor de Celulares Sociedad Anónima', 'provcelular@gmail.com', '1125681425', 'Av. Siempre Viva 742', 'Banco Galicia', '01702046600000087865',1);
+INSERT INTO Proveedores VALUES ('30-22588311-5','Proveedor Tech', 'Proveedor Tech S.A', 'provcelular2@gmail.com', '1144333567', 'Alejandro Pereyra 244', 'Banco HSBC', '0720003070000001234567',1);
 
 
 INSERT INTO Clientes VALUES (34789332, 'Franco', 'Perez', 'francoperez@gmail.com', 'Q6AITKuh4LfnxQ+6o/6LSA==',1);

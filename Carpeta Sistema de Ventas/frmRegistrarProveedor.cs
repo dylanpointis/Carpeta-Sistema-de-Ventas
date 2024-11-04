@@ -18,11 +18,11 @@ namespace Carpeta_Sistema_de_Ventas
     {
         BLLProveedor bllProvedor = new BLLProveedor();
         bool preRegistro;
-        BEProveedor provedor;
+        BEProveedor proveedor;
         public frmRegistrarProveedor(bool PreRegistro, BEProveedor prov)
         {
             preRegistro = PreRegistro;
-            provedor = prov;
+            proveedor = prov;
             IdiomaManager.GetInstance().archivoActual = "frmRegistrarProveedor";
             IdiomaManager.GetInstance().Agregar(this);
             InitializeComponent();
@@ -40,47 +40,46 @@ namespace Carpeta_Sistema_de_Ventas
                 txtCBU.Enabled = false;
                 txtBanco.Enabled = false;
                 btnRegistrarProveedor.Text = IdiomaManager.GetInstance().ConseguirTexto("textoPreRegistrar");
+                proveedor = new BEProveedor("","","","","","","","");
             }
             else
             {
                 txtCUIT.Enabled = false;
-                txtCUIT.Text = provedor.CUIT;
-                txtNombre.Text = provedor.Nombre;
-                txtRazonSocial.Text = provedor.RazonSocial;
-                txtMail.Text = provedor.Email;
-                txtNumTelefono.Text = provedor.NumTelefono;
-                txtCBU.Text = provedor.CBU;
-                txtDireccion.Text = provedor.Direccion; 
-                txtBanco.Text = provedor.Banco;
+                txtCUIT.Text = proveedor.CUIT;
+                txtNombre.Text = proveedor.Nombre;
+                txtRazonSocial.Text = proveedor.RazonSocial;
+                txtMail.Text = proveedor.Email;
+                txtNumTelefono.Text = proveedor.NumTelefono;
+                txtCBU.Text = proveedor.CBU;
+                txtDireccion.Text = proveedor.Direccion; 
+                txtBanco.Text = proveedor.Banco;
             }
         }
         private void btnRegistrarProveedor_Click(object sender, EventArgs e)
         {
             if (ValidarCampos())
             {
-                //FALTA VERIFICAR QUE NO EXISTA EL PROVEEDOR CON CUIT Y CBU
-
-
-                provedor.CUIT = txtCUIT.Text;
-                provedor.Nombre = txtNombre.Text;
-                provedor.RazonSocial = txtRazonSocial.Text;
-                provedor.Email = txtMail.Text;
-                provedor.NumTelefono = txtNumTelefono.Text;
-                provedor.CBU = txtCBU.Text;
-                provedor.Direccion = txtDireccion.Text;
-                provedor.Banco = txtBanco.Text;
+                proveedor.CUIT = txtCUIT.Text;
+                proveedor.Nombre = txtNombre.Text;
+                proveedor.RazonSocial = txtRazonSocial.Text;
+                proveedor.Email = txtMail.Text;
+                proveedor.NumTelefono = txtNumTelefono.Text;
+                proveedor.CBU = txtCBU.Text;
+                proveedor.Direccion = txtDireccion.Text;
+                proveedor.Banco = txtBanco.Text;
                 try
                 {
                     if (preRegistro == true)
                     {
-                        bllProvedor.RegistrarProveedor(provedor);
+                        bllProvedor.RegistrarProveedor(proveedor);
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoPreRegistro"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        bllProvedor.ModificarProveedor(provedor);
+                        bllProvedor.ModificarProveedor(proveedor);
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoRegistro"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    btnRegistrarProveedor.Enabled = false;
                 }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message,"",MessageBoxButtons.OK,MessageBoxIcon.Error); }
             }
@@ -93,7 +92,13 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 return false;
             }
-            if(preRegistro == false && (txtCBU.Text == "" || txtBanco.Text == "")) // en el registro completo tiene que poner el cbu y banco
+            if (!Regex.IsMatch(txtCUIT.Text, @"^\d{2}-\d{8}-\d{1}$")) //CUIT FORMATO "XX-XXXXXXXX-X",
+            {
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("formatoCUIT"));
+                txtMail.Focus();
+                return false;
+            }
+            if (preRegistro == false && (txtCBU.Text == "" || txtBanco.Text == "")) // en el registro completo tiene que poner el cbu y banco
             {
                 return false;
             }
@@ -103,12 +108,19 @@ namespace Carpeta_Sistema_de_Ventas
                 txtMail.Focus();
                 return false;
             }
+
+            if (txtCBU.Text.Length != 22 && preRegistro ==false)
+            {
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("longCBU"));
+                txtMail.Focus();
+                return false;
+            }
             return true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         #region eventosParaTextbox
@@ -126,7 +138,7 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     string texto = textBox.Text;
 
-                    if (texto.Length >= 14)
+                    if (texto.Length >= 13)
                     {
                         e.Handled = true;
                     }
@@ -147,7 +159,7 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     string texto = textBox.Text;
 
-                    if (texto.Length >= 23)
+                    if (texto.Length >= 22)
                     {
                         e.Handled = true;
                     }
@@ -160,7 +172,7 @@ namespace Carpeta_Sistema_de_Ventas
             TextBox textBox = sender as TextBox;
             if (textBox != null)
             {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '-' && !char.IsControl(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -168,7 +180,7 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     string texto = textBox.Text;
 
-                    if (texto.Length >= 23)
+                    if (texto.Length >= 10)
                     {
                         e.Handled = true;
                     }

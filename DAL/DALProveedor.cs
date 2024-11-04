@@ -13,6 +13,24 @@ namespace DAL
     {
         private DALConexion dalCon = new DALConexion();
 
+        public void EliminarProveedor(string cuit)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@CUITProveedor", cuit)
+            };
+            dalCon.EjecutarProcAlmacenado("EliminarProveedor", parametros);
+        }
+
+        public void HabilitarProveedor(string cuit)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@CUITProveedor", cuit)
+            };
+            dalCon.EjecutarProcAlmacenado("HabilitarProveedor", parametros);
+        }
+
         public void ModificarProveedor(BEProveedor prov)
         {
             SqlParameter[] parametros = new SqlParameter[]
@@ -53,28 +71,30 @@ namespace DAL
             return tabla;
         }
 
-        public BEProveedor VerificarProveedor(string cUITProv)
+        public BEProveedor VerificarProveedor(string cUITProv, string cbu, string email)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@CUITProveedor", cUITProv)
+                new SqlParameter("@CUITProveedor", cUITProv),
+                new SqlParameter("@CBU", cbu),
+                new SqlParameter("@Email", email)
             };
             DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarProveedor", parametros);
 
             BEProveedor prov = null;
             foreach (DataRow row in tabla.Rows)
             {
-
-                BEProveedor proveedor = new BEProveedor(
-                   row[0].ToString(), //cuit
-                   row[1].ToString(),  //nombre
-                   row[2].ToString(),  //razonSocial
-                   row[3].ToString(),  //email
-                   row[4].ToString(),  //numTelefono
-                   row[5].ToString(),  //cBU
-                   row[6].ToString(),  //direccion
-                   row[7].ToString()   //banco
-               );
+                prov = new BEProveedor(
+                    row[0].ToString(), //cuit
+                    row[1].ToString(),  //nombre
+                    row[2].ToString(),  //razonSocial
+                    row[3].ToString(),  //email
+                    row[4].ToString(),  //numTelefono
+                    row[5].ToString(),  //direccion
+                    row[6].ToString(),   //banco
+                    row[7].ToString()  //cBU
+                );
+                prov.BorradoLogico = Convert.ToBoolean(row[8]);
                 break;
             }
             return prov;

@@ -13,7 +13,11 @@
   "btnCancelar": "Cancelar",
   "exitoPreRegistro": "Proveedor Pre-registrado con éxito",
   "exitoRegistro": "Proveedor registrado completamente con éxito",
-
+  "yaExisteCUIT": "Ya existe un proveedor con el CUIT ingresado",
+  "yaExisteCBU": "Ya existe un proveedor con el CBU ingresado",
+  "yaExisteEmail": "Ya existe un proveedor con el Email ingresado",
+  "longCBU": "La longitud del CBU válida es de 22 dígitos",
+  "formatoCUIT": "El formato del CUIT no es válido (XX-XXXXXXXX-X)",
 
 
 

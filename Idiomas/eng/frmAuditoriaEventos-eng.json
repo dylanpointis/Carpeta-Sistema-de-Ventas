@@ -33,6 +33,7 @@
   "Clientes": "Clients",
   "Respaldos": "Backups",
   "Compras": "Stock purchase",
+  "Proveedores": "Providers",
 
   "Inicio sesión": "Login",
   "Cierre sesión": "Logout",
@@ -66,6 +67,10 @@
   "Solicitud de cotización generada": "Quote request generated",
   "Orden de compra generada": "Purchase order generated",
   "Productos de orden recibidos": "Products from order received",
+  "Proveedor creado": "Provider Created",
+  "Proveedor habilitado": "Provider Enabled",
+  "Proveedor eliminado": "Provider Deleted",
+  "Proveedor modificado": "Provider Modified",
 
   "cerrar": "Log Out",
   "deseaCerrar": "Do you want to log out?",

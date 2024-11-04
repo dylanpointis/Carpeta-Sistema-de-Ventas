@@ -39,6 +39,7 @@
   "generarSolicitudDeCotizaciónToolStripMenuItem": "Generar solicitud de cotización",
   "generarOrdenDeCompraToolStripMenuItem": "Generar orden de compra",
   "corroborarRecepciónToolStripMenuItem": "Corroborar recepción",
+  "proveedoresToolStripMenuItem": "Proveedores",
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

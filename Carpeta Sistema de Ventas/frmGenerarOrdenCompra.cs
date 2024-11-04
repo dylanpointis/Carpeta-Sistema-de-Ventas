@@ -204,7 +204,7 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if (ordenC.obtenerItems().TrueForAll(i => i.CantidadSolicitada > 0 && i.PrecioCompra > 0))
                 {
-                    if (ordenC.proveedor.CBU != "")// si el prov esta registrado completamente
+                    if (ordenC.proveedor.CBU != "" && ordenC.proveedor.Banco != "")// si el prov esta registrado completamente
                     {
                         frmRegistrarPagoProveedor form = new frmRegistrarPagoProveedor(ordenC);
                         form.ShowDialog();
@@ -234,10 +234,13 @@ namespace Carpeta_Sistema_de_Ventas
             //asigna el proveedor final seleccionado a la entidad ordenCompra
             provFinal = lista.Where(p => p.CUIT == cuit).FirstOrDefault();
             ordenC.proveedor = provFinal;
-
+            if(provFinal.CBU != "" && provFinal.Banco != "") //si ya tiene el CBU y banco no hace falta registrarlo completamente
+            {
+                btnRegistrarProveedor.Enabled = false;
+            }
+            else {  btnRegistrarProveedor.Enabled = true;}
             //muestra el detalle del proveedor en pantalla
             MostrarDetalleProveedor();
-            
         }
 
         private void MostrarDetalleProveedor()

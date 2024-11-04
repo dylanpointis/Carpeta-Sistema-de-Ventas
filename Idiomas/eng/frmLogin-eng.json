@@ -12,7 +12,7 @@
   "yaInicio": "There is already a session started",
   "llene": "Fill in the fields",
   "inconsistenciaDVAdmin": "Inconsistency present in the system database.\nTable: ",
-  "inconsistenciaDV": "The system is currently unavailable. Please contact the administrator."
+  "inconsistenciaDV": "The system is currently unavailable. Please contact the administrator.",
 
 
 
@@ -37,6 +37,7 @@
   "generarSolicitudDeCotizaciónToolStripMenuItem": "Generate quotation request",
   "generarOrdenDeCompraToolStripMenuItem": "Generate purchase order",
   "corroborarRecepciónToolStripMenuItem": "Verify products receipt",
+  "proveedoresToolStripMenuItem": "Providers",
   "btnSesion": "Session",
   "iniciarSesiónToolStripMenuItem": "Log In",
   "cerrarSesionToolStripMenuItem": "Log Out",

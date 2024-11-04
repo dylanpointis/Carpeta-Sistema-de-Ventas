@@ -60,7 +60,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaProveedores.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDireccion");
 
 
-            listaProv = bllProv.TraerListaProveedores();
+            listaProv = bllProv.TraerListaProveedores().Where(p => p.BorradoLogico == true).ToList();
             ActualizarGrilla();
             ActualizarGrillaProveedores();
 
@@ -93,8 +93,8 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 BEProveedor prov = new BEProveedor(grillaProveedores.CurrentRow.Cells[0].Value.ToString(), grillaProveedores.CurrentRow.Cells[1].Value.ToString(),
                 grillaProveedores.CurrentRow.Cells[2].Value.ToString(), grillaProveedores.CurrentRow.Cells[3].Value.ToString(),
-                grillaProveedores.CurrentRow.Cells[4].Value.ToString(), "", grillaProveedores.CurrentRow.Cells[5].Value.ToString().ToLower(), "");
-
+                grillaProveedores.CurrentRow.Cells[4].Value.ToString(), grillaProveedores.CurrentRow.Cells[5].Value.ToString(),"", "");
+                prov.BorradoLogico =true;
 
                 solicitudCoti.AgregarProveedor(prov);
                 cmbProveedoresSeleccionados.Items.Clear();

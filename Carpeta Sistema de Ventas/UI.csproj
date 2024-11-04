@@ -75,6 +75,12 @@
     <Compile Include="frmGenerarSolicitudCotizacion.Designer.cs">
       <DependentUpon>frmGenerarSolicitudCotizacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMaestroProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaestroProveedores.Designer.cs">
+      <DependentUpon>frmMaestroProveedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRegistrarPagoProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGenerarSolicitudCotizacion.resx">
       <DependentUpon>frmGenerarSolicitudCotizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaestroProveedores.resx">
+      <DependentUpon>frmMaestroProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegistrarPagoProveedor.resx">
       <DependentUpon>frmRegistrarPagoProveedor.cs</DependentUpon>

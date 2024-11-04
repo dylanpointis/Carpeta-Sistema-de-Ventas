@@ -212,6 +212,10 @@ namespace Carpeta_Sistema_de_Ventas
             AbrirForm(new frmAuditoriaCambios());
         }
 
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new frmMaestroProveedores());
+        }
 
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)

@@ -17,8 +17,10 @@ namespace BE
         public string Direccion { get; set; }
         public string Banco { get; set; }
 
+        public bool BorradoLogico { get; set; }
 
-        public BEProveedor(string cuit,string nombre, string razonSocial, string email, string numTelefono, string cbu, string direccion, string banco)
+
+        public BEProveedor(string cuit,string nombre, string razonSocial, string email, string numTelefono,  string direccion, string banco, string cbu)
         {
             CUIT = cuit;
             Nombre = nombre;

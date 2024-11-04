@@ -20,6 +20,8 @@
   "generarSolicitudDeCotizaciónToolStripMenuItem": "Generate quotation request",
   "generarOrdenDeCompraToolStripMenuItem": "Generate purchase order",
   "corroborarRecepciónToolStripMenuItem": "Verify products receipt",
+  "proveedoresToolStripMenuItem": "Providers",
+
   "btnSesion": "Session",
   "iniciarSesiónToolStripMenuItem": "Log In",
   "cerrarSesionToolStripMenuItem": "Log Out",

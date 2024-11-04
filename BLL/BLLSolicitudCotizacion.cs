@@ -116,10 +116,11 @@ namespace BLL
                     row[5].ToString(),  //razonSocial
                     row[6].ToString(),  //email
                     row[7].ToString(),  //numTelefono
-                    row[8].ToString(),  //cBU
-                    row[9].ToString(),  //direccion
-                    row[10].ToString()   //banco
+                    row[8].ToString(),  //direccion
+                    row[9].ToString(),  //banco
+                    row[10].ToString()   //cbu
                 );
+                proveedor.BorradoLogico = Convert.ToBoolean(row[11]);
 
                 lista.Add(proveedor);
             }

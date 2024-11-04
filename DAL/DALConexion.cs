@@ -34,6 +34,10 @@ namespace DAL
                 command.CommandType = CommandType.StoredProcedure;
                 foreach (SqlParameter parametro in parametros)
                 {
+                    if (parametro.Value == null)
+                    {
+                        parametro.Value = DBNull.Value;
+                    }
                     command.Parameters.Add(parametro);
                 }
 

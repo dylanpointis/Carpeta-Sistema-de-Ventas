@@ -1,5 +1,7 @@
 ﻿using BE;
 using DAL;
+using Services;
+using Services.Observer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,17 +16,56 @@ namespace BLL
     {
         private DALProveedor dalProv = new DALProveedor();
         private BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
+        private BLLEvento bllEvento = new BLLEvento();
+
+        public void HabilitarProveedor(string cuit)
+        {
+            dalProv.HabilitarProveedor(cuit);
+            bllDV.PersistirDV(dalProv.TraerListaProveedores());
+            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Proveedores", "Proveedor habilitado", 4));
+        }
+        public void EliminarProveedor(string cuit)
+        {
+            dalProv.EliminarProveedor(cuit);
+            bllDV.PersistirDV(dalProv.TraerListaProveedores());
+            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Proveedores", "Proveedor eliminado", 2));
+        }
 
         public void ModificarProveedor(BEProveedor prov)
         {
+            BEProveedor proveedorEncontrado = VerificarProveedor("", prov.CBU,"");
+            if (proveedorEncontrado != null && proveedorEncontrado.CUIT != prov.CUIT) //busca un cbu igual pero distinto CUIT
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExisteCBU"));
+
+
+            proveedorEncontrado = VerificarProveedor("", "", prov.Email);
+            if (proveedorEncontrado != null && proveedorEncontrado.CUIT != prov.CUIT) //busca un email igual pero distinto CUIT
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExisteEmail"));
+
+
+            prov.BorradoLogico = true;
             dalProv.ModificarProveedor(prov);
             bllDV.PersistirDV(dalProv.TraerListaProveedores());
+            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Proveedores", "Proveedor modificado", 4));
         }
 
         public void RegistrarProveedor(BEProveedor prov)
         {
+            BEProveedor proveedorEncontrado = VerificarProveedor(prov.CUIT, "","");
+            if (proveedorEncontrado != null)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExisteCUIT"));
+            proveedorEncontrado = VerificarProveedor("", prov.CBU, "");
+            if (proveedorEncontrado != null)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExisteCBU"));
+            proveedorEncontrado = VerificarProveedor("", "", prov.Email);
+            if (proveedorEncontrado != null)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExisteEmail"));
+
+
+
             dalProv.RegistrarProveedor(prov);
             bllDV.PersistirDV(dalProv.TraerListaProveedores());
+            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Proveedores", "Proveedor creado", 5));
         }
 
         public List<BEProveedor> TraerListaProveedores()
@@ -40,21 +81,23 @@ namespace BLL
                     row[2].ToString(),  //razonSocial
                     row[3].ToString(),  //email
                     row[4].ToString(),  //numTelefono
-                    row[5].ToString(),  //cBU
-                    row[6].ToString(),  //direccion
-                    row[7].ToString()   //banco
+                    row[5].ToString(),  //direccion
+                    row[6].ToString(),   //banco
+                    row[7].ToString()  //cBU
                 );
-
+                proveedor.BorradoLogico = Convert.ToBoolean(row[8]);
                 lista.Add(proveedor);
             }
-
             return lista;
         }
 
 
-        public BEProveedor VerificarProveedor(string CUITProv)
+        public BEProveedor VerificarProveedor(string CUITProv, string CBU, string Email)
         {
-            return dalProv.VerificarProveedor( CUITProv );
+            if (CBU == "")
+                CBU = null;
+
+            return dalProv.VerificarProveedor(CUITProv, CBU, Email);
         }
 
     }
