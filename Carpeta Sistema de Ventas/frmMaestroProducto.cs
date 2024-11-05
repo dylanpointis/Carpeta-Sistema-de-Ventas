@@ -394,6 +394,7 @@ namespace Carpeta_Sistema_de_Ventas
 
 
         //evento para que no pueda escribir . , -
+        #region eventosFormatos
         private void txtCodigoProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             NumericUpDown numUpDown = sender as NumericUpDown;
@@ -469,5 +470,46 @@ namespace Carpeta_Sistema_de_Ventas
                 }
             }
         }
+
+        private void txtStockMin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericUpDown numUpDown = sender as NumericUpDown;
+            if (!char.IsControl(e.KeyChar))
+            {
+                string texto = numUpDown.Text;
+
+                if (texto.Length >= 3)
+                {
+                    e.Handled = true;
+                }
+
+                /*no puede escribir . - ,*/
+                if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtStockMax_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericUpDown numUpDown = sender as NumericUpDown;
+            if (!char.IsControl(e.KeyChar))
+            {
+                string texto = numUpDown.Text;
+
+                if (texto.Length >= 3)
+                {
+                    e.Handled = true;
+                }
+
+                /*no puede escribir . - ,*/
+                if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+        #endregion
     }
 }

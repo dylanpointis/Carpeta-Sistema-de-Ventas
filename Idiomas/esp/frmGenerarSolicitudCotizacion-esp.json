@@ -21,6 +21,7 @@
   "ingreseCantidades": "Ingrese cantidades para reponer a los productos de la solicitud de cotización",
   "ingreseCantidades": "Ingrese cantidades para reponer a los productos de la solicitud de cotización",
   "seleccioneAlMenosUnProv": "Seleccione al menos un proveedor",
+  "minimo1Producto": "No puede eliminar el producto ya que como mínimo debe haber un producto en la solicitud",
 
   "gridViewCodigo": "Código Producto",
   "gridViewModelo": "Modelo",

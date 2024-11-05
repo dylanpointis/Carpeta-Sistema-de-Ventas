@@ -1,16 +1,26 @@
 {
   "label1": "Cantidad total recibida: ",
   "label2": "Cantidad total solicitada: ",
-  "label3": "Solicitudes de cotización \npendientes:",
+  "label3": "Número de factura de recepción:",
   "label6": "Ordenes de compra\npendientes de entrega:",
   "label4": "Detalle proveedor:",
   "btnRegistrarProveedor": "Registrar completamente",
   "label5": "Cantidad recibida",
-  "btnCargarCantidadRecibida": "Cargar precio de compra",
+  "btnCargar": "Cargar",
   "btnRegistarPago": "Registar pago",
   "btnFinalizar": "Finalizar",
   "btnModificarCant": "Modificar cantidad a reponer",
   "lblFechaEntrega": "Fecha de entrega de productos",
+  "estaSeguro": "¿Está seguro que desea finalizar el registro de recepción de productos?",
+
+  "lblOrden": "Orden: ",
+  "pendiente": "Pendiente",
+  "parcialmenteEntregada": "Parcialmente entregada",
+  "seleccioneProd": "Seleccione el producto para cargar la cantidad recibida y su número de factura de recepción",
+  "ingreseCampos": "Ingrese los campos",
+  "gridViewFacturaRecepcion": "Número de factura recepción",
+  "gridViewFechaRecepcion": "Fecha recepción",
+
 
   "lblNeto": "Neto: ",
   "lblIVA": "I.V.A (21%): ",
@@ -37,7 +47,8 @@
   "gridViewSMax": "Stock máximo",
   "gridViewPrecioUnit": "Precio de compra unitario",
   "gridViewCantidadRecibida": "Cantidad recibida",
-
+  "gridViewFacturaRecepcion": "Número de factura recepción",
+  "gridViewFechaRecepcion": "Fecha recepción",
 
   "gridViewCUIT": "CUIT",
   "gridViewNombre": "Nombre",

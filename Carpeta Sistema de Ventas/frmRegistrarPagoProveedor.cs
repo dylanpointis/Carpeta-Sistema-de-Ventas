@@ -18,11 +18,10 @@ namespace Carpeta_Sistema_de_Ventas
         public frmRegistrarPagoProveedor(BEOrdenCompra ordenCompra)
         {
             ordenC = ordenCompra;
+            InitializeComponent();
 
             IdiomaManager.GetInstance().archivoActual = "frmRegistrarPago";
             IdiomaManager.GetInstance().Agregar(this);
-
-            InitializeComponent();
         }
 
 
@@ -37,7 +36,6 @@ namespace Carpeta_Sistema_de_Ventas
             lblProveedor.Text += ordenC.proveedor.Nombre;
             txtCBU.Text = ordenC.proveedor.CBU;
             txtBanco.Text = ordenC.proveedor.Banco;
-            txtNumTransferencia.Focus();
         }
 
         private void btnRegistrarPago_Click(object sender, EventArgs e)
@@ -46,6 +44,7 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 try
                 {
+                    ordenC.NumeroFactura = Convert.ToInt64(txtNumFactura.Text);
                     ordenC.NumeroTransferencia = Convert.ToInt64(txtNumTransferencia.Text);
                     ordenC.MetodoPago = "Transferencia";
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -58,7 +57,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private bool ValidarCampos()
         {
-            if(txtNumTransferencia.Text == "" || txtCBU.Text == "" || txtBanco.Text == "")
+            if(txtNumTransferencia.Text == "" || txtCBU.Text == "" || txtBanco.Text == "" || txtNumFactura.Text == "")
             {
                 return false;
             }
@@ -72,31 +71,8 @@ namespace Carpeta_Sistema_de_Ventas
 
 
 
-
+        #region eventos form
         //Para que no pueda escribir letras y mas de 12 digitos
-        private void txtNumFactura_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-
-            if (textBox != null)
-            {
-                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                {
-
-                    e.Handled = true;
-                }
-                if (!char.IsControl(e.KeyChar))
-                {
-                    string texto = textBox.Text;
-
-                    if (texto.Length >= 20)
-                    {
-                        e.Handled = true;
-                    }
-                }
-            }
-        }
-
 
         private void txtNumTransferencia_KeyPress_1(object sender, KeyPressEventArgs e)
         {
@@ -113,12 +89,59 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     string texto = textBox.Text;
 
-                    if (texto.Length >= 9)
+                    if (texto.Length >= 15)
                     {
                         e.Handled = true;
                     }
                 }
             }
         }
+
+        private void txtNumFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+
+                    e.Handled = true;
+                }
+                if (!char.IsControl(e.KeyChar))
+                {
+                    string texto = textBox.Text;
+
+                    if (texto.Length >= 15)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+        private void frmRegistrarPagoProveedor_Shown(object sender, EventArgs e)
+        {
+            txtNumFactura.Focus();
+        }
+
+        //eventos para que cuando termine de escribir (presione ENTER) haga focus al otro textbox
+        private void txtNumFactura_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                txtNumTransferencia.Focus();
+            }
+        }
+
+        private void txtNumTransferencia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                btnRegistrarPago.Focus();
+            }
+        }
+        #endregion
     }
 }

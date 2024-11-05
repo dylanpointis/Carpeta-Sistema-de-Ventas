@@ -32,7 +32,7 @@
             this.grillaRecepcion = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCantRecibida = new System.Windows.Forms.NumericUpDown();
-            this.btnCargarCantidadRecibida = new System.Windows.Forms.Button();
+            this.btnCargar = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblNumTel = new System.Windows.Forms.Label();
@@ -45,9 +45,13 @@
             this.cmbOrdenesCompra = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblOrden = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNumFactura = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.grillaRecepcion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantRecibida)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNumFactura)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -64,17 +68,20 @@
             // 
             this.grillaRecepcion.AllowUserToAddRows = false;
             this.grillaRecepcion.AllowUserToDeleteRows = false;
+            this.grillaRecepcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaRecepcion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaRecepcion.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grillaRecepcion.Location = new System.Drawing.Point(265, 43);
             this.grillaRecepcion.MultiSelect = false;
             this.grillaRecepcion.Name = "grillaRecepcion";
             this.grillaRecepcion.ReadOnly = true;
-            this.grillaRecepcion.Size = new System.Drawing.Size(748, 336);
+            this.grillaRecepcion.Size = new System.Drawing.Size(748, 327);
             this.grillaRecepcion.TabIndex = 69;
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(264, 407);
@@ -85,33 +92,36 @@
             // 
             // txtCantRecibida
             // 
+            this.txtCantRecibida.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCantRecibida.Location = new System.Drawing.Point(265, 431);
             this.txtCantRecibida.Maximum = new decimal(new int[] {
-            9999,
+            999,
             0,
             0,
             0});
             this.txtCantRecibida.Name = "txtCantRecibida";
             this.txtCantRecibida.Size = new System.Drawing.Size(144, 20);
             this.txtCantRecibida.TabIndex = 71;
+            this.txtCantRecibida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantRecibida_KeyPress);
             // 
-            // btnCargarCantidadRecibida
+            // btnCargar
             // 
-            this.btnCargarCantidadRecibida.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnCargarCantidadRecibida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarCantidadRecibida.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarCantidadRecibida.ForeColor = System.Drawing.Color.White;
-            this.btnCargarCantidadRecibida.Location = new System.Drawing.Point(443, 407);
-            this.btnCargarCantidadRecibida.Name = "btnCargarCantidadRecibida";
-            this.btnCargarCantidadRecibida.Size = new System.Drawing.Size(163, 44);
-            this.btnCargarCantidadRecibida.TabIndex = 70;
-            this.btnCargarCantidadRecibida.Text = "Cargar";
-            this.btnCargarCantidadRecibida.UseVisualStyleBackColor = false;
-            this.btnCargarCantidadRecibida.Click += new System.EventHandler(this.btnCargarCantidadRecibida_Click);
+            this.btnCargar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCargar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnCargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCargar.ForeColor = System.Drawing.Color.White;
+            this.btnCargar.Location = new System.Drawing.Point(636, 407);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(163, 44);
+            this.btnCargar.TabIndex = 70;
+            this.btnCargar.Text = "Cargar";
+            this.btnCargar.UseVisualStyleBackColor = false;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargarCantidadRecibida_Click);
             // 
             // btnFinalizar
             // 
-            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFinalizar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -126,6 +136,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.lblNumTel);
             this.groupBox1.Controls.Add(this.lblCBU);
             this.groupBox1.Controls.Add(this.lblCUIT);
@@ -200,6 +211,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(22, 191);
@@ -220,6 +232,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(262, 498);
@@ -230,6 +243,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(262, 472);
@@ -238,11 +252,50 @@
             this.label2.TabIndex = 77;
             this.label2.Text = "Cantidad total solicitada: ";
             // 
-            // COMPRAfrmCorroborarRecepcion
+            // lblOrden
+            // 
+            this.lblOrden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOrden.AutoSize = true;
+            this.lblOrden.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrden.Location = new System.Drawing.Point(265, 13);
+            this.lblOrden.Name = "lblOrden";
+            this.lblOrden.Size = new System.Drawing.Size(68, 20);
+            this.lblOrden.TabIndex = 78;
+            this.lblOrden.Text = "Orden: ";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(424, 407);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(120, 16);
+            this.label3.TabIndex = 80;
+            this.label3.Text = "Número de factura:";
+            // 
+            // txtNumFactura
+            // 
+            this.txtNumFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNumFactura.Location = new System.Drawing.Point(425, 431);
+            this.txtNumFactura.Maximum = new decimal(new int[] {
+            1569325055,
+            23283064,
+            0,
+            0});
+            this.txtNumFactura.Name = "txtNumFactura";
+            this.txtNumFactura.Size = new System.Drawing.Size(144, 20);
+            this.txtNumFactura.TabIndex = 79;
+            this.txtNumFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumFactura_KeyPress);
+            // 
+            // frmCorroborarRecepcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 529);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtNumFactura);
+            this.Controls.Add(this.lblOrden);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbOrdenesCompra);
@@ -251,16 +304,17 @@
             this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCantRecibida);
-            this.Controls.Add(this.btnCargarCantidadRecibida);
+            this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.grillaRecepcion);
             this.Controls.Add(this.label6);
-            this.Name = "COMPRAfrmCorroborarRecepcion";
+            this.Name = "frmCorroborarRecepcion";
             this.Text = "COMPRAfrmConfirmarRecepcion";
             this.Load += new System.EventHandler(this.COMPRAfrmCorroborarRecepcion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaRecepcion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantRecibida)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNumFactura)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,7 +325,7 @@
         private System.Windows.Forms.DataGridView grillaRecepcion;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown txtCantRecibida;
-        private System.Windows.Forms.Button btnCargarCantidadRecibida;
+        private System.Windows.Forms.Button btnCargar;
         private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblNumTel;
@@ -284,5 +338,8 @@
         private System.Windows.Forms.ComboBox cmbOrdenesCompra;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblOrden;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown txtNumFactura;
     }
 }

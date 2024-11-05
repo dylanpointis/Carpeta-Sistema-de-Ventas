@@ -166,7 +166,8 @@
             "Huawei",
             "Xiaomi",
             "LG",
-            "Motorola"});
+            "Motorola",
+            "Google"});
             this.cmbMarca.Location = new System.Drawing.Point(203, 490);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(143, 21);
@@ -390,6 +391,7 @@
             this.txtStockMin.Name = "txtStockMin";
             this.txtStockMin.Size = new System.Drawing.Size(96, 20);
             this.txtStockMin.TabIndex = 63;
+            this.txtStockMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMin_KeyPress);
             // 
             // txtStockMax
             // 
@@ -403,6 +405,7 @@
             this.txtStockMax.Name = "txtStockMax";
             this.txtStockMax.Size = new System.Drawing.Size(96, 20);
             this.txtStockMax.TabIndex = 65;
+            this.txtStockMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStockMax_KeyPress);
             // 
             // label11
             // 

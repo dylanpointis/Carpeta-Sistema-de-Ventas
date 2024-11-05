@@ -29,10 +29,10 @@ namespace BLL
             return lista;
         }
 
-        //public void ConsultarStock(BEProducto produto)
-        //{
-        //    //dalProd.ModificarStock(produto, stock);
-        //}
+        public int ConsultarStock(long codProd)
+        {
+            return dalProd.ConsultarStock(codProd);
+        }
 
         public void ModificarStock(BEProducto producto, int stock)
         {

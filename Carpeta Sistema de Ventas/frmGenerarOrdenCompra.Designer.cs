@@ -52,6 +52,7 @@
             this.lblIVA = new System.Windows.Forms.Label();
             this.txtFechaEntrega = new System.Windows.Forms.DateTimePicker();
             this.lblFechaEntrega = new System.Windows.Forms.Label();
+            this.btnQuitar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaItems)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -335,11 +336,26 @@
             this.lblFechaEntrega.TabIndex = 66;
             this.lblFechaEntrega.Text = "Fecha de entrega estimada de productos";
             // 
+            // btnQuitar
+            // 
+            this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnQuitar.BackColor = System.Drawing.Color.Firebrick;
+            this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitar.ForeColor = System.Drawing.Color.White;
+            this.btnQuitar.Location = new System.Drawing.Point(312, 481);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(99, 30);
+            this.btnQuitar.TabIndex = 73;
+            this.btnQuitar.Text = "Quitar";
+            this.btnQuitar.UseVisualStyleBackColor = false;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
+            // 
             // frmGenerarOrdenCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 529);
+            this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.lblFechaEntrega);
             this.Controls.Add(this.txtFechaEntrega);
             this.Controls.Add(this.lblIVA);
@@ -395,5 +411,6 @@
         private System.Windows.Forms.Label lblIVA;
         private System.Windows.Forms.DateTimePicker txtFechaEntrega;
         private System.Windows.Forms.Label lblFechaEntrega;
+        private System.Windows.Forms.Button btnQuitar;
     }
 }

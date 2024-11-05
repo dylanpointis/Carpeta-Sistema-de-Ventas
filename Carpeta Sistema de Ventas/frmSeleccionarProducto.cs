@@ -80,7 +80,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if(grillaProductos.SelectedRows.Count > 0)
             {
-                int cantStock = Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value);
+                int cantStock = bllProductos.ConsultarStock(Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value));
                 if (cantStock > 0)
                 {
                     BEProducto producto = new BEProducto(Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value),

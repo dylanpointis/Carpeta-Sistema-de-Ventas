@@ -39,6 +39,8 @@
             this.lblProveedor = new System.Windows.Forms.Label();
             this.txtBanco = new System.Windows.Forms.TextBox();
             this.txtNumTransferencia = new System.Windows.Forms.TextBox();
+            this.txtNumFactura = new System.Windows.Forms.TextBox();
+            this.lblNumFactura = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtCBU
@@ -89,7 +91,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(102, 124);
+            this.lblTotal.Location = new System.Drawing.Point(97, 98);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(37, 13);
             this.lblTotal.TabIndex = 70;
@@ -128,7 +130,7 @@
             // lblProveedor
             // 
             this.lblProveedor.AutoSize = true;
-            this.lblProveedor.Location = new System.Drawing.Point(102, 89);
+            this.lblProveedor.Location = new System.Drawing.Point(97, 63);
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(62, 13);
             this.lblProveedor.TabIndex = 75;
@@ -148,13 +150,34 @@
             this.txtNumTransferencia.Name = "txtNumTransferencia";
             this.txtNumTransferencia.Size = new System.Drawing.Size(185, 20);
             this.txtNumTransferencia.TabIndex = 77;
+            this.txtNumTransferencia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumTransferencia_KeyDown);
             this.txtNumTransferencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTransferencia_KeyPress_1);
+            // 
+            // txtNumFactura
+            // 
+            this.txtNumFactura.Location = new System.Drawing.Point(105, 147);
+            this.txtNumFactura.Name = "txtNumFactura";
+            this.txtNumFactura.Size = new System.Drawing.Size(185, 20);
+            this.txtNumFactura.TabIndex = 79;
+            this.txtNumFactura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNumFactura_KeyDown);
+            this.txtNumFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumFactura_KeyPress);
+            // 
+            // lblNumFactura
+            // 
+            this.lblNumFactura.AutoSize = true;
+            this.lblNumFactura.Location = new System.Drawing.Point(103, 131);
+            this.lblNumFactura.Name = "lblNumFactura";
+            this.lblNumFactura.Size = new System.Drawing.Size(95, 13);
+            this.lblNumFactura.TabIndex = 78;
+            this.lblNumFactura.Text = "Número de factura";
             // 
             // frmRegistrarPagoProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 428);
+            this.Controls.Add(this.txtNumFactura);
+            this.Controls.Add(this.lblNumFactura);
             this.Controls.Add(this.txtNumTransferencia);
             this.Controls.Add(this.txtBanco);
             this.Controls.Add(this.lblProveedor);
@@ -170,6 +193,7 @@
             this.Name = "frmRegistrarPagoProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.COMPRAfrmRegistrarPagoProveedor_Load);
+            this.Shown += new System.EventHandler(this.frmRegistrarPagoProveedor_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +212,7 @@
         private System.Windows.Forms.Label lblProveedor;
         private System.Windows.Forms.TextBox txtBanco;
         private System.Windows.Forms.TextBox txtNumTransferencia;
+        private System.Windows.Forms.TextBox txtNumFactura;
+        private System.Windows.Forms.Label lblNumFactura;
     }
 }

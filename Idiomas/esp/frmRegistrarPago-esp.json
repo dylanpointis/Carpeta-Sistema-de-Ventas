@@ -14,11 +14,11 @@
 
 
   "label4": "Número de factura: ",
+  "lblNumFactura": "Número de factura: ",
   "label10": "Número de transferencia: ",
   "lblNombreProv": "Nombre:",
   "lblRazonSocial": "Razón social:",
   "lblMailProv": "Mail:",
-  "lblNumTel": "Número de telefono:",
   "lblNumTel": "Número de telefono:",
   "lblCBU": "CBU:",
   "label1": "Banco",

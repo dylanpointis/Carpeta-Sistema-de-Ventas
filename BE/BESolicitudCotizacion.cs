@@ -43,7 +43,8 @@ namespace BE
         public void QuitarItem(long codProd)
         {
             BEItemSolicitud item = itemsSolicitud.FirstOrDefault(p => p.Producto.CodigoProducto == codProd);
-            itemsSolicitud.Remove(item);
+            if (item != null)
+                itemsSolicitud.Remove(item);
         }
 
         public void modificarCantidadItem(long codProd, int cant)

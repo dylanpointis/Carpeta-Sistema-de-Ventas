@@ -17,11 +17,6 @@ namespace Services
 {
     public class Reportes
     {
-        public Reportes()
-        {
-        }
-
-
         public static void GenerarReporteOrden(BEOrdenCompra ordenC, string paginahtml, Bitmap Logo)
         {
             SaveFileDialog guardarArchivo = new SaveFileDialog();
@@ -30,8 +25,9 @@ namespace Services
             guardarArchivo.FileName = ordenC.NumeroOrdenCompra + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
 
             paginahtml = paginahtml.Replace("@NumOrden", ordenC.NumeroOrdenCompra.ToString());
-            paginahtml = paginahtml.Replace("@fecha", ordenC.FechaRegistro.ToString("dd/MM/yyyy HH:mm"));
-            paginahtml = paginahtml.Replace("@FechaEntrega", ordenC.FechaEntrega.ToString("dd/MM/yyyy HH:mm"));
+            paginahtml = paginahtml.Replace("@NroFactura", ordenC.NumeroFactura.ToString());
+            paginahtml = paginahtml.Replace("@fecha", ordenC.FechaRegistro.ToString("yyyy-MM-dd HH:mm"));
+            paginahtml = paginahtml.Replace("@FechaEntrega", ordenC.FechaEntrega.ToString("yyyy-MM-dd"));
 
 
             paginahtml = paginahtml.Replace("@CUIT", ordenC.proveedor.CUIT);
@@ -121,8 +117,8 @@ namespace Services
 
             paginahtml = paginahtml.Replace("@NroFactura", ordenC.NumeroFactura.ToString());
             paginahtml = paginahtml.Replace("@NumOrden", ordenC.NumeroOrdenCompra.ToString());
-            paginahtml = paginahtml.Replace("@fecha", ordenC.FechaRegistro.ToString("dd/MM/yyyy HH:mm"));
-            paginahtml = paginahtml.Replace("@FechaEntrega", ordenC.FechaEntrega.ToString("dd/MM/yyyy HH:mm"));
+            paginahtml = paginahtml.Replace("@fecha", ordenC.FechaRegistro.ToString("yyyy-MM-dd HH:mm"));
+            paginahtml = paginahtml.Replace("@FechaEntrega", ordenC.FechaEntrega.ToString("yyyy-MM-dd HH:mm"));
 
 
             paginahtml = paginahtml.Replace("@CUIT", ordenC.proveedor.CUIT);
@@ -143,6 +139,8 @@ namespace Services
                 filas += "<td>" + prod.Modelo + "</td>";
                 filas += "<td>" + cantidad.ToString() + "</td>";
                 filas += "<td>" + item.CantidadRecibida + "</td>";
+                filas += "<td>" + item.NumFacturaRecepcion + "</td>";
+                filas += "<td>" + item.FechaRecepcion + "</td>";
                 filas += "</tr>";
             }
 
@@ -172,6 +170,8 @@ namespace Services
             paginahtml = paginahtml.Replace("@textoFactura", IdiomaManager.GetInstance().ConseguirTexto("textoFactura"));
             paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
             paginahtml = paginahtml.Replace("@textfechaEntrega", IdiomaManager.GetInstance().ConseguirTexto("textoFechaEntrega"));
+            paginahtml = paginahtml.Replace("@gridViewFacturaRecepcion", IdiomaManager.GetInstance().ConseguirTexto("gridViewFacturaRecepcion"));
+            paginahtml = paginahtml.Replace("@gridViewFechaRecepcion", IdiomaManager.GetInstance().ConseguirTexto("gridViewFechaRecepcion"));
 
             if (guardarArchivo.ShowDialog() == DialogResult.OK)
             {
@@ -212,7 +212,7 @@ namespace Services
 
 
             paginahtml = paginahtml.Replace("@NroFactura", fac.NumFactura.ToString());
-            paginahtml = paginahtml.Replace("@Fecha", fac.Fecha.ToString("dd/MM/yyyy HH:mm"));
+            paginahtml = paginahtml.Replace("@Fecha", fac.Fecha.ToString("yyyy-MM-dd HH:mm"));
 
             paginahtml = paginahtml.Replace("@DNI", fac.clienteFactura.DniCliente.ToString());
             paginahtml = paginahtml.Replace("@Nombre", fac.clienteFactura.Nombre);

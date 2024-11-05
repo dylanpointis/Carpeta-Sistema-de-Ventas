@@ -21,6 +21,7 @@
   "ingreseCantidades": "Enter quantities to replenish the products from the quotation request",
   "noSeEncontraronCoincidencias": "No coincidences were found",
   "seleccioneAlMenosUnProv": "Select at least one provider",
+  "minimo1Producto": "The product cannot be deleted because at least one must be in the quotation request",
 
 
 

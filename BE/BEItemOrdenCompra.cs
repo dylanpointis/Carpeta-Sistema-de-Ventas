@@ -13,6 +13,10 @@ namespace BE
         public double PrecioCompra { get; set; }
         public int CantidadRecibida { get; set; }
 
+        public long NumFacturaRecepcion { get; set; }
+        public string FechaRecepcion { get; set; }
+
+
         public BEItemOrdenCompra(BEProducto prod, int cantSolicitada, double precioCompra)
         {
             this.Producto = prod;

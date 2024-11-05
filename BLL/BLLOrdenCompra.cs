@@ -4,6 +4,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace BLL
             int cantTotalRecibida = ordenC.obtenerItems().Sum(i => i.CantidadRecibida);
             if (cantTotalRecibida < ordenC.CantidadTotal)
             {
-                ordenC.Estado = "Entregada parcialmente";
+                ordenC.Estado = "Parcialmente entregada";
             }
             else { ordenC.Estado = "Entregada"; }
             MarcarOrdenEntregada(ordenC);
@@ -33,19 +34,27 @@ namespace BLL
             foreach (var item in ordenC.obtenerItems())
             {
                 //suma el stock actual + el recibido
+                ModificarCantRecibidaItems(ordenC.NumeroOrdenCompra, item);
                 item.Producto.Stock += item.CantidadRecibida;
                 bllProducto.ModificarProducto(item.Producto);
             }
 
+            bllDV.PersistirDV(dalOrdC.traerTablaItemOrden());
             bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Compras", "Productos de orden recibidos", 4));
         }
 
         public void MarcarOrdenEntregada(BEOrdenCompra ordenC)
         {
-            dalOrdC.MarcarOrdenEntregada(ordenC); //marca como entregada y carga el numero de factura
+            dalOrdC.MarcarOrdenEntregada(ordenC); //marca como entregada
             bllDV.PersistirDV(dalOrdC.TraerListaOrdenes());
-            bllDV.PersistirDV(dalOrdC.traerTablaItemOrden());
         }
+
+        public void ModificarCantRecibidaItems(int numOrden, BEItemOrdenCompra item)
+        {
+            dalOrdC.ModificarCantRecibidaItems(numOrden, item);
+        }
+
+
 
         public void RegistrarItemOrden(int numeroOrdenC, BEItemOrdenCompra item)
         {
@@ -90,7 +99,9 @@ namespace BLL
 
                 BEOrdenCompra ordenCompra = new BEOrdenCompra(numSolicitud, cantidadTotal, estado, fechaEntrega, fechaRegistro, montoTotal);
                 ordenCompra.NumeroOrdenCompra = Convert.ToInt32(row[0]);
-                ordenCompra.NumeroTransferencia = Convert.ToInt32(row[6]);
+                ordenCompra.NumeroTransferencia = Convert.ToInt64(row[6]);
+                ordenCompra.CantidadTotal = Convert.ToInt32(row[9]);
+                ordenCompra.NumeroFactura = Convert.ToInt64(row[10]);
                 lista.Add(ordenCompra);
             }
             return lista;
@@ -105,21 +116,23 @@ namespace BLL
             foreach (DataRow row in tabla.Rows)
             {
                 BEProducto prod = new BEProducto(
-                    Convert.ToInt64(row[6]),
-                    row[7].ToString(),
-                    row[8].ToString(),
+                    Convert.ToInt64(row[8]),
                     row[9].ToString(),
                     row[10].ToString(),
-                    Convert.ToDouble(row[11]),
-                    Convert.ToInt32(row[12]),
-                    Convert.ToInt32(row[13]),
+                    row[11].ToString(),
+                    row[12].ToString(),
+                    Convert.ToDouble(row[13]),
                     Convert.ToInt32(row[14]),
                     Convert.ToInt32(row[15]),
-                    Convert.ToBoolean(row[16])
+                    Convert.ToInt32(row[16]),
+                    Convert.ToInt32(row[17]),
+                    Convert.ToBoolean(row[18])
                     );
 
                 BEItemOrdenCompra item = new BEItemOrdenCompra(prod, Convert.ToInt32(row[3]), Convert.ToInt32(row[4]));
                 item.CantidadRecibida = Convert.ToInt32(row[5]);
+                item.NumFacturaRecepcion = Convert.ToInt64(row[6]);
+                item.FechaRecepcion = row[7].ToString();
 
                 lista.Add(item);
             }

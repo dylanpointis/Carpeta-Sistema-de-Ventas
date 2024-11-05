@@ -284,6 +284,15 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE ConsultarStock
+	@CodigoProducto varchar(14)
+AS
+BEGIN
+    SELECT Stock from Productos where CodigoProducto = @CodigoProducto
+END
+GO
+
+
 CREATE PROCEDURE RegistrarProducto
 	@CodigoProducto varchar(14),
 	@Modelo varchar(50),
@@ -756,20 +765,23 @@ CREATE TABLE Solicitud_Proveedor
 )
 
 
+
+
 CREATE TABLE OrdenesCompra
 (
 	NumeroOrdenCompra INT PRIMARY KEY IDENTITY(1,1),
 	CUITProveedor varchar(14) FOREIGN KEY REFERENCES Proveedores(CUITProveedor),
 	NumeroSolicitud INT FOREIGN KEY REFERENCES SolicitudesCotizacion(NumeroSolicitud),
 	FechaRegistro varchar(18),
-	FechEntrega varchar(18),
+	FechaEntrega varchar(18),
 	Estado varchar(50),
-	NumeroTransferencia int,
+	NumeroTransferencia bigint,
 	MetodoPago varchar(50),
 	MontoTotal float,
 	CantidadTotal int,
-	NumeroFactura int
+	NumeroFactura bigint
 )
+
 
 CREATE TABLE Item_OrdenCompra
 (
@@ -778,7 +790,9 @@ CREATE TABLE Item_OrdenCompra
 	CodigoProducto varchar(14) FOREIGN KEY REFERENCES Productos(CodigoProducto),
 	CantidadSolicitada int,
 	PrecioCompra float,
-	CantidadRecibida int
+	CantidadRecibida int,
+	NumFacturaRecepcion bigint,
+	FechaRecepcion varchar(18)
 )
 
 
@@ -834,18 +848,17 @@ BEGIN
 END
 GO
 
-
 CREATE PROCEDURE RegistrarOrdenCompra
 	@CUITProveedor varchar(14),
 	@NumeroSolicitud int,
 	@FechaRegistro varchar(18),
 	@FechaEntrega varchar(18),
 	@Estado varchar(50),
-	@NumeroTransferencia int,
+	@NumeroTransferencia bigint,
 	@MetodoPago varchar(50),
 	@MontoTotal float,
 	@CantidadTotal int,
-	@NumeroFactura int
+	@NumeroFactura bigint
 AS
 BEGIN
     INSERT INTO OrdenesCompra VALUES(@CUITProveedor, @NumeroSolicitud, @FechaRegistro, @FechaEntrega, @Estado, @NumeroTransferencia, @MetodoPago, @MontoTotal, @CantidadTotal, @NumeroFactura)
@@ -860,7 +873,7 @@ CREATE PROCEDURE RegistrarItemOrden
 	@PrecioCompra float
 AS
 BEGIN
-    INSERT INTO Item_OrdenCompra VALUES (@NumeroOrdenCompra, @CodigoProducto, @Cantidad, @PrecioCompra,0)
+    INSERT INTO Item_OrdenCompra VALUES (@NumeroOrdenCompra, @CodigoProducto, @Cantidad, @PrecioCompra,0,0,'')
 END
 GO
 
@@ -881,15 +894,18 @@ BEGIN
 END
 GO
 
+
+
 CREATE PROCEDURE MarcarOrdenEntregada
 	@NumeroOrdenCompra INT,
 	@Estado varchar(50),
-	@NumFactura INT
+	@Fecha varchar(18)
 AS
 BEGIN
-	UPDATE OrdenesCompra SET Estado = @Estado, NumeroFactura = @NumFactura WHERE NumeroOrdenCompra = @NumeroOrdenCompra
+	UPDATE OrdenesCompra SET Estado = @Estado, FechaEntrega = @Fecha WHERE NumeroOrdenCompra = @NumeroOrdenCompra
 END
 GO
+
 
 CREATE PROCEDURE ModificarEstadoSolicitud
 	@NumeroSolicitud INT,
@@ -903,10 +919,13 @@ GO
 CREATE PROCEDURE ModificarCantidadRecibidaItem
 	@NumeroOrdenCompra INT,
 	@CodigoProducto varchar(14),
-	@CantidadRecibida INT
+	@CantidadRecibida INT,
+	@NumFactura BIGINT,
+	@FechaRecepcion varchar(18)
 AS
 BEGIN
-	UPDATE Item_OrdenCompra SET CantidadRecibida = @CantidadRecibida WHERE NumeroOrdenCompra = @NumeroOrdenCompra AND CodigoProducto = @CodigoProducto
+	UPDATE Item_OrdenCompra SET CantidadRecibida = @CantidadRecibida, NumFacturaRecepcion = @NumFactura, FechaRecepcion = @FechaRecepcion
+	WHERE NumeroOrdenCompra = @NumeroOrdenCompra AND CodigoProducto = @CodigoProducto
 END
 GO
 
@@ -1008,7 +1027,7 @@ INSERT INTO Usuarios VALUES (40334227, 'Horacio', 'Perez', 'horacioperez@gmail.c
 
 INSERT INTO Productos VALUES (123, 'Iphone 15 Pro','Chip A17 Pro, 8GB Ram, OLED 6.1 pulgadas, Camara 48 MP', 'Apple', 'Blanco', 1100, 20, 10, 40, 256,1);
 INSERT INTO Productos VALUES (456, 'Samsung S24 Ultra','Chip Octa-Coree, 8GB Ram, Bateria 5000 mAh, Camra 50MP','Samsung', 'Negro', 1300, 26,  10, 40, 512,1);
-INSERT INTO Productos VALUES (789012, 'Google Pixel 8','Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 10, 40, 256,1);
+INSERT INTO Productos VALUES (789012, 'Google Pixel 8', 'Chip Tensor G3, 12GB Ram, OLED 6.2 pulgadas, Camara 50 MP', 'Google', 'Gris', 900, 15, 10, 40, 256, 1);
 INSERT INTO Productos VALUES (901234, 'Xiaomi Mi 13 Ultra','Chip Snapdragon 8 Gen 2, 12GB Ram, AMOLED 6.73 pulgadas, Camara 50 MP', 'Xiaomi', 'Verde', 850, 22, 10, 40, 512,1);
 
 

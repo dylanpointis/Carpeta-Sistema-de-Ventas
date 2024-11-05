@@ -78,7 +78,7 @@
             this.btnRegistrarProveedor.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRegistrarProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarProveedor.ForeColor = System.Drawing.Color.Black;
-            this.btnRegistrarProveedor.Location = new System.Drawing.Point(766, 351);
+            this.btnRegistrarProveedor.Location = new System.Drawing.Point(745, 351);
             this.btnRegistrarProveedor.Name = "btnRegistrarProveedor";
             this.btnRegistrarProveedor.Size = new System.Drawing.Size(133, 37);
             this.btnRegistrarProveedor.TabIndex = 28;
@@ -92,7 +92,7 @@
             this.btnSeleccionarProveedor.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSeleccionarProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeleccionarProveedor.ForeColor = System.Drawing.Color.White;
-            this.btnSeleccionarProveedor.Location = new System.Drawing.Point(551, 351);
+            this.btnSeleccionarProveedor.Location = new System.Drawing.Point(530, 351);
             this.btnSeleccionarProveedor.Name = "btnSeleccionarProveedor";
             this.btnSeleccionarProveedor.Size = new System.Drawing.Size(138, 37);
             this.btnSeleccionarProveedor.TabIndex = 29;
@@ -112,7 +112,7 @@
             this.grillaProdBajoStock.MultiSelect = false;
             this.grillaProdBajoStock.Name = "grillaProdBajoStock";
             this.grillaProdBajoStock.ReadOnly = true;
-            this.grillaProdBajoStock.Size = new System.Drawing.Size(487, 256);
+            this.grillaProdBajoStock.Size = new System.Drawing.Size(504, 256);
             this.grillaProdBajoStock.TabIndex = 58;
             // 
             // label2
@@ -179,11 +179,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaProveedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaProveedores.Location = new System.Drawing.Point(552, 88);
+            this.grillaProveedores.Location = new System.Drawing.Point(532, 88);
             this.grillaProveedores.MultiSelect = false;
             this.grillaProveedores.Name = "grillaProveedores";
             this.grillaProveedores.ReadOnly = true;
-            this.grillaProveedores.Size = new System.Drawing.Size(448, 244);
+            this.grillaProveedores.Size = new System.Drawing.Size(469, 244);
             this.grillaProveedores.TabIndex = 64;
             // 
             // label5
@@ -191,7 +191,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(549, 70);
+            this.label5.Location = new System.Drawing.Point(529, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(86, 16);
             this.label5.TabIndex = 68;
@@ -202,7 +202,7 @@
             this.cmbProveedoresSeleccionados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbProveedoresSeleccionados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProveedoresSeleccionados.FormattingEnabled = true;
-            this.cmbProveedoresSeleccionados.Location = new System.Drawing.Point(552, 447);
+            this.cmbProveedoresSeleccionados.Location = new System.Drawing.Point(531, 447);
             this.cmbProveedoresSeleccionados.Name = "cmbProveedoresSeleccionados";
             this.cmbProveedoresSeleccionados.Size = new System.Drawing.Size(228, 21);
             this.cmbProveedoresSeleccionados.TabIndex = 69;
@@ -212,7 +212,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(549, 423);
+            this.label4.Location = new System.Drawing.Point(528, 423);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(178, 16);
             this.label4.TabIndex = 70;
@@ -232,7 +232,7 @@
             this.btnCargarCant.UseVisualStyleBackColor = false;
             this.btnCargarCant.Click += new System.EventHandler(this.btnCargarCant_Click);
             // 
-            // COMPRAfrmGenerarSolicitudCotizacion
+            // frmGenerarSolicitudCotizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -253,7 +253,7 @@
             this.Controls.Add(this.btnSeleccionarProveedor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRegistrarProveedor);
-            this.Name = "COMPRAfrmGenerarSolicitudCotizacion";
+            this.Name = "frmGenerarSolicitudCotizacion";
             this.Text = "COMPRAfrmGenerarSolicitudCotizacion";
             this.Load += new System.EventHandler(this.COMPRAfrmGenerarSolicitudCotizacion_Load);
             this.Resize += new System.EventHandler(this.COMPRAfrmGenerarSolicitudCotizacion_Resize);

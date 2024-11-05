@@ -56,9 +56,19 @@ namespace Services.Observer
         {
             textosDiccionario = new Dictionary<string, string>();
             textosDiccionario.Clear();
-            var fileName = Path.Combine("..","..","..",$"Idiomas\\{SessionManager.IdiomaActual}\\{archivoActual}-{SessionManager.IdiomaActual}.json");
-            var jsonString = File.ReadAllText(fileName);
-            textosDiccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
+            try //Usar la carpeta idiomas en la carpeta bin/debug
+            {
+                var fileName = $"Idiomas\\{SessionManager.IdiomaActual}\\{archivoActual}-{SessionManager.IdiomaActual}.json";
+                var jsonString = File.ReadAllText(fileName);
+                textosDiccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
+            }
+            catch (System.IO.DirectoryNotFoundException)  //si no la encuentra que intente usar la carpeta idiomas 
+            {
+                var fileName = Path.Combine("..", "..", "..", $"Idiomas\\{SessionManager.IdiomaActual}\\{archivoActual}-{SessionManager.IdiomaActual}.json");
+                var jsonString = File.ReadAllText(fileName);
+                textosDiccionario = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
+            }
+           
         }
 
         public string ConseguirTexto(string nombreControl) //lee el diccionario y devuelve el texto segun la key (nombre del control)

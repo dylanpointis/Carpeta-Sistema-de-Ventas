@@ -42,15 +42,19 @@ namespace BE
         }
 
 
-        public void modificarCantidadItem(long codProd, int cant, bool boolRecepcion)
+        public void modificarCantidadItem(long codProd, int cant, long numFacturaRecep, string fechaRecep, bool boolRecepcion)
         {
             BEItemOrdenCompra item = itemsOrdenCompra.FirstOrDefault(p => p.Producto.CodigoProducto == codProd);
-            if(boolRecepcion == false)
+            if (boolRecepcion == false)
             {
                 item.CantidadSolicitada = cant;
             }
-            else { item.CantidadRecibida = cant; } //si es el formulario de corroborar recepcion modifca la cantidad recibida, no la solicitada
-
+            else //si es el formulario de corroborar recepcion modifca la cantidad recibida, no la solicitada
+            { 
+                item.CantidadRecibida = cant;
+                item.NumFacturaRecepcion = numFacturaRecep;
+                item.FechaRecepcion = fechaRecep;
+            }
         }
 
         public void modificarPrecioItem(long codProd, double precioCompra)
@@ -65,13 +69,24 @@ namespace BE
             return itemsOrdenCompra;
         }
 
-        public void AgregarItem(BEProducto producto, int cantSolicitada, int cantRecibida)
+        public void AgregarItem(BEProducto producto, int cantSolicitada, int cantRecibida, long numFactura, string fechaRecepcion)
         {
             BEItemOrdenCompra itemEncontrado = itemsOrdenCompra.FirstOrDefault(i => i.Producto.CodigoProducto == producto.CodigoProducto);
             if(itemEncontrado == null)
             {
-                itemsOrdenCompra.Add(new BEItemOrdenCompra(producto, cantSolicitada, cantRecibida));
+                BEItemOrdenCompra item = new BEItemOrdenCompra(producto, cantSolicitada, 0);
+                item.CantidadRecibida = cantRecibida;
+                item.NumFacturaRecepcion = numFactura;
+                item.FechaRecepcion = fechaRecepcion;
+                itemsOrdenCompra.Add(item);
             }
+        }
+
+        public void QuitarItem(long codProd)
+        {
+            BEItemOrdenCompra item = itemsOrdenCompra.FirstOrDefault(p => p.Producto.CodigoProducto == codProd);
+            if(item != null)
+            itemsOrdenCompra.Remove(item);
         }
 
     }

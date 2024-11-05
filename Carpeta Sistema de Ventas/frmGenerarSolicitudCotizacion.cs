@@ -48,7 +48,9 @@ namespace Carpeta_Sistema_de_Ventas
             grillaProdBajoStock.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSMin");
             grillaProdBajoStock.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSMax");
             grillaProdBajoStock.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCantidadAReponer");
-
+            grillaProdBajoStock.Columns[0].Width = 60; grillaProdBajoStock.Columns[2].Width = 53;  grillaProdBajoStock.Columns[3].Width = 60;
+            grillaProdBajoStock.Columns[4].Width = 60;
+            grillaProdBajoStock.Columns[5].Width = 60;
 
 
             grillaProveedores.ColumnCount = 6;
@@ -135,16 +137,20 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (grillaProdBajoStock.SelectedRows.Count > 0)
             {
-                long codProd = Convert.ToInt64(grillaProdBajoStock.CurrentRow.Cells[0].Value);
-                solicitudCoti.QuitarItem(codProd);
-
-                foreach(DataGridViewRow row in grillaProdBajoStock.Rows)
+                if (solicitudCoti.obtenerItems().Count() > 1) //No puede eliminar el ultimo elemento que haya. No puede haber 0 items
                 {
-                    if (Convert.ToInt64(row.Cells[0].Value) == codProd)
+                    long codProd = Convert.ToInt64(grillaProdBajoStock.CurrentRow.Cells[0].Value);
+                    solicitudCoti.QuitarItem(codProd);
+
+                    foreach (DataGridViewRow row in grillaProdBajoStock.Rows)
                     {
-                        grillaProdBajoStock.Rows.Remove(row);
+                        if (Convert.ToInt64(row.Cells[0].Value) == codProd)
+                        {
+                            grillaProdBajoStock.Rows.Remove(row);
+                        }
                     }
                 }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("minimo1Producto"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
             }
         }
 
@@ -186,16 +192,11 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 grillaProdBajoStock.Width = 787;
                 grillaProdBajoStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                grillaProveedores.Width = 648;
             }
             else
             {
-
                 grillaProdBajoStock.Width = 487;
                 grillaProdBajoStock.Height = 256;
-                grillaProveedores.Width = 448;
-                grillaProveedores.Height = 244;
             }
         }
 

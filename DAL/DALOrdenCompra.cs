@@ -22,8 +22,8 @@ namespace DAL
             {
                 new SqlParameter("@CUITProveedor", ordenCompra.proveedor.CUIT),
                 new SqlParameter("@NumeroSolicitud", ordenCompra.NumeroSolicitudCompra),
-                new SqlParameter("@FechaRegistro", ordenCompra.FechaRegistro.ToString("dd/MM/yyyy HH:mm")),
-                new SqlParameter("@FechaEntrega", ordenCompra.FechaEntrega.ToString("dd/MM/yyyy HH:mm")),
+                new SqlParameter("@FechaRegistro", ordenCompra.FechaRegistro.ToString("yyyy-MM-dd HH:mm")),
+                new SqlParameter("@FechaEntrega", ordenCompra.FechaEntrega.ToString("yyyy-MM-dd HH:mm")),
                 new SqlParameter("@Estado", ordenCompra.Estado),
                 new SqlParameter("@NumeroTransferencia", ordenCompra.NumeroTransferencia),
                 new SqlParameter("@MetodoPago", ordenCompra.MetodoPago),
@@ -92,34 +92,34 @@ namespace DAL
             return tabla;
         }
 
-        public void MarcarOrdenEntregada(BEOrdenCompra ordenC) //Tambien carga el numero de factura
+        public void MarcarOrdenEntregada(BEOrdenCompra ordenC)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
                 new SqlParameter("@NumeroOrdenCompra", ordenC.NumeroOrdenCompra),
                 new SqlParameter("@Estado", ordenC.Estado),
-                new SqlParameter("@NumFactura", ordenC.NumeroFactura),
+                new SqlParameter("@Fecha", ordenC.FechaEntrega.ToString("yyyy-MM-dd HH:mm"))
             };
             dalCon.EjecutarProcAlmacenado("MarcarOrdenEntregada", parametros);
-
-
-            foreach(BEItemOrdenCompra item in ordenC.obtenerItems())
-            {
-                parametros = new SqlParameter[]
-                {
-                    new SqlParameter("@NumeroOrdenCompra", ordenC.NumeroOrdenCompra),
-                    new SqlParameter("@CodigoProducto", item.Producto.CodigoProducto),
-                    new SqlParameter("@CantidadRecibida", item.CantidadRecibida)
-                };
-                dalCon.EjecutarProcAlmacenado("ModificarCantidadRecibidaItem", parametros);
-            }
-
         }
 
         //Esto es para que el digito verificador persista en la tabla Item_OrdenCompra 
         public DataTable traerTablaItemOrden()
         {
             return dalCon.TraerTabla("Item_OrdenCompra");
+        }
+
+        public void ModificarCantRecibidaItems(int numeroOrdenCompra, BEItemOrdenCompra item)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@NumeroOrdenCompra", numeroOrdenCompra),
+                new SqlParameter("@CodigoProducto", item.Producto.CodigoProducto),
+                new SqlParameter("@CantidadRecibida", item.CantidadRecibida),
+                new SqlParameter("@NumFactura", item.NumFacturaRecepcion),
+                new SqlParameter("@FechaRecepcion", item.FechaRecepcion),
+            };
+            dalCon.EjecutarProcAlmacenado("ModificarCantidadRecibidaItem", parametros);
         }
     }
 }

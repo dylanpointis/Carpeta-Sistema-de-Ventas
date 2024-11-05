@@ -53,13 +53,18 @@ namespace Carpeta_Sistema_de_Ventas
             txtFechaEntrega.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
             txtFechaEntrega.Value = DateTime.Today.AddDays(7);
 
+            TraerSolicitudesPendientes();
+        }
 
+        private void TraerSolicitudesPendientes()
+        {
             List<BESolicitudCotizacion> listaSol = bllSolC.TraerListaSolicitudes();
+            cmbSolicitudesCotizacion.Items.Clear();
             foreach (var sol in listaSol)
             {
-                if(sol.Estado == "Pendiente")
+                if (sol.Estado == "Pendiente")
                 {
-                    cmbSolicitudesCotizacion.Items.Add(+ sol.NumSolicitud + "  |  " +sol.Fecha);
+                    cmbSolicitudesCotizacion.Items.Add(+sol.NumSolicitud + "  |  " + sol.Fecha);
                 }
             }
         }
@@ -94,11 +99,14 @@ namespace Carpeta_Sistema_de_Ventas
 
                 foreach (var item in listaItems)
                 {
-                    ordenC.AgregarItem(item.Producto, item.Cantidad, 0);
+                    ordenC.AgregarItem(item.Producto, item.Cantidad, 0, 0, "");
                     grillaItems.Rows.Add(item.Producto.CodigoProducto, item.Producto.Modelo, item.Producto.Stock, item.Producto.StockMin, item.Producto.StockMax, item.Cantidad, 0);
                 }
+                btnFinalizar.Enabled = true;
             }
         }
+
+
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
@@ -106,7 +114,6 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 CargarPrecioCompra();
                 ActualizarLabelsTotal();
-
             }
         }
 
@@ -135,8 +142,11 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnModificarCant_Click(object sender, EventArgs e)
         {
-            CargarCantidadItem();
-            ActualizarLabelsTotal();
+            if (grillaItems.SelectedRows.Count > 0)
+            {
+                CargarCantidadItem();
+                ActualizarLabelsTotal();
+            }
         }
         private void CargarCantidadItem()
         {
@@ -156,7 +166,7 @@ namespace Carpeta_Sistema_de_Ventas
                     else
                     {
                         //modifica la cantidad a reponer
-                        ordenC.modificarCantidadItem(Convert.ToInt64(codProd), Convert.ToInt16(cantIngresada), false);
+                        ordenC.modificarCantidadItem(Convert.ToInt64(codProd), Convert.ToInt16(cantIngresada), 0, "", false);
 
                         grillaItems.CurrentRow.Cells[5].Value = cantIngresada;
                     }
@@ -177,15 +187,6 @@ namespace Carpeta_Sistema_de_Ventas
                 montoNeto += item.CantidadSolicitada * item.PrecioCompra;
             }
 
-            //foreach (DataGridViewRow row in grillaItems.Rows) 
-            //{
-            //    if (row.Cells[5].Value != null && row.Cells[6].Value != null)
-            //    {
-            //        //cant * precio compra
-            //        montoNeto += Convert.ToInt32(row.Cells[5].Value) * Convert.ToDouble(row.Cells[6].Value);
-            //    }
-
-            //}
             iva = (montoNeto * 21) / 100;
             lblNeto.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNeto") + montoNeto;
             lblIVA.Text = IdiomaManager.GetInstance().ConseguirTexto("lblIVA") + iva;
@@ -214,13 +215,14 @@ namespace Carpeta_Sistema_de_Ventas
                         IdiomaManager.GetInstance().archivoActual = "frmGenerarOrdenCompra";
                         IdiomaManager.GetInstance().Agregar(this);
                         ActualizarLabelsTotal();
+                        MostrarDetalleProveedor();
                         btnFinalizar.Enabled = true;
                     }
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("provNoRegistradoCompleto"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                 }
                 else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("carguePreciosYCant"));}//Cargue todos los precios de compra y cants
             }
-            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneProv")); }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneProv"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
         private void cmbProveedorFinal_SelectedIndexChanged(object sender, EventArgs e)
@@ -255,7 +257,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-            if(ordenC.NumeroTransferencia > 0) //si ya registro el pago
+            if(ordenC.NumeroTransferencia > 0 && ordenC.NumeroFactura > 0) //si ya registro el pago
             {
                 try
                 {
@@ -269,9 +271,11 @@ namespace Carpeta_Sistema_de_Ventas
                     string paginahtml = Properties.Resources.htmlfacturacompra.ToString();
                     Reportes.GenerarReporteOrden(ordenC, paginahtml, Properties.Resources.logo);
                     btnFinalizar.Enabled = false;
+                    TraerSolicitudesPendientes();
                 }
                 catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
+            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeRegistrarPago"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
         }
 
 
@@ -289,6 +293,24 @@ namespace Carpeta_Sistema_de_Ventas
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneProvParaRegistrarlo")); }
         }
 
-
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            if(grillaItems.SelectedRows.Count > 0)
+            {
+                if (ordenC.obtenerItems().Count() > 1) //No puede eliminar el ultimo elemento que haya. No puede haber 0 items
+                {
+                    long codProd = Convert.ToInt64(grillaItems.CurrentRow.Cells[0].Value);
+                    ordenC.QuitarItem(codProd);
+                    foreach (DataGridViewRow row in grillaItems.Rows)
+                    {
+                        if (Convert.ToInt64(row.Cells[0].Value) == codProd)
+                        {
+                            grillaItems.Rows.Remove(row);
+                        }
+                    }
+                }
+                else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("minimo1Producto"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            }
+        }
     }
 }

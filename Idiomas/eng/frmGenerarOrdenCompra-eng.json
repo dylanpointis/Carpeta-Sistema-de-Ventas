@@ -11,6 +11,9 @@
   "btnFinalizar": "Finish",
   "btnModificarCant": "Modify quantity to restock",
   "lblFechaEntrega": "Estimated Product delivery date",
+  "btnQuitar": "Remove",
+  "minimo1Producto": "The product cannot be deleted because at least one must be in the purchase order",
+  "debeRegistrarPago": "The payment must be registered in order to finish the purchase order",
 
   "lblNeto": "Net: ",
   "lblIVA": "VAT (21%): ",

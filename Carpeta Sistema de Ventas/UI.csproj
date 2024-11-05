@@ -7,7 +7,7 @@
     <ProjectGuid>{706A4F40-47D4-452A-8DDB-BA4F3213B286}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Carpeta_Sistema_de_Ventas</RootNamespace>
-    <AssemblyName>Carpeta Sistema de Ventas</AssemblyName>
+    <AssemblyName>AltaGamaSistema</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo2png.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
@@ -327,6 +330,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="logo2png.ico" />
     <Content Include="Resources\htmlfacturaRecepcion.html" />
     <Content Include="Resources\htmlfacturacompra.html" />
     <None Include="icons\foldericon2.png" />

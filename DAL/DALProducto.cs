@@ -96,13 +96,22 @@ namespace DAL
             else { return false; }
         }
 
-        public void HabilitarProducto(long idProd)
+        public void HabilitarProducto(long codProd)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                 new SqlParameter("@CodigoProducto", idProd)
+                 new SqlParameter("@CodigoProducto", codProd)
             };
             dalCon.EjecutarProcAlmacenado("HabilitarProducto", parametros);
+        }
+
+        public int ConsultarStock(long codProd)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                 new SqlParameter("@CodigoProducto", codProd)
+            };
+            return dalCon.EjecutarYTraerId("ConsultarStock", parametros);
         }
     }
 }
