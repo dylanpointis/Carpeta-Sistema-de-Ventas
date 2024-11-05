@@ -331,6 +331,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="logo2png.ico" />
+    <Content Include="Resources\htmlsolicitudcotizacion.html" />
     <Content Include="Resources\htmlfacturaRecepcion.html" />
     <Content Include="Resources\htmlfacturacompra.html" />
     <None Include="icons\foldericon2.png" />

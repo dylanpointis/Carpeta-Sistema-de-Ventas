@@ -40,6 +40,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BECliente cli = new BECliente(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtMail.Text, txtDireccion.Text);
                     bllCliente.RegistrarCliente(cli);
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnRegistrarCliente.Enabled = false;
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
@@ -64,7 +65,12 @@ namespace Carpeta_Sistema_de_Ventas
             }
             return true;
         }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        #region Eventos formulario
         /*Evento para que no escriba mas de 9 digitos y solo Numeros*/
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -89,9 +95,56 @@ namespace Carpeta_Sistema_de_Ventas
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+
+        private void frmRegistrarCliente_Shown(object sender, EventArgs e)
         {
-            this.Close();
+            txtDNI.Focus();
         }
+        //eventos para que al apretar enter avance al siguiente textbox
+        private void txtDNI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                txtNombre.Focus();
+            }
+        }
+
+        private void txtNombre_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                txtApellido.Focus();
+            }
+        }
+
+        private void txtApellido_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                txtMail.Focus();
+            }
+        }
+
+        private void txtMail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                txtDireccion.Focus();
+            }
+        }
+        private void txtDireccion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; //Evita el sonido de windows
+                btnRegistrarCliente.Focus();
+            }
+        }
+        #endregion
+
     }
 }

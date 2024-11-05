@@ -46,6 +46,15 @@
   "error": "Error al registrar la solicitud de cotización: ",
   "exito": "Solicitud de cotización registrada con éxito",
 
+
+  "textoNumSolicitud": "Número de solicitud de cotización",
+  "textoFecha": "Fecha",
+  "textoCantidadSolicitada": "Cantidad solicitada",
+  "textoDetalleSolicitud": "Detalle de solicitud",
+  "textoDetalleProveedor": "Detalle proveedores",
+
+
+
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

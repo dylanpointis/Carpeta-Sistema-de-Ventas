@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Factura</title>
+</head>
+<body>
+
+    <div style="width: 80%; background-color:lightskyblue; padding: 10px">
+        <h1 style="color: white">Alta Gama</h1>
+    </div>
+
+    <table style="width: 100%; margin-top: 10px">
+        <tr>
+            <td style="font-size: 20px">@textoNumSolicitud: @NumSolicitud</td>
+        </tr>
+        <tr>
+            <td style="font-size: 20px">@textoFecha: @fecha</td>
+        </tr>
+
+    </table>
+
+    <h2>@textoDetalleSolicitud</h2>
+    <table border="1" style="width: 100%; margin-top: 15px">
+        <thead>
+            <tr>
+                <th>@gridViewCodigo</th>
+                <th>@gridViewModelo</th>
+                <th>@textoCantidadSolicitada</th>
+            </tr>
+        </thead>
+        <tbody>
+            @FILAS
+        </tbody>
+    </table>
+
+    <h2>@textoDetalleProveedor</h2>
+    <table border="1" style="width: 100%; margin-top: 15px">
+        <thead>
+            <tr>
+                <th>@gridViewCUIT</th>
+                <th>@textoNombreProveedor</th>
+                <th>@gridViewRazonSocial</th>
+            </tr>
+        </thead>
+        <tbody>
+            @FILASProveedores
+        </tbody>
+    </table>
+    <footer style="width: 100%; background-color:lightskyblue; height:60px"></footer>
+</body>
+</html>

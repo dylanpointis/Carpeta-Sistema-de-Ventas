@@ -19,7 +19,7 @@ namespace BLL
 
         public int RegistrarSolicitudCotizacion(BESolicitudCotizacion solicitudCoti)
         {
-            if (solicitudCoti.obtenerProveedorSolicitud().Count == 0)
+            if (solicitudCoti.obtenerProveedoresSolicitud().Count == 0)
             {
                 throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("seleccioneAlMenosUnProv"));
             }
@@ -36,7 +36,7 @@ namespace BLL
                 }
 
                 //registrar proveedores de la solicitud
-                foreach (BEProveedor prov in solicitudCoti.obtenerProveedorSolicitud())
+                foreach (BEProveedor prov in solicitudCoti.obtenerProveedoresSolicitud())
                 {
                     RegistrarProveedorSolicitud(prov, solicitudCoti.NumSolicitud);
                 }

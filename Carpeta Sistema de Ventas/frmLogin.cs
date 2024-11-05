@@ -25,8 +25,8 @@ namespace Carpeta_Sistema_de_Ventas
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            txtNombreUsuario.Text = "Admin";
-            txtClave.Text = "clave123";
+            //txtNombreUsuario.Text = "Admin";
+            //txtClave.Text = "clave123";
             btnMostrarClave.Text = "";
             txtNombreUsuario.Focus();
         }
@@ -97,6 +97,8 @@ namespace Carpeta_Sistema_de_Ventas
             }
 
             this.Show(); //vuelve a mostrar este form de login
+            txtNombreUsuario.Text = "";
+            txtClave.Text = "";
         }
 
 

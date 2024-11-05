@@ -25,7 +25,7 @@ namespace BE
             }
         }
 
-        public List<BEProveedor> obtenerProveedorSolicitud()
+        public List<BEProveedor> obtenerProveedoresSolicitud()
         {
             return ProveedoresSolicitud;
         }

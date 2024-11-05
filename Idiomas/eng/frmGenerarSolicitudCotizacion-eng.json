@@ -46,6 +46,13 @@
   "error": "Error registering the quotation request: ",
   "exito": "Quotation request registered successfully",
 
+
+  "textoNumSolicitud": "Quote request number",
+  "textoFecha": "Date",
+  "textoCantidadSolicitada": "Requested quantity",
+  "textoDetalleSolicitud": "Request details",
+  "textoDetalleProveedor": "Providers details",
+
   "cerrar": "Log out",
   "deseaCerrar": "Are you sure you want to Log Out?",
   "noHaySesion": "No session logged",

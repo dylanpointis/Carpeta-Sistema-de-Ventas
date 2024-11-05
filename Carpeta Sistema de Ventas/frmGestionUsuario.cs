@@ -67,14 +67,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             if (modoOperacion == EnumModoAplicar.Consulta)
             {
-                grillaUsuarios.Rows.Clear();
-                foreach (BEUsuario u in lstUsuarios)
-                {
-                    if (u.DNI.ToString() == txtDNI.Text || u.Nombre.ToLower() == txtNombre.Text.ToLower() || u.Apellido.ToLower() == txtApellido.Text.ToLower() || u.NombreUsuario.ToLower() == txtNombreUsuario.Text.ToLower() || u.Email == txtEmail.Text.ToLower() || u.Rol.Nombre == cmbRol.Text)
-                    {
-                        grillaUsuarios.Rows.Add(u.DNI, u.Nombre, u.Apellido, u.Email, u.NombreUsuario, u.Rol.Nombre, u.Bloqueado, u.Activo);
-                    }
-                }
+                ConsultarUsuarios();
             }
             else
             {
@@ -91,12 +84,8 @@ namespace Carpeta_Sistema_de_Ventas
                         else
                         {
                             Familia rol = listaRoles.FirstOrDefault(r => r.Nombre == cmbRol.Text); //BUSCA EL ROL
-                            string clave = txtDNI.Text + txtApellido.Text; // CLAVE COMBINA DNI + APELLIDO
-                            BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, Encriptador.EncriptarSHA256(clave), rol.Id, false, true);
+                            BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text,"", rol.Id, false, true);
                             bllUsuario.RegistrarUsuario(user);
-
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario creado", 1));
-
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                         }
                     }
@@ -106,30 +95,21 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (ValidarCampos())
                     {
-                            if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != "False") //en caso de que este activo
+                        if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != "False") //en caso de que este activo
+                        {
+                            int dni = Convert.ToInt32(txtDNI.Text);
+                            bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == dni).Bloqueado;
+
+                            try
                             {
-                                int dni = Convert.ToInt32(txtDNI.Text);
-                                bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == dni).Bloqueado;
-
-                                List<BEUsuario> lstUsers = bllUsuario.TraerListaUsuarios();
-                                BEUsuario usuarioEncontrado = lstUsers.FirstOrDefault(u => u.DNI != dni && (u.NombreUsuario == txtNombreUsuario.Text || u.Email == txtEmail.Text));
-                                if (usuarioEncontrado != null) //busca si existe un usuario con ese  email o nombre de usuario
-                                {
-                                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExisteMailUser"));
-                                    return;
-                                }
-                                else
-                                {
-                                    Familia rol = listaRoles.FirstOrDefault(r => r.Nombre == cmbRol.Text); //BUSCA EL ROL
-
-                                    BEUsuario user = new BEUsuario(dni, txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, rol.Id, bloqueado, true);
-                                    bllUsuario.ModificarUsuario(user);
-                                    bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario modificado", 1));
-                                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
-                                }
-
+                                Familia rol = listaRoles.FirstOrDefault(r => r.Nombre == cmbRol.Text); //BUSCA EL ROL
+                                BEUsuario user = new BEUsuario(dni, txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text, null, rol.Id, bloqueado, true);
+                                bllUsuario.ModificarUsuario(user);
+                                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                             }
-                            else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noPuedeModificarse")); } //no puede modificarse un usuario inactivo                                             
+                            catch (Exception ex) { MessageBox.Show(ex.Message); return; }
+                        }
+                        else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noPuedeModificarse")); } //no puede modificarse un usuario inactivo                                             
                     }
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
                 }
@@ -140,7 +120,6 @@ namespace Carpeta_Sistema_de_Ventas
                     if (resultado == DialogResult.Yes)
                     {
                         bllUsuario.EliminarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
-                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario eliminado", 1));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
@@ -151,7 +130,6 @@ namespace Carpeta_Sistema_de_Ventas
                     if (resultado == DialogResult.Yes)
                     {
                         bllUsuario.ActivarUsuario(Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value));
-                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario activado", 1));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
@@ -162,20 +140,25 @@ namespace Carpeta_Sistema_de_Ventas
                     if (resultado == DialogResult.Yes)
                     {
                         int DNI = Convert.ToInt32(grillaUsuarios.CurrentRow.Cells[0].Value);
-                        string username = grillaUsuarios.CurrentRow.Cells[4].Value.ToString();
-
                         bllUsuario.ModificarBloqueo(DNI, false);
-                        bllUsuario.ModificarContFallido(username, 0); //resetea el cont de intenos fallidos a 0
-
-                        //Cuando bloquea un usuario porque se olvido la clave, al desbloquearlo se le reseta a la clave por defecto
-                        bllUsuario.ResetearClavePorDefecto(DNI);
-                        bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario desbloqueado", 1));
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                     }
                 }
                 ResetearBotones();
             }
-           
+        }
+
+
+        private void ConsultarUsuarios()
+        {
+            grillaUsuarios.Rows.Clear();
+            foreach (BEUsuario u in lstUsuarios)
+            {
+                if (u.DNI.ToString() == txtDNI.Text || u.Nombre.ToLower() == txtNombre.Text.ToLower() || u.Apellido.ToLower() == txtApellido.Text.ToLower() || u.NombreUsuario.ToLower() == txtNombreUsuario.Text.ToLower() || u.Email == txtEmail.Text.ToLower() || u.Rol.Nombre == cmbRol.Text)
+                {
+                    grillaUsuarios.Rows.Add(u.DNI, u.Nombre, u.Apellido, u.Email, u.NombreUsuario, u.Rol.Nombre, u.Bloqueado, u.Activo);
+                }
+            }
         }
 
 

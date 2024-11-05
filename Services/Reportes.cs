@@ -17,6 +17,87 @@ namespace Services
 {
     public class Reportes
     {
+
+        public static void GenerarReporteSolicitud(BESolicitudCotizacion solC, string paginahtml, Bitmap Logo)
+        {
+            SaveFileDialog guardarArchivo = new SaveFileDialog();
+
+            guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
+            guardarArchivo.FileName = solC.NumSolicitud + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
+
+            paginahtml = paginahtml.Replace("@NumSolicitud", solC.NumSolicitud.ToString());
+            paginahtml = paginahtml.Replace("@fecha", solC.Fecha.ToString("yyyy-MM-dd HH:mm"));
+
+
+            string filas = "";
+            foreach (BEItemSolicitud item in solC.obtenerItems())
+            {
+                BEProducto prod = item.Producto;
+                int cantidad = item.Cantidad;
+                filas += "<tr>";
+                filas += "<td>" + prod.CodigoProducto.ToString() + "</td>";
+                filas += "<td>" + prod.Modelo + "</td>";
+                filas += "<td>" + cantidad.ToString() + "</td>";
+                filas += "</tr>";
+            }
+
+            paginahtml = paginahtml.Replace("@FILAS", filas);
+
+
+
+            string filasProv = "";
+            foreach (BEProveedor prov in solC.obtenerProveedoresSolicitud())
+            {
+                filas += "<tr>";
+                filas += "<td>" + prov.CUIT + "</td>";
+                filas += "<td>" + prov.Nombre + "</td>";
+                filas += "<td>" + prov.RazonSocial + "</td>";
+                filas += "</tr>";
+            }
+            paginahtml = paginahtml.Replace("@FILASProveedores", filasProv);
+
+
+
+            //traducciones
+            paginahtml = paginahtml.Replace("@textoNumSolicitud", IdiomaManager.GetInstance().ConseguirTexto("textoNumSolicitud"));
+            paginahtml = paginahtml.Replace("@textoDetalleSolicitud", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleSolicitud"));
+            paginahtml = paginahtml.Replace("@textoDetalleProveedor", IdiomaManager.GetInstance().ConseguirTexto("textoDetalleProveedor"));
+            paginahtml = paginahtml.Replace("@gridViewCodigo", IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo"));
+            paginahtml = paginahtml.Replace("@gridViewModelo", IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo"));
+            paginahtml = paginahtml.Replace("@gridViewPrecioUnit", IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecioUnit"));
+            paginahtml = paginahtml.Replace("@textoCantidadSolicitada", IdiomaManager.GetInstance().ConseguirTexto("textoCantidadSolicitada"));
+            paginahtml = paginahtml.Replace("@textoCantidadRecibida", IdiomaManager.GetInstance().ConseguirTexto("textoCantidadRecibida"));
+            paginahtml = paginahtml.Replace("@gridViewCUIT", IdiomaManager.GetInstance().ConseguirTexto("gridViewCUIT"));
+            paginahtml = paginahtml.Replace("@textoNombreProveedor", IdiomaManager.GetInstance().ConseguirTexto("gridViewNombre"));
+            paginahtml = paginahtml.Replace("@gridViewRazonSocial", IdiomaManager.GetInstance().ConseguirTexto("gridViewRazonSocial"));
+            paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
+
+            if (guardarArchivo.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
+                {
+                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
+
+                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
+
+                    pdf.Open();
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Logo, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(80, 60);
+                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
+                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
+                    pdf.Add(img);
+
+                    using (StringReader lector = new StringReader(paginahtml))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
+                    }
+                    pdf.Close();
+                    stream.Close();
+                }
+            }
+        }
+
+
         public static void GenerarReporteOrden(BEOrdenCompra ordenC, string paginahtml, Bitmap Logo)
         {
             SaveFileDialog guardarArchivo = new SaveFileDialog();

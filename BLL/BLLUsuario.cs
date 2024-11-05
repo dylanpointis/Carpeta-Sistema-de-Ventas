@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,21 +92,47 @@ namespace BLL
         public void ModificarBloqueo(int DNI, bool bloqueo)
         {
             dalUsuario.ModificarBloqueo(DNI,  bloqueo);
+
+            if(bloqueo == false) //si desbloquea
+            {
+                string username = ValidarUsuario("", DNI, "").NombreUsuario;
+
+                ModificarContFallido(username, 0); //resetea el cont de intenos fallidos a 0
+
+                //Cuando bloquea un usuario porque se olvido la clave, al desbloquearlo se le reseta a la clave por defecto
+                ResetearClavePorDefecto(DNI);
+                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario desbloqueado", 1));
+            }
         }
 
         public void RegistrarUsuario(BEUsuario user)
         {
+            string clave = user.DNI + user.Apellido; // CLAVE COMBINA DNI + APELLIDO
+            user.Clave = Encriptador.EncriptarSHA256(clave);
             dalUsuario.RegistrarUsuario(user);
+
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario creado", 1));
         }
 
         public void ModificarUsuario(BEUsuario user)
         {
-            dalUsuario.ModificarUsuario(user);
+            List<BEUsuario> lstUsers = TraerListaUsuarios();
+            BEUsuario usuarioEncontrado = lstUsers.FirstOrDefault(u => u.DNI != user.DNI && (u.NombreUsuario == user.NombreUsuario|| u.Email == user.Email));
+            if (usuarioEncontrado != null) //busca si existe un usuario con ese  email o nombre de usuario
+            {
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExisteMailUser"));
+            }
+            else
+            {
+                dalUsuario.ModificarUsuario(user);
+                bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario modificado", 1));
+            }
         }
 
         public void EliminarUsuario(int DNICliente)
         {
             dalUsuario.EliminarUsuario(DNICliente);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario eliminado", 1));
         }
 
         public void CambiarClave(int DNICliente, string clave, string claveActual)
@@ -128,12 +155,14 @@ namespace BLL
                 throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("masde8"));
             
             dalUsuario.CambiarClave(DNICliente, Encriptador.EncriptarSHA256(clave));
+            if(claveActual != "")
             bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cambio de clave", 1));
         }
 
         public void ActivarUsuario(int DNICliente)
         {
             dalUsuario.ActivarUsuario(DNICliente);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario activado", 1));
         }
 
         public void ModificarContFallido(string nombreUsuario, int contClaveIncorrecta)
@@ -150,7 +179,6 @@ namespace BLL
             CambiarClave(DNI, clave,"");
             //resetea el contador de fallidos a 0
             ModificarContFallido(user.NombreUsuario, 0);
-            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario desbloqueado", 1));
         }
     }
 }

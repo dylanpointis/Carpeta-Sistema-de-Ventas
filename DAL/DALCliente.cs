@@ -83,19 +83,19 @@ namespace DAL
             return cliente;
         }
 
-        public bool VerificarSiClienteTieneFacturas(int dniCliente)
-        {
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@DNI", dniCliente)
-            };
-            DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarSiClienteTieneFacturas", parametros);
+        //public bool VerificarSiClienteTieneFacturas(int dniCliente)
+        //{
+        //    SqlParameter[] parametros = new SqlParameter[]
+        //    {
+        //        new SqlParameter("@DNI", dniCliente)
+        //    };
+        //    DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarSiClienteTieneFacturas", parametros);
 
-            if(tabla.Rows.Count > 0)
-            {
-                return true;
-            }
-            else { return false; }
-        }
+        //    if(tabla.Rows.Count > 0)
+        //    {
+        //        return true;
+        //    }
+        //    else { return false; }
+        //}
     }
 }

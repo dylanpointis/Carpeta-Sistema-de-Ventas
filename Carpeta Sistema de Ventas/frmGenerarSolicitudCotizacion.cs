@@ -100,7 +100,7 @@ namespace Carpeta_Sistema_de_Ventas
 
                 solicitudCoti.AgregarProveedor(prov);
                 cmbProveedoresSeleccionados.Items.Clear();
-                foreach(BEProveedor p in solicitudCoti.obtenerProveedorSolicitud())
+                foreach(BEProveedor p in solicitudCoti.obtenerProveedoresSolicitud())
                 {
                     cmbProveedoresSeleccionados.Items.Add(p.Nombre);
                     cmbProveedoresSeleccionados.Text = p.Nombre;
@@ -116,6 +116,9 @@ namespace Carpeta_Sistema_de_Ventas
                 solicitudCoti.NumSolicitud = idSolicitud;
 
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Reportes.GenerarReporteSolicitud(solicitudCoti, Properties.Resources.htmlsolicitudcotizacion.ToString(), Properties.Resources.logo);
+
                 btnFinalizar.Enabled = false;
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }

@@ -155,7 +155,11 @@ namespace Carpeta_Sistema_de_Ventas
                 string fecha = row.Cells[5].Value.ToString();
                 string hora = row.Cells[6].Value.ToString();
 
-                lista.Add(new Evento(nombreusuario, modulo, eventodesc, criticidad));
+                Evento ev = new Evento(nombreusuario, modulo, eventodesc, criticidad);
+                ev.IdEvento = Convert.ToInt32(idevento);
+                ev.Fecha = fecha;
+                ev.Hora = hora;
+                lista.Add(ev);
             }
 
             string paginahtml = Properties.Resources.htmlauditoriaevento.ToString();
