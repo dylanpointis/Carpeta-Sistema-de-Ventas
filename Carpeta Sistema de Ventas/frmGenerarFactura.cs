@@ -189,8 +189,6 @@ namespace Carpeta_Sistema_de_Ventas
             if(_factura.listaProductosAgregados.Count > 0 && _factura.clienteFactura != null)
             {
                 _factura.Fecha = DateTime.Now;
-                _factura.cobro = new BECobro();
-                _factura.cobro.NumTransaccionBancaria = bllFactura.TraerUltimoNumTransaccion() + 1;
 
                 frmCobrarVenta form = new frmCobrarVenta(_factura);
                 form.ShowDialog();

@@ -42,6 +42,8 @@ namespace BLL
             {
                 try
                 {
+                    string direccionEncriptada = Encriptador.EncriptarAES(cliente.Direccion);
+                    cliente.Direccion = direccionEncriptada;
                     dalCliente.RegistrarCliente(cliente);
                     bllDV.PersistirDV(dalCliente.TraerListaCliente());
                     bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente creado", 4));

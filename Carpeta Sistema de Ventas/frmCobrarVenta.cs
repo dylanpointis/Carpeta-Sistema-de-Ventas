@@ -19,7 +19,7 @@ namespace Carpeta_Sistema_de_Ventas
     public partial class frmCobrarVenta : Form, IObserver
     {
         BEFactura _factura;
-        //public BECobro cobroDatos = new BECobro();
+        BLLFactura bllFactura = new BLLFactura();
         public frmCobrarVenta(BEFactura factura)
         {
             InitializeComponent();
@@ -37,6 +37,9 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void frmCobrarVenta_Load(object sender, EventArgs e)
         {
+            _factura.cobro = new BECobro();
+            _factura.cobro.NumTransaccionBancaria = bllFactura.TraerUltimoNumTransaccion() + 1;
+
             var valoresEnum = Enum.GetNames(typeof(EnumMetodoPago));
             foreach (var valor in valoresEnum)
             {
@@ -53,6 +56,7 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 //_factura.cobro.NumTransaccionBancaria = _factura.NumFactura;
                 _factura.cobro.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedItem.ToString());
+                _factura.cobro.stringMetodoPago = cmbMetodoPago.SelectedItem.ToString();
                 _factura.cobro.ComentarioAdicional = txtComentarioAdicional.Text;
                 _factura.cobro.NumTransaccionBancaria = Convert.ToInt32(txtNumTransaccion.Text);
 
@@ -65,8 +69,7 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         _factura.cobro.CantCuotas = 1;
                     }
-
-                    if (_factura.cobro.MetodoPago == EnumMetodoPago.MercadoPago)
+                    else if (_factura.cobro.MetodoPago == EnumMetodoPago.MercadoPago)
                     {
                         _factura.cobro.CantCuotas = 1;
                         _factura.cobro.AliasMP = txtAliasMP.Text;
@@ -77,9 +80,6 @@ namespace Carpeta_Sistema_de_Ventas
                         _factura.cobro.MarcaTarjeta = cmbMarcaTarjeta.Text;
                         _factura.cobro.CantCuotas = Convert.ToInt16(txtCantCuotas.Text);
                     }
-
-
-                    //_factura.cobro = cobroDatos;
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaCobrada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
