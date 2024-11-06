@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGestionFamilias));
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblModoOperacion = new System.Windows.Forms.Label();
@@ -301,6 +302,7 @@
             this.Controls.Add(this.cmbFamilia);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listBoxFamiliaConfigurada);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGestionFamilias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmGestionFamilias_Load);

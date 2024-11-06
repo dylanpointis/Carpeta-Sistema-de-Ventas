@@ -146,6 +146,32 @@ namespace BLL
             return prov;
         }
 
+        public List<BEOrdenCompra> TraerOrdenesPendientes() //TRAE ORDENES PENDIENTES O ENTREGADAS PARCIALMENTE
+        {
+            List<BEOrdenCompra> lista = new List<BEOrdenCompra>();
+            DataTable tabla = dalOrdC.TraerOrdenesPendientes();
+
+            foreach (DataRow row in tabla.Rows)
+            {
+                int numSolicitud = Convert.ToInt32(row[2].ToString());
+                int cantidadTotal = Convert.ToInt32(row[9].ToString());
+                string estado = row[5].ToString();
+                DateTime fechaEntrega = Convert.ToDateTime(row[4]);
+                DateTime fechaRegistro = Convert.ToDateTime(row[3]);
+                double montoTotal = Convert.ToDouble(row[8]);
+
+                BEOrdenCompra ordenCompra = new BEOrdenCompra(numSolicitud, cantidadTotal, estado, fechaEntrega, fechaRegistro, montoTotal);
+                ordenCompra.NumeroOrdenCompra = Convert.ToInt32(row[0]);
+                ordenCompra.NumeroTransferencia = Convert.ToInt64(row[6]);
+                ordenCompra.CantidadTotal = Convert.ToInt32(row[9]);
+                ordenCompra.NumeroFactura = Convert.ToInt64(row[10]);
+                lista.Add(ordenCompra);
+            }
+            return lista;
+        }
+
+
+
         //este metodo es para traer la tabla Item_OrdenesCompra para persistirla en digito verificador
 
         private DataTable traerTablaItemOrden()

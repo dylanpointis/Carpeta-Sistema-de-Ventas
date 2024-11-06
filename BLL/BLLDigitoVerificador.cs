@@ -79,6 +79,9 @@ namespace BLL
             string[] DVHCalculado = CalcularDVHActual(tablaDVGlobal); //vector con los dvh de todas las tablas
             string[] DVVCalculado = CalcularDVVActual(tablaDVGlobal); //vector con los dvv de todas las tablas
 
+            if (SessionManager.GetInstance.ObtenerUsuario() != null)
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaInicio"));
+
             BEUsuario user = bLLUsuario.ValidarUsuario(nombreusuario,0,"");
             if (user == null)
                 throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro"));

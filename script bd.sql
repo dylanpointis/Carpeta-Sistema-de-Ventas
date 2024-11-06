@@ -801,6 +801,23 @@ CREATE TABLE Item_OrdenCompra
 
 GO
 
+
+CREATE PROCEDURE TraerProductosBajoStock
+AS
+BEGIN
+	SELECT * FROM Productos where (Stock - StockMinimo) <= 10
+END
+GO
+
+CREATE PROCEDURE TraerOrdenesPendientes
+AS
+BEGIN
+	SELECT * FROM OrdenesCompra where Estado <> 'Entregada'
+END
+GO
+
+
+
 CREATE PROCEDURE RegistrarSolicitudCotizacion
 	@Estado varchar(11),
 	@Fecha varchar(18)

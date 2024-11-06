@@ -28,6 +28,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         BLLProducto_C bllCambios = new BLLProducto_C();
         BLLProducto bllProd = new BLLProducto();
+        List<BEProducto_C> listaCambios = new List<BEProducto_C>();
 
         private void frmAuditoriaCambios_Load(object sender, EventArgs e)
         {
@@ -51,9 +52,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaCambios.Columns[13].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvActivo");
 
 
-
-
-
+            listaCambios = bllCambios.TraerListaCambios();
             ActualizarGrilla();
         }
 
@@ -65,7 +64,6 @@ namespace Carpeta_Sistema_de_Ventas
         private void ActualizarGrilla()
         {
             grillaCambios.Rows.Clear();
-            List<BEProducto_C> listaCambios = bllCambios.TraerListaCambios();
 
             foreach(var prodC in listaCambios)
             {
@@ -101,6 +99,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            listaCambios = bllCambios.TraerListaCambios();
             ActualizarGrilla();
         }
 
@@ -110,33 +109,16 @@ namespace Carpeta_Sistema_de_Ventas
             string fechaFinal = fechaFin.Value.ToString("yyyy-MM-dd");
 
 
-            List<BEProducto_C> list = bllCambios.FiltrarCambios(txtCodigoProd.Text, txtModelo.Text, fechaInicial, fechaFinal);
-            grillaCambios.Rows.Clear();
-
-            foreach (BEProducto_C prodC in list)
-            {
-                string activo = ""; //El elemento activo es el que tiene el estado actual del producto, los antiguos no son activos
-                if (prodC.Activo == true)
-                {
-                    activo = IdiomaManager.GetInstance().ConseguirTexto("boolTrue");
-                }
-                else { activo = IdiomaManager.GetInstance().ConseguirTexto("boolFalse"); }
-
-                string borrado = "";
-                if (prodC.Producto.BorradoLogico == true) //Si el bool BorradoLogico es true es porque el producto esta habilitado (no borrado)
-                {
-                    borrado = IdiomaManager.GetInstance().ConseguirTexto("boolHabilitado");
-                }
-                else { borrado = IdiomaManager.GetInstance().ConseguirTexto("boolBorrado"); }
-
-                grillaCambios.Rows.Add(prodC.Producto.CodigoProducto, prodC.Fecha, prodC.Hora, prodC.Producto.Modelo, prodC.Producto.Descripcion, prodC.Producto.Marca, prodC.Producto.Color, prodC.Producto.Precio, prodC.Producto.Stock, prodC.Producto.StockMin, prodC.Producto.StockMax, prodC.Producto.Almacenamiento, borrado, activo);
-            }
+            listaCambios = bllCambios.FiltrarCambios(txtCodigoProd.Text, txtModelo.Text, fechaInicial, fechaFinal);
+            ActualizarGrilla();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtModelo.Text = ""; txtCodigoProd.Text = "";
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-31);
+            listaCambios = bllCambios.TraerListaCambios();
+            ActualizarGrilla();
         }
 
         private void fechaInicio_ValueChanged(object sender, EventArgs e)
@@ -195,6 +177,29 @@ namespace Carpeta_Sistema_de_Ventas
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccionaGrid"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
+        }
+
+        private void txtCodigoProd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                if (!char.IsControl(e.KeyChar))
+                {
+                    string texto = textBox.Text;
+
+                    if (texto.Length >= 14)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
         }
     }
 }

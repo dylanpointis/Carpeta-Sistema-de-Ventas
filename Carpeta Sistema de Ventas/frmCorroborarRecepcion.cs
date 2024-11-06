@@ -59,15 +59,12 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void TraerOrdenesPendientes()
         {
-            List<BEOrdenCompra> listaOrd = bllOrdenC.TraerListaOrdenes();
+            List<BEOrdenCompra> listaOrd = bllOrdenC.TraerOrdenesPendientes(); //TRAE ORDENES PENDIENTES O ENTREGADAS PARCIALMENTE
             cmbOrdenesCompra.Items.Clear();
             foreach (var ord in listaOrd)
             {
-                if (ord.Estado != "Entregada")
-                {
-                    listaOrdenesPendientes.Add(ord);
-                    cmbOrdenesCompra.Items.Add(ord.NumeroOrdenCompra + "  |  " + ord.FechaRegistro);
-                }
+                listaOrdenesPendientes.Add(ord);
+                cmbOrdenesCompra.Items.Add(ord.NumeroOrdenCompra + "  |  " + ord.FechaRegistro);
             }
         }
 

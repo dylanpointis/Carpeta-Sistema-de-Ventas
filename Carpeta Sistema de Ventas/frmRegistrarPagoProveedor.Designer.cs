@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistrarPagoProveedor));
             this.txtCBU = new System.Windows.Forms.TextBox();
             this.lblCBU = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -189,6 +190,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtCBU);
             this.Controls.Add(this.lblCBU);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmRegistrarPagoProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

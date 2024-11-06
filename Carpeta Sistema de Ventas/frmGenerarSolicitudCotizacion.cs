@@ -79,9 +79,8 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void ActualizarGrilla()
         {
-            List<BEProducto> listaProd = bllProd.TraerListaProductos().Where(p => (p.Stock - p.StockMin) <= 10).ToList();
-
-            foreach (BEProducto item in listaProd)
+            List<BEProducto> listaProdBajoStock = bllProd.TraerProductosBajoStock();
+            foreach (BEProducto item in listaProdBajoStock)
             {
                 grillaProdBajoStock.Rows.Add(item.CodigoProducto,item.Modelo, item.Marca, item.Stock, item.StockMin, item.StockMax);
                 solicitudCoti.AgregarItem(item,0);

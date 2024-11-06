@@ -81,20 +81,20 @@ namespace DAL
             dalCon.EjecutarProcAlmacenado("ModificarProducto", parametros);
         }
 
-        public bool VerificarSiProductoTieneFacturas(long codigoProducto)
-        {
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("@CodigoProducto", codigoProducto)
-            };
-            DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarSiProductoTieneFacturas", parametros);
+        //public bool VerificarSiProductoTieneFacturas(long codigoProducto)
+        //{
+        //    SqlParameter[] parametros = new SqlParameter[]
+        //    {
+        //        new SqlParameter("@CodigoProducto", codigoProducto)
+        //    };
+        //    DataTable tabla = dalCon.ConsultaProcAlmacenado("VerificarSiProductoTieneFacturas", parametros);
 
-            if (tabla.Rows.Count > 0)
-            {
-                return true;
-            }
-            else { return false; }
-        }
+        //    if (tabla.Rows.Count > 0)
+        //    {
+        //        return true;
+        //    }
+        //    else { return false; }
+        //}
 
         public void HabilitarProducto(long codProd)
         {
@@ -112,6 +112,14 @@ namespace DAL
                  new SqlParameter("@CodigoProducto", codProd)
             };
             return dalCon.EjecutarYTraerId("ConsultarStock", parametros);
+        }
+
+        public DataTable TraerProductosBajoStock()
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+            };
+            return dalCon.ConsultaProcAlmacenado("TraerProductosBajoStock", parametros);
         }
     }
 }

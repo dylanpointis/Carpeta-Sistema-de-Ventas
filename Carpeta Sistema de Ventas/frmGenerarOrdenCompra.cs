@@ -51,6 +51,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaItems.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecioUnit");
 
             txtFechaEntrega.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
+            txtFechaEntrega.MinDate = DateTime.Today;
             txtFechaEntrega.Value = DateTime.Today.AddDays(7);
 
             TraerSolicitudesPendientes();

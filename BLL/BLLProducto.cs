@@ -69,6 +69,20 @@ namespace BLL
             bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 
+        public List<BEProducto> TraerProductosBajoStock()
+        {
+            DataTable tabla = dalProd.TraerProductosBajoStock();
+            List<BEProducto> prodsBajoStock = new List<BEProducto>();
+            foreach (DataRow row in tabla.Rows)
+            {
+                BEProducto producto = new BEProducto(Convert.ToInt64(row[0]), row[1].ToString(), row[2].ToString(),
+                    row[3].ToString(), row[4].ToString(), Convert.ToDouble(row[5]), Convert.ToInt32(row[6]),
+                    Convert.ToInt32(row[7]), Convert.ToInt32(row[8]), Convert.ToInt32(row[9]), Convert.ToBoolean(row[10]));
+                prodsBajoStock.Add(producto);
+            }
+            return prodsBajoStock;
+        }
+
         //public bool VerificarSiProductoTieneFacturas(long codigoProducto)
         //{
         //    return dalProd.VerificarSiProductoTieneFacturas(codigoProducto);

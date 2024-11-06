@@ -121,5 +121,12 @@ namespace DAL
             };
             dalCon.EjecutarProcAlmacenado("ModificarCantidadRecibidaItem", parametros);
         }
+
+        public DataTable TraerOrdenesPendientes()//TRAE ORDENES PENDIENTES O ENTREGADAS PARCIALMENTE
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            { };
+            return dalCon.ConsultaProcAlmacenado("TraerOrdenesPendientes", parametros);
+        }
     }
 }

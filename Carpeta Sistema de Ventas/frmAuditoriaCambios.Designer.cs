@@ -52,6 +52,7 @@
             this.txtCodigoProd.Name = "txtCodigoProd";
             this.txtCodigoProd.Size = new System.Drawing.Size(172, 20);
             this.txtCodigoProd.TabIndex = 99;
+            this.txtCodigoProd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoProd_KeyPress);
             // 
             // fechaFin
             // 
