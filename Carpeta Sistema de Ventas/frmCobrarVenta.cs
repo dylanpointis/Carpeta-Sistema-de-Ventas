@@ -40,45 +40,75 @@ namespace Carpeta_Sistema_de_Ventas
             _factura.cobro = new BECobro();
             _factura.cobro.NumTransaccionBancaria = bllFactura.TraerUltimoNumTransaccion() + 1;
 
-            var valoresEnum = Enum.GetNames(typeof(EnumMetodoPago));
-            foreach (var valor in valoresEnum)
-            {
-                cmbMetodoPago.Items.Add(valor);
-            }
             lblMontoTotal.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMontoTotal") + _factura.MontoTotal.ToString();
             lblImpuesto.Text = IdiomaManager.GetInstance().ConseguirTexto("lblImpuesto") + _factura.Impuesto.ToString();
             lblNumeroFactura.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNumeroFactura") + _factura.NumFactura.ToString();
+            LlenarComboBoxMetodoPago();
+            txtCantCuotas.Text = "1";
+            txtCantCuotas.Enabled = false;
+        }
+
+        private void LlenarComboBoxMetodoPago()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Texto"); // La columna para el texto a mostrar
+            dt.Columns.Add("Valor"); // La columna para el valor real
+
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Crédito"), EnumMetodoPago.Crédito);
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Débito"), EnumMetodoPago.Débito);
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Mercado Pago"), EnumMetodoPago.MercadoPago);
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Efectivo"), EnumMetodoPago.Efectivo);
+            cmbMetodoPago.DataSource = dt;
+            cmbMetodoPago.DisplayMember = "Texto";
+            cmbMetodoPago.ValueMember = "Valor";
+
+            cmbMarcaTarjeta.Enabled = false;
+            txtAliasMP.Enabled = false;
+
+            //var valoresEnum = Enum.GetNames(typeof(EnumMetodoPago));
+            //foreach (var valor in valoresEnum)
+            //{
+            //    cmbMetodoPago.Items.Add(valor);
+            //}
         }
 
         private void btnCobrarVenta_Click(object sender, EventArgs e)
         {
             if (ValidarCampos())
             {
-                //_factura.cobro.NumTransaccionBancaria = _factura.NumFactura;
-                _factura.cobro.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedItem.ToString());
-                _factura.cobro.stringMetodoPago = cmbMetodoPago.SelectedItem.ToString();
+                _factura.cobro.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedValue.ToString());
+                _factura.cobro.stringMetodoPago = cmbMetodoPago.SelectedValue.ToString();
                 _factura.cobro.ComentarioAdicional = txtComentarioAdicional.Text;
-                _factura.cobro.NumTransaccionBancaria = Convert.ToInt32(txtNumTransaccion.Text);
 
-
-                BLLFactura bllfac = new BLLFactura();
-                List<BEFactura> facs = bllfac.ConsultarFacturas(0, Convert.ToInt32(txtNumTransaccion.Text), 0); //busca si ya hay una factura con el mismo num transaccion
-                if (facs.Count() == 0)
+                List<BEFactura> facturasConMismoNumTransaccion = new List<BEFactura>();
+                if (txtNumTransaccion.Text != "")
                 {
-                    if (_factura.cobro.MetodoPago == EnumMetodoPago.Debito) /*si es debito es una cuota*/
+                    _factura.cobro.NumTransaccionBancaria = Convert.ToInt32(txtNumTransaccion.Text);
+                    facturasConMismoNumTransaccion = bllFactura.ConsultarFacturas(0, Convert.ToInt32(txtNumTransaccion.Text), 0); //busca si ya hay una factura con el mismo num transaccion
+                }
+
+
+                _factura.cobro.AliasMP = null;
+                _factura.cobro.CantCuotas = 0;
+                //si no encontro facturas con el mismo numero de transaccion
+                if (facturasConMismoNumTransaccion.Count() == 0)
+                {
+                    if (_factura.cobro.MetodoPago == EnumMetodoPago.Débito) /*si es debito es una cuota*/
                     {
-                        _factura.cobro.CantCuotas = 1;
+                        _factura.cobro.MarcaTarjeta = cmbMarcaTarjeta.Text;
                     }
                     else if (_factura.cobro.MetodoPago == EnumMetodoPago.MercadoPago)
                     {
-                        _factura.cobro.CantCuotas = 1;
                         _factura.cobro.AliasMP = txtAliasMP.Text;
                     }
-                    else
+                    else if(_factura.cobro.MetodoPago == EnumMetodoPago.Crédito)
                     {
-                        _factura.cobro.AliasMP = null;
                         _factura.cobro.MarcaTarjeta = cmbMarcaTarjeta.Text;
                         _factura.cobro.CantCuotas = Convert.ToInt16(txtCantCuotas.Text);
+                    }
+                    else //si es efectivo el num transaccion es null
+                    {
+                        _factura.cobro.NumTransaccionBancaria = null;
                     }
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("ventaCobrada"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
@@ -91,26 +121,29 @@ namespace Carpeta_Sistema_de_Ventas
 
         private bool ValidarCampos()
         {
-            if(txtNumTransaccion.Text == "")
+            if(txtNumTransaccion.Text == "" && cmbMetodoPago.Text != IdiomaManager.GetInstance().ConseguirTexto("Efectivo"))
             {
                 return false;
             }
 
             /*Si el metodo de pago es Mercado pago debe solamente poner el aliasMp, no los datos de la tarejeta.*/
-            if (cmbMetodoPago.Text != "") 
+            if (cmbMetodoPago.Text != "")
             {
-                if(cmbMetodoPago.Text == EnumMetodoPago.MercadoPago.ToString())
-                {
-                    if(txtAliasMP.Text == "")
+                if (cmbMetodoPago.Text != IdiomaManager.GetInstance().ConseguirTexto("Efectivo"))
+                { 
+                    if (cmbMetodoPago.Text == IdiomaManager.GetInstance().ConseguirTexto("Mercado Pago"))
                     {
-                        return false;
+                        if (txtAliasMP.Text == "")
+                        {
+                            return false;
+                        }
                     }
-                }
-                else 
-                {
-                    if( cmbMarcaTarjeta.Text == "" || txtCantCuotas.Text == "")
+                    else
                     {
-                        return false;
+                        if (cmbMarcaTarjeta.Text == "" || txtCantCuotas.Text == "")
+                        {
+                            return false;
+                        }
                     }
                 }
             }
@@ -138,25 +171,35 @@ namespace Carpeta_Sistema_de_Ventas
         private void cmbMetodoPago_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtAliasMP.Text = "";
-
-            if (cmbMetodoPago.Text == EnumMetodoPago.MercadoPago.ToString())
+            txtAliasMP.Enabled = false;
+            txtNumTransaccion.Text = _factura.cobro.NumTransaccionBancaria.ToString();
+            txtNumTransaccion.Enabled = true;
+            txtCantCuotas.Enabled = false;
+            if (cmbMetodoPago.Text == IdiomaManager.GetInstance().ConseguirTexto("Mercado Pago"))
             {
                 txtAliasMP.Enabled = true;
                 cmbMarcaTarjeta.Enabled = false;
-                txtCantCuotas.Enabled = false;
-                txtCantCuotas.Text = "1";
+                txtCantCuotas.Text = "0";
             }
-            else
+            else if (cmbMetodoPago.Text == IdiomaManager.GetInstance().ConseguirTexto("Crédito"))
             {
-                txtAliasMP.Enabled = false;
+                txtCantCuotas.Text = "1";
                 cmbMarcaTarjeta.Enabled = true;
                 txtCantCuotas.Enabled = true;
             }
 
-            if (cmbMetodoPago.Text == EnumMetodoPago.Debito.ToString()) //si es debito no se puede pagar con cuotas
+            if (cmbMetodoPago.Text == IdiomaManager.GetInstance().ConseguirTexto("Débito")) //si es debito no se puede pagar con cuotas
             {
-                txtCantCuotas.Text = "1";
-                txtCantCuotas.Enabled = false;
+                cmbMarcaTarjeta.Enabled = true;
+                txtCantCuotas.Text = "0";
+            }
+
+            if (cmbMetodoPago.Text == IdiomaManager.GetInstance().ConseguirTexto("Efectivo"))
+            {
+                txtNumTransaccion.Enabled = false;
+                txtNumTransaccion.Text = "";;
+                cmbMarcaTarjeta.Enabled= false;
+                txtCantCuotas.Text = "0";
             }
         }
 

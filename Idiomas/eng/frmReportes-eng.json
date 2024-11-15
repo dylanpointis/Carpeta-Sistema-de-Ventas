@@ -28,6 +28,10 @@
   "dgvCantidad": "Quantity",
   "dgvPrecio": "Price",
   "dgvSubtotal": "Subtotal",
+  "Crédito": "Credit",
+  "Débito": "Debit",
+  "Efectivo": "Cash",
+  "Mercado Pago": "Mercado Pago",
 
   "htmlFechaVenta": "Date of sale",
   "htmlDetalleCliente": "Customer details:",

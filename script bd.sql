@@ -34,7 +34,7 @@ BorradoLogico bit
 CREATE TABLE Facturas(
 NumFactura INT PRIMARY KEY IDENTITY(1,1),
 DNICliente INT FOREIGN KEY REFERENCES Clientes(DNICliente),
-NumeroTransaccion INT UNIQUE,
+NumeroTransaccion INT,
 MontoTotal float,
 Impuesto float,
 Fecha varchar(50),
@@ -205,7 +205,7 @@ GO
 CREATE PROCEDURE TraerUltimoNumTransaccion
 AS
 BEGIN
-SELECT TOP 1 NumeroTransaccion from Facturas ORDER BY NumFactura DESC
+SELECT TOP 1 NumeroTransaccion from Facturas WHERE NumeroTransaccion IS NOT NULL ORDER BY NumFactura DESC
 END 
 GO
 
@@ -606,7 +606,7 @@ ContFallidos smallint
 );
 
 CREATE TABLE Eventos(
-IdEvento INT PRIMARY KEY IDENTITY(1,1),
+CodEvento BIGINT PRIMARY KEY IDENTITY(1,1),
 NombreUsuario varchar(50) FOREIGN KEY REFERENCES Usuarios(NombreUsuario),
 Modulo varchar(50),
 Evento varchar(100),
@@ -1057,9 +1057,9 @@ INSERT INTO Clientes VALUES (29145876, 'Marcos', 'Diaz', 'marcosdiaz@gmail.com',
 INSERT INTO Clientes VALUES (44978545, 'Luis', 'Hernández', 'luishernandez@gmail.com', 'G83WHQGteUATtYUG2eu3bydWi2qACBS6A19s6UyTTKc=', 1);
 INSERT INTO Clientes VALUES (40898122, 'Carla', 'Martínez', 'carlamartinez@gmail.com', 'NccLBubi03EOxcaLpcaPRg==', 1);
 
-
+/*
 INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-10-28 13:20', 'MercadoPago',null,1,'marcos','')
-INSERT INTO Item_Factura VALUES (1,123,1,1100)
+INSERT INTO Item_Factura VALUES (1,123,1,1100)*/
 
 
 

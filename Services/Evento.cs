@@ -8,7 +8,7 @@ namespace Services
 {
     public class Evento
     {
-        public int IdEvento { get; set; }
+        public long CodEvento { get; set; }
         public string NombreUsuario { get; set; }
         public string evento { get; set; }
         public string Modulo { get; set; }

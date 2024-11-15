@@ -16,6 +16,10 @@
   "llene": "Complete los campos",
   "seleccioneMetodo": "Seleccione un metodo de pago",
   "numTransOcupado": "Número de transaccion ya ocupado anteriormente",
+  "Crédito": "Crédito",
+  "Débito": "Débito",
+  "Efectivo": "Efectivo",
+  "Mercado Pago": "Mercado Pago",
 
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",

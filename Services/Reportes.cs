@@ -324,7 +324,8 @@ namespace Services
             paginahtml = paginahtml.Replace("@Neto", subtotalfactura.ToString());
             paginahtml = paginahtml.Replace("@Iva", fac.Impuesto.ToString());
             paginahtml = paginahtml.Replace("@Total", fac.MontoTotal.ToString());
-            paginahtml = paginahtml.Replace("@Metodo", fac.cobro.stringMetodoPago);
+            paginahtml = paginahtml.Replace("@Metodo", IdiomaManager.GetInstance().ConseguirTexto(fac.cobro.stringMetodoPago));
+
             paginahtml = paginahtml.Replace("@CantCuotas", fac.cobro.CantCuotas.ToString());
             if (fac.cobro.MarcaTarjeta != null)
             {
@@ -401,7 +402,7 @@ namespace Services
             foreach (Evento ev in lista)
             {
                 filas += "<tr>";
-                filas += "<td>" + ev.IdEvento + "</td>";
+                filas += "<td>" + ev.CodEvento + "</td>";
                 filas += "<td>" + ev.NombreUsuario + "</td>";
                 filas += "<td>" + ev.Modulo + "</td>";
                 filas += "<td>" + ev.evento + "</td>";

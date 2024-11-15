@@ -23,6 +23,10 @@
   "dgvApellido": "Apellido",
   "dgvEmail": "Email",
   "dgvDireccion": "Dirección",
+  "Crédito": "Crédito",
+  "Débito": "Débito",
+  "Efectivo": "Efectivo",
+  "Mercado Pago": "Mercado Pago",
 
   "dgvCodigo": "Código producto",
   "dgvModelo": "Modelo",

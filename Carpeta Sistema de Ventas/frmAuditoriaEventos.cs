@@ -32,7 +32,7 @@ namespace Carpeta_Sistema_de_Ventas
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-3);
             IdiomaManager.GetInstance().archivoActual = "frmAuditoriaEventos";
             IdiomaManager.GetInstance().Agregar(this);
-
+            listaEventos = bllEvento.TraerListaEventos();
         }
         public void ActualizarObserver()
         {
@@ -72,15 +72,17 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void ActualizarGrilla()
         {
-            listaEventos = bllEvento.TraerListaEventos();
             grillaEventos.Rows.Clear();
             foreach (Evento ev in listaEventos)
             {
-                grillaEventos.Rows.Add(ev.IdEvento,ev.NombreUsuario,ev.Modulo,ev.evento,ev.Criticidad,ev.Fecha,ev.Hora);
+                string ModuloTraducido = IdiomaManager.GetInstance().ConseguirTexto(ev.Modulo);
+                string EventoTraducido = IdiomaManager.GetInstance().ConseguirTexto(ev.evento);
+                grillaEventos.Rows.Add(ev.CodEvento,ev.NombreUsuario, ModuloTraducido, EventoTraducido, ev.Criticidad,ev.Fecha,ev.Hora);
             }
         }
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            listaEventos = bllEvento.TraerListaEventos();
             ActualizarGrilla();
         }
 
@@ -108,16 +110,13 @@ namespace Carpeta_Sistema_de_Ventas
 
             listaEventos = bllEvento.FiltrarEventos(txtNombreUsuario.Text, modulo, evento, cmbCriticidad.Text, fechaInicial, fechaFinal);
             grillaEventos.Rows.Clear();
-
-            foreach (Evento ev in listaEventos)
-            {
-                grillaEventos.Rows.Add(ev.IdEvento, ev.NombreUsuario, ev.Modulo, ev.evento, ev.Criticidad, ev.Fecha, ev.Hora);
-            }
+            ActualizarGrilla();
 
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
+            listaEventos = bllEvento.TraerListaEventos();
             ActualizarGrilla();
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-3);
             txtNombreUsuario.Text = "";
@@ -156,7 +155,7 @@ namespace Carpeta_Sistema_de_Ventas
                 string hora = row.Cells[6].Value.ToString();
 
                 Evento ev = new Evento(nombreusuario, modulo, eventodesc, criticidad);
-                ev.IdEvento = Convert.ToInt32(idevento);
+                ev.CodEvento = Convert.ToInt32(idevento);
                 ev.Fecha = fecha;
                 ev.Hora = hora;
                 lista.Add(ev);

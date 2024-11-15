@@ -64,7 +64,15 @@ namespace BLL
             {
                 BECliente cli = new BECliente(Convert.ToInt32(row[11]), row[12].ToString(), row[13].ToString(), row[14].ToString(), Encriptador.DesencriptarAES(row[15].ToString()));
 
-                BECobro cobro = new BECobro() { NumTransaccionBancaria = Convert.ToInt32(row[2]), MarcaTarjeta = row[7].ToString(), CantCuotas = Convert.ToInt32(row[8]), AliasMP = row[9].ToString(), ComentarioAdicional = row[10].ToString(), stringMetodoPago = row[6].ToString() };
+                int? valorNumTransaccion;
+                if (row[2] == DBNull.Value) //si es DBNull lo pone como null
+                {
+                    valorNumTransaccion = null;
+                }
+                else { valorNumTransaccion = Convert.ToInt32(row[2]); }
+
+
+                BECobro cobro = new BECobro() { NumTransaccionBancaria = valorNumTransaccion, MarcaTarjeta = row[7].ToString(), CantCuotas = Convert.ToInt32(row[8]), AliasMP = row[9].ToString(), ComentarioAdicional = row[10].ToString(), stringMetodoPago = row[6].ToString() };
 
 
                 BEFactura fac = new BEFactura()

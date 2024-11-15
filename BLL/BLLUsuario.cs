@@ -52,6 +52,7 @@ namespace BLL
             ModificarContFallido(username, 0);
             user.listaPermisosRol = bllFamilia.TraerListaPermisosRol(user.codRol);
             SessionManager.GetInstance.LogIn(user);
+            IdiomaManager.GetInstance().PrimeraVez = true;
             bllEv.RegistrarEvento(new Evento(username, "Sesiones", "Inicio sesión", 1));
         }
 

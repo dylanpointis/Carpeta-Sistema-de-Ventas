@@ -25,8 +25,8 @@ namespace Carpeta_Sistema_de_Ventas
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            //txtNombreUsuario.Text = "Admin";
-            //txtClave.Text = "clave123";
+            txtNombreUsuario.Text = "Admin";
+            txtClave.Text = "clave123";
             btnMostrarClave.Text = "";
             txtNombreUsuario.Focus();
         }
@@ -62,7 +62,6 @@ namespace Carpeta_Sistema_de_Ventas
                 this.Hide(); //oculta el formulario actual
                 frmMenu frmMenu = new frmMenu();
                 frmMenu.Show();
-
                 frmMenu.FormClosing += CerrandoFormulario; //cuando se cierra el formulario menu ejecuta la funcion CerrandoFormulario que vuelve a mostrar el form 
             }
             catch (Exception ex)
@@ -97,8 +96,8 @@ namespace Carpeta_Sistema_de_Ventas
             }
 
             this.Show(); //vuelve a mostrar este form de login
-            txtNombreUsuario.Text = "";
-            txtClave.Text = "";
+            //txtNombreUsuario.Text = "";
+            //txtClave.Text = "";
         }
 
 

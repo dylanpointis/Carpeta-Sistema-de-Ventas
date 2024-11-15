@@ -15,7 +15,7 @@ namespace Carpeta_Sistema_de_Ventas
         {
             InitializeComponent();
             IdiomaManager.GetInstance().archivoActual = "frmMenu";
-            IdiomaManager.GetInstance().Agregar(this);
+            IdiomaManager.GetInstance().Agregar((frmMenu)this);
             IdiomaManager.GetInstance().PrimeraVez = false;
         }
 
@@ -43,6 +43,12 @@ namespace Carpeta_Sistema_de_Ventas
                 }
             }
         }
+
+        public void ActualizarObserver()
+        {
+            IdiomaManager.ActualizarControles((frmMenu)this);
+        }
+
 
         private void DeshabilitarControles()
         {
@@ -91,14 +97,6 @@ namespace Carpeta_Sistema_de_Ventas
                     ProcesarFamilia((Familia)hijo);
                 }
             }
-        }
-
-
-
-
-        public void ActualizarObserver()
-        {
-            IdiomaManager.ActualizarControles(this);
         }
 
 
@@ -247,5 +245,10 @@ namespace Carpeta_Sistema_de_Ventas
             else { this.Close(); }
         }
 
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            if (formActivo != null)
+                formActivo.Close();
+        }
     }
 }

@@ -35,6 +35,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         BLLFactura bllFactura = new BLLFactura();
         BLLEvento bLLEvento = new BLLEvento();
+        BEFactura facturaSeleccionada;
 
         private void frmReportes_Load(object sender, EventArgs e)
         {
@@ -81,8 +82,10 @@ namespace Carpeta_Sistema_de_Ventas
             grillaFacturas.Rows.Clear();
             foreach(BEFactura fac in listaFac)
             {
+                string metodoPagoTraducido = IdiomaManager.GetInstance().ConseguirTexto(fac.cobro.stringMetodoPago);
+
                 grillaFacturas.Rows.Add(fac.NumFactura, fac.clienteFactura.DniCliente, fac.cobro.NumTransaccionBancaria,
-                    fac.MontoTotal, fac.Impuesto, fac.Fecha.ToString("yyyy-MM-dd HH:mm"), fac.cobro.stringMetodoPago, fac.cobro.MarcaTarjeta, fac.cobro.CantCuotas, fac.cobro.AliasMP,
+                    fac.MontoTotal, fac.Impuesto, fac.Fecha.ToString("yyyy-MM-dd HH:mm"), metodoPagoTraducido, fac.cobro.MarcaTarjeta, fac.cobro.CantCuotas, fac.cobro.AliasMP,
                     fac.clienteFactura.Nombre, fac.clienteFactura.Apellido, fac.clienteFactura.Mail, fac.clienteFactura.Direccion);
             }
         }
@@ -93,26 +96,9 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Ventas", "Impresión de factura", 4));
 
-                BECliente cli = new BECliente(Convert.ToInt32(grillaFacturas.CurrentRow.Cells[1].Value), grillaFacturas.CurrentRow.Cells[10].Value.ToString(), grillaFacturas.CurrentRow.Cells[11].Value.ToString(), grillaFacturas.CurrentRow.Cells[12].Value.ToString(), grillaFacturas.CurrentRow.Cells[13].Value.ToString());
-
-                BECobro cobro = new BECobro() { NumTransaccionBancaria = Convert.ToInt32(grillaFacturas.CurrentRow.Cells[2].Value), MarcaTarjeta = grillaFacturas.CurrentRow.Cells[7].Value.ToString(), CantCuotas = Convert.ToInt32(grillaFacturas.CurrentRow.Cells[8].Value), AliasMP = grillaFacturas.CurrentRow.Cells[9].Value.ToString(), stringMetodoPago = grillaFacturas.CurrentRow.Cells[6].Value.ToString() };
-
-                BEFactura fac = new BEFactura()
-                {
-                    NumFactura = Convert.ToInt32(grillaFacturas.CurrentRow.Cells[0].Value),
-                    clienteFactura = cli,
-                    cobro = cobro,
-                    Fecha = Convert.ToDateTime(grillaFacturas.CurrentRow.Cells[5].Value),
-                    MontoTotal = Convert.ToDouble(grillaFacturas.CurrentRow.Cells[3].Value),
-                    Impuesto = Convert.ToDouble(grillaFacturas.CurrentRow.Cells[4].Value),
-                };
-
-                //busca y carga los items en la factura
-                fac = bllFactura.TraerItemsFactura(fac);
-
                 //genera el reporte pdf
                 string paginahtml = Properties.Resources.htmlfactura.ToString();
-                Reportes.GenerarReporteVenta(fac, paginahtml, Properties.Resources.logo);
+                Reportes.GenerarReporteVenta(facturaSeleccionada, paginahtml, Properties.Resources.logo);
             }
             else
             {
@@ -139,11 +125,11 @@ namespace Carpeta_Sistema_de_Ventas
 
                 grillaFacturas.Rows.Clear();
 
-                foreach (BEFactura fac in listaFacturasConsulta)
+                foreach (BEFactura fact in listaFacturasConsulta)
                 {
-                    grillaFacturas.Rows.Add(fac.NumFactura, fac.clienteFactura.DniCliente, fac.cobro.NumTransaccionBancaria,
-                    fac.MontoTotal, fac.Impuesto, fac.Fecha, fac.cobro.stringMetodoPago, fac.cobro.MarcaTarjeta, fac.cobro.CantCuotas, fac.cobro.AliasMP,
-                    fac.clienteFactura.Nombre, fac.clienteFactura.Apellido, fac.clienteFactura.Mail, fac.clienteFactura.Direccion);
+                    grillaFacturas.Rows.Add(fact.NumFactura, fact.clienteFactura.DniCliente, fact.cobro.NumTransaccionBancaria,
+                    fact.MontoTotal, fact.Impuesto, fact.Fecha, fact.cobro.stringMetodoPago, fact.cobro.MarcaTarjeta, fact.cobro.CantCuotas, fact.cobro.AliasMP,
+                    fact.clienteFactura.Nombre, fact.clienteFactura.Apellido, fact.clienteFactura.Mail, fact.clienteFactura.Direccion);
                 }
 
                 //txtNumFactura.Text = ""; txtNumTransaccion.Text = "";  txtDni.Text = "";
@@ -178,12 +164,12 @@ namespace Carpeta_Sistema_de_Ventas
                 grillaItems.Rows.Clear();
                 long codigofactura = Convert.ToInt64(grillaFacturas.CurrentRow.Cells[0].Value);
 
-                BEFactura fac = bllFactura.TraerFacturas().FirstOrDefault(f => f.NumFactura == codigofactura);
+                facturaSeleccionada = bllFactura.TraerFacturas().FirstOrDefault(f => f.NumFactura == codigofactura);
 
-                fac = bllFactura.TraerItemsFactura(fac);
+                facturaSeleccionada = bllFactura.TraerItemsFactura(facturaSeleccionada);
 
                 double subtotal = 0;
-                foreach (BEItemFactura item in fac.listaProductosAgregados)
+                foreach (BEItemFactura item in facturaSeleccionada.listaProductosAgregados)
                 {
                     BEProducto prod = item.producto;
                     int cantidad = item.cantidad;

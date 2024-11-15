@@ -16,6 +16,10 @@
   "llene": "Fill in all fields",
   "seleccioneMetodo": "Select a payment method",
   "numTransOcupado": "Transaction number already occupied previously",
+  "Crédito": "Credit",
+  "Débito": "Debit",
+  "Efectivo": "Cash",
+  "Mercado Pago": "Mercado Pago",
 
   "cerrar": "Log Out",
   "deseaCerrar": "Do you want to log out?",

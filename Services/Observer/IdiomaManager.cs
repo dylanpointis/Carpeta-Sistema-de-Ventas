@@ -95,7 +95,6 @@ namespace Services.Observer
                     control.Text = IdiomaManager.GetInstance().ConseguirTexto(control.Name);
                 }
 
-
                 if (control is MenuStrip m && IdiomaManager.GetInstance().PrimeraVez == true) //solo cambia el menustrip la primera vez o cuando cambia el idioma
                 {
                     foreach (ToolStripMenuItem item in m.Items)

@@ -193,10 +193,11 @@ namespace Carpeta_Sistema_de_Ventas
                 frmCobrarVenta form = new frmCobrarVenta(_factura);
                 form.ShowDialog();
 
-                if (_factura.cobro != null)
+                if (_factura.cobro != null && _factura.cobro.stringMetodoPago != null)
                 {
                     btnFinalizar.Enabled = true;
                 }
+                else { btnFinalizar.Enabled = false; }
 
                 //vuelve a cargar el idioma
                 IdiomaManager.GetInstance().archivoActual = "frmGenerarFactura";

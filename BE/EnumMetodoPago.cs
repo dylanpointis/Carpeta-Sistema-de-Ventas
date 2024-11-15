@@ -8,8 +8,9 @@ namespace BE
 {
     public enum EnumMetodoPago
     {
-        Credito,
-        Debito,
-        MercadoPago
+        Crédito,
+        Débito,
+        MercadoPago,
+        Efectivo
     }
 }

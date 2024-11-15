@@ -34,7 +34,7 @@ namespace BLL
                 evento.Fecha =  row[5].ToString();
                 evento.Hora = row[6].ToString();
 
-                evento.IdEvento = Convert.ToInt32(row[0]);
+                evento.CodEvento = Convert.ToInt64(row[0]);
                 lista.Add(evento);
             }
             return lista;
@@ -51,7 +51,7 @@ namespace BLL
             {
                 Evento e = new Evento(row[1].ToString(), row[2].ToString(), row[3].ToString(), Convert.ToInt32(row[4]));
 
-                e.IdEvento = Convert.ToInt32(row[0]);
+                e.CodEvento = Convert.ToInt64(row[0]);
                 e.Fecha = row[5].ToString();
                 e.Hora = row[6].ToString();
                 lista.Add(e);

@@ -29,16 +29,19 @@
   "noSeEncontraron": "No se encontraron productos que coincidan con la búsqueda",
   "deseaCliente": "¿Desea quitar el cliente seleccionado?",
   "quitarCliente": "Quitar cliente",
-  "noHayCliente": "No hay un clietne agregado a la factura",
+  "noHayCliente": "No hay un cliente agregado a la factura",
   "debeSeleccionar": "Debe seleccionar al menos un producto y un cliente",
   "deseaFinalizar": "¿Desea finalizar la venta?",
-  "noHayCliente": "No hay un clietne agregado a la factura",
   "ventaFinalizada": "Venta finalizada",
   "gridViewDNI": "DNI",
   "gridViewNombre": "Nombre",
   "gridViewApellido": "Apellido",
   "gridViewMail": "Mail",
   "gridViewDireccion": "Direccion",
+  "Crédito": "Crédito",
+  "Débito": "Débito",
+  "Efectivo": "Efectivo",
+  "Mercado Pago": "Mercado Pago",
 
 
 
