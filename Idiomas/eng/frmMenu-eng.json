@@ -22,6 +22,7 @@
   "corroborarRecepciónToolStripMenuItem": "Verify products receipt",
   "proveedoresToolStripMenuItem": "Providers",
   "btnInicio": "Home",
+  "generarReporteComprasToolStripMenuItem": "Generate purchases report",
 
   "btnSesion": "Session",
   "iniciarSesiónToolStripMenuItem": "Log In",

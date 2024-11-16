@@ -271,12 +271,15 @@ namespace Carpeta_Sistema_de_Ventas
             if (textBox != null)
             {
                 if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                {
-
                     e.Handled = true;
+                if (!char.IsControl(e.KeyChar))
+                {
+                    if (textBox.Text.Length >= 9)
+                    {
+                        e.Handled = true;
+                    }
                 }
             }
-
         }
 
     }

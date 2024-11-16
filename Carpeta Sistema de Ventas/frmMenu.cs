@@ -168,7 +168,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void generarReporteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmReportes frm = new frmReportes();
+            frmReportesVentas frm = new frmReportesVentas();
             AbrirForm(frm);
         }
 
@@ -214,6 +214,10 @@ namespace Carpeta_Sistema_de_Ventas
         {
             AbrirForm(new frmMaestroProveedores());
         }
+        private void generarReporteComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new frmReporteCompras());
+        }
 
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -250,5 +254,6 @@ namespace Carpeta_Sistema_de_Ventas
             if (formActivo != null)
                 formActivo.Close();
         }
+
     }
 }

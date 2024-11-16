@@ -25,6 +25,7 @@
   "generarOrdenDeCompraToolStripMenuItem": "Generar orden de compra",
   "corroborarRecepciónToolStripMenuItem": "Corroborar recepción",
   "proveedoresToolStripMenuItem": "Proveedores",
+  "generarReporteComprasToolStripMenuItem": "Generar reporte compras",
 
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",

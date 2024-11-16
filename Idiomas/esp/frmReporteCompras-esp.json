@@ -1,0 +1,59 @@
+{
+  "label1": "Ordenes de compra",
+  "lblProductos": "Productos recibidos",
+  "btnGenerarPDF": "Generar PDF",
+  "btnActualizar": "Actualizar",
+  "gridViewNumOrden": "Número de Orden",
+  "gridViewCUIT": "CUIT",
+  "gridViewNumSolicitud": "Número de Solicitud",
+  "gridViewFechaRegistro": "Fecha de Registro",
+  "gridViewFechaEntrega": "Fecha de Entrega",
+  "gridViewEstado": "Estado",
+  "gridViewNumTransferencia": "Número de Transferencia",
+  "gridViewMontoTotal": "Monto Total",
+  "gridViewCantTotal": "Cantidad Total",
+  "gridViewNumFactura": "Número de Factura",
+  "seleccione": "Seleccione una orden de compra en la grilla para generar el PDF",
+
+
+  "gridViewCodigo": "Código Producto",
+  "gridViewModelo": "Modelo",
+  "gridViewCantidadSolicitada": "Cantidad solicitada",
+  "gridViewMarca": "Marca",
+  "gridViewPrecio": "Precio",
+  "gridViewPrecioUnit": "Precio de compra unitario",
+  "gridViewCantidadRecibida": "Cantidad recibida",
+  "gridViewFacturaRecepcion": "Número de factura recepción",
+  "gridViewFechaRecepcion": "Fecha recepción",
+
+
+
+  "textoNumOrden": "Número de orden de compra",
+  "textoDetalleOrdenCompra": "Detalle orden de compra",
+  "textoDetalleProveedor": "Detalle proveedor",
+  "textoFactura": "Número factura",
+  "textoFecha": "Fecha orden",
+  "textoFechaEntrega": "Fecha de entrega",
+  "textoCantidadSolicitada": "Cantidad solicitada",
+  "textoCantidadRecibida": "Cantidad recibida",
+  "textoNombreProveedor": "Nombre proveedor",
+  "textoDetallePago": "Detalle del pago",
+  "textoNumeroTransferencia": "Número de transferencia",
+  "textoDetalleRecepcion": "Detalle recepción",
+  "gridViewRazonSocial": "Razón social",
+  "lblTotal": "Total: ",
+
+
+  "label3": "Número de orden: ",
+  "label2": "Número de factura: ",
+  "label4": "Número de transferencia: ",
+  "btnBuscar": "Buscar",
+
+
+
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

@@ -174,11 +174,17 @@
     <Compile Include="frmRepararDigitoVerificador.Designer.cs">
       <DependentUpon>frmRepararDigitoVerificador.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReportes.cs">
+    <Compile Include="frmReporteCompras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmReportes.Designer.cs">
-      <DependentUpon>frmReportes.cs</DependentUpon>
+    <Compile Include="frmReporteCompras.Designer.cs">
+      <DependentUpon>frmReporteCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportesVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportesVentas.Designer.cs">
+      <DependentUpon>frmReportesVentas.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRespaldo.cs">
       <SubType>Form</SubType>
@@ -271,8 +277,11 @@
     <EmbeddedResource Include="frmRepararDigitoVerificador.resx">
       <DependentUpon>frmRepararDigitoVerificador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReportes.resx">
-      <DependentUpon>frmReportes.cs</DependentUpon>
+    <EmbeddedResource Include="frmReporteCompras.resx">
+      <DependentUpon>frmReporteCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportesVentas.resx">
+      <DependentUpon>frmReportesVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRespaldo.resx">
       <DependentUpon>frmRespaldo.cs</DependentUpon>

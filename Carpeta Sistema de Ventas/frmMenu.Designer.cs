@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.btnInicio = new System.Windows.Forms.ToolStripMenuItem();
             this.Admin = new System.Windows.Forms.ToolStripMenuItem();
             this.gestiónDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestiónDePerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,7 @@
             this.btnSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnInicio = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarReporteComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +80,15 @@
             this.menuStrip1.Size = new System.Drawing.Size(1025, 44);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // btnInicio
+            // 
+            this.btnInicio.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnInicio.ForeColor = System.Drawing.Color.White;
+            this.btnInicio.Name = "btnInicio";
+            this.btnInicio.Size = new System.Drawing.Size(71, 40);
+            this.btnInicio.Text = "Ayuda";
+            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // Admin
             // 
@@ -254,7 +264,8 @@
             // Reportes
             // 
             this.Reportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generarReporteToolStripMenuItem});
+            this.generarReporteToolStripMenuItem,
+            this.generarReporteComprasToolStripMenuItem});
             this.Reportes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Reportes.ForeColor = System.Drawing.Color.White;
             this.Reportes.Name = "Reportes";
@@ -265,7 +276,7 @@
             // 
             this.generarReporteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generarReporteToolStripMenuItem.Name = "generarReporteToolStripMenuItem";
-            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.generarReporteToolStripMenuItem.Text = "Generar reporte ventas";
             this.generarReporteToolStripMenuItem.Click += new System.EventHandler(this.generarReporteToolStripMenuItem_Click);
             // 
@@ -312,14 +323,13 @@
             this.iniciarSesiónToolStripMenuItem.Text = "Iniciar sesión";
             this.iniciarSesiónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesiónToolStripMenuItem_Click);
             // 
-            // btnInicio
+            // generarReporteComprasToolStripMenuItem
             // 
-            this.btnInicio.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnInicio.ForeColor = System.Drawing.Color.White;
-            this.btnInicio.Name = "btnInicio";
-            this.btnInicio.Size = new System.Drawing.Size(71, 40);
-            this.btnInicio.Text = "Ayuda";
-            this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
+            this.generarReporteComprasToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generarReporteComprasToolStripMenuItem.Name = "generarReporteComprasToolStripMenuItem";
+            this.generarReporteComprasToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
+            this.generarReporteComprasToolStripMenuItem.Text = "Generar reporte compras";
+            this.generarReporteComprasToolStripMenuItem.Click += new System.EventHandler(this.generarReporteComprasToolStripMenuItem_Click);
             // 
             // frmMenu
             // 
@@ -377,6 +387,7 @@
         private System.Windows.Forms.ToolStripMenuItem corroborarRecepciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnInicio;
+        private System.Windows.Forms.ToolStripMenuItem generarReporteComprasToolStripMenuItem;
     }
 }
 

@@ -19,12 +19,12 @@ using System.Runtime.InteropServices;
 
 namespace Carpeta_Sistema_de_Ventas
 {
-    public partial class frmReportes : Form, IObserver
+    public partial class frmReportesVentas : Form, IObserver
     {
-        public frmReportes()
+        public frmReportesVentas()
         {
             InitializeComponent();
-            IdiomaManager.GetInstance().archivoActual = "frmReportes";
+            IdiomaManager.GetInstance().archivoActual = "frmReportesVentas";
             IdiomaManager.GetInstance().Agregar(this);
         }
 
@@ -138,20 +138,6 @@ namespace Carpeta_Sistema_de_Ventas
 
 
 
-        private void txtNumFactura_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-
-            if (textBox != null)
-            {
-                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                {
-
-                    e.Handled = true;
-                }
-            }
-        }
-
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             ActualizarGrilla();
@@ -189,6 +175,42 @@ namespace Carpeta_Sistema_de_Ventas
                 grillaFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             else { grillaFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; }
+        }
+
+        private void txtNumFactura_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                    e.Handled = true;
+                if (!char.IsControl(e.KeyChar))
+                {
+                    if (textBox.Text.Length >= 9)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+
+        private void txtNumTransaccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (textBox != null)
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                    e.Handled = true;
+                if (!char.IsControl(e.KeyChar))
+                {
+                    if (textBox.Text.Length >= 9)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
         }
     }
 }

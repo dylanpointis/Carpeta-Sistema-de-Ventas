@@ -31,6 +31,7 @@
   "generarOrdenDeCompraToolStripMenuItem": "Generate purchase order",
   "corroborarRecepciónToolStripMenuItem": "Verify products receipt",
   "proveedoresToolStripMenuItem": "Providers",
+  "generarReporteComprasToolStripMenuItem": "Generate purchases report",
   "btnInicio": "Home",
 
 

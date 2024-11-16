@@ -18,12 +18,12 @@ namespace Services
     public class Reportes
     {
 
-        public static void GenerarReporteSolicitud(BESolicitudCotizacion solC, string paginahtml, Bitmap Logo)
+        public static void GenerarReporteSolicitud(BESolicitudCotizacion solC, string paginahtml, Bitmap Logo, BEProveedor prov)
         {
             SaveFileDialog guardarArchivo = new SaveFileDialog();
 
             guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
-            guardarArchivo.FileName = solC.NumSolicitud + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
+            guardarArchivo.FileName = $"Solicitud {solC.NumSolicitud} - {prov.Nombre}_{DateTime.Now.ToString("yyyy-MM-dd")}.pdf";
 
             paginahtml = paginahtml.Replace("@NumSolicitud", solC.NumSolicitud.ToString());
             paginahtml = paginahtml.Replace("@fecha", solC.Fecha.ToString("yyyy-MM-dd HH:mm"));
@@ -46,15 +46,10 @@ namespace Services
 
 
             string filasProv = "";
-            foreach (BEProveedor prov in solC.obtenerProveedoresSolicitud())
-            {
-                filas += "<tr>";
-                filas += "<td>" + prov.CUIT + "</td>";
-                filas += "<td>" + prov.Nombre + "</td>";
-                filas += "<td>" + prov.RazonSocial + "</td>";
-                filas += "</tr>";
-            }
-            paginahtml = paginahtml.Replace("@FILASProveedores", filasProv);
+
+            paginahtml = paginahtml.Replace("@CUIT", prov.CUIT);
+            paginahtml = paginahtml.Replace("@NombreProveedor", prov.Nombre);
+            paginahtml = paginahtml.Replace("@RazonSocial", prov.RazonSocial);
 
 
 
@@ -103,7 +98,7 @@ namespace Services
             SaveFileDialog guardarArchivo = new SaveFileDialog();
 
             guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
-            guardarArchivo.FileName = ordenC.NumeroOrdenCompra + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
+            guardarArchivo.FileName = "OrdenCompra " + ordenC.NumeroOrdenCompra + "_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
 
             paginahtml = paginahtml.Replace("@NumOrden", ordenC.NumeroOrdenCompra.ToString());
             paginahtml = paginahtml.Replace("@NroFactura", ordenC.NumeroFactura.ToString());

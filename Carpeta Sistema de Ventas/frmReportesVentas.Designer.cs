@@ -1,6 +1,6 @@
 ﻿namespace Carpeta_Sistema_de_Ventas
 {
-    partial class frmReportes
+    partial class frmReportesVentas
     {
         /// <summary>
         /// Required designer variable.
@@ -113,7 +113,7 @@
             this.txtNumFactura.Name = "txtNumFactura";
             this.txtNumFactura.Size = new System.Drawing.Size(134, 20);
             this.txtNumFactura.TabIndex = 70;
-            this.txtNumFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumFactura_KeyPress);
+            this.txtNumFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumFactura_KeyPress_1);
             // 
             // btnActualizar
             // 
@@ -161,6 +161,7 @@
             this.txtNumTransaccion.Name = "txtNumTransaccion";
             this.txtNumTransaccion.Size = new System.Drawing.Size(134, 20);
             this.txtNumTransaccion.TabIndex = 75;
+            this.txtNumTransaccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumTransaccion_KeyPress);
             // 
             // label3
             // 
@@ -190,7 +191,7 @@
             this.label4.TabIndex = 76;
             this.label4.Text = "DNI Cliente";
             // 
-            // frmReportes
+            // frmReportesVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -208,7 +209,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGenerarPDF);
             this.Controls.Add(this.grillaFacturas);
-            this.Name = "frmReportes";
+            this.Name = "frmReportesVentas";
             this.Text = "frmReportes";
             this.Load += new System.EventHandler(this.frmReportes_Load);
             this.Resize += new System.EventHandler(this.frmReportes_Resize);

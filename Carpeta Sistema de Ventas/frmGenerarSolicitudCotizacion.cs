@@ -116,7 +116,12 @@ namespace Carpeta_Sistema_de_Ventas
 
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                Reportes.GenerarReporteSolicitud(solicitudCoti, Properties.Resources.htmlsolicitudcotizacion.ToString(), Properties.Resources.logo);
+                //imprime el reporte uno para cada proveedor de la solicitud
+                foreach(BEProveedor prov in solicitudCoti.obtenerProveedoresSolicitud())
+                {
+                    Reportes.GenerarReporteSolicitud(solicitudCoti, Properties.Resources.htmlsolicitudcotizacion.ToString(), Properties.Resources.logo, prov);
+                }
+                
 
                 btnFinalizar.Enabled = false;
             }
