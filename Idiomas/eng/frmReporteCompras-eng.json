@@ -2,7 +2,7 @@
   "label1": "Purchase orders",
   "lblProductos": "Received products",
   "btnGenerarPDF": "Generate PDF",
-  "btnActualizar": "Update",
+  "btnActualizar": "Refresh",
   "gridViewNumOrden": "Order Number",
   "gridViewCUIT": "CUIT",
   "gridViewNumSolicitud": "Request Number",

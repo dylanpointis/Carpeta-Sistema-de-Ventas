@@ -63,6 +63,8 @@ namespace Carpeta_Sistema_de_Ventas
 
                         //Cierra sesion automaticamente
                         SessionManager.GetInstance.LogOut();
+                        BLLEvento bLLEvento = new BLLEvento();
+                        bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1));
                         this.Close();
                         _frmParent.Close();
                     }

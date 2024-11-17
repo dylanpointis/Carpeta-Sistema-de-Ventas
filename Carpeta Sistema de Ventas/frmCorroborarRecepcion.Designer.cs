@@ -310,6 +310,7 @@
             this.Name = "frmCorroborarRecepcion";
             this.Text = "COMPRAfrmConfirmarRecepcion";
             this.Load += new System.EventHandler(this.COMPRAfrmCorroborarRecepcion_Load);
+            this.Resize += new System.EventHandler(this.frmCorroborarRecepcion_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.grillaRecepcion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantRecibida)).EndInit();
             this.groupBox1.ResumeLayout(false);

@@ -151,6 +151,12 @@ namespace Carpeta_Sistema_de_Ventas
                 long codigofactura = Convert.ToInt64(grillaFacturas.CurrentRow.Cells[0].Value);
 
                 facturaSeleccionada = bllFactura.TraerFacturas().FirstOrDefault(f => f.NumFactura == codigofactura);
+                if(facturaSeleccionada.cobro.ComentarioAdicional != null)
+                {
+                    lblComentarioAdicional.Text = IdiomaManager.GetInstance().ConseguirTexto("comentarioAdicional") + facturaSeleccionada.cobro.ComentarioAdicional;
+                }
+                else { lblComentarioAdicional.Text = ""; }
+               
 
                 facturaSeleccionada = bllFactura.TraerItemsFactura(facturaSeleccionada);
 

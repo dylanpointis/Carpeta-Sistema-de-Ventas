@@ -219,6 +219,10 @@ namespace Carpeta_Sistema_de_Ventas
             AbrirForm(new frmReporteCompras());
         }
 
+        private void generarReporteInteligenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirForm(new frmReporteInteligente());
+        }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -41,7 +41,7 @@ namespace Carpeta_Sistema_de_Ventas
                 try
                 {
                     bllDV.RecalcularDV();
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoRecalcularDV"));
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoRecalcularDV"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
@@ -69,6 +69,8 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1));
+            SessionManager.GetInstance.LogOut();
             this.Close();
         }
     }

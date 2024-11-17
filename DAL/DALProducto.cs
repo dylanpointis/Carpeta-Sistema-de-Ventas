@@ -121,5 +121,13 @@ namespace DAL
             };
             return dalCon.ConsultaProcAlmacenado("TraerProductosBajoStock", parametros);
         }
+
+        public DataTable PredecirReposicionStock()
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+            };
+            return dalCon.ConsultaProcAlmacenado("ReporteInteligenteStock", parametros);
+        }
     }
 }

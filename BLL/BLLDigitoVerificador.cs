@@ -45,7 +45,6 @@ namespace BLL
 
         public string[] CalcularDVVActual(DataTable tablaDVGlobal)
         {
-
             List<string> DVV = new List<string>();
 
 
@@ -72,44 +71,30 @@ namespace BLL
 
 
 
-        public void CompararDV(string nombreusuario)
+        public void CompararDV()
         {
             DataTable tablaDVGlobal = TraerTablaDV();
             //consigue un vector dvh y un vector dvv con los valores calculados dvh y dvv de todas las tablas
             string[] DVHCalculado = CalcularDVHActual(tablaDVGlobal); //vector con los dvh de todas las tablas
             string[] DVVCalculado = CalcularDVVActual(tablaDVGlobal); //vector con los dvv de todas las tablas
 
-            if (SessionManager.GetInstance.ObtenerUsuario() != null)
-                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaInicio"));
-
-            BEUsuario user = bLLUsuario.ValidarUsuario(nombreusuario,0,"");
-            if (user == null)
-                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontro"));
-            if (user.Bloqueado == true || user.Activo == false)
-                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("estaBloqueado"));
+            List<DV_Object> listDV = new List<DV_Object>();
+            for(int dv = 0; dv < DVHCalculado.Length; dv++)
+            {
+                string nombretabla = tablaDVGlobal.Rows[dv][0].ToString();
+                listDV.Add(new DV_Object(DVHCalculado[dv], DVVCalculado[dv], nombretabla));
+            }
 
             int i = 0;
             foreach (DataRow row in tablaDVGlobal.Rows)
             {
-                string tablaaaaa = row[0].ToString();
-                string dvhhhhhhhhhhh = row[1].ToString();
-                string dvvvvvvv = row[2].ToString();
-
                 if (row[1].ToString() != "" && row[2].ToString() != "") //si ya se les persistio algun DV continua. Si no, lo saltea
                 { 
                     //compara el dvh y dvv global con el calculado
-                    if (row[1].ToString() != DVHCalculado[i] && row[2].ToString() != DVVCalculado[i])
+                    if (row[1].ToString() != listDV[i].DVH && row[2].ToString() != listDV[i].DVV)
                     {
-                        if (user.Rol.Nombre == "Admin")
-                        {
-                            string tablaError = row[0].ToString(); //tabla que da error
-                            throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin") + tablaError);
-                            //en la ui muestra el formulario reparar DV para el admin
-                        }
-                        else
-                        {
-                            throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV"));//para un usuario normal solo muestra error.
-                        }
+                        string tablaError = row[0].ToString(); //tabla que da error
+                        throw new TaskCanceledException(tablaError);
                     }
                 }
                 i++;
@@ -148,9 +133,9 @@ namespace BLL
 
                 DVV = Encriptador.EncriptarSHA256(DVV);
 
-                DV_Object dvObj = new DV_Object(DVH, DVV);
+                DV_Object dvObj = new DV_Object(DVH, DVV, dataTable.TableName);
 
-                dalDV.PersistirDV(dvObj, dataTable.TableName);
+                dalDV.PersistirDV(dvObj);
             }
         }
 

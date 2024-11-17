@@ -5,6 +5,7 @@ using iTextSharp.tool.xml;
 using Services.Observer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -45,7 +46,6 @@ namespace Services
 
 
 
-            string filasProv = "";
 
             paginahtml = paginahtml.Replace("@CUIT", prov.CUIT);
             paginahtml = paginahtml.Replace("@NombreProveedor", prov.Nombre);
@@ -67,29 +67,7 @@ namespace Services
             paginahtml = paginahtml.Replace("@gridViewRazonSocial", IdiomaManager.GetInstance().ConseguirTexto("gridViewRazonSocial"));
             paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
 
-            if (guardarArchivo.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
-                {
-                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
-
-                    pdf.Open();
-                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Logo, System.Drawing.Imaging.ImageFormat.Png);
-                    img.ScaleToFit(80, 60);
-                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
-                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
-                    pdf.Add(img);
-
-                    using (StringReader lector = new StringReader(paginahtml))
-                    {
-                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
-                    }
-                    pdf.Close();
-                    stream.Close();
-                }
-            }
+            GuardarArchivoPDF(guardarArchivo, paginahtml, Logo);
         }
 
 
@@ -155,31 +133,7 @@ namespace Services
             paginahtml = paginahtml.Replace("@textoFecha", IdiomaManager.GetInstance().ConseguirTexto("textoFecha"));
             paginahtml = paginahtml.Replace("@textfechaEntrega", IdiomaManager.GetInstance().ConseguirTexto("textoFechaEntrega"));
 
-            if (guardarArchivo.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
-                {
-                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
-
-                    pdf.Open();
-                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Logo, System.Drawing.Imaging.ImageFormat.Png);
-                    img.ScaleToFit(80, 60);
-                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
-                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
-                    pdf.Add(img);
-
-                    using (StringReader lector = new StringReader(paginahtml))
-                    {
-                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
-                    }
-
-
-                    pdf.Close();
-                    stream.Close();
-                }
-            }
+            GuardarArchivoPDF(guardarArchivo, paginahtml, Logo);
         }
 
 
@@ -249,31 +203,7 @@ namespace Services
             paginahtml = paginahtml.Replace("@gridViewFacturaRecepcion", IdiomaManager.GetInstance().ConseguirTexto("gridViewFacturaRecepcion"));
             paginahtml = paginahtml.Replace("@gridViewFechaRecepcion", IdiomaManager.GetInstance().ConseguirTexto("gridViewFechaRecepcion"));
 
-            if (guardarArchivo.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
-                {
-                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
-
-                    pdf.Open();
-                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Logo, System.Drawing.Imaging.ImageFormat.Png);
-                    img.ScaleToFit(80, 60);
-                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
-                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
-                    pdf.Add(img);
-
-                    using (StringReader lector = new StringReader(paginahtml))
-                    {
-                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
-                    }
-
-
-                    pdf.Close();
-                    stream.Close();
-                }
-            }
+            GuardarArchivoPDF(guardarArchivo, paginahtml, Logo);
         }
 
 
@@ -363,31 +293,7 @@ namespace Services
             paginahtml = paginahtml.Replace("@textoCantCuotas", IdiomaManager.GetInstance().ConseguirTexto("dgvCantCuotas"));
 
 
-            if (guardarArchivo.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
-                {
-                    Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
-
-                    PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
-
-                    pdf.Open();
-                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(Logo, System.Drawing.Imaging.ImageFormat.Png);
-                    img.ScaleToFit(80, 60);
-                    img.Alignment = iTextSharp.text.Image.UNDERLYING;
-                    img.SetAbsolutePosition(pdf.Right - 60, pdf.Top - 60);
-                    pdf.Add(img);
-
-                    using (StringReader lector = new StringReader(paginahtml))
-                    {
-                        XMLWorkerHelper.GetInstance().ParseXHtml(escritor, pdf, lector);
-                    }
-
-
-                    pdf.Close();
-                    stream.Close();
-                }
-            }
+            GuardarArchivoPDF(guardarArchivo, paginahtml, Logo);
         }
 
 
@@ -432,12 +338,54 @@ namespace Services
 
 
 
+            GuardarArchivoPDF(guardarArchivo, paginahtml, Logo);
+        }
+
+
+
+        public static void GenerarReporteInteligente(DataGridView reporteTabla , string paginahtml, Bitmap Logo, string tipoReporte)
+        {
+            SaveFileDialog guardarArchivo = new SaveFileDialog();
+
+            guardarArchivo.Filter = "PDF Files (*.pdf)|*.pdf";
+            guardarArchivo.FileName = tipoReporte + " " + DateTime.Now.ToString("yyyy-MM-dd HH_mm") + ".pdf";
+
+            paginahtml = paginahtml.Replace("@textoFecha", DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+            paginahtml = paginahtml.Replace("@textoDetalleReporte", tipoReporte);
+
+            string columnasDinamicas = "";
+            foreach (DataGridViewColumn column in reporteTabla.Columns)
+            {
+                columnasDinamicas += "<th>" + column.HeaderText + "</th>";
+            }
+
+            paginahtml = paginahtml.Replace("@COLUMNASDINAMICAS", columnasDinamicas);
+
+            string filasDinamicas = "";
+            foreach (DataGridViewRow row in reporteTabla.Rows)
+            {
+                filasDinamicas += "<tr>";
+                for (int i = 0; i < reporteTabla.Columns.Count; i++) 
+                {
+                    filasDinamicas += "<td>" + row.Cells[i].Value.ToString() + "</td>";
+                }
+
+                filasDinamicas += "</tr>";
+            }
+
+            paginahtml = paginahtml.Replace("@FILASDINAMICAS", filasDinamicas);
+
+            GuardarArchivoPDF(guardarArchivo ,paginahtml, Logo);
+        }
+
+
+        private static void GuardarArchivoPDF(SaveFileDialog guardarArchivo, string paginahtml, Bitmap Logo)
+        {
             if (guardarArchivo.ShowDialog() == DialogResult.OK)
             {
                 using (FileStream stream = new FileStream(guardarArchivo.FileName, FileMode.Create))
                 {
                     Document pdf = new Document(PageSize.A4, 25, 25, 25, 25);
-
                     PdfWriter escritor = PdfWriter.GetInstance(pdf, stream);
 
                     pdf.Open();

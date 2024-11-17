@@ -192,6 +192,34 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         ///
         ///    &lt;table style=&quot;width: 100%; margin-top: 10px&quot;&gt;
         ///        &lt;tr&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@label2&lt;/td&gt;
+        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFecha: @auditoriaFecha&lt;/td&gt;
+        ///        &lt;/tr&gt;
+        ///    &lt;/table&gt;
+        ///
+        ///    &lt;h2&gt;@textoDetalleEvento&lt;/h2&gt;
+        ///    &lt;table border=&quot;1&quot; style=&quot;width [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string htmlreporteinteligente {
+            get {
+                return ResourceManager.GetString("htmlreporteinteligente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Factura&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///
+        ///    &lt;div style=&quot;width: 80%; background-color:lightskyblue; padding: 10px&quot;&gt;
+        ///        &lt;h1 style=&quot;color: white&quot;&gt;Alta Gama&lt;/h1&gt;
+        ///    &lt;/div&gt;
+        ///
+        ///    &lt;table style=&quot;width: 100%; margin-top: 10px&quot;&gt;
+        ///        &lt;tr&gt;
         ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoNumSolicitud: @NumSolicitud&lt;/td&gt;
         ///        &lt;/tr&gt;
         ///        &lt;tr&gt;

@@ -78,7 +78,11 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 _factura.cobro.MetodoPago = (EnumMetodoPago)Enum.Parse(typeof(EnumMetodoPago), cmbMetodoPago.SelectedValue.ToString());
                 _factura.cobro.stringMetodoPago = cmbMetodoPago.SelectedValue.ToString();
-                _factura.cobro.ComentarioAdicional = txtComentarioAdicional.Text;
+                if (!string.IsNullOrEmpty(txtComentarioAdicional.Text))
+                {
+                    _factura.cobro.ComentarioAdicional = txtComentarioAdicional.Text;
+                }
+                else { _factura.cobro.ComentarioAdicional = null; }
 
                 List<BEFactura> facturasConMismoNumTransaccion = new List<BEFactura>();
                 if (txtNumTransaccion.Text != "")

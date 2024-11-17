@@ -12,11 +12,11 @@ namespace DAL
     public class DALDigitoVerificador
     {
         DALConexion dalCon = new DALConexion();
-        public void PersistirDV(DV_Object dvObj, string tablaNombre)
+        public void PersistirDV(DV_Object dvObj)
         {
             SqlParameter[] parametros = new SqlParameter[]
             {
-                new SqlParameter("@NombreTabla", tablaNombre),
+                new SqlParameter("@NombreTabla", dvObj.NombreTabla),
                 new SqlParameter("@DVH", dvObj.DVH),
                 new SqlParameter("@DVV", dvObj.DVV)
             };
@@ -30,7 +30,6 @@ namespace DAL
 
         public DataTable TraerTablaAConsultarDV(string tablaAConsultarDV)
         {
-
             return dalCon.TraerTabla(tablaAConsultarDV);
         }
     }

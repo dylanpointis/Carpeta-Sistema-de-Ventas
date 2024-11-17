@@ -23,6 +23,7 @@
   "proveedoresToolStripMenuItem": "Providers",
   "btnInicio": "Home",
   "generarReporteComprasToolStripMenuItem": "Generate purchases report",
+  "generarReporteInteligenteToolStripMenuItem": "Generate smart report",
 
   "btnSesion": "Session",
   "iniciarSesiónToolStripMenuItem": "Log In",

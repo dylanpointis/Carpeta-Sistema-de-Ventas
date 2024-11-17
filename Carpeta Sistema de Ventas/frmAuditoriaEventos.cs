@@ -30,6 +30,7 @@ namespace Carpeta_Sistema_de_Ventas
             fechaFin.Format = DateTimePickerFormat.Custom;
             fechaFin.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-3);
+            fechaFin.MaxDate = DateTime.Today; fechaInicio.MaxDate = DateTime.Today;
             IdiomaManager.GetInstance().archivoActual = "frmAuditoriaEventos";
             IdiomaManager.GetInstance().Agregar(this);
             listaEventos = bllEvento.TraerListaEventos();
@@ -141,7 +142,6 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            string filas = "";
             List<Evento> lista = new List<Evento>();
 
             foreach (DataGridViewRow row in grillaEventos.Rows)
@@ -164,7 +164,6 @@ namespace Carpeta_Sistema_de_Ventas
             string paginahtml = Properties.Resources.htmlauditoriaevento.ToString();
 
             Reportes.GenerarReporteEventos(lista, paginahtml, Properties.Resources.logo);
-            
         }
 
         private void fechaInicio_ValueChanged(object sender, EventArgs e)
@@ -174,7 +173,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             if(fechaInicial > fechaFinal) //La fecha inicial no puede ser mayor a la final
             {  
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaInicial"));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaInicial"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 fechaInicio.Value = fechaFinal;
             }
         }
@@ -186,7 +185,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             if (fechaFinal < fechaInicial) //La fecha final no puede ser menor a la inicial
             {
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaFinal"));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaFinal"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 fechaFin.Value = fechaInicial;
             }
         }

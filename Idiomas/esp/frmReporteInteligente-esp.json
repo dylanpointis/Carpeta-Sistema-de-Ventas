@@ -1,0 +1,50 @@
+{
+  "label1": "Reporte inteligente",
+  "label2": "Reporte",
+  "lblFechaInicio": "Fecha inicio",
+  "lblFechaFin": "Fecha fin",
+  "btnGenerarPDF": "Generar PDF",
+  "btnGenerarReporte": "Generar Reporte",
+  "btnActualizar": "Actualizar",
+  "seleccione": "Seleccione el tipo de reporte a generar",
+  "genereReporte": "Genere el reporte para imprimir el PDF",
+  "fechaFinalNoPuedeSerMenorAInicial": "La fecha final no puede ser menor a la inicial",
+  "fechaInicioNoPuedeSerMayorAFinal": "La fecha inicial no puede ser mayor a la final",
+
+
+  "Predecir reposición de stock": "Predecir reposición de stock",
+  "Ventas generadas por producto": "Ventas generadas por producto",
+  "Ventas generadas por marca": "Ventas generadas por marca",
+  "Predicción ventas por producto": "Predicción ventas por producto",
+  "Predicción ventas por cliente": "Predicción ventas por cliente",
+
+
+
+  "gridViewCodigoProducto": "Código Producto",
+  "gridViewModelo": "Modelo",
+  "gridViewCantidadSolicitada": "Cantidad solicitada",
+  "gridViewMarca": "Marca",
+  "gridViewPrecio": "Precio",
+  "gridViewStockActual": "Stock actual",
+  "gridViewStockMinimo": "Stock mínimo",
+  "gridViewStockMaximo": "Stock máximo",
+  "gridViewCantidadVendidaUltimoMes": "Cantidad vendida último mes",
+  "gridViewCantidadAReponer": "Cantidad a reponer",
+  "gridViewCantidadVentas": "Cantidad vendida",
+  "gridViewMontoVendido": "Monto total vendido",
+  "gridViewCantidadVendidaUltimos7Dias": "Cantidad vendida últimos 7 dias",
+  "gridViewPrediccionSemana": "Predicción ventas próxima semana",
+  "gridViewPrediccionMes": "Predicción ventas próximo mes",
+  "gridViewDNICliente": "DNI Cliente",
+  "gridViewNombre": "Nombre",
+  "gridViewApellido": "Apellido",
+  "gridViewMail": "Mail",
+
+
+
+
+  "cerrar": "Cerrar sesión",
+  "deseaCerrar": "¿Desea cerrar sesión?",
+  "noHaySesion": "No hay una sesión iniciada",
+  "haySesion": "Ya hay una sesión iniciada"
+}

@@ -102,7 +102,7 @@ namespace DAL
             //trae los items de la factura
             SqlParameter[] parametros = new SqlParameter[]
             {
-                  new SqlParameter("@NumFactura", fac.NumFactura),
+                new SqlParameter("@NumFactura", fac.NumFactura),
             };
             DataTable tablaItems = dalCon.ConsultaProcAlmacenado("TraerItemFactura", parametros);
 
@@ -144,5 +144,33 @@ namespace DAL
             return dalCon.TraerTabla("Facturas");
         }
 
+        
+
+        public DataTable ReportePrecedirVentasPorProd()
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {};
+            return dalCon.ConsultaProcAlmacenado("ReporteInteligentePrececirVentas", parametros);
+        }
+        public DataTable ReporteVentasGeneradas(string fechaInicio, string fechaFin, string tipoReporte)
+        {
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                 new SqlParameter("@FechaInicio", fechaInicio),
+                 new SqlParameter("@FechaFin", fechaFin)
+            };
+            if(tipoReporte == "VentasGeneradasPorProducto")
+            {
+                return dalCon.ConsultaProcAlmacenado("ReporteInteligenteVentasGeneradasPorProd", parametros);
+            }
+            else if(tipoReporte == "VentasGeneradasPorMarca")
+            {
+                return dalCon.ConsultaProcAlmacenado("ReporteInteligenteVentasGeneradasPorMarca", parametros);
+            }
+            else //por cliente
+            {
+                return dalCon.ConsultaProcAlmacenado("ReporteInteligenteVentasGeneradasPorCliente", parametros);
+            }
+        }
     }
 }

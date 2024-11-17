@@ -136,7 +136,7 @@ namespace BLL
             bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Gestión usuarios", "Usuario eliminado", 1));
         }
 
-        public void CambiarClave(int DNICliente, string clave, string claveActual)
+        public void CambiarClave(int DNICliente, string clave, string claveActual)//sirve tanto para cambiar la clave en frmCambiarClave como para resetear la clave por defecto
         {
             BEUsuario usuarioActual = SessionManager.GetInstance.ObtenerUsuario();
             if (usuarioActual == null)

@@ -173,7 +173,7 @@ namespace DAL
                 tran.Commit();
                 con.Close();
             }
-            catch (Exception ex) { tran.Rollback(); }
+            catch (Exception ex) { tran.Rollback(); throw ex; }
         }
 
         public DataTable TraerTabla(string tabla)

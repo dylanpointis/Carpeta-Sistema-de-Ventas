@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtDni = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblComentarioAdicional = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grillaFacturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grillaItems)).BeginInit();
             this.SuspendLayout();
@@ -191,11 +192,21 @@
             this.label4.TabIndex = 76;
             this.label4.Text = "DNI Cliente";
             // 
+            // lblComentarioAdicional
+            // 
+            this.lblComentarioAdicional.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblComentarioAdicional.AutoSize = true;
+            this.lblComentarioAdicional.Location = new System.Drawing.Point(553, 267);
+            this.lblComentarioAdicional.Name = "lblComentarioAdicional";
+            this.lblComentarioAdicional.Size = new System.Drawing.Size(0, 13);
+            this.lblComentarioAdicional.TabIndex = 78;
+            // 
             // frmReportesVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 529);
+            this.Controls.Add(this.lblComentarioAdicional);
             this.Controls.Add(this.txtDni);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtNumTransaccion);
@@ -235,5 +246,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblComentarioAdicional;
     }
 }

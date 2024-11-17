@@ -57,8 +57,8 @@ namespace Carpeta_Sistema_de_Ventas
 
             try
             {
-                bllDV.CompararDV(txtNombreUsuario.Text);
                 bllUsuario.Login(txtNombreUsuario.Text, txtClave.Text); //LOGICA LOGIN
+                bllDV.CompararDV();
                 this.Hide(); //oculta el formulario actual
                 frmMenu frmMenu = new frmMenu();
                 frmMenu.Show();
@@ -66,15 +66,23 @@ namespace Carpeta_Sistema_de_Ventas
             }
             catch (Exception ex)
             {
-                // Muestra el mensaje de error desde la excepción.
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if(ex.Message.StartsWith(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin"))) //si falla el DV y es admin
+                if(ex is TaskCanceledException)// si es error de comparacion de DV
                 {
-                    frmRepararDigitoVerificador form = new frmRepararDigitoVerificador(txtNombreUsuario.Text);
-                    form.ShowDialog();
-                    //vuelve a cargar el idioma
-                    IdiomaManager.GetInstance().archivoActual = "frmLogin";
-                    IdiomaManager.GetInstance().Agregar(this);
+                    if (SessionManager.GetInstance.ObtenerUsuario().Rol.Nombre == "Admin")  //si es admin carga el form repararDV
+                    {
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDVAdmin") + ex.Message);
+                        frmRepararDigitoVerificador form = new frmRepararDigitoVerificador(txtNombreUsuario.Text);
+                        form.ShowDialog();
+                        //vuelve a cargar el idioma
+                        IdiomaManager.GetInstance().archivoActual = "frmLogin";
+                        IdiomaManager.GetInstance().Agregar(this);
+                    }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV")); }
+                }
+                else
+                { 
+                    // Muestra el mensaje de error desde la excepción.
+                    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

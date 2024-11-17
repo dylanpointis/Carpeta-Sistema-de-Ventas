@@ -32,6 +32,7 @@
   "corroborarRecepciónToolStripMenuItem": "Verify products receipt",
   "proveedoresToolStripMenuItem": "Providers",
   "generarReporteComprasToolStripMenuItem": "Generate purchases report",
+  "generarReporteInteligenteToolStripMenuItem": "Generate smart report",
   "btnInicio": "Home",
 
 

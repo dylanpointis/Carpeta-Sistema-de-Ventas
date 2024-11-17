@@ -37,9 +37,12 @@
             // 
             // lblTitulo
             // 
+            this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(61, 31);
+            this.lblTitulo.Location = new System.Drawing.Point(65, 40);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(289, 48);
             this.lblTitulo.TabIndex = 0;
@@ -48,11 +51,13 @@
             // 
             // btnRecalcularDV
             // 
-            this.btnRecalcularDV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRecalcularDV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRecalcularDV.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnRecalcularDV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecalcularDV.ForeColor = System.Drawing.Color.White;
-            this.btnRecalcularDV.Location = new System.Drawing.Point(125, 115);
+            this.btnRecalcularDV.Location = new System.Drawing.Point(129, 124);
             this.btnRecalcularDV.Name = "btnRecalcularDV";
             this.btnRecalcularDV.Size = new System.Drawing.Size(138, 37);
             this.btnRecalcularDV.TabIndex = 30;
@@ -62,11 +67,13 @@
             // 
             // btnRestaurarBD
             // 
-            this.btnRestaurarBD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRestaurarBD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestaurarBD.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnRestaurarBD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestaurarBD.ForeColor = System.Drawing.Color.White;
-            this.btnRestaurarBD.Location = new System.Drawing.Point(125, 158);
+            this.btnRestaurarBD.Location = new System.Drawing.Point(129, 167);
             this.btnRestaurarBD.Name = "btnRestaurarBD";
             this.btnRestaurarBD.Size = new System.Drawing.Size(138, 37);
             this.btnRestaurarBD.TabIndex = 31;
@@ -76,11 +83,13 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalir.BackColor = System.Drawing.SystemColors.Control;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.ForeColor = System.Drawing.Color.Black;
-            this.btnSalir.Location = new System.Drawing.Point(125, 201);
+            this.btnSalir.Location = new System.Drawing.Point(129, 210);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(138, 37);
             this.btnSalir.TabIndex = 32;
@@ -93,11 +102,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 339);
+            this.ControlBox = false;
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnRestaurarBD);
             this.Controls.Add(this.btnRecalcularDV);
             this.Controls.Add(this.lblTitulo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(438, 355);
+            this.MinimumSize = new System.Drawing.Size(438, 355);
             this.Name = "frmRepararDigitoVerificador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);

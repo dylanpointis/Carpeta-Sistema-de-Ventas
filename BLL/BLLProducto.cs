@@ -83,6 +83,11 @@ namespace BLL
             return prodsBajoStock;
         }
 
+        public DataTable PredecirReposicionStock()
+        {
+            return dalProd.PredecirReposicionStock();
+        }
+
         //public bool VerificarSiProductoTieneFacturas(long codigoProducto)
         //{
         //    return dalProd.VerificarSiProductoTieneFacturas(codigoProducto);

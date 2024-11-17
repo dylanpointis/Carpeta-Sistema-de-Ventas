@@ -221,5 +221,14 @@ namespace Carpeta_Sistema_de_Ventas
                 }
             }
         }
+
+        private void frmCorroborarRecepcion_Resize(object sender, EventArgs e)
+        {
+            if (this.ClientSize.Width > 1052)
+            {
+                grillaRecepcion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            else { grillaRecepcion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None; }
+        }
     }
 }

@@ -7,6 +7,8 @@
   "label3": "Número de transacción",
   "label4": "DNI Cliente",
   "btnBuscar": "Buscar",
+  "lblComentarioAdicional": "",
+  "comentarioAdicional": "Comentario adicional: ",
   "ingrese": "Ingrese los campos para realizar la búsqueda",
   "seleccione": "Seleccione una factura para generar el archivo PDF",
   "dgvNumFactura": "Número factura",

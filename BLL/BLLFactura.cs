@@ -74,6 +74,12 @@ namespace BLL
 
                 BECobro cobro = new BECobro() { NumTransaccionBancaria = valorNumTransaccion, MarcaTarjeta = row[7].ToString(), CantCuotas = Convert.ToInt32(row[8]), AliasMP = row[9].ToString(), ComentarioAdicional = row[10].ToString(), stringMetodoPago = row[6].ToString() };
 
+                if (row[10] == DBNull.Value) //si es DBNull lo pone como null
+                {
+                    cobro.ComentarioAdicional = null;
+                }
+                else { cobro.ComentarioAdicional = row[10].ToString(); }
+               
 
                 BEFactura fac = new BEFactura()
                 {
@@ -84,7 +90,7 @@ namespace BLL
                     MontoTotal = Convert.ToDouble(row[3]),
                     Impuesto = Convert.ToDouble(row[4]),
                 };
-
+                
 
                 listaFacturas.Add(fac);
             }
@@ -110,5 +116,16 @@ namespace BLL
         {
             return dalFac.TraerTablaFacturas();
         }
+
+        public DataTable ReporteVentasGeneradas(string fechaInicio, string fechaFin, string tipo)
+        {
+            return dalFac.ReporteVentasGeneradas(fechaInicio, fechaFin, tipo);
+        }
+
+        public DataTable ReportePrecedirVentasPorProd()
+        {
+            return dalFac.ReportePrecedirVentasPorProd();
+        }
+
     }
 }

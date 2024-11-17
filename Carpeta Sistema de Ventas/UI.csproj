@@ -180,6 +180,12 @@
     <Compile Include="frmReporteCompras.Designer.cs">
       <DependentUpon>frmReporteCompras.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReporteInteligente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteInteligente.Designer.cs">
+      <DependentUpon>frmReporteInteligente.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReportesVentas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     <EmbeddedResource Include="frmReporteCompras.resx">
       <DependentUpon>frmReporteCompras.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteInteligente.resx">
+      <DependentUpon>frmReporteInteligente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReportesVentas.resx">
       <DependentUpon>frmReportesVentas.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,6 +350,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="logo2png.ico" />
+    <None Include="Resources\htmlreporteinteligente.html" />
     <Content Include="Resources\htmlsolicitudcotizacion.html" />
     <Content Include="Resources\htmlfacturaRecepcion.html" />
     <Content Include="Resources\htmlfacturacompra.html" />

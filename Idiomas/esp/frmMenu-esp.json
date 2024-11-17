@@ -26,6 +26,7 @@
   "corroborarRecepciónToolStripMenuItem": "Corroborar recepción",
   "proveedoresToolStripMenuItem": "Proveedores",
   "generarReporteComprasToolStripMenuItem": "Generar reporte compras",
+  "generarReporteInteligenteToolStripMenuItem": "Generar reporte inteligente",
 
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",

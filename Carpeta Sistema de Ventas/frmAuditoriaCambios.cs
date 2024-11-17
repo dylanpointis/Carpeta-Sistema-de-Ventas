@@ -20,7 +20,7 @@ namespace Carpeta_Sistema_de_Ventas
             fechaFin.Format = DateTimePickerFormat.Custom;
             fechaFin.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-31);
-
+            fechaFin.MaxDate = DateTime.Today; fechaInicio.MaxDate = DateTime.Today;
 
             IdiomaManager.GetInstance().archivoActual = "frmAuditoriaCambios";
             IdiomaManager.GetInstance().Agregar(this);
@@ -128,7 +128,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             if (fechaInicial > fechaFinal) //La fecha inicial no puede ser mayor a la final
             {
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaInicial"));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaInicial"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 fechaInicio.Value = fechaFinal;
             }
         }
@@ -140,7 +140,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             if (fechaFinal < fechaInicial) //La fecha final no puede ser menor a la inicial
             {
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaFinal"));
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("fechaFinal"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 fechaFin.Value = fechaInicial;
             }
         }

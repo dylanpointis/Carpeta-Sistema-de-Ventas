@@ -1030,6 +1030,104 @@ END
 GO
 
 
+CREATE PROCEDURE ReporteInteligenteStock
+AS
+BEGIN
+	SELECT 
+		p.CodigoProducto, p.Modelo, p.Marca, p.Stock AS StockActual, p.StockMinimo, p.StockMaximo,
+		COALESCE(SUM(i.Cant), 0) AS CantidadVendidaUltimoMes,
+		CASE 
+			-- Si el stock está por debajo del mínimo, calcula cuánto reponer
+			WHEN p.Stock < p.StockMinimo THEN p.StockMaximo - p.Stock
+			-- Si el stock está en un rango cercano al mínimo, también calcula cuánto reponer
+			WHEN p.Stock >= p.StockMinimo AND p.Stock <= p.StockMinimo * 1.2 THEN p.StockMaximo - p.Stock
+			ELSE 0
+		END AS CantidadAReponer
+	FROM 
+		Productos p
+		LEFT JOIN  Item_Factura i ON p.CodigoProducto = i.CodigoProducto
+		LEFT JOIN Facturas f ON i.NumFactura = f.NumFactura
+	WHERE 
+		CONVERT(datetime, f.Fecha, 120) >= DATEADD(MONTH, -1, GETDATE()) 
+		GROUP BY 
+		p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Stock, p.StockMinimo, p.StockMaximo
+	ORDER BY CantidadAReponer DESC, p.CodigoProducto;
+END
+GO
+
+
+CREATE PROCEDURE ReporteInteligenteVentasGeneradasPorProd
+	@FechaInicio varchar(11),
+	@FechaFin varchar(11)
+AS
+BEGIN
+	SELECT P.CodigoProducto, P.Modelo, p.Marca, COUNT(F.NumFactura) AS CantidadVentas, 
+	SUM(MontoTotal) AS MontoVendido from Facturas F
+	INNER JOIN Item_Factura I ON I.NumFactura = F.NumFactura
+	INNER JOIN Productos P ON P.CodigoProducto = I.CodigoProducto
+	WHERE CAST(Fecha AS DATE) >= @FechaInicio AND CAST(Fecha AS DATE) <= @FechaFin
+	GROUP BY P.CodigoProducto, P.Modelo, P.Marca
+	ORDER BY COUNT(*) DESC
+END
+GO
+
+
+CREATE PROCEDURE ReporteInteligenteVentasGeneradasPorMarca
+	@FechaInicio varchar(11),
+	@FechaFin varchar(11)
+AS
+BEGIN
+	SELECT p.Marca, COUNT(F.NumFactura) AS CantidadVentas, 
+	SUM(MontoTotal) AS MontoVendido from Facturas F
+	INNER JOIN Item_Factura I ON I.NumFactura = F.NumFactura
+	INNER JOIN Productos P ON P.CodigoProducto = I.CodigoProducto
+	WHERE CAST(Fecha AS DATE) >= @FechaInicio AND CAST(Fecha AS DATE) <= @FechaFin
+	GROUP BY P.Marca
+	ORDER BY COUNT(*) DESC
+END
+GO
+
+
+CREATE PROCEDURE ReporteInteligenteVentasGeneradasPorCliente
+	@FechaInicio varchar(11),
+	@FechaFin varchar(11)
+AS
+BEGIN
+	SELECT F.DNICliente, C.Nombre, C.Apellido, C.Mail, COUNT(F.NumFactura) AS CantidadVentas, 
+	SUM(MontoTotal) AS MontoVendido from Facturas F
+	INNER JOIN Clientes C ON F.DNICliente = C.DNICliente
+	WHERE CAST(Fecha AS DATE) >= @FechaInicio AND CAST(Fecha AS DATE) <= @FechaFin
+	GROUP BY F.DNICliente, C.Nombre, C.Apellido, C.Mail
+	ORDER BY COUNT(*) DESC
+END
+GO
+
+
+
+
+CREATE PROCEDURE ReporteInteligentePrececirVentas
+AS
+BEGIN
+	WITH VentasUltimos7Dias AS (
+		SELECT  i.CodigoProducto, SUM(i.Cant) AS CantidadVendidaUltimos7Dias
+		FROM  Item_Factura i
+		INNER JOIN Facturas f ON i.NumFactura = f.NumFactura
+		WHERE CONVERT(datetime, f.Fecha, 120) >= DATEADD(DAY, -7, GETDATE()) --ultimos 7 dias
+		GROUP BY i.CodigoProducto
+	)
+	SELECT 
+		p.CodigoProducto, p.Modelo, p.Marca, p.Stock AS StockActual,
+		v.CantidadVendidaUltimos7Dias,
+		v.CantidadVendidaUltimos7Dias AS PrediccionSemana, --prediccion para la propxima semana
+		v.CantidadVendidaUltimos7Dias * 4 AS PrediccionMes --prediccion para el proximo mes
+	FROM 
+		VentasUltimos7Dias v INNER JOIN  Productos p ON v.CodigoProducto = p.CodigoProducto
+	ORDER BY 
+		PrediccionMes DESC;
+END
+GO
+
+
 
 
 
