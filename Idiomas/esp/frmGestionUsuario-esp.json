@@ -31,6 +31,7 @@
   "yaExisteMailUser": "Ya existe un usuario con ese NombreUsuario o Email",
   "errorDNI": "El DNI debe contener solo números y tener entre 7 y 9 dígitos",	
   "errorMail": "Formato del email incorrecto",
+  "errorUserName": "El nombre de usuario no puede contener espacios en blanco",
   "estaSeguroClave": "¿Está seguro que desea restablecer la clave del DNI:",
   "estaSeguroEliminar": "¿Está seguro que desea desactivar al usuario DNI:",
   "estaSeguroActivar": "¿Está seguro que desea activar al usuario DNI:",

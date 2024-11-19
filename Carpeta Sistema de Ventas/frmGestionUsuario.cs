@@ -89,7 +89,7 @@ namespace Carpeta_Sistema_de_Ventas
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                         }
                     }
-                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                 }
                 else if (modoOperacion == EnumModoAplicar.Modificar)
                 {
@@ -111,7 +111,7 @@ namespace Carpeta_Sistema_de_Ventas
                         }
                         else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noPuedeModificarse")); } //no puede modificarse un usuario inactivo                                             
                     }
-                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos")); return; }
+                    else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                 }
                 else if (modoOperacion == EnumModoAplicar.Eliminar)
                 {
@@ -276,7 +276,7 @@ namespace Carpeta_Sistema_de_Ventas
             else if(modoOperacion == EnumModoAplicar.Modificar) 
             {
                 btnAgregar.Enabled = false; btnEliminar.Enabled = false; btnDesbloquear.Enabled = false; btnModificar.Enabled = false;
-                btnCancelar.Enabled = true; txtDNI.Enabled = false;
+                btnCancelar.Enabled = true; txtDNI.Enabled = false; txtNombreUsuario.Enabled=false;
             }
             else if(modoOperacion == EnumModoAplicar.Eliminar || modoOperacion == EnumModoAplicar.Activar)
             {
@@ -352,19 +352,24 @@ namespace Carpeta_Sistema_de_Ventas
 
 
         private bool ValidarCampos()
-        {
-
-            if (!Regex.IsMatch(txtDNI.Text, @"^\d{7,9}$"))
-            {
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorDNI"));
-                return false;
-            }
+        {   
             /*Se fija si se llenaron los campos*/
             if (Convert.ToInt32(txtDNI.Text) == 0 || txtNombre.Text == "" || txtApellido.Text == "" || txtEmail.Text == "" || txtNombreUsuario.Text == "" || cmbRol.Text == "")
             {
                 return false;
             }
-                /*Se fija el formato del mail con una expresion regular*/
+            if (!Regex.IsMatch(txtNombreUsuario.Text, @"^\S*$"))
+            {
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorUserName")); //el nombreusuario no puede tener espacios
+                return false;
+            }
+            if (!Regex.IsMatch(txtDNI.Text, @"^\d{7,9}$"))
+            {
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorDNI"));
+                return false;
+            }
+        
+            /*Se fija el formato del mail con una expresion regular*/
             if(!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase))
             {
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorMail"));
@@ -472,6 +477,14 @@ namespace Carpeta_Sistema_de_Ventas
                         e.Handled = true;
                     }
                 }
+            }
+        }
+        //no se pueden escribir espacios en el nombredeusuario
+        private void txtNombreUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                e.Handled = true;
             }
         }
     }

@@ -31,6 +31,7 @@
   "yaExisteMailUser": "A user with this Username or Email already exists",
   "errorDNI": "The DNI must contain only numbers and be between 7 and 9 digits",
   "errorMail": "Incorrect email format",
+  "errorUserName": "The username cannot have whitespace",
   "estaSeguroClave": "Are you sure you want to reset the password for DNI:",
   "estaSeguroEliminar": "Are you sure you want to deactivate the user DNI:",
   "estaSeguroActivar": "Are you sure you want to activate the user DNI:",
