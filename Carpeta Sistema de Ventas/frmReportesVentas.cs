@@ -55,6 +55,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaFacturas.Columns[12].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvEmail");
             grillaFacturas.Columns[13].Name = IdiomaManager.GetInstance().ConseguirTexto("dgvDireccion");
 
+            grillaFacturas.Columns[0].Width = 50;
             grillaFacturas.Columns[1].Width = 65;
             grillaFacturas.Columns[3].Width = 60;
             grillaFacturas.Columns[4].Width = 60;
@@ -180,7 +181,7 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 grillaFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
-            else { grillaFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; }
+            else { grillaFacturas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; grillaFacturas.AllowUserToResizeColumns = true; }
         }
 
         private void txtNumFactura_KeyPress_1(object sender, KeyPressEventArgs e)

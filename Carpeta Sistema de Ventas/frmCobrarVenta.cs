@@ -40,9 +40,9 @@ namespace Carpeta_Sistema_de_Ventas
             _factura.cobro = new BECobro();
             _factura.cobro.NumTransaccionBancaria = bllFactura.TraerUltimoNumTransaccion() + 1;
 
-            lblMontoTotal.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMontoTotal") + _factura.MontoTotal.ToString();
-            lblImpuesto.Text = IdiomaManager.GetInstance().ConseguirTexto("lblImpuesto") + _factura.Impuesto.ToString();
-            lblNumeroFactura.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNumeroFactura") + _factura.NumFactura.ToString();
+            lblMontoTotal.Text = IdiomaManager.GetInstance().ConseguirTexto("lblMontoTotal") + _factura.MontoTotal.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+            lblImpuesto.Text = IdiomaManager.GetInstance().ConseguirTexto("lblImpuesto") + _factura.Impuesto.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+            lblNumeroFactura.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNumeroFactura") + _factura.NumFactura.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
             LlenarComboBoxMetodoPago();
             txtCantCuotas.Text = "1";
             txtCantCuotas.Enabled = false;

@@ -49,7 +49,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaItems.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSMax");
             grillaItems.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCantidadAReponer");
             grillaItems.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecioUnit");
-
+            grillaItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             txtFechaEntrega.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
             txtFechaEntrega.MinDate = DateTime.Today;
             txtFechaEntrega.Value = DateTime.Today.AddDays(7);
@@ -125,15 +125,15 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 string codProd = grillaItems.CurrentRow.Cells[0].Value.ToString();
                 string precioCompra = Interaction.InputBox(IdiomaManager.GetInstance().ConseguirTexto("ingresePrecio"));
-                if (Regex.IsMatch(precioCompra.ToString(), @"^\d{1,5}(\.\d+)?$") && (Convert.ToDouble(precioCompra) > 0))  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 5 CIFRAS
+                if (Regex.IsMatch(precioCompra.ToString(), @"^\d{1,8}(\.\d+)?$") && (Convert.ToDouble(precioCompra) > 0))  //COMPRUEBA CON REGEX QUE LA CANT INGRESADA ES UN NUMERO MENOR A 8 CIFRAS
                 {
                     //obtengo el item
                     BEItemOrdenCompra item = ordenC.obtenerItems().FirstOrDefault(i => i.Producto.CodigoProducto == Convert.ToInt32(codProd));
 
                     //modifica el precio de compra
                     ordenC.modificarPrecioItem(Convert.ToInt64(codProd), Convert.ToDouble(precioCompra));
-
-                    grillaItems.CurrentRow.Cells[6].Value = precioCompra;
+                    string preciocompraformato = Convert.ToDouble(precioCompra).ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+                    grillaItems.CurrentRow.Cells[6].Value = preciocompraformato;
                 }
                 else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("numEntero")); }
             }
@@ -189,9 +189,9 @@ namespace Carpeta_Sistema_de_Ventas
             }
 
             iva = (montoNeto * 21) / 100;
-            lblNeto.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNeto") + montoNeto;
-            lblIVA.Text = IdiomaManager.GetInstance().ConseguirTexto("lblIVA") + iva;
-            lblTotal.Text = IdiomaManager.GetInstance().ConseguirTexto("lblTotal") + (montoNeto + iva);
+            lblNeto.Text = IdiomaManager.GetInstance().ConseguirTexto("lblNeto") + montoNeto.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")); ;
+            lblIVA.Text = IdiomaManager.GetInstance().ConseguirTexto("lblIVA") + iva.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")); ;
+            lblTotal.Text = IdiomaManager.GetInstance().ConseguirTexto("lblTotal") + (montoNeto + iva).ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")); ;
 
             ordenC.MontoTotal = montoNeto + iva;
         }

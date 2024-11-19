@@ -51,7 +51,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(365, 322);
+            this.label4.Location = new System.Drawing.Point(363, 338);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 19;
@@ -60,7 +60,7 @@
             // txtBuscar
             // 
             this.txtBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtBuscar.Location = new System.Drawing.Point(368, 338);
+            this.txtBuscar.Location = new System.Drawing.Point(366, 354);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(144, 20);
             this.txtBuscar.TabIndex = 18;
@@ -70,7 +70,7 @@
             this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBuscar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(531, 335);
+            this.btnBuscar.Location = new System.Drawing.Point(516, 352);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 17;
@@ -82,7 +82,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 12);
+            this.label2.Location = new System.Drawing.Point(6, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 20);
             this.label2.TabIndex = 16;
@@ -94,7 +94,7 @@
             this.btnAgregar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Location = new System.Drawing.Point(21, 328);
+            this.btnAgregar.Location = new System.Drawing.Point(10, 344);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(99, 30);
             this.btnAgregar.TabIndex = 15;
@@ -111,11 +111,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grillaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaProductos.Location = new System.Drawing.Point(21, 35);
+            this.grillaProductos.Location = new System.Drawing.Point(10, 35);
             this.grillaProductos.MultiSelect = false;
             this.grillaProductos.Name = "grillaProductos";
             this.grillaProductos.ReadOnly = true;
-            this.grillaProductos.Size = new System.Drawing.Size(585, 283);
+            this.grillaProductos.Size = new System.Drawing.Size(653, 299);
             this.grillaProductos.TabIndex = 14;
             // 
             // lblTotal
@@ -123,7 +123,7 @@
             this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(920, 381);
+            this.lblTotal.Location = new System.Drawing.Point(951, 397);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(51, 16);
             this.lblTotal.TabIndex = 24;
@@ -136,11 +136,11 @@
             this.grillaProductosAgregados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaProductosAgregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaProductosAgregados.Location = new System.Drawing.Point(632, 35);
+            this.grillaProductosAgregados.Location = new System.Drawing.Point(681, 35);
             this.grillaProductosAgregados.MultiSelect = false;
             this.grillaProductosAgregados.Name = "grillaProductosAgregados";
             this.grillaProductosAgregados.ReadOnly = true;
-            this.grillaProductosAgregados.Size = new System.Drawing.Size(493, 283);
+            this.grillaProductosAgregados.Size = new System.Drawing.Size(475, 299);
             this.grillaProductosAgregados.TabIndex = 23;
             // 
             // btnConfirmar
@@ -150,7 +150,7 @@
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmar.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmar.Location = new System.Drawing.Point(21, 418);
+            this.btnConfirmar.Location = new System.Drawing.Point(10, 434);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(167, 40);
             this.btnConfirmar.TabIndex = 22;
@@ -164,7 +164,7 @@
             this.btnQuitar.BackColor = System.Drawing.Color.Firebrick;
             this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuitar.ForeColor = System.Drawing.Color.White;
-            this.btnQuitar.Location = new System.Drawing.Point(632, 328);
+            this.btnQuitar.Location = new System.Drawing.Point(681, 344);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(99, 30);
             this.btnQuitar.TabIndex = 21;
@@ -177,7 +177,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(628, 12);
+            this.label1.Location = new System.Drawing.Point(677, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(180, 20);
             this.label1.TabIndex = 20;
@@ -185,9 +185,10 @@
             // 
             // btnActualizar
             // 
+            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnActualizar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Location = new System.Drawing.Point(531, 9);
+            this.btnActualizar.Location = new System.Drawing.Point(588, 9);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 25;
@@ -200,7 +201,7 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Location = new System.Drawing.Point(1007, 418);
+            this.btnCancelar.Location = new System.Drawing.Point(1038, 434);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(101, 40);
             this.btnCancelar.TabIndex = 26;
@@ -213,7 +214,7 @@
             this.lblNeto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNeto.AutoSize = true;
             this.lblNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNeto.Location = new System.Drawing.Point(920, 328);
+            this.lblNeto.Location = new System.Drawing.Point(951, 344);
             this.lblNeto.Name = "lblNeto";
             this.lblNeto.Size = new System.Drawing.Size(48, 16);
             this.lblNeto.TabIndex = 27;
@@ -224,7 +225,7 @@
             this.lblIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblIVA.AutoSize = true;
             this.lblIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIVA.Location = new System.Drawing.Point(920, 353);
+            this.lblIVA.Location = new System.Drawing.Point(951, 369);
             this.lblIVA.Name = "lblIVA";
             this.lblIVA.Size = new System.Drawing.Size(51, 16);
             this.lblIVA.TabIndex = 28;
@@ -235,7 +236,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1137, 470);
+            this.ClientSize = new System.Drawing.Size(1165, 486);
             this.ControlBox = false;
             this.Controls.Add(this.lblIVA);
             this.Controls.Add(this.lblNeto);

@@ -61,9 +61,9 @@
             this.btnGenerarPDF.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnGenerarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarPDF.ForeColor = System.Drawing.Color.White;
-            this.btnGenerarPDF.Location = new System.Drawing.Point(790, 448);
+            this.btnGenerarPDF.Location = new System.Drawing.Point(771, 448);
             this.btnGenerarPDF.Name = "btnGenerarPDF";
-            this.btnGenerarPDF.Size = new System.Drawing.Size(172, 45);
+            this.btnGenerarPDF.Size = new System.Drawing.Size(191, 45);
             this.btnGenerarPDF.TabIndex = 79;
             this.btnGenerarPDF.Text = "Generar PDF";
             this.btnGenerarPDF.UseVisualStyleBackColor = false;
@@ -84,9 +84,9 @@
             this.cmbReporte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbReporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReporte.FormattingEnabled = true;
-            this.cmbReporte.Location = new System.Drawing.Point(790, 93);
+            this.cmbReporte.Location = new System.Drawing.Point(771, 93);
             this.cmbReporte.Name = "cmbReporte";
-            this.cmbReporte.Size = new System.Drawing.Size(172, 21);
+            this.cmbReporte.Size = new System.Drawing.Size(191, 21);
             this.cmbReporte.TabIndex = 81;
             this.cmbReporte.SelectedIndexChanged += new System.EventHandler(this.cmbReporte_SelectedIndexChanged);
             // 
@@ -96,9 +96,9 @@
             this.btnGenerarReporte.BackColor = System.Drawing.SystemColors.Control;
             this.btnGenerarReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarReporte.ForeColor = System.Drawing.Color.Black;
-            this.btnGenerarReporte.Location = new System.Drawing.Point(790, 271);
+            this.btnGenerarReporte.Location = new System.Drawing.Point(771, 271);
             this.btnGenerarReporte.Name = "btnGenerarReporte";
-            this.btnGenerarReporte.Size = new System.Drawing.Size(172, 45);
+            this.btnGenerarReporte.Size = new System.Drawing.Size(191, 45);
             this.btnGenerarReporte.TabIndex = 82;
             this.btnGenerarReporte.Text = "Generar Reporte";
             this.btnGenerarReporte.UseVisualStyleBackColor = false;
@@ -108,7 +108,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(787, 69);
+            this.label2.Location = new System.Drawing.Point(768, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 83;
@@ -118,10 +118,10 @@
             // 
             this.fechaFin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fechaFin.CustomFormat = "yyyy-MM-dd";
-            this.fechaFin.Location = new System.Drawing.Point(790, 217);
+            this.fechaFin.Location = new System.Drawing.Point(771, 217);
             this.fechaFin.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
             this.fechaFin.Name = "fechaFin";
-            this.fechaFin.Size = new System.Drawing.Size(172, 20);
+            this.fechaFin.Size = new System.Drawing.Size(191, 20);
             this.fechaFin.TabIndex = 102;
             this.fechaFin.Value = new System.DateTime(2024, 8, 20, 0, 0, 0, 0);
             this.fechaFin.ValueChanged += new System.EventHandler(this.fechaFin_ValueChanged);
@@ -130,10 +130,10 @@
             // 
             this.fechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fechaInicio.CustomFormat = "yyyy-MM-dd";
-            this.fechaInicio.Location = new System.Drawing.Point(790, 154);
+            this.fechaInicio.Location = new System.Drawing.Point(771, 154);
             this.fechaInicio.MinDate = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
             this.fechaInicio.Name = "fechaInicio";
-            this.fechaInicio.Size = new System.Drawing.Size(172, 20);
+            this.fechaInicio.Size = new System.Drawing.Size(191, 20);
             this.fechaInicio.TabIndex = 101;
             this.fechaInicio.Value = new System.DateTime(2024, 8, 20, 0, 0, 0, 0);
             this.fechaInicio.ValueChanged += new System.EventHandler(this.fechaInicio_ValueChanged);
@@ -142,7 +142,7 @@
             // 
             this.lblFechaFin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFechaFin.AutoSize = true;
-            this.lblFechaFin.Location = new System.Drawing.Point(787, 200);
+            this.lblFechaFin.Location = new System.Drawing.Point(768, 201);
             this.lblFechaFin.Name = "lblFechaFin";
             this.lblFechaFin.Size = new System.Drawing.Size(51, 13);
             this.lblFechaFin.TabIndex = 100;
@@ -152,7 +152,7 @@
             // 
             this.lblFechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFechaInicio.AutoSize = true;
-            this.lblFechaInicio.Location = new System.Drawing.Point(787, 137);
+            this.lblFechaInicio.Location = new System.Drawing.Point(768, 138);
             this.lblFechaInicio.Name = "lblFechaInicio";
             this.lblFechaInicio.Size = new System.Drawing.Size(64, 13);
             this.lblFechaInicio.TabIndex = 99;

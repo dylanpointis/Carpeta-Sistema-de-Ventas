@@ -263,7 +263,6 @@ namespace Carpeta_Sistema_de_Ventas
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Producto eliminado"), "Producto eliminado");
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Producto habilitado"), "Producto habilitado");
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Producto modificado"), "Producto modificado");
-                        dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Stock reducidoo"), "Stock reducido");
                         break;
                     case "Clientes":
                         dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Cliente creado"), "Cliente creado");

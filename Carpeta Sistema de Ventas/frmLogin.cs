@@ -78,10 +78,12 @@ namespace Carpeta_Sistema_de_Ventas
                         IdiomaManager.GetInstance().Agregar(this);
                     }
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("inconsistenciaDV")); }
+                    bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1));
+                    SessionManager.GetInstance.LogOut();
                 }
                 else
                 { 
-                    // Muestra el mensaje de error desde la excepción.
+                    //Muestra el mensaje de error desde la excepción.
                     MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

@@ -55,7 +55,7 @@ namespace Carpeta_Sistema_de_Ventas
             grillaItemsRecibidos.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewFechaRecepcion");
             grillaItemsRecibidos.RowHeadersVisible = false;
 
-            listaOrdenesCompra = bllOrdenC.TraerListaOrdenes();
+            listaOrdenesCompra = bllOrdenC.TraerListaOrdenes().OrderByDescending(o => o.NumeroOrdenCompra).ToList();
             ActualizarGrilla();
         }
 
@@ -72,7 +72,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            listaOrdenesCompra = bllOrdenC.TraerListaOrdenes();
+            listaOrdenesCompra = bllOrdenC.TraerListaOrdenes().OrderByDescending(o => o.NumeroOrdenCompra).ToList();
             ActualizarGrilla();
         }
 
@@ -116,7 +116,7 @@ namespace Carpeta_Sistema_de_Ventas
             int numord = txtNumOrden.Text != "" ? Convert.ToInt32(txtNumOrden.Text) : 0;
             int numtran = txtNumTransferencia.Text != "" ? Convert.ToInt32(txtNumTransferencia.Text) : 0;
 
-            listaOrdenesCompra = listaOrdenesCompra.Where(o => (o.NumeroOrdenCompra == numord) || (o.NumeroFactura == numfac) || (o.NumeroTransferencia == numtran)).ToList();
+            listaOrdenesCompra = listaOrdenesCompra.Where(o => (o.NumeroOrdenCompra == numord) || (o.NumeroFactura == numfac) || (o.NumeroTransferencia == numtran)).OrderByDescending(o => o.NumeroOrdenCompra).ToList();
             ActualizarGrilla();
         }
 

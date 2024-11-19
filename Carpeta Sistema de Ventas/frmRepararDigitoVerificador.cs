@@ -69,8 +69,6 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1));
-            SessionManager.GetInstance.LogOut();
             this.Close();
         }
     }

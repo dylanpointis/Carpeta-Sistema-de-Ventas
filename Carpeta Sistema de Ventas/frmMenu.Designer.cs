@@ -32,33 +32,33 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnInicio = new System.Windows.Forms.ToolStripMenuItem();
             this.Admin = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestiónDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestiónDePerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.respaldosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GestionUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.GestionPerfiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.Eventos = new System.Windows.Forms.ToolStripMenuItem();
+            this.Respaldos = new System.Windows.Forms.ToolStripMenuItem();
             this.Maestros = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productosCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Clientes = new System.Windows.Forms.ToolStripMenuItem();
+            this.Proveedores = new System.Windows.Forms.ToolStripMenuItem();
+            this.Productos = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductosC = new System.Windows.Forms.ToolStripMenuItem();
             this.Usuarios = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cambiarIdiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CambiarClave = new System.Windows.Forms.ToolStripMenuItem();
+            this.CambiarIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.Ventas = new System.Windows.Forms.ToolStripMenuItem();
-            this.generarFacturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GenerarFactura = new System.Windows.Forms.ToolStripMenuItem();
             this.Compras = new System.Windows.Forms.ToolStripMenuItem();
-            this.generarSolicitudDeCotizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generarOrdenDeCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.corroborarRecepciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GenerarSolicitudCotizacion = new System.Windows.Forms.ToolStripMenuItem();
+            this.GenerarOrdenCompra = new System.Windows.Forms.ToolStripMenuItem();
+            this.CorroborarRecepcion = new System.Windows.Forms.ToolStripMenuItem();
             this.Reportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.generarReporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generarReporteComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReporteVentas = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReporteCompras = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReporteInteligente = new System.Windows.Forms.ToolStripMenuItem();
             this.Ayuda = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.btnSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generarReporteInteligenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -87,208 +87,216 @@
             this.btnInicio.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnInicio.ForeColor = System.Drawing.Color.White;
             this.btnInicio.Name = "btnInicio";
-            this.btnInicio.Size = new System.Drawing.Size(71, 40);
-            this.btnInicio.Text = "Ayuda";
+            this.btnInicio.Size = new System.Drawing.Size(65, 40);
+            this.btnInicio.Text = "Inicio";
             this.btnInicio.Click += new System.EventHandler(this.btnInicio_Click);
             // 
             // Admin
             // 
             this.Admin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gestiónDeUsuariosToolStripMenuItem,
-            this.gestiónDePerfilesToolStripMenuItem,
-            this.eventosToolStripMenuItem,
-            this.respaldosToolStripMenuItem});
+            this.GestionUsuarios,
+            this.GestionPerfiles,
+            this.Eventos,
+            this.Respaldos});
             this.Admin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Admin.ForeColor = System.Drawing.Color.White;
             this.Admin.Name = "Admin";
             this.Admin.Size = new System.Drawing.Size(73, 40);
             this.Admin.Text = "Admin";
             // 
-            // gestiónDeUsuariosToolStripMenuItem
+            // GestionUsuarios
             // 
-            this.gestiónDeUsuariosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.gestiónDeUsuariosToolStripMenuItem.Name = "gestiónDeUsuariosToolStripMenuItem";
-            this.gestiónDeUsuariosToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
-            this.gestiónDeUsuariosToolStripMenuItem.Text = "Gestión de Usuarios";
-            this.gestiónDeUsuariosToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeUsuariosToolStripMenuItem_Click);
+            this.GestionUsuarios.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.GestionUsuarios.Name = "GestionUsuarios";
+            this.GestionUsuarios.Size = new System.Drawing.Size(219, 26);
+            this.GestionUsuarios.Text = "Gestión de Usuarios";
+            this.GestionUsuarios.Click += new System.EventHandler(this.gestiónDeUsuariosToolStripMenuItem_Click);
             // 
-            // gestiónDePerfilesToolStripMenuItem
+            // GestionPerfiles
             // 
-            this.gestiónDePerfilesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gestiónDePerfilesToolStripMenuItem.Name = "gestiónDePerfilesToolStripMenuItem";
-            this.gestiónDePerfilesToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
-            this.gestiónDePerfilesToolStripMenuItem.Text = "Gestión de Perfiles";
-            this.gestiónDePerfilesToolStripMenuItem.Click += new System.EventHandler(this.gestiónDePerfilesToolStripMenuItem_Click);
+            this.GestionPerfiles.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GestionPerfiles.Name = "GestionPerfiles";
+            this.GestionPerfiles.Size = new System.Drawing.Size(219, 26);
+            this.GestionPerfiles.Text = "Gestión de Perfiles";
+            this.GestionPerfiles.Click += new System.EventHandler(this.gestiónDePerfilesToolStripMenuItem_Click);
             // 
-            // eventosToolStripMenuItem
+            // Eventos
             // 
-            this.eventosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eventosToolStripMenuItem.Name = "eventosToolStripMenuItem";
-            this.eventosToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
-            this.eventosToolStripMenuItem.Text = "Eventos";
-            this.eventosToolStripMenuItem.Click += new System.EventHandler(this.eventosToolStripMenuItem_Click);
+            this.Eventos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Eventos.Name = "Eventos";
+            this.Eventos.Size = new System.Drawing.Size(219, 26);
+            this.Eventos.Text = "Eventos";
+            this.Eventos.Click += new System.EventHandler(this.eventosToolStripMenuItem_Click);
             // 
-            // respaldosToolStripMenuItem
+            // Respaldos
             // 
-            this.respaldosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.respaldosToolStripMenuItem.Name = "respaldosToolStripMenuItem";
-            this.respaldosToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
-            this.respaldosToolStripMenuItem.Text = "Respaldos";
-            this.respaldosToolStripMenuItem.Click += new System.EventHandler(this.respaldosToolStripMenuItem_Click);
+            this.Respaldos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Respaldos.Name = "Respaldos";
+            this.Respaldos.Size = new System.Drawing.Size(219, 26);
+            this.Respaldos.Text = "Respaldos";
+            this.Respaldos.Click += new System.EventHandler(this.respaldosToolStripMenuItem_Click);
             // 
             // Maestros
             // 
             this.Maestros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clientesToolStripMenuItem,
-            this.proveedoresToolStripMenuItem,
-            this.productosToolStripMenuItem,
-            this.productosCToolStripMenuItem});
+            this.Clientes,
+            this.Proveedores,
+            this.Productos,
+            this.ProductosC});
             this.Maestros.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Maestros.ForeColor = System.Drawing.Color.White;
             this.Maestros.Name = "Maestros";
             this.Maestros.Size = new System.Drawing.Size(91, 40);
             this.Maestros.Text = "Maestros";
             // 
-            // clientesToolStripMenuItem
+            // Clientes
             // 
-            this.clientesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
-            this.clientesToolStripMenuItem.Text = "Clientes";
-            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
+            this.Clientes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Clientes.Name = "Clientes";
+            this.Clientes.Size = new System.Drawing.Size(180, 26);
+            this.Clientes.Text = "Clientes";
+            this.Clientes.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
-            // proveedoresToolStripMenuItem
+            // Proveedores
             // 
-            this.proveedoresToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
-            this.proveedoresToolStripMenuItem.Text = "Proveedores";
-            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
+            this.Proveedores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Proveedores.Name = "Proveedores";
+            this.Proveedores.Size = new System.Drawing.Size(180, 26);
+            this.Proveedores.Text = "Proveedores";
+            this.Proveedores.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
-            // productosToolStripMenuItem
+            // Productos
             // 
-            this.productosToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
-            this.productosToolStripMenuItem.Text = "Productos";
-            this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
+            this.Productos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Productos.Name = "Productos";
+            this.Productos.Size = new System.Drawing.Size(180, 26);
+            this.Productos.Text = "Productos";
+            this.Productos.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
-            // productosCToolStripMenuItem
+            // ProductosC
             // 
-            this.productosCToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productosCToolStripMenuItem.Name = "productosCToolStripMenuItem";
-            this.productosCToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
-            this.productosCToolStripMenuItem.Text = "Productos-C";
-            this.productosCToolStripMenuItem.Click += new System.EventHandler(this.productosCToolStripMenuItem_Click);
+            this.ProductosC.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductosC.Name = "ProductosC";
+            this.ProductosC.Size = new System.Drawing.Size(180, 26);
+            this.ProductosC.Text = "Productos-C";
+            this.ProductosC.Click += new System.EventHandler(this.productosCToolStripMenuItem_Click);
             // 
             // Usuarios
             // 
             this.Usuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cambiarClaveToolStripMenuItem,
-            this.cambiarIdiomaToolStripMenuItem});
+            this.CambiarClave,
+            this.CambiarIdioma});
             this.Usuarios.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Usuarios.ForeColor = System.Drawing.Color.White;
             this.Usuarios.Name = "Usuarios";
             this.Usuarios.Size = new System.Drawing.Size(88, 40);
             this.Usuarios.Text = "Usuarios";
             // 
-            // cambiarClaveToolStripMenuItem
+            // CambiarClave
             // 
-            this.cambiarClaveToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cambiarClaveToolStripMenuItem.Name = "cambiarClaveToolStripMenuItem";
-            this.cambiarClaveToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
-            this.cambiarClaveToolStripMenuItem.Text = "Cambiar clave";
-            this.cambiarClaveToolStripMenuItem.Click += new System.EventHandler(this.cambiarClaveToolStripMenuItem_Click);
+            this.CambiarClave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CambiarClave.Name = "CambiarClave";
+            this.CambiarClave.Size = new System.Drawing.Size(191, 26);
+            this.CambiarClave.Text = "Cambiar clave";
+            this.CambiarClave.Click += new System.EventHandler(this.cambiarClaveToolStripMenuItem_Click);
             // 
-            // cambiarIdiomaToolStripMenuItem
+            // CambiarIdioma
             // 
-            this.cambiarIdiomaToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cambiarIdiomaToolStripMenuItem.Name = "cambiarIdiomaToolStripMenuItem";
-            this.cambiarIdiomaToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
-            this.cambiarIdiomaToolStripMenuItem.Text = "Cambiar Idioma";
-            this.cambiarIdiomaToolStripMenuItem.Click += new System.EventHandler(this.cambiarIdiomaToolStripMenuItem_Click);
+            this.CambiarIdioma.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CambiarIdioma.Name = "CambiarIdioma";
+            this.CambiarIdioma.Size = new System.Drawing.Size(191, 26);
+            this.CambiarIdioma.Text = "Cambiar Idioma";
+            this.CambiarIdioma.Click += new System.EventHandler(this.cambiarIdiomaToolStripMenuItem_Click);
             // 
             // Ventas
             // 
             this.Ventas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generarFacturaToolStripMenuItem});
+            this.GenerarFactura});
             this.Ventas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Ventas.ForeColor = System.Drawing.Color.White;
             this.Ventas.Name = "Ventas";
             this.Ventas.Size = new System.Drawing.Size(73, 40);
             this.Ventas.Text = "Ventas";
             // 
-            // generarFacturaToolStripMenuItem
+            // GenerarFactura
             // 
-            this.generarFacturaToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generarFacturaToolStripMenuItem.Name = "generarFacturaToolStripMenuItem";
-            this.generarFacturaToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
-            this.generarFacturaToolStripMenuItem.Text = "Generar factura";
-            this.generarFacturaToolStripMenuItem.Click += new System.EventHandler(this.generarFacturaToolStripMenuItem_Click);
+            this.GenerarFactura.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenerarFactura.Name = "GenerarFactura";
+            this.GenerarFactura.Size = new System.Drawing.Size(188, 26);
+            this.GenerarFactura.Text = "Generar factura";
+            this.GenerarFactura.Click += new System.EventHandler(this.generarFacturaToolStripMenuItem_Click);
             // 
             // Compras
             // 
             this.Compras.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generarSolicitudDeCotizaciónToolStripMenuItem,
-            this.generarOrdenDeCompraToolStripMenuItem,
-            this.corroborarRecepciónToolStripMenuItem});
+            this.GenerarSolicitudCotizacion,
+            this.GenerarOrdenCompra,
+            this.CorroborarRecepcion});
             this.Compras.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Compras.ForeColor = System.Drawing.Color.White;
             this.Compras.Name = "Compras";
             this.Compras.Size = new System.Drawing.Size(89, 40);
             this.Compras.Text = "Compras";
             // 
-            // generarSolicitudDeCotizaciónToolStripMenuItem
+            // GenerarSolicitudCotizacion
             // 
-            this.generarSolicitudDeCotizaciónToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generarSolicitudDeCotizaciónToolStripMenuItem.Name = "generarSolicitudDeCotizaciónToolStripMenuItem";
-            this.generarSolicitudDeCotizaciónToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
-            this.generarSolicitudDeCotizaciónToolStripMenuItem.Text = "Generar solicitud de cotización";
-            this.generarSolicitudDeCotizaciónToolStripMenuItem.Click += new System.EventHandler(this.generarSolicitudDeCotizaciónToolStripMenuItem_Click);
+            this.GenerarSolicitudCotizacion.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenerarSolicitudCotizacion.Name = "GenerarSolicitudCotizacion";
+            this.GenerarSolicitudCotizacion.Size = new System.Drawing.Size(292, 26);
+            this.GenerarSolicitudCotizacion.Text = "Generar solicitud de cotización";
+            this.GenerarSolicitudCotizacion.Click += new System.EventHandler(this.generarSolicitudDeCotizaciónToolStripMenuItem_Click);
             // 
-            // generarOrdenDeCompraToolStripMenuItem
+            // GenerarOrdenCompra
             // 
-            this.generarOrdenDeCompraToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generarOrdenDeCompraToolStripMenuItem.Name = "generarOrdenDeCompraToolStripMenuItem";
-            this.generarOrdenDeCompraToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
-            this.generarOrdenDeCompraToolStripMenuItem.Text = "Generar orden de compra";
-            this.generarOrdenDeCompraToolStripMenuItem.Click += new System.EventHandler(this.generarOrdenDeCompraToolStripMenuItem_Click);
+            this.GenerarOrdenCompra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenerarOrdenCompra.Name = "GenerarOrdenCompra";
+            this.GenerarOrdenCompra.Size = new System.Drawing.Size(292, 26);
+            this.GenerarOrdenCompra.Text = "Generar orden de compra";
+            this.GenerarOrdenCompra.Click += new System.EventHandler(this.generarOrdenDeCompraToolStripMenuItem_Click);
             // 
-            // corroborarRecepciónToolStripMenuItem
+            // CorroborarRecepcion
             // 
-            this.corroborarRecepciónToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.corroborarRecepciónToolStripMenuItem.Name = "corroborarRecepciónToolStripMenuItem";
-            this.corroborarRecepciónToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
-            this.corroborarRecepciónToolStripMenuItem.Text = "Corroborar recepción";
-            this.corroborarRecepciónToolStripMenuItem.Click += new System.EventHandler(this.corroborarRecepciónToolStripMenuItem_Click);
+            this.CorroborarRecepcion.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CorroborarRecepcion.Name = "CorroborarRecepcion";
+            this.CorroborarRecepcion.Size = new System.Drawing.Size(292, 26);
+            this.CorroborarRecepcion.Text = "Corroborar recepción";
+            this.CorroborarRecepcion.Click += new System.EventHandler(this.corroborarRecepciónToolStripMenuItem_Click);
             // 
             // Reportes
             // 
             this.Reportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generarReporteToolStripMenuItem,
-            this.generarReporteComprasToolStripMenuItem,
-            this.generarReporteInteligenteToolStripMenuItem});
+            this.ReporteVentas,
+            this.ReporteCompras,
+            this.ReporteInteligente});
             this.Reportes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Reportes.ForeColor = System.Drawing.Color.White;
             this.Reportes.Name = "Reportes";
             this.Reportes.Size = new System.Drawing.Size(89, 40);
             this.Reportes.Text = "Reportes";
             // 
-            // generarReporteToolStripMenuItem
+            // ReporteVentas
             // 
-            this.generarReporteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generarReporteToolStripMenuItem.Name = "generarReporteToolStripMenuItem";
-            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
-            this.generarReporteToolStripMenuItem.Text = "Generar reporte ventas";
-            this.generarReporteToolStripMenuItem.Click += new System.EventHandler(this.generarReporteToolStripMenuItem_Click);
+            this.ReporteVentas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReporteVentas.Name = "ReporteVentas";
+            this.ReporteVentas.Size = new System.Drawing.Size(268, 26);
+            this.ReporteVentas.Text = "Generar reporte ventas";
+            this.ReporteVentas.Click += new System.EventHandler(this.generarReporteToolStripMenuItem_Click);
             // 
-            // generarReporteComprasToolStripMenuItem
+            // ReporteCompras
             // 
-            this.generarReporteComprasToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generarReporteComprasToolStripMenuItem.Name = "generarReporteComprasToolStripMenuItem";
-            this.generarReporteComprasToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
-            this.generarReporteComprasToolStripMenuItem.Text = "Generar reporte compras";
-            this.generarReporteComprasToolStripMenuItem.Click += new System.EventHandler(this.generarReporteComprasToolStripMenuItem_Click);
+            this.ReporteCompras.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReporteCompras.Name = "ReporteCompras";
+            this.ReporteCompras.Size = new System.Drawing.Size(268, 26);
+            this.ReporteCompras.Text = "Generar reporte compras";
+            this.ReporteCompras.Click += new System.EventHandler(this.generarReporteComprasToolStripMenuItem_Click);
+            // 
+            // ReporteInteligente
+            // 
+            this.ReporteInteligente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReporteInteligente.Name = "ReporteInteligente";
+            this.ReporteInteligente.Size = new System.Drawing.Size(268, 26);
+            this.ReporteInteligente.Text = "Generar reporte inteligente";
+            this.ReporteInteligente.Click += new System.EventHandler(this.generarReporteInteligenteToolStripMenuItem_Click);
             // 
             // Ayuda
             // 
@@ -333,14 +341,6 @@
             this.iniciarSesiónToolStripMenuItem.Text = "Iniciar sesión";
             this.iniciarSesiónToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesiónToolStripMenuItem_Click);
             // 
-            // generarReporteInteligenteToolStripMenuItem
-            // 
-            this.generarReporteInteligenteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generarReporteInteligenteToolStripMenuItem.Name = "generarReporteInteligenteToolStripMenuItem";
-            this.generarReporteInteligenteToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
-            this.generarReporteInteligenteToolStripMenuItem.Text = "Generar reporte inteligente";
-            this.generarReporteInteligenteToolStripMenuItem.Click += new System.EventHandler(this.generarReporteInteligenteToolStripMenuItem_Click);
-            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -377,28 +377,28 @@
         private System.Windows.Forms.ToolStripMenuItem Compras;
         private System.Windows.Forms.ToolStripMenuItem Reportes;
         private System.Windows.Forms.ToolStripMenuItem Ayuda;
-        private System.Windows.Forms.ToolStripMenuItem gestiónDeUsuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GestionUsuarios;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem btnSesion;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cambiarClaveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CambiarClave;
         private System.Windows.Forms.ToolStripMenuItem iniciarSesiónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generarFacturaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cambiarIdiomaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gestiónDePerfilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generarReporteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eventosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem respaldosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem productosCToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generarSolicitudDeCotizaciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generarOrdenDeCompraToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem corroborarRecepciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GenerarFactura;
+        private System.Windows.Forms.ToolStripMenuItem CambiarIdioma;
+        private System.Windows.Forms.ToolStripMenuItem GestionPerfiles;
+        private System.Windows.Forms.ToolStripMenuItem Productos;
+        private System.Windows.Forms.ToolStripMenuItem Clientes;
+        private System.Windows.Forms.ToolStripMenuItem ReporteVentas;
+        private System.Windows.Forms.ToolStripMenuItem Eventos;
+        private System.Windows.Forms.ToolStripMenuItem Respaldos;
+        private System.Windows.Forms.ToolStripMenuItem ProductosC;
+        private System.Windows.Forms.ToolStripMenuItem GenerarSolicitudCotizacion;
+        private System.Windows.Forms.ToolStripMenuItem GenerarOrdenCompra;
+        private System.Windows.Forms.ToolStripMenuItem CorroborarRecepcion;
+        private System.Windows.Forms.ToolStripMenuItem Proveedores;
         private System.Windows.Forms.ToolStripMenuItem btnInicio;
-        private System.Windows.Forms.ToolStripMenuItem generarReporteComprasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generarReporteInteligenteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReporteCompras;
+        private System.Windows.Forms.ToolStripMenuItem ReporteInteligente;
     }
 }
 

@@ -29,7 +29,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             //deshabilita todos los controles inicialmente
             DeshabilitarControles();
-
+            btnInicio.Enabled = true;
             //recorre los permisos (permisos simples o familias) del rol usuario
             foreach (Componente componente in user.listaPermisosRol)
             {
@@ -52,13 +52,17 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void DeshabilitarControles()
         {
-            Admin.Enabled = false;
-            Maestros.Enabled = false;
-            Usuarios.Enabled = false;
-            Ventas.Enabled = false;
-            Compras.Enabled = false;
-            Reportes.Enabled = false;
-            Ayuda.Enabled = false;
+            foreach (ToolStripMenuItem control in menuStrip1.Items)
+            {
+                if(control.Name != "btnInicio") //Deshabilita todos menos el btnInicio
+                {
+                    control.Enabled = false;
+                    foreach (ToolStripMenuItem item in control.DropDownItems)
+                    {
+                        item.Enabled = false;
+                    }
+                }
+            }
         }
 
         private void HabiilitarControl(string nombreControl)

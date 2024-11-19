@@ -40,41 +40,13 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void frmSeleccionarProducto_Load(object sender, EventArgs e)
         {
-            grillaProductosAgregados.ColumnCount = 5;
-            grillaProductosAgregados.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
-            grillaProductosAgregados.Columns[2].Width = 58;
-            grillaProductosAgregados.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
-            grillaProductosAgregados.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCantidad");
-            grillaProductosAgregados.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
-            grillaProductosAgregados.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSubtotal");
-
-
-
-            grillaProductos.ColumnCount = 8;
-            grillaProductos.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
-            grillaProductos.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
-            grillaProductos.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDescripcion");
-            grillaProductos.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMarca");
-            grillaProductos.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewColor");
-            grillaProductos.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
-            grillaProductos.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewStock");
-            grillaProductos.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewAlmacenamiento");
-
-
-            grillaProductos.Columns[0].Width = 45;
-            grillaProductosAgregados.Columns[2].Width = 58;
-            grillaProductos.Columns[3].Width = 30;
-            grillaProductos.Columns[4].Width = 40;
-            grillaProductos.Columns[5].Width = 35;
-            grillaProductos.Columns[6].Width = 35;
-            grillaProductos.Columns[7].Width = 35;
-
-
-
+            ArmarColumnasTabla();
             ActualizarGrilla();
 
             if (_factura.listaProductosAgregados.Count == 0) { btnConfirmar.Enabled = false; }
         }
+
+        
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -86,7 +58,7 @@ namespace Carpeta_Sistema_de_Ventas
                     BEProducto producto = new BEProducto(Convert.ToInt64(grillaProductos.CurrentRow.Cells[0].Value),
                         grillaProductos.CurrentRow.Cells[1].Value.ToString(), grillaProductos.CurrentRow.Cells[2].Value.ToString(),
                         grillaProductos.CurrentRow.Cells[3].Value.ToString(),grillaProductos.CurrentRow.Cells[4].Value.ToString(),
-                        Convert.ToDouble(grillaProductos.CurrentRow.Cells[5].Value),
+                        Convert.ToDouble(grillaProductos.CurrentRow.Cells[5].Value.ToString().Replace(".", "")),
                         Convert.ToInt32(grillaProductos.CurrentRow.Cells[6].Value), 0,0,
                         Convert.ToInt32(grillaProductos.CurrentRow.Cells[7].Value), true);
                    
@@ -159,7 +131,8 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 foreach (BEProducto p in lstProdEncontrados)
                 {
-                    grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento);
+                    string formatoPrecio = p.Precio.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+                    grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, formatoPrecio, p.Stock, p.Almacenamiento);
                 }
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSeEncontraron")); ActualizarGrilla(); }
@@ -179,7 +152,8 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 if(p.BorradoLogico == true)
                 {
-                    grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock, p.Almacenamiento);
+                    string formatoPrecio = p.Precio.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+                    grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, formatoPrecio, p.Stock, p.Almacenamiento);
                 }
             }
 
@@ -192,8 +166,9 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     BEProducto prod = item.producto;
                     int cantidad = item.cantidad;
-
-                    grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
+                    string formatoPrecio = prod.Precio.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+                    string subtotal = (cantidad * prod.Precio).ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+                    grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, formatoPrecio, subtotal);
                 }
             }
 
@@ -210,9 +185,9 @@ namespace Carpeta_Sistema_de_Ventas
 
 
 
-            lblNeto.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNeto")} $" + neto;
-            lblIVA.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblIVA")}: $" + impuesto;
-            lblTotal.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblTotal")}: $" + (neto + impuesto);
+            lblNeto.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNeto")} $" + neto.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+            lblIVA.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblIVA")}: $" + impuesto.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")); ;
+            lblTotal.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblTotal")}: $" + (neto + impuesto).ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")); ;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -236,5 +211,43 @@ namespace Carpeta_Sistema_de_Ventas
             }
             return false;
         }
+
+
+
+
+        private void ArmarColumnasTabla()
+        {
+            grillaProductosAgregados.ColumnCount = 5;
+            grillaProductosAgregados.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
+            grillaProductosAgregados.Columns[2].Width = 58;
+            grillaProductosAgregados.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
+            grillaProductosAgregados.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCantidad");
+            grillaProductosAgregados.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
+            grillaProductosAgregados.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewSubtotal");
+
+
+
+            grillaProductos.ColumnCount = 8;
+            grillaProductos.Columns[0].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewCodigo");
+            grillaProductos.Columns[1].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewModelo");
+            grillaProductos.Columns[2].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewDescripcion");
+            grillaProductos.Columns[3].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewMarca");
+            grillaProductos.Columns[4].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewColor");
+            grillaProductos.Columns[5].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewPrecio");
+            grillaProductos.Columns[6].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewStock");
+            grillaProductos.Columns[7].Name = IdiomaManager.GetInstance().ConseguirTexto("gridViewAlmacenamiento");
+
+
+            grillaProductos.Columns[0].Width = 45;
+            grillaProductos.Columns[1].Width = 45;
+            //grillaProductosAgregados.Columns[2].Width = 58;
+            grillaProductos.Columns[3].Width = 30;
+            grillaProductos.Columns[4].Width = 25;
+            grillaProductos.Columns[5].Width = 35;
+            grillaProductos.Columns[6].Width = 20;
+            grillaProductos.Columns[7].Width = 35;
+            grillaProductosAgregados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
     }
 }

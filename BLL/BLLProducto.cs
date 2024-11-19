@@ -1,5 +1,7 @@
 ﻿using BE;
 using DAL;
+using Services;
+using Services.Observer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace BLL
     {
         DALProducto dalProd = new DALProducto();
         BLLDigitoVerificador bllDV = new BLLDigitoVerificador();
+        BLLEvento bllEv = new BLLEvento();
         public List<BEProducto> TraerListaProductos()
         {
             List<BEProducto> lista = new List<BEProducto> ();
@@ -45,13 +48,20 @@ namespace BLL
 
         public void RegistrarProducto(BEProducto prod)
         {
+            BEProducto prodEncontrado = TraerListaProductos().FirstOrDefault(p => p.CodigoProducto == prod.CodigoProducto);
+            if (prodEncontrado != null)
+            {
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
+            }
             dalProd.RegistrarProducto(prod);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 3));
             bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 
         public void EliminarProducto(long idProd)
         {
             dalProd.EliminarProducto(idProd);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto eliminado", 2));
             bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 
@@ -59,6 +69,7 @@ namespace BLL
         public void HabilitarProducto(long idProd)
         {
             dalProd.HabilitarProducto(idProd);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto habilitado", 2));
             bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 
@@ -66,6 +77,7 @@ namespace BLL
         public void ModificarProducto(BEProducto prod)
         {
             dalProd.ModificarProducto(prod);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 3));
             bllDV.PersistirDV(dalProd.TraerListaProducto());
         }
 

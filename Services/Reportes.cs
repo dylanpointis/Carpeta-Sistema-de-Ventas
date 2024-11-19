@@ -100,15 +100,15 @@ namespace Services
                 filas += "<tr>";
                 filas += "<td>" + prod.CodigoProducto.ToString() + "</td>";
                 filas += "<td>" + prod.Modelo + "</td>";
-                filas += "<td>" + item.PrecioCompra.ToString() + "</td>";
+                filas += "<td>" + item.PrecioCompra.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")) + "</td>";
                 filas += "<td>" + cantidad.ToString() + "</td>";
                 filas += "</tr>";
             }
 
             paginahtml = paginahtml.Replace("@FILAS", filas);
-            paginahtml = paginahtml.Replace("@Neto", subtotalfactura.ToString());
-            paginahtml = paginahtml.Replace("@Iva", (subtotalfactura * 0.21).ToString());
-            paginahtml = paginahtml.Replace("@Total", ordenC.MontoTotal.ToString());
+            paginahtml = paginahtml.Replace("@Neto", subtotalfactura.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")));
+            paginahtml = paginahtml.Replace("@Iva", (subtotalfactura * 0.21).ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")));
+            paginahtml = paginahtml.Replace("@Total", ordenC.MontoTotal.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")));
             paginahtml = paginahtml.Replace("@NumTransferencia", ordenC.NumeroTransferencia.ToString());
 
             //traducciones
@@ -175,7 +175,7 @@ namespace Services
             }
 
             paginahtml = paginahtml.Replace("@FILAS", filas);
-            paginahtml = paginahtml.Replace("@Total", ordenC.MontoTotal.ToString());
+            paginahtml = paginahtml.Replace("@Total", ordenC.MontoTotal.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")));
             paginahtml = paginahtml.Replace("@NumTransferencia", ordenC.NumeroTransferencia.ToString());
 
             //traducciones
@@ -239,16 +239,16 @@ namespace Services
                 filas += "<tr>";
                 filas += "<td>" + prod.CodigoProducto.ToString() + "</td>";
                 filas += "<td>" + prod.Modelo + "</td>";
-                filas += "<td>" + prod.Precio.ToString() + "</td>";
+                filas += "<td>" + prod.Precio.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")) + "</td>";
                 filas += "<td>" + cantidad.ToString() + "</td>";
-                filas += "<td>" + subtotal.ToString() + "</td>";
+                filas += "<td>" + subtotal.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")) + "</td>";
                 filas += "</tr>";
             }
 
             paginahtml = paginahtml.Replace("@FILAS", filas);
-            paginahtml = paginahtml.Replace("@Neto", subtotalfactura.ToString());
-            paginahtml = paginahtml.Replace("@Iva", fac.Impuesto.ToString());
-            paginahtml = paginahtml.Replace("@Total", fac.MontoTotal.ToString());
+            paginahtml = paginahtml.Replace("@Neto", subtotalfactura.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")));
+            paginahtml = paginahtml.Replace("@Iva", fac.Impuesto.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")));
+            paginahtml = paginahtml.Replace("@Total", fac.MontoTotal.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")));
             paginahtml = paginahtml.Replace("@Metodo", IdiomaManager.GetInstance().ConseguirTexto(fac.cobro.stringMetodoPago));
 
             paginahtml = paginahtml.Replace("@CantCuotas", fac.cobro.CantCuotas.ToString());

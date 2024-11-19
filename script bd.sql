@@ -210,42 +210,6 @@ END
 GO
 
 
-/*
-CREATE PROCEDURE VerificarSiClienteTieneFacturas
-    @DNI int
-AS
-BEGIN
-    SELECT * FROM Facturas WHERE DNICliente = @DNI;
-END
-GO*/
-/*
-CREATE PROCEDURE VerificarSiProductoTieneFacturas
-    @CodigoProducto varchar(14)
-AS
-BEGIN
-    SELECT * FROM Item_Factura WHERE CodigoProducto =  @CodigoProducto;
-END
-GO*/
-
-/*
-CREATE PROCEDURE TraerUltimoIDFactura
-AS
-BEGIN
-SELECT IDENT_CURRENT( 'Facturas' )  
-END 
-GO*/
-
-/*
-/*Solo registra la fecha. Luego se le modifica los datos del pago. Devuelve el ID NumFactura generado*/
-CREATE PROCEDURE RegistrarFactura
-	@DNICliente int,
-    @Fecha varchar(50)
-AS
-BEGIN
-    INSERT INTO Facturas VALUES (@DNICliente,null,null,null,@Fecha,null,null,null,null,null, null);
-	SELECT SCOPE_IDENTITY() 
-END
-GO*/
 CREATE PROCEDURE RegistrarFactura
 	@DNICliente int,
     @NumTransaccion int,
@@ -543,53 +507,110 @@ BEGIN
 END
 GO
 
+/*PERMISOS, FAMILIAS, ROLES INSERTS*/
+INSERT INTO Permisos VALUES('Admin',0) --1
+INSERT INTO Permisos VALUES('Maestros',0) --2
+INSERT INTO Permisos VALUES('Usuarios',0) --3
+INSERT INTO Permisos VALUES('Ventas',0) --4
+INSERT INTO Permisos VALUES('Compras',0) --5
+INSERT INTO Permisos VALUES('Reportes',0) --6
+INSERT INTO Permisos VALUES('Ayuda',0) --7
+
+INSERT INTO Permisos VALUES('GestionUsuarios', 0); --8
+INSERT INTO Permisos VALUES('GestionPerfiles', 0); --9
+INSERT INTO Permisos VALUES('Productos', 0); --10
+INSERT INTO Permisos VALUES('Clientes', 0); --11
+INSERT INTO Permisos VALUES('CambiarClave', 0); --12
+INSERT INTO Permisos VALUES('CambiarIdioma', 0); --13
+INSERT INTO Permisos VALUES('GenerarFactura', 0); --14
+INSERT INTO Permisos VALUES('ReporteVentas', 0); --15
+INSERT INTO Permisos VALUES('Eventos', 0); --16
+INSERT INTO Permisos VALUES('Respaldos', 0); --17
+INSERT INTO Permisos VALUES('ProductosC', 0); --18
+INSERT INTO Permisos VALUES('GenerarSolicitudCotizacion', 0); --19
+INSERT INTO Permisos VALUES('GenerarOrdenCompra', 0); --20
+INSERT INTO Permisos VALUES('CorroborarRecepcion', 0); --21
+INSERT INTO Permisos VALUES('Proveedores', 0); --22
+INSERT INTO Permisos VALUES('ReporteCompras', 0); --23
+INSERT INTO Permisos VALUES('ReporteInteligente', 0); --24
 
 
-
-INSERT INTO Permisos VALUES('Admin',0)
-INSERT INTO Permisos VALUES('Maestros',0)
-INSERT INTO Permisos VALUES('Usuarios',0)
-INSERT INTO Permisos VALUES('Ventas',0)
-INSERT INTO Permisos VALUES('Compras',0)
-INSERT INTO Permisos VALUES('Reportes',0)
-INSERT INTO Permisos VALUES('Ayuda',0)
 
 INSERT INTO Permisos VALUES('FamiliaAdmin',1)
-Insert into Permiso_Componente VALUES(8, 1)
-Insert into Permiso_Componente VALUES(8, 2)
-Insert into Permiso_Componente VALUES(8, 3)
-Insert into Permiso_Componente VALUES(8, 4)
-Insert into Permiso_Componente VALUES(8, 5)
-Insert into Permiso_Componente VALUES(8, 6)
-Insert into Permiso_Componente VALUES(8, 7)
+Insert into Permiso_Componente VALUES(25, 1)
+Insert into Permiso_Componente VALUES(25, 2)
+Insert into Permiso_Componente VALUES(25, 3)
+Insert into Permiso_Componente VALUES(25, 4)
+Insert into Permiso_Componente VALUES(25, 5)
+Insert into Permiso_Componente VALUES(25, 6)
+Insert into Permiso_Componente VALUES(25, 7)
+Insert into Permiso_Componente VALUES(25, 8)
+Insert into Permiso_Componente VALUES(25, 9)
+Insert into Permiso_Componente VALUES(25, 10)
+Insert into Permiso_Componente VALUES(25, 11)
+Insert into Permiso_Componente VALUES(25, 12)
+Insert into Permiso_Componente VALUES(25, 13)
+Insert into Permiso_Componente VALUES(25, 14)
+Insert into Permiso_Componente VALUES(25, 15)
+Insert into Permiso_Componente VALUES(25, 16)
+Insert into Permiso_Componente VALUES(25, 17)
+Insert into Permiso_Componente VALUES(25, 18)
+Insert into Permiso_Componente VALUES(25, 19)
+Insert into Permiso_Componente VALUES(25, 20)
+Insert into Permiso_Componente VALUES(25, 21)
+Insert into Permiso_Componente VALUES(25, 22)
+Insert into Permiso_Componente VALUES(25, 23)
+Insert into Permiso_Componente VALUES(25, 24)
+
+
 
 
 INSERT INTO Roles VALUES('Admin')
-INSERT INTO Rol_Permiso VALUES (1,8)
+INSERT INTO Rol_Permiso VALUES (1,25)
 
 
 INSERT INTO Permisos VALUES('FamiliaVentas',1)
-Insert into Permiso_Componente VALUES(9, 2)
-Insert into Permiso_Componente VALUES(9, 3)
-Insert into Permiso_Componente VALUES(9, 4)
-Insert into Permiso_Componente VALUES(9, 6)
-Insert into Permiso_Componente VALUES(9, 7)
+Insert into Permiso_Componente VALUES(26, 2)
+Insert into Permiso_Componente VALUES(26, 3)
+Insert into Permiso_Componente VALUES(26, 4)
+Insert into Permiso_Componente VALUES(26, 6)
+Insert into Permiso_Componente VALUES(26, 7)
+Insert into Permiso_Componente VALUES(26, 10)
+Insert into Permiso_Componente VALUES(26, 11)
+Insert into Permiso_Componente VALUES(26, 18)
+Insert into Permiso_Componente VALUES(26, 12)
+Insert into Permiso_Componente VALUES(26, 13)
+Insert into Permiso_Componente VALUES(26, 14)
+Insert into Permiso_Componente VALUES(26, 15)
+Insert into Permiso_Componente VALUES(26, 24)
+
+
 
 INSERT INTO Roles VALUES('Vendedor')
-INSERT INTO Rol_Permiso VALUES (2,9)
+INSERT INTO Rol_Permiso VALUES (2,26)
 
 
 
 INSERT INTO Permisos VALUES('FamiliaCompras',1)
-Insert into Permiso_Componente VALUES(10, 2)
-Insert into Permiso_Componente VALUES(10, 3)
-Insert into Permiso_Componente VALUES(10, 5)
-Insert into Permiso_Componente VALUES(10, 6)
-Insert into Permiso_Componente VALUES(10, 7)
+Insert into Permiso_Componente VALUES(27, 2)
+Insert into Permiso_Componente VALUES(27, 3)
+Insert into Permiso_Componente VALUES(27, 5)
+Insert into Permiso_Componente VALUES(27, 6)
+Insert into Permiso_Componente VALUES(27, 7)
+Insert into Permiso_Componente VALUES(27, 22)
+Insert into Permiso_Componente VALUES(27, 10)
+Insert into Permiso_Componente VALUES(27, 18)
+Insert into Permiso_Componente VALUES(27, 12)
+Insert into Permiso_Componente VALUES(27, 13)
+Insert into Permiso_Componente VALUES(27, 19)
+Insert into Permiso_Componente VALUES(27, 20)
+Insert into Permiso_Componente VALUES(27, 21)
+Insert into Permiso_Componente VALUES(27, 23)
+Insert into Permiso_Componente VALUES(27, 24)
 
 
 INSERT INTO Roles VALUES('Comprador')
-INSERT INTO Rol_Permiso VALUES (3,10)
+INSERT INTO Rol_Permiso VALUES (3,27)
 
 
 CREATE TABLE Usuarios(
@@ -659,7 +680,7 @@ GO
 
 CREATE TABLE Productos_C
 (
-idCambio INT PRIMARY KEY IDENTITY(1,1),
+CodCambio INT PRIMARY KEY IDENTITY(1,1),
 CodigoProducto varchar(14) FOREIGN KEY REFERENCES Productos(CodigoProducto),
 Fecha varchar(11),
 Hora varchar(5),
@@ -1158,7 +1179,6 @@ INSERT INTO Clientes VALUES (40898122, 'Carla', 'Martínez', 'carlamartinez@gmail
 /*
 INSERT INTO Facturas VALUES (29145876, 1, 1331, 231, '2024-10-28 13:20', 'MercadoPago',null,1,'marcos','')
 INSERT INTO Item_Factura VALUES (1,123,1,1100)*/
-
 
 
 INSERT INTO DigitoVerificador VALUES ('Clientes','','')

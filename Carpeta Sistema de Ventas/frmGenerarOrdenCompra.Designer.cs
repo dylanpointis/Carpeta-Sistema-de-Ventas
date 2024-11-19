@@ -71,7 +71,8 @@
             // 
             this.grillaItems.AllowUserToAddRows = false;
             this.grillaItems.AllowUserToDeleteRows = false;
-            this.grillaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.grillaItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grillaItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaItems.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -290,7 +291,7 @@
             this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(721, 42);
+            this.lblTotal.Location = new System.Drawing.Point(636, 42);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(59, 20);
             this.lblTotal.TabIndex = 69;
@@ -301,7 +302,7 @@
             this.lblNeto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNeto.AutoSize = true;
             this.lblNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNeto.Location = new System.Drawing.Point(721, 9);
+            this.lblNeto.Location = new System.Drawing.Point(636, 9);
             this.lblNeto.Name = "lblNeto";
             this.lblNeto.Size = new System.Drawing.Size(47, 20);
             this.lblNeto.TabIndex = 70;
@@ -312,7 +313,7 @@
             this.lblIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblIVA.AutoSize = true;
             this.lblIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIVA.Location = new System.Drawing.Point(862, 9);
+            this.lblIVA.Location = new System.Drawing.Point(821, 9);
             this.lblIVA.Name = "lblIVA";
             this.lblIVA.Size = new System.Drawing.Size(90, 20);
             this.lblIVA.TabIndex = 71;

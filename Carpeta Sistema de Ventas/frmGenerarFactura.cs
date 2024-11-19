@@ -61,9 +61,9 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void ActualizarLabels()
         {
-            lblNeto.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNeto")} $" + _factura.CalcularMonto();
-            lblIVA.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblIVA")}: $" + _factura.Impuesto;
-            lblTotal.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblTotal")}: $" + _factura.MontoTotal;
+            lblNeto.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNeto")} $" + _factura.CalcularMonto().ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+            lblIVA.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblIVA")}: $" + _factura.Impuesto.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+            lblTotal.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblTotal")}: $" + _factura.MontoTotal.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
         }
 
 
@@ -91,7 +91,10 @@ namespace Carpeta_Sistema_de_Ventas
                     BEProducto prod = item.producto;
                     int cantidad = item.cantidad;
 
-                    grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, prod.Precio, cantidad * prod.Precio);
+
+                    string formatoPrecio = prod.Precio.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+                    string subtotal = (cantidad * prod.Precio).ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+                    grillaProductosAgregados.Rows.Add(prod.CodigoProducto, prod.Modelo, cantidad, formatoPrecio, subtotal);
                 }
             }
 

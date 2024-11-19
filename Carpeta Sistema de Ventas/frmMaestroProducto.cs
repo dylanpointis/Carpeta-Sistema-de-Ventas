@@ -55,6 +55,7 @@ namespace Carpeta_Sistema_de_Ventas
 
             ActualizarGrilla();
             ResetearBotones();
+            txtStock.Enabled = false;
             grillaProductos.Columns[0].Width = 57;
             grillaProductos.Columns[3].Width = 55;
             grillaProductos.Columns[4].Width = 55;
@@ -72,7 +73,8 @@ namespace Carpeta_Sistema_de_Ventas
             listaProd = bllProducto.TraerListaProductos();
             foreach (BEProducto p in listaProd)
             {
-                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Precio, p.Stock,p.StockMin,p.StockMax, p.Almacenamiento, p.BorradoLogico);
+                string formatoPrecio = p.Precio.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES"));
+                grillaProductos.Rows.Add(p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, formatoPrecio, p.Stock,p.StockMin,p.StockMax, p.Almacenamiento, p.BorradoLogico);
             }
 
 
@@ -105,7 +107,7 @@ namespace Carpeta_Sistema_de_Ventas
                 }
                 else
                 {
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtCodigoProducto.Focus();
                 }
             }
@@ -168,19 +170,13 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (ValidarCampos())
                     {
-                        BEProducto prodEncontrado = listaProd.FirstOrDefault(p => p.CodigoProducto == Convert.ToInt64(txtCodigoProducto.Text));
-                        if (prodEncontrado != null)
+                        try
                         {
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste")) ; return;
-                        }
-                        else
-                        {
-                            BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtStockMin.Text), Convert.ToInt32(txtStockMax.Text), Convert.ToInt32(txtAlmacenamiento.Text),true);
+                            BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), 0, Convert.ToInt32(txtStockMin.Text), Convert.ToInt32(txtStockMax.Text), Convert.ToInt32(txtAlmacenamiento.Text), true);
                             bllProducto.RegistrarProducto(prod);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto creado", 3));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        }catch(Exception ex) { MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);return; }
                     }
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                 }
@@ -196,7 +192,6 @@ namespace Carpeta_Sistema_de_Ventas
                            
                             bllProducto.EliminarProducto(idProd);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto eliminado", 2));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -210,7 +205,6 @@ namespace Carpeta_Sistema_de_Ventas
 
                             bllProducto.HabilitarProducto(idProd);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto habilitado", 2));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
@@ -224,7 +218,6 @@ namespace Carpeta_Sistema_de_Ventas
                             BEProducto prod = new BEProducto(Convert.ToInt64(txtCodigoProducto.Text), txtModelo.Text, txtDescripcion.Text, cmbMarca.Text, txtColor.Text, Convert.ToDouble(txtPrecio.Text), Convert.ToInt32(txtStock.Text), Convert.ToInt32(txtStockMin.Text), Convert.ToInt32(txtStockMax.Text), Convert.ToInt32(txtAlmacenamiento.Text), true);
                             bllProducto.ModificarProducto(prod);
 
-                            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Productos", "Producto modificado", 3));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //No se puede modifcar un producto deshabilitado
@@ -313,7 +306,7 @@ namespace Carpeta_Sistema_de_Ventas
             txtModelo.Enabled = true;
             txtDescripcion.Enabled = true;
             txtPrecio.Enabled = true;
-            txtStock.Enabled = true;
+            //txtStock.Enabled = true;
             txtAlmacenamiento.Enabled = true;
             cmbMarca.Enabled = true;
             txtColor.Enabled = true;
@@ -332,7 +325,7 @@ namespace Carpeta_Sistema_de_Ventas
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("precio"));
                 return false;
             }
-            if(txtCodigoProducto.Text == "" || txtModelo.Text == "" || txtDescripcion.Text == "" || txtColor.Text == "" || txtPrecio.Text == "" || txtStock.Text == "" || txtAlmacenamiento.Text == "" || cmbMarca.Text == "")
+            if(txtCodigoProducto.Text == "" || txtModelo.Text == "" || txtDescripcion.Text == "" || txtColor.Text == "" || txtPrecio.Text == ""  || txtAlmacenamiento.Text == "" || cmbMarca.Text == "")
             {
                 return false;
             }
@@ -346,7 +339,11 @@ namespace Carpeta_Sistema_de_Ventas
             txtDescripcion.Text = grillaProductos.CurrentRow.Cells[2].Value.ToString();
             cmbMarca.SelectedItem = grillaProductos.CurrentRow.Cells[3].Value.ToString();
             txtColor.Text = grillaProductos.CurrentRow.Cells[4].Value.ToString();
-            txtPrecio.Text = grillaProductos.CurrentRow.Cells[5].Value.ToString();
+
+            txtPrecio.Text = grillaProductos.CurrentRow.Cells[5].Value.ToString().Replace(".", "");
+            
+
+
             txtStock.Text = grillaProductos.CurrentRow.Cells[6].Value.ToString();
             txtStockMin.Text = grillaProductos.CurrentRow.Cells[7].Value.ToString();
             txtStockMax.Text = grillaProductos.CurrentRow.Cells[8].Value.ToString();
