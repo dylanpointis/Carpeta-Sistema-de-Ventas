@@ -104,6 +104,7 @@ namespace Carpeta_Sistema_de_Ventas
                     grillaItems.Rows.Add(item.Producto.CodigoProducto, item.Producto.Modelo, item.Producto.Stock, item.Producto.StockMin, item.Producto.StockMax, item.Cantidad, 0);
                 }
                 btnFinalizar.Enabled = true;
+                btnRegistarPago.Enabled = true;
             }
         }
 
@@ -272,6 +273,7 @@ namespace Carpeta_Sistema_de_Ventas
                     string paginahtml = Properties.Resources.htmlfacturacompra.ToString();
                     Reportes.GenerarReporteOrden(ordenC, paginahtml, Properties.Resources.logo);
                     btnFinalizar.Enabled = false;
+                    btnRegistarPago.Enabled = false;
                     TraerSolicitudesPendientes();
                 }
                 catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }

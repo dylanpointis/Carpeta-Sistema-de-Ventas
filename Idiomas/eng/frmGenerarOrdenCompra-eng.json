@@ -65,6 +65,7 @@
   "textoNombreProveedor": "Supplier name",
   "textoDetallePago": "Payment details",
   "textoNumeroTransferencia": "Transfer number",
+  "textoNumOrden": "Purchase order number",
 
   "cerrar": "Log out",
   "deseaCerrar": "Are you sure you want to Log Out?",

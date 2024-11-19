@@ -31,7 +31,7 @@
   "gridViewMarca": "Brand",
   "gridViewPrecio": "Price",
   "gridViewStock": "Current stock",
-  "ggridViewSMin": "Minimum stock",
+  "gridViewSMin": "Minimum stock",
   "gridViewSMax": "Maximum stock",
 
   "gridViewCUIT": "CUIT",
