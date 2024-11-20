@@ -1,0 +1,7 @@
+USE [master]
+GO
+IF EXISTS(SELECT 1 FROM SYS.databases WHERE name = 'SistemaAltaGama')
+BEGIN
+    ALTER DATABASE SistemaAltaGama SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE SistemaAltaGama
+END
