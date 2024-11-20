@@ -88,14 +88,11 @@ namespace BLL
             int i = 0;
             foreach (DataRow row in tablaDVGlobal.Rows)
             {
-                if (row[1].ToString() != "" && row[2].ToString() != "") //si ya se les persistio algun DV continua. Si no, lo saltea
-                { 
-                    //compara el dvh y dvv global con el calculado
-                    if (row[1].ToString() != listDV[i].DVH && row[2].ToString() != listDV[i].DVV)
-                    {
-                        string tablaError = row[0].ToString(); //tabla que da error
-                        throw new TaskCanceledException(tablaError);
-                    }
+                //compara el dvh y dvv global con el calculado
+                if (row[1].ToString() != listDV[i].DVH && row[2].ToString() != listDV[i].DVV)
+                {
+                    string tablaError = row[0].ToString(); //tabla que da error
+                    throw new TaskCanceledException(tablaError);
                 }
                 i++;
             }
@@ -109,34 +106,32 @@ namespace BLL
             string DVH = "";
             string DVV = "";
 
-            if(CantFilas > 0) // si la tabla no esta vacia
-            {  
-                //CALCULAR DVH
-                foreach (DataRow row in dataTable.Rows)
+              
+            //CALCULAR DVH
+            foreach (DataRow row in dataTable.Rows)
+            {
+                for (int i = 0; i < CantColumnas; i++)
                 {
-                    for (int i = 0; i < CantColumnas; i++)
-                    {
-                        DVH += row[i].ToString();
-                    }
+                    DVH += row[i].ToString();
                 }
-
-                DVH = Encriptador.EncriptarSHA256(DVH);
-
-                //CALCULAR DVV
-                foreach (DataColumn column in dataTable.Columns)
-                {
-                    for (int i = 0; i < CantFilas; i++)
-                    {
-                        DVV += dataTable.Rows[i][column].ToString();
-                    }
-                }
-
-                DVV = Encriptador.EncriptarSHA256(DVV);
-
-                DV_Object dvObj = new DV_Object(DVH, DVV, dataTable.TableName);
-
-                dalDV.PersistirDV(dvObj);
             }
+
+            DVH = Encriptador.EncriptarSHA256(DVH);
+
+            //CALCULAR DVV
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                for (int i = 0; i < CantFilas; i++)
+                {
+                    DVV += dataTable.Rows[i][column].ToString();
+                }
+            }
+
+            DVV = Encriptador.EncriptarSHA256(DVV);
+
+            DV_Object dvObj = new DV_Object(DVH, DVV, dataTable.TableName);
+
+            dalDV.PersistirDV(dvObj);
         }
 
         public DataTable TraerTablaDV()

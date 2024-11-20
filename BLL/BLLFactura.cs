@@ -125,7 +125,12 @@ namespace BLL
         public DataTable ReportePrecedirVentasPorProd()
         {
             return dalFac.ReportePrecedirVentasPorProd();
+
         }
 
+        public DataTable ReportePrecedirIngresos()
+        {
+            return dalFac.ReportePrecedirIngresos();
+        }
     }
 }

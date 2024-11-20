@@ -32,7 +32,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void COMPRAfrmRegistrarPagoProveedor_Load(object sender, EventArgs e)
         {
-            lblTotal.Text += ordenC.MontoTotal;
+            lblTotal.Text += ordenC.MontoTotal.ToString("#,0.00", new System.Globalization.CultureInfo("es-ES")); ;
             lblProveedor.Text += ordenC.proveedor.Nombre;
             txtCBU.Text = ordenC.proveedor.CBU;
             txtBanco.Text = ordenC.proveedor.Banco;

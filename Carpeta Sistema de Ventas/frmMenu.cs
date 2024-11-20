@@ -5,6 +5,8 @@ using Services;
 using Services.Observer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
@@ -178,8 +180,15 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void Ayuda_Click(object sender, EventArgs e)
         {
-            frmAyuda ayuda = new frmAyuda();
-            AbrirForm(ayuda);
+            try
+            {
+                string nuevaRuta = Path.Combine(Path.GetTempPath(), "Ayuda.pdf");
+
+                File.WriteAllBytes(nuevaRuta, Properties.Resources.Alta_Gama__Manual_de_ayuda_en_línea);
+
+                Process.Start(new ProcessStartInfo(nuevaRuta) { UseShellExecute = true });
+            }
+            catch (Exception ex) { }
         }
         private void eventosToolStripMenuItem_Click(object sender, EventArgs e)
         {

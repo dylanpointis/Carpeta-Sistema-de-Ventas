@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCobrarVenta));
             this.cmbMetodoPago = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.btnConectar = new System.Windows.Forms.Button();
             this.txtNumTransaccion = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.lblNumeroFactura = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantCuotas)).BeginInit();
             this.SuspendLayout();
@@ -233,16 +233,6 @@
             this.label10.TabIndex = 35;
             this.label10.Text = "Número de transacción";
             // 
-            // lblNumeroFactura
-            // 
-            this.lblNumeroFactura.AutoSize = true;
-            this.lblNumeroFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroFactura.Location = new System.Drawing.Point(273, 310);
-            this.lblNumeroFactura.Name = "lblNumeroFactura";
-            this.lblNumeroFactura.Size = new System.Drawing.Size(120, 16);
-            this.lblNumeroFactura.TabIndex = 37;
-            this.lblNumeroFactura.Text = "Número factura: ";
-            // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -265,7 +255,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 412);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.lblNumeroFactura);
             this.Controls.Add(this.txtNumTransaccion);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnConectar);
@@ -283,9 +272,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbMetodoPago);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCobrarVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmRegistrarFactura";
             this.Load += new System.EventHandler(this.frmCobrarVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtCantCuotas)).EndInit();
             this.ResumeLayout(false);
@@ -312,7 +301,6 @@
         private System.Windows.Forms.Button btnConectar;
         private System.Windows.Forms.TextBox txtNumTransaccion;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblNumeroFactura;
         private System.Windows.Forms.Button btnCancelar;
     }
 }

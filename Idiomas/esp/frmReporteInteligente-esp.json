@@ -17,6 +17,7 @@
   "Ventas generadas por marca": "Ventas generadas por marca",
   "Predicción ventas por producto": "Predicción ventas por producto",
   "Predicción ventas por cliente": "Predicción ventas por cliente",
+  "Predecir ingresos": "Predecir ingresos",
 
 
 
@@ -39,6 +40,10 @@
   "gridViewNombre": "Nombre",
   "gridViewApellido": "Apellido",
   "gridViewMail": "Mail",
+  "gridViewProximaSemana": "Próxima semana",
+  "gridViewVentasProximasSemana": "Ventas próxima semana",
+  "gridViewProximoMes": "Próximo mes",
+  "gridViewVentasProximasMes": "Ventas próximo mes",
 
 
 

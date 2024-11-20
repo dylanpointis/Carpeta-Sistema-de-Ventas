@@ -61,6 +61,16 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] Alta_Gama__Manual_de_ayuda_en_línea {
+            get {
+                object obj = ResourceManager.GetObject("Alta_Gama__Manual_de_ayuda_en_línea", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap foldericon2 {
@@ -190,15 +200,18 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         ///        &lt;h1 style=&quot;color: white&quot;&gt;Alta Gama&lt;/h1&gt;
         ///    &lt;/div&gt;
         ///
-        ///    &lt;table style=&quot;width: 100%; margin-top: 10px&quot;&gt;
-        ///        &lt;tr&gt;
-        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@label2&lt;/td&gt;
-        ///            &lt;td style=&quot;font-size: 20px&quot;&gt;@textoFecha: @auditoriaFecha&lt;/td&gt;
-        ///        &lt;/tr&gt;
-        ///    &lt;/table&gt;
         ///
-        ///    &lt;h2&gt;@textoDetalleEvento&lt;/h2&gt;
-        ///    &lt;table border=&quot;1&quot; style=&quot;width [resto de la cadena truncado]&quot;;.
+        ///    &lt;label&gt;@textoFecha&lt;/label&gt;
+        ///    &lt;h2&gt;@textoDetalleReporte&lt;/h2&gt;
+        ///    &lt;table border=&quot;1&quot; style=&quot;width: 100%; margin-top: 15px&quot;&gt;
+        ///        &lt;thead&gt;
+        ///            &lt;tr&gt;
+        ///                @COLUMNASDINAMICAS
+        ///            &lt;/tr&gt;
+        ///        &lt;/thead&gt;
+        ///        &lt;tbody&gt;
+        ///            @FILASDINAMICAS
+        ///         [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string htmlreporteinteligente {
             get {

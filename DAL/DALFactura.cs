@@ -172,5 +172,11 @@ namespace DAL
                 return dalCon.ConsultaProcAlmacenado("ReporteInteligenteVentasGeneradasPorCliente", parametros);
             }
         }
+
+        public DataTable ReportePrecedirIngresos()
+        {
+            SqlParameter[] parametros = new SqlParameter[] { };
+            return dalCon.ConsultaProcAlmacenado("ReporteInteligentePrececirIngresos", parametros);
+        }
     }
 }

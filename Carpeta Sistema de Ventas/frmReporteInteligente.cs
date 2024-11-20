@@ -79,6 +79,7 @@ namespace Carpeta_Sistema_de_Ventas
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Ventas generadas por cliente"), "Ventas generadas por cliente");
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Predicción ventas por producto"), "Precedir ventas por producto");
             dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Predicción reposición de stock"), "Predecir reposición de stock");
+            dt.Rows.Add(IdiomaManager.GetInstance().ConseguirTexto("Predecir ingresos"), "Predecir ingresos");
             cmbReporte.DataSource = dt;
             cmbReporte.DisplayMember = "Texto";
             cmbReporte.ValueMember = "Valor";
@@ -105,6 +106,9 @@ namespace Carpeta_Sistema_de_Ventas
                         break;
                     case "Precedir ventas por producto":
                         reporteSeleccionado = bllFac.ReportePrecedirVentasPorProd();
+                        break;
+                    case "Predecir ingresos":
+                        reporteSeleccionado = bllFac.ReportePrecedirIngresos();
                         break;
                     default:
                         break;

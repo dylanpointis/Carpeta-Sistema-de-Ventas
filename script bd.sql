@@ -1149,6 +1149,37 @@ END
 GO
 
 
+CREATE PROCEDURE ReporteInteligentePrececirIngresos
+AS
+BEGIN
+	WITH VentasSemanales AS (
+    SELECT 
+        DATEPART(YEAR, F.Fecha) AS Año,
+        DATEPART(WEEK, F.Fecha) AS Semana,
+        SUM(I.Cant * I.PrecioVenta) AS VentasSemanales
+    FROM Facturas F
+    INNER JOIN Item_Factura I ON F.NumFactura = I.NumFactura
+    GROUP BY DATEPART(YEAR, F.Fecha), DATEPART(WEEK, F.Fecha)
+),
+VentasMensuales AS (
+    SELECT 
+        DATEPART(YEAR, F.Fecha) AS Año,
+        DATEPART(MONTH, F.Fecha) AS Mes,
+        SUM(I.Cant * I.PrecioVenta) AS VentasMensuales
+    FROM Facturas F
+    INNER JOIN Item_Factura I ON F.NumFactura = I.NumFactura
+    GROUP BY DATEPART(YEAR, F.Fecha), DATEPART(MONTH, F.Fecha)
+)
+-- Predicción basada en el promedio histórico
+SELECT 
+    CONVERT(DATE, DATEADD(WEEK, 1, GETDATE())) AS ProximaSemana, 
+    (SELECT AVG(VentasSemanales) FROM VentasSemanales) AS VentasProximasSemana,
+    CONVERT(DATE, DATEADD(MONTH, 1, GETDATE())) AS ProximoMes,
+    (SELECT AVG(VentasMensuales) FROM VentasMensuales) * 4 AS VentasProximasMes
+END
+GO
+
+
 
 
 
