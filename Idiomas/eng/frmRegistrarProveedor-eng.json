@@ -20,6 +20,7 @@
   "yaExisteEmail": "A supplier with the entered Email already exists",
   "longCBU": "The valid CBU length is 22 digits",
   "formatoCUIT": "The CUIT format is not valid (XX-XXXXXXXX-X)",
+  "formatoNumTel": "Only numbers can be entered in the phone number field,
 
 
   "cerrar": "Log Out",

@@ -28,6 +28,30 @@
   "ReporteCompras": "Generar reporte compras",
   "ReporteInteligente": "Generar reporte inteligente",
 
+  "AdminAyuda": "Admin",
+  "MaestrosAyuda": "Maestros",
+  "UsuariosAyuda": "Usuarios",
+  "VentasAyuda": "Ventas",
+  "ComprasAyuda": "Compras",
+  "ReportesAyuda": "Reportes",
+  "ProductosAyuda": "Productos",
+  "ClientesAyuda": "Clientes",
+  "CambiarClaveAyuda": "Cambiar clave",
+  "CambiarIdiomaAyuda": "Cambiar idioma",
+  "GenerarFacturaAyuda": "Generar factura",
+  "ProductosCAyuda": "Productos-Cambios",
+  "GenerarSolicitudCotizacionAyuda": "Generar solicitud de cotización",
+  "GenerarOrdenCompraAyuda": "Generar orden de compra",
+  "CorroborarRecepcionAyuda": "Corroborar recepción",
+  "ProveedoresAyuda": "Proveedores",
+  "ReporteComprasAyuda": "Generar reporte compras",
+  "ReporteInteligenteAyuda": "Generar reporte inteligente",
+  "ReporteVentasAyuda": "Generar reporte ventas",
+  "SesionAyuda": "Sesión",
+
+
+
+
   "cerrar": "Cerrar sesión",
   "deseaCerrar": "¿Desea cerrar sesión?",
   "noHaySesion": "No hay una sesión iniciada",

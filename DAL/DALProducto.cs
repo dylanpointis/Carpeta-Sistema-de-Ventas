@@ -116,9 +116,7 @@ namespace DAL
 
         public DataTable TraerProductosBajoStock()
         {
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-            };
+            SqlParameter[] parametros = new SqlParameter[]{};
             return dalCon.ConsultaProcAlmacenado("TraerProductosBajoStock", parametros);
         }
 

@@ -16,6 +16,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.tool.xml;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace Carpeta_Sistema_de_Ventas
 {
@@ -115,6 +116,10 @@ namespace Carpeta_Sistema_de_Ventas
             }
             else
             {
+                if (!Regex.IsMatch(txtNumFactura.Text, @"^(\d+)?$") || !Regex.IsMatch(txtNumTransaccion.Text, @"^(\d+)?$") || !Regex.IsMatch(txtDni.Text, @"^(\d+)?$"))
+                {
+                    return; //si no son numeros no continua
+                }
                 //Si no esta vacio convierte a int32, si no le pone 0
                 int numfac = txtNumFactura.Text != "" ? Convert.ToInt32(txtNumFactura.Text) : 0;
                 int numtran = txtNumTransaccion.Text != "" ? Convert.ToInt32(txtNumTransaccion.Text) : 0;

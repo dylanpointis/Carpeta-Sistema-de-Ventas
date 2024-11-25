@@ -18,6 +18,7 @@
   "yaExisteEmail": "Ya existe un proveedor con el Email ingresado",
   "longCBU": "La longitud del CBU válida es de 22 dígitos",
   "formatoCUIT": "El formato del CUIT no es válido (XX-XXXXXXXX-X)",
+  "formatoNumTel": "Solo se permiten ingresar números para el número de teléfono",
 
 
 

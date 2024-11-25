@@ -118,11 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Alta_Gama__Manual_de_ayuda_en_línea" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Alta Gama -Manual de ayuda en línea.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ADMINAyuda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\ADMINAyuda.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CambiarClave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\CambiarClave.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CambiarIdioma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\CambiarIdioma.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="COMPRASAyuda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\COMPRASAyuda.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CorroborarRecepcion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\CorroborarRecepcion.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="foldericon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\foldericon2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GenerarOrdenCompra" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\GenerarOrdenCompra.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GenerarSolicitudCotizacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\GenerarSolicitudCotizacion.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="htmlauditoriaevento" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\htmlauditoriaevento.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -156,6 +174,33 @@
   </data>
   <data name="logotransparente" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\logotransparente.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaestroClientes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\MaestroClientes.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MaestroProductos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\MaestroProductos.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MaestroProductosC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\MaestroProductosC.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MaestroProveedores" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\MaestroProveedores.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReporteCompras" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\ReporteCompras.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReporteInteligente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\ReporteInteligente.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReporteVentas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\ReporteVentas.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SESIONAyuda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\SESIONAyuda.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VENTASAyuda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AyudaPDFs\VENTASAyuda.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="visible" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\visible.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

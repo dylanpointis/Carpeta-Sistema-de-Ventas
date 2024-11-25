@@ -75,19 +75,14 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (ValidarCampos())
                     {
-                        BEUsuario usuarioEncontrado = bllUsuario.ValidarUsuario(txtNombreUsuario.Text, Convert.ToInt32(txtDNI.Text), txtEmail.Text);
-                        if (usuarioEncontrado != null) //busca si existe un usuario con ese dni, email o nombre de usuario
-                        {
-                            MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
-                            return;
-                        }
-                        else
-                        {
+                        try 
+                        { 
                             Familia rol = listaRoles.FirstOrDefault(r => r.Nombre == cmbRol.Text); //BUSCA EL ROL
                             BEUsuario user = new BEUsuario(Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtEmail.Text, txtNombreUsuario.Text,"", rol.Id, false, true);
                             bllUsuario.RegistrarUsuario(user);
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("operacionExitosa"));
                         }
+                        catch (Exception ex) { MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                     }
                     else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("llenarCampos"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
                 }
@@ -95,7 +90,7 @@ namespace Carpeta_Sistema_de_Ventas
                 {
                     if (ValidarCampos())
                     {
-                        if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != "False") //en caso de que este activo
+                        if (grillaUsuarios.CurrentRow.Cells[7].Value.ToString() != IdiomaManager.GetInstance().ConseguirTexto("false")) //en caso de que este activo
                         {
                             int dni = Convert.ToInt32(txtDNI.Text);
                             bool bloqueado = lstUsuarios.FirstOrDefault(u => u.DNI == dni).Bloqueado;

@@ -30,6 +30,7 @@
   "tieneFacturas": "El cliente no puede eliminarse porque tiene facturas registradas a su nombre",
   "formatoMail": "El formato del correo electrónico no es válido",
   "formatoCUIT": "El formato del CUIT no es válido (XX-XXXXXXXX-X)",
+  "formatoNumTel": "Solo se permiten ingresar números para el número de teléfono",
   "longCBU": "La longitud del CBU válida es de 22 dígitos",
  
   "gridViewCUIT": "CUIT",

@@ -837,7 +837,9 @@ GO
 CREATE PROCEDURE TraerProductosBajoStock
 AS
 BEGIN
-	SELECT * FROM Productos where (Stock - StockMinimo) <= 10
+	SELECT * FROM Productos 
+	WHERE (Stock < StockMinimo OR Stock <= (StockMinimo + 10))
+	 AND Stock <= StockMaximo;
 END
 GO
 

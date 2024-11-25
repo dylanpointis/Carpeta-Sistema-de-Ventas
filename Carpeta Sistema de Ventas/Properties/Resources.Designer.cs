@@ -63,9 +63,49 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] Alta_Gama__Manual_de_ayuda_en_línea {
+        internal static byte[] ADMINAyuda {
             get {
-                object obj = ResourceManager.GetObject("Alta_Gama__Manual_de_ayuda_en_línea", resourceCulture);
+                object obj = ResourceManager.GetObject("ADMINAyuda", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] CambiarClave {
+            get {
+                object obj = ResourceManager.GetObject("CambiarClave", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] CambiarIdioma {
+            get {
+                object obj = ResourceManager.GetObject("CambiarIdioma", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] COMPRASAyuda {
+            get {
+                object obj = ResourceManager.GetObject("COMPRASAyuda", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] CorroborarRecepcion {
+            get {
+                object obj = ResourceManager.GetObject("CorroborarRecepcion", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -77,6 +117,26 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
             get {
                 object obj = ResourceManager.GetObject("foldericon2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] GenerarOrdenCompra {
+            get {
+                object obj = ResourceManager.GetObject("GenerarOrdenCompra", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] GenerarSolicitudCotizacion {
+            get {
+                object obj = ResourceManager.GetObject("GenerarSolicitudCotizacion", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -316,6 +376,96 @@ namespace Carpeta_Sistema_de_Ventas.Properties {
             get {
                 object obj = ResourceManager.GetObject("logotransparente", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] MaestroClientes {
+            get {
+                object obj = ResourceManager.GetObject("MaestroClientes", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] MaestroProductos {
+            get {
+                object obj = ResourceManager.GetObject("MaestroProductos", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] MaestroProductosC {
+            get {
+                object obj = ResourceManager.GetObject("MaestroProductosC", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] MaestroProveedores {
+            get {
+                object obj = ResourceManager.GetObject("MaestroProveedores", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] ReporteCompras {
+            get {
+                object obj = ResourceManager.GetObject("ReporteCompras", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] ReporteInteligente {
+            get {
+                object obj = ResourceManager.GetObject("ReporteInteligente", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] ReporteVentas {
+            get {
+                object obj = ResourceManager.GetObject("ReporteVentas", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] SESIONAyuda {
+            get {
+                object obj = ResourceManager.GetObject("SESIONAyuda", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] VENTASAyuda {
+            get {
+                object obj = ResourceManager.GetObject("VENTASAyuda", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

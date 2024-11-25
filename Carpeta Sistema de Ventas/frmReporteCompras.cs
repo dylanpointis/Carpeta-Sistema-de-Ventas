@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -112,6 +113,12 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            if (!Regex.IsMatch(txtNumFactura.Text, @"^(\d+)?$") || !Regex.IsMatch(txtNumOrden.Text, @"^(\d+)?$") || !Regex.IsMatch(txtNumTransferencia.Text, @"^(\d+)?$"))
+            {
+                return; //si no son numeros no continua
+            }
+
+
             int numfac = txtNumFactura.Text != "" ? Convert.ToInt32(txtNumFactura.Text) : 0;
             int numord = txtNumOrden.Text != "" ? Convert.ToInt32(txtNumOrden.Text) : 0;
             int numtran = txtNumTransferencia.Text != "" ? Convert.ToInt32(txtNumTransferencia.Text) : 0;

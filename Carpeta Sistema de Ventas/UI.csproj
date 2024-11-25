@@ -300,14 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Idiomas\eng\frmLogin-eng.json" />
     <None Include="Idiomas\esp\frmLogin-esp.json" />
     <None Include="packages.config" />
@@ -315,11 +310,27 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\AyudaPDFs\ADMINAyuda.pdf" />
+    <None Include="Resources\AyudaPDFs\CambiarClave.pdf" />
+    <None Include="Resources\AyudaPDFs\CambiarIdioma.pdf" />
+    <None Include="Resources\AyudaPDFs\CorroborarRecepcion.pdf" />
+    <None Include="Resources\AyudaPDFs\GenerarOrdenCompra.pdf" />
+    <None Include="Resources\AyudaPDFs\GenerarSolicitudCotizacion.pdf" />
+    <None Include="Resources\AyudaPDFs\ReporteCompras.pdf" />
+    <None Include="Resources\AyudaPDFs\ReporteInteligente.pdf" />
+    <None Include="Resources\AyudaPDFs\ReporteVentas.pdf" />
+    <None Include="Resources\AyudaPDFs\SESIONAyuda.pdf" />
+    <None Include="Resources\AyudaPDFs\VENTASAyuda.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -341,7 +352,11 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="logo2png.ico" />
-    <None Include="Resources\Alta Gama -Manual de ayuda en línea.pdf" />
+    <None Include="Resources\AyudaPDFs\COMPRASAyuda.pdf" />
+    <None Include="Resources\AyudaPDFs\MaestroClientes.pdf" />
+    <None Include="Resources\AyudaPDFs\MaestroProductos.pdf" />
+    <None Include="Resources\AyudaPDFs\MaestroProductosC.pdf" />
+    <None Include="Resources\AyudaPDFs\MaestroProveedores.pdf" />
     <None Include="Resources\htmlreporteinteligente.html" />
     <Content Include="Resources\htmlsolicitudcotizacion.html" />
     <Content Include="Resources\htmlfacturaRecepcion.html" />

@@ -111,19 +111,24 @@ namespace Carpeta_Sistema_de_Ventas
         {
             try
             {
-                int idSolicitud = bLLSolicitudCotizacion.RegistrarSolicitudCotizacion(solicitudCoti);
-                solicitudCoti.NumSolicitud = idSolicitud;
+                DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaFinalizar"), IdiomaManager.GetInstance().ConseguirTexto("btnFinalizar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //imprime el reporte uno para cada proveedor de la solicitud
-                foreach(BEProveedor prov in solicitudCoti.obtenerProveedoresSolicitud())
+                if (resultado == DialogResult.Yes)
                 {
-                    Reportes.GenerarReporteSolicitud(solicitudCoti, Properties.Resources.htmlsolicitudcotizacion.ToString(), Properties.Resources.logo, prov);
-                }
-                
+                    int idSolicitud = bLLSolicitudCotizacion.RegistrarSolicitudCotizacion(solicitudCoti);
+                    solicitudCoti.NumSolicitud = idSolicitud;
 
-                btnFinalizar.Enabled = false;
+                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //imprime el reporte uno para cada proveedor de la solicitud
+                    foreach (BEProveedor prov in solicitudCoti.obtenerProveedoresSolicitud())
+                    {
+                        Reportes.GenerarReporteSolicitud(solicitudCoti, Properties.Resources.htmlsolicitudcotizacion.ToString(), Properties.Resources.logo, prov);
+                    }
+
+
+                    btnFinalizar.Enabled = false;
+                }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }

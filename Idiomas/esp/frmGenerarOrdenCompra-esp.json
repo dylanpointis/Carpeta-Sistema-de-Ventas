@@ -14,6 +14,7 @@
   "btnQuitar": "Quitar",
   "minimo1Producto": "No puede eliminar el producto ya que como mínimo debe haber un producto en la orden de compra",
   "debeRegistrarPago": "Debe registrar el pago para finalizar la orden de compra",
+  "deseaFinalizar": "¿Desea finalizar la orden de compra?",
 
   "lblNeto": "Neto: ",
   "lblIVA": "I.V.A (21%): ",

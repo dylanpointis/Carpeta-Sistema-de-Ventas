@@ -263,18 +263,23 @@ namespace Carpeta_Sistema_de_Ventas
             {
                 try
                 {
-                    ordenC.FechaEntrega = txtFechaEntrega.Value;
+                    DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaFinalizar"), IdiomaManager.GetInstance().ConseguirTexto("btnFinalizar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    //logica Registrar orden de compra
-                    int numeroOrdenC = bllOrdenC.RegistrarOrdenCompra(ordenC);
-                    MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (resultado == DialogResult.Yes)
+                    {
+                        ordenC.FechaEntrega = txtFechaEntrega.Value;
 
-                    //genera el reporte pdf
-                    string paginahtml = Properties.Resources.htmlfacturacompra.ToString();
-                    Reportes.GenerarReporteOrden(ordenC, paginahtml, Properties.Resources.logo);
-                    btnFinalizar.Enabled = false;
-                    btnRegistarPago.Enabled = false;
-                    TraerSolicitudesPendientes();
+                        //logica Registrar orden de compra
+                        int numeroOrdenC = bllOrdenC.RegistrarOrdenCompra(ordenC);
+                        MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        //genera el reporte pdf
+                        string paginahtml = Properties.Resources.htmlfacturacompra.ToString();
+                        Reportes.GenerarReporteOrden(ordenC, paginahtml, Properties.Resources.logo);
+                        btnFinalizar.Enabled = false;
+                        btnRegistarPago.Enabled = false;
+                        TraerSolicitudesPendientes();
+                    }
                 }
                 catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("error") + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }

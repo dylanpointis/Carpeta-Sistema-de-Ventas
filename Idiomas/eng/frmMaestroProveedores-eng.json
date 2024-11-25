@@ -30,6 +30,7 @@
   "tieneFacturas": "The client cannot be deleted because they have registered invoices in their name",
   "formatoMail": "The email format is not valid",
   "formatoCUIT": "The CUIT format is not valid (XX-XXXXXXXX-X)",
+  "formatoNumTel": "Only numbers can be entered in the phone number field,
   "longCBU": "The valid CBU length is 22 digits",
   
   "gridViewCUIT": "CUIT",

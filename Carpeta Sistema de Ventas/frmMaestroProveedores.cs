@@ -298,6 +298,11 @@ namespace Carpeta_Sistema_de_Ventas
                 txtMail.Focus();
                 return false;
             }
+            if (!Regex.IsMatch(txtNumTelefono.Text, @"^\d+(\.\d+)?$"))
+            {
+                MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("formatoNumTel"));
+                return false;
+            }
             return true;
         }
 

@@ -14,6 +14,7 @@
   "btnQuitar": "Remove",
   "minimo1Producto": "The product cannot be deleted because at least one must be in the purchase order",
   "debeRegistrarPago": "The payment must be registered in order to finish the purchase order",
+  "deseaFinalizar": "Do you want to finish the purchase order?",
 
   "lblNeto": "Net: ",
   "lblIVA": "VAT (21%): ",

@@ -108,7 +108,14 @@ namespace BLL
 
         public void RegistrarUsuario(BEUsuario user)
         {
-            string clave = user.DNI + user.Apellido; // CLAVE COMBINA DNI + APELLIDO
+            BEUsuario usuarioEncontrado = ValidarUsuario(user.NombreUsuario, user.DNI, user.Email);
+            if (usuarioEncontrado != null) //busca si existe un usuario con ese dni, email o nombre de usuario
+            {
+                throw new Exception(IdiomaManager.GetInstance().ConseguirTexto("yaExiste"));
+            }
+
+
+                string clave = user.DNI + user.Apellido; // CLAVE COMBINA DNI + APELLIDO
             user.Clave = Encriptador.EncriptarSHA256(clave);
             dalUsuario.RegistrarUsuario(user);
 

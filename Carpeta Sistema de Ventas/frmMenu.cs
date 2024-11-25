@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Carpeta_Sistema_de_Ventas
@@ -23,15 +24,16 @@ namespace Carpeta_Sistema_de_Ventas
 
 
         BLLFamilia bllFamilia = new BLLFamilia();
-
+        BEUsuario user;
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            BEUsuario user = SessionManager.GetInstance.ObtenerUsuario();
+            user = SessionManager.GetInstance.ObtenerUsuario();
             btnSesion.Text = IdiomaManager.GetInstance().ConseguirTexto("btnSesion") + ": " + user.NombreUsuario;
 
             //deshabilita todos los controles inicialmente
             DeshabilitarControles();
             btnInicio.Enabled = true;
+            SesionAyuda.Enabled = true;
             //recorre los permisos (permisos simples o familias) del rol usuario
             foreach (Componente componente in user.listaPermisosRol)
             {
@@ -67,23 +69,40 @@ namespace Carpeta_Sistema_de_Ventas
             }
         }
 
-        private void HabiilitarControl(string nombreControl)
+        private void HabiilitarControl(string nombreComponente)
         {
             foreach (ToolStripMenuItem control in menuStrip1.Items)
             {
-                if (control.Name == nombreControl) //se fija si coincide el nombre del control con el permiso
+                control.DropDownOpened += PonerTextoEnNegro;
+                control.DropDownClosed += PonerTextoEnBlanco;
+
+                //se fija si coincide el nombre del control con el permiso
+                if (control.Name == nombreComponente)
                 {
                     control.Enabled = true;
                 }
 
                 foreach (ToolStripMenuItem item in control.DropDownItems)
                 {
-                    if (item.Name == nombreControl)
+                    //activa los botones de ayuda
+                    if (item.Name == nombreComponente || item.Name == nombreComponente + "Ayuda")
                     {
                         item.Enabled = true;
                     }
                 }
             }
+        }
+
+
+        private void PonerTextoEnNegro(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            item.ForeColor = System.Drawing.Color.FromArgb(50, 50, 50);
+        }
+        private void PonerTextoEnBlanco(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            item.ForeColor = System.Drawing.Color.White;
         }
 
         private void ProcesarFamilia(Familia familia)
@@ -103,6 +122,10 @@ namespace Carpeta_Sistema_de_Ventas
                     ProcesarFamilia((Familia)hijo);
                 }
             }
+
+            //activar manualmente los botones de ayuda
+           
+
         }
 
 
@@ -178,18 +201,6 @@ namespace Carpeta_Sistema_de_Ventas
             AbrirForm(frm);
         }
 
-        private void Ayuda_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string nuevaRuta = Path.Combine(Path.GetTempPath(), "Ayuda.pdf");
-
-                File.WriteAllBytes(nuevaRuta, Properties.Resources.Alta_Gama__Manual_de_ayuda_en_línea);
-
-                Process.Start(new ProcessStartInfo(nuevaRuta) { UseShellExecute = true });
-            }
-            catch (Exception ex) { }
-        }
         private void eventosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAuditoriaEventos frm = new frmAuditoriaEventos();
@@ -266,11 +277,102 @@ namespace Carpeta_Sistema_de_Ventas
             else { this.Close(); }
         }
 
+
         private void btnInicio_Click(object sender, EventArgs e)
         {
             if (formActivo != null)
                 formActivo.Close();
         }
 
+        private void btnAyudaVentas_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("VENTASAyuda.pdf", Properties.Resources.VENTASAyuda);
+        }
+
+       
+
+        private void AbrirPDFAyuda(string ruta, byte[] recursoPDF)
+        {
+            try
+            {
+                string nuevaRuta = Path.Combine(Path.GetTempPath(), ruta);
+
+                File.WriteAllBytes(nuevaRuta, recursoPDF);
+
+                Process.Start(new ProcessStartInfo(nuevaRuta) { UseShellExecute = true });
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
+
+        private void btnAyudaMaestroCliente_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("MaestroClientes.pdf", Properties.Resources.MaestroClientes);
+        }
+
+        private void btnAyudaMaestroProveedor_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("MaestroProveedor.pdf", Properties.Resources.MaestroProveedores);
+        }
+
+        private void btnAyudaMaestroProductos_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("MaestroProductos.pdf", Properties.Resources.MaestroProductos);
+        }
+
+        private void btnAyudaMaestroProductosC_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("MaestroProductosC.pdf", Properties.Resources.MaestroProductosC);
+        }
+
+        private void btnAyudaCambiarClave_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("CambiarClave.pdf", Properties.Resources.CambiarClave);
+        }
+
+        private void btnAyudaCambiarIdioma_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("CambiarIdioma.pdf", Properties.Resources.CambiarIdioma);
+        }
+
+        private void GenerarSolicitudCotizacionAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("GenerarSolicitudCotizacion.pdf", Properties.Resources.GenerarSolicitudCotizacion);
+        }
+
+        private void GenerarOrdenCompraAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("GenerarOrdenCompra.pdf", Properties.Resources.GenerarOrdenCompra);
+        }
+
+        private void CorroborarRecepcionAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("CorroborarRecepcion.pdf", Properties.Resources.CorroborarRecepcion);
+        }
+
+        private void ReporteVentasAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("ReporteVentas.pdf", Properties.Resources.ReporteVentas);
+        }
+
+        private void ReporteComprasAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("ReporteCompras.pdf", Properties.Resources.ReporteCompras);
+        }
+
+        private void ReporteInteligenteAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("ReporteInteligente.pdf", Properties.Resources.ReporteInteligente);
+        }
+
+        private void SesionAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("SESIONAyuda.pdf", Properties.Resources.SESIONAyuda);
+        }
+
+        private void AdminAyuda_Click(object sender, EventArgs e)
+        {
+            AbrirPDFAyuda("ADMINAyuda.pdf", Properties.Resources.ADMINAyuda);
+        }
     }
 }

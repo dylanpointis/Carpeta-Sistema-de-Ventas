@@ -55,6 +55,25 @@
             this.ReporteCompras = new System.Windows.Forms.ToolStripMenuItem();
             this.ReporteInteligente = new System.Windows.Forms.ToolStripMenuItem();
             this.Ayuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.SesionAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.AdminAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.MaestrosAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClientesAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProveedoresAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductosAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductosCAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.UsuariosAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.CambiarClaveAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.CambiarIdiomaAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.VentasAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ComprasAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.GenerarSolicitudCotizacionAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.GenerarOrdenCompraAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.CorroborarRecepcionAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportesAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReporteVentasAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReporteComprasAyuda = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReporteInteligenteAyuda = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.btnSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,7 +172,7 @@
             // 
             this.Clientes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Clientes.Name = "Clientes";
-            this.Clientes.Size = new System.Drawing.Size(180, 26);
+            this.Clientes.Size = new System.Drawing.Size(167, 26);
             this.Clientes.Text = "Clientes";
             this.Clientes.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -161,7 +180,7 @@
             // 
             this.Proveedores.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Proveedores.Name = "Proveedores";
-            this.Proveedores.Size = new System.Drawing.Size(180, 26);
+            this.Proveedores.Size = new System.Drawing.Size(167, 26);
             this.Proveedores.Text = "Proveedores";
             this.Proveedores.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
@@ -169,7 +188,7 @@
             // 
             this.Productos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Productos.Name = "Productos";
-            this.Productos.Size = new System.Drawing.Size(180, 26);
+            this.Productos.Size = new System.Drawing.Size(167, 26);
             this.Productos.Text = "Productos";
             this.Productos.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
@@ -177,7 +196,7 @@
             // 
             this.ProductosC.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProductosC.Name = "ProductosC";
-            this.ProductosC.Size = new System.Drawing.Size(180, 26);
+            this.ProductosC.Size = new System.Drawing.Size(167, 26);
             this.ProductosC.Text = "Productos-C";
             this.ProductosC.Click += new System.EventHandler(this.productosCToolStripMenuItem_Click);
             // 
@@ -300,12 +319,171 @@
             // 
             // Ayuda
             // 
+            this.Ayuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SesionAyuda,
+            this.AdminAyuda,
+            this.MaestrosAyuda,
+            this.UsuariosAyuda,
+            this.VentasAyuda,
+            this.ComprasAyuda,
+            this.ReportesAyuda});
             this.Ayuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.Ayuda.ForeColor = System.Drawing.Color.White;
             this.Ayuda.Name = "Ayuda";
             this.Ayuda.Size = new System.Drawing.Size(71, 40);
             this.Ayuda.Text = "Ayuda";
-            this.Ayuda.Click += new System.EventHandler(this.Ayuda_Click);
+            // 
+            // SesionAyuda
+            // 
+            this.SesionAyuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SesionAyuda.Name = "SesionAyuda";
+            this.SesionAyuda.Size = new System.Drawing.Size(180, 26);
+            this.SesionAyuda.Text = "Sesion";
+            this.SesionAyuda.Click += new System.EventHandler(this.SesionAyuda_Click);
+            // 
+            // AdminAyuda
+            // 
+            this.AdminAyuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdminAyuda.Name = "AdminAyuda";
+            this.AdminAyuda.Size = new System.Drawing.Size(180, 26);
+            this.AdminAyuda.Text = "Admin";
+            this.AdminAyuda.Click += new System.EventHandler(this.AdminAyuda_Click);
+            // 
+            // MaestrosAyuda
+            // 
+            this.MaestrosAyuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ClientesAyuda,
+            this.ProveedoresAyuda,
+            this.ProductosAyuda,
+            this.ProductosCAyuda});
+            this.MaestrosAyuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaestrosAyuda.Name = "MaestrosAyuda";
+            this.MaestrosAyuda.Size = new System.Drawing.Size(180, 26);
+            this.MaestrosAyuda.Text = "Maestros";
+            // 
+            // ClientesAyuda
+            // 
+            this.ClientesAyuda.Name = "ClientesAyuda";
+            this.ClientesAyuda.Size = new System.Drawing.Size(167, 26);
+            this.ClientesAyuda.Text = "Clientes";
+            this.ClientesAyuda.Click += new System.EventHandler(this.btnAyudaMaestroCliente_Click);
+            // 
+            // ProveedoresAyuda
+            // 
+            this.ProveedoresAyuda.Name = "ProveedoresAyuda";
+            this.ProveedoresAyuda.Size = new System.Drawing.Size(167, 26);
+            this.ProveedoresAyuda.Text = "Proveedores";
+            this.ProveedoresAyuda.Click += new System.EventHandler(this.btnAyudaMaestroProveedor_Click);
+            // 
+            // ProductosAyuda
+            // 
+            this.ProductosAyuda.Name = "ProductosAyuda";
+            this.ProductosAyuda.Size = new System.Drawing.Size(167, 26);
+            this.ProductosAyuda.Text = "Productos";
+            this.ProductosAyuda.Click += new System.EventHandler(this.btnAyudaMaestroProductos_Click);
+            // 
+            // ProductosCAyuda
+            // 
+            this.ProductosCAyuda.Name = "ProductosCAyuda";
+            this.ProductosCAyuda.Size = new System.Drawing.Size(167, 26);
+            this.ProductosCAyuda.Text = "Productos-C";
+            this.ProductosCAyuda.Click += new System.EventHandler(this.btnAyudaMaestroProductosC_Click);
+            // 
+            // UsuariosAyuda
+            // 
+            this.UsuariosAyuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CambiarClaveAyuda,
+            this.CambiarIdiomaAyuda});
+            this.UsuariosAyuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsuariosAyuda.Name = "UsuariosAyuda";
+            this.UsuariosAyuda.Size = new System.Drawing.Size(180, 26);
+            this.UsuariosAyuda.Text = "Usuarios";
+            // 
+            // CambiarClaveAyuda
+            // 
+            this.CambiarClaveAyuda.Name = "CambiarClaveAyuda";
+            this.CambiarClaveAyuda.Size = new System.Drawing.Size(191, 26);
+            this.CambiarClaveAyuda.Text = "Cambiar clave";
+            this.CambiarClaveAyuda.Click += new System.EventHandler(this.btnAyudaCambiarClave_Click);
+            // 
+            // CambiarIdiomaAyuda
+            // 
+            this.CambiarIdiomaAyuda.Name = "CambiarIdiomaAyuda";
+            this.CambiarIdiomaAyuda.Size = new System.Drawing.Size(191, 26);
+            this.CambiarIdiomaAyuda.Text = "Cambiar idioma";
+            this.CambiarIdiomaAyuda.Click += new System.EventHandler(this.btnAyudaCambiarIdioma_Click);
+            // 
+            // VentasAyuda
+            // 
+            this.VentasAyuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VentasAyuda.Name = "VentasAyuda";
+            this.VentasAyuda.Size = new System.Drawing.Size(180, 26);
+            this.VentasAyuda.Text = "Ventas";
+            this.VentasAyuda.Click += new System.EventHandler(this.btnAyudaVentas_Click);
+            // 
+            // ComprasAyuda
+            // 
+            this.ComprasAyuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GenerarSolicitudCotizacionAyuda,
+            this.GenerarOrdenCompraAyuda,
+            this.CorroborarRecepcionAyuda});
+            this.ComprasAyuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComprasAyuda.Name = "ComprasAyuda";
+            this.ComprasAyuda.Size = new System.Drawing.Size(180, 26);
+            this.ComprasAyuda.Text = "Compras";
+            // 
+            // GenerarSolicitudCotizacionAyuda
+            // 
+            this.GenerarSolicitudCotizacionAyuda.Name = "GenerarSolicitudCotizacionAyuda";
+            this.GenerarSolicitudCotizacionAyuda.Size = new System.Drawing.Size(292, 26);
+            this.GenerarSolicitudCotizacionAyuda.Text = "Generar solicitud de cotización";
+            this.GenerarSolicitudCotizacionAyuda.Click += new System.EventHandler(this.GenerarSolicitudCotizacionAyuda_Click);
+            // 
+            // GenerarOrdenCompraAyuda
+            // 
+            this.GenerarOrdenCompraAyuda.Name = "GenerarOrdenCompraAyuda";
+            this.GenerarOrdenCompraAyuda.Size = new System.Drawing.Size(292, 26);
+            this.GenerarOrdenCompraAyuda.Text = "Generar orden de compra";
+            this.GenerarOrdenCompraAyuda.Click += new System.EventHandler(this.GenerarOrdenCompraAyuda_Click);
+            // 
+            // CorroborarRecepcionAyuda
+            // 
+            this.CorroborarRecepcionAyuda.Name = "CorroborarRecepcionAyuda";
+            this.CorroborarRecepcionAyuda.Size = new System.Drawing.Size(292, 26);
+            this.CorroborarRecepcionAyuda.Text = "Corroborar recepción";
+            this.CorroborarRecepcionAyuda.Click += new System.EventHandler(this.CorroborarRecepcionAyuda_Click);
+            // 
+            // ReportesAyuda
+            // 
+            this.ReportesAyuda.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ReporteVentasAyuda,
+            this.ReporteComprasAyuda,
+            this.ReporteInteligenteAyuda});
+            this.ReportesAyuda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportesAyuda.Name = "ReportesAyuda";
+            this.ReportesAyuda.Size = new System.Drawing.Size(180, 26);
+            this.ReportesAyuda.Text = "Reportes";
+            // 
+            // ReporteVentasAyuda
+            // 
+            this.ReporteVentasAyuda.Name = "ReporteVentasAyuda";
+            this.ReporteVentasAyuda.Size = new System.Drawing.Size(268, 26);
+            this.ReporteVentasAyuda.Text = "Generar reporte ventas";
+            this.ReporteVentasAyuda.Click += new System.EventHandler(this.ReporteVentasAyuda_Click);
+            // 
+            // ReporteComprasAyuda
+            // 
+            this.ReporteComprasAyuda.Name = "ReporteComprasAyuda";
+            this.ReporteComprasAyuda.Size = new System.Drawing.Size(268, 26);
+            this.ReporteComprasAyuda.Text = "Generar reporte compras";
+            this.ReporteComprasAyuda.Click += new System.EventHandler(this.ReporteComprasAyuda_Click);
+            // 
+            // ReporteInteligenteAyuda
+            // 
+            this.ReporteInteligenteAyuda.Name = "ReporteInteligenteAyuda";
+            this.ReporteInteligenteAyuda.Size = new System.Drawing.Size(268, 26);
+            this.ReporteInteligenteAyuda.Text = "Generar reporte inteligente";
+            this.ReporteInteligenteAyuda.Click += new System.EventHandler(this.ReporteInteligenteAyuda_Click);
             // 
             // menuStrip2
             // 
@@ -399,6 +577,25 @@
         private System.Windows.Forms.ToolStripMenuItem btnInicio;
         private System.Windows.Forms.ToolStripMenuItem ReporteCompras;
         private System.Windows.Forms.ToolStripMenuItem ReporteInteligente;
+        private System.Windows.Forms.ToolStripMenuItem AdminAyuda;
+        private System.Windows.Forms.ToolStripMenuItem MaestrosAyuda;
+        private System.Windows.Forms.ToolStripMenuItem UsuariosAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ReportesAyuda;
+        private System.Windows.Forms.ToolStripMenuItem VentasAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ComprasAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ClientesAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ProveedoresAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ProductosAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ProductosCAyuda;
+        private System.Windows.Forms.ToolStripMenuItem CambiarClaveAyuda;
+        private System.Windows.Forms.ToolStripMenuItem CambiarIdiomaAyuda;
+        private System.Windows.Forms.ToolStripMenuItem GenerarSolicitudCotizacionAyuda;
+        private System.Windows.Forms.ToolStripMenuItem GenerarOrdenCompraAyuda;
+        private System.Windows.Forms.ToolStripMenuItem CorroborarRecepcionAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ReporteVentasAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ReporteComprasAyuda;
+        private System.Windows.Forms.ToolStripMenuItem ReporteInteligenteAyuda;
+        private System.Windows.Forms.ToolStripMenuItem SesionAyuda;
     }
 }
 
