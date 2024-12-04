@@ -43,7 +43,7 @@ namespace Carpeta_Sistema_de_Ventas
             fechaFin.Format = DateTimePickerFormat.Custom;
             fechaFin.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
             fechaFin.Value = DateTime.Today; fechaInicio.Value = DateTime.Today.AddDays(-7); fechaFin.MaxDate = DateTime.Today; fechaInicio.MaxDate = DateTime.Today;
-            fechaInicio.Visible = false; fechaFin.Visible = false; lblFechaInicio.Visible = false; lblFechaFin.Visible = false;
+            fechaInicio.Visible = true; fechaFin.Visible = true; lblFechaInicio.Visible = true; lblFechaFin.Visible = true;
         }
 
         private void ActualizarGrilla()

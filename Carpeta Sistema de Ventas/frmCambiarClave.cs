@@ -18,6 +18,7 @@ namespace Carpeta_Sistema_de_Ventas
     {
         BEUsuario usuarioActual;
         frmMenu _frmParent;
+        BLLEvento bLLEvento = new BLLEvento();
         public frmCambiarClave(frmMenu frmParent)
         {
             usuarioActual = SessionManager.GetInstance.ObtenerUsuario();
@@ -62,9 +63,8 @@ namespace Carpeta_Sistema_de_Ventas
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         //Cierra sesion automaticamente
-                        SessionManager.GetInstance.LogOut();
-                        BLLEvento bLLEvento = new BLLEvento();
                         bLLEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Sesiones", "Cierre sesión", 1));
+                        SessionManager.GetInstance.LogOut();
                         this.Close();
                         _frmParent.Close();
                     }
