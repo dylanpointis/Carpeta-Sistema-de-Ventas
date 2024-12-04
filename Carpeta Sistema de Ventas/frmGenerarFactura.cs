@@ -76,7 +76,7 @@ namespace Carpeta_Sistema_de_Ventas
             IdiomaManager.GetInstance().archivoActual = "frmGenerarFactura";
             IdiomaManager.GetInstance().Agregar(this);
 
-            ActualizarGrillaProductos();
+            ActualizarGrillaProductos(); MostrarDetalleCliente();
         }
 
 
@@ -122,15 +122,23 @@ namespace Carpeta_Sistema_de_Ventas
             if(grillaClientes.SelectedRows.Count > 0)
             {
                 BECliente cliente = new BECliente(Convert.ToInt32(grillaClientes.CurrentRow.Cells[0].Value), grillaClientes.CurrentRow.Cells[1].Value.ToString(), grillaClientes.CurrentRow.Cells[2].Value.ToString(), grillaClientes.CurrentRow.Cells[3].Value.ToString(), grillaClientes.CurrentRow.Cells[4].Value.ToString());
-                lblNombreCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNombreCliente")} " + cliente.Nombre;
-                lblApellidoCliente.Text = $"{ IdiomaManager.GetInstance().ConseguirTexto("lblApellidoCliente")}: " + cliente.Apellido;
-                lblMailCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblMailCliente")}: " + cliente.Mail;
-                lblDNICliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblDNICliente")}: " + cliente.DniCliente.ToString();
 
                 _factura.clienteFactura = cliente;
+                MostrarDetalleCliente();
                 MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("clienteAgregado"));
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("seleccioneCliente")); }
+        }
+
+        private void MostrarDetalleCliente()
+        {
+            if(_factura.clienteFactura != null)
+            {
+                lblNombreCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNombreCliente")} " + _factura.clienteFactura.Nombre;
+                lblApellidoCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblApellidoCliente")}: " + _factura.clienteFactura.Apellido;
+                lblMailCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblMailCliente")}: " + _factura.clienteFactura.Mail;
+                lblDNICliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblDNICliente")}: " + _factura.clienteFactura.DniCliente.ToString();
+            }
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -206,7 +214,7 @@ namespace Carpeta_Sistema_de_Ventas
                 IdiomaManager.GetInstance().archivoActual = "frmGenerarFactura";
                 IdiomaManager.GetInstance().Agregar(this);
 
-                ActualizarLabels();
+                ActualizarLabels(); MostrarDetalleCliente();
 
             }
             else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("debeSeleccionar")); }

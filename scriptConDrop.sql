@@ -1067,25 +1067,24 @@ GO
 CREATE PROCEDURE ReporteInteligenteStock
 AS
 BEGIN
-	SELECT 
-		p.CodigoProducto, p.Modelo, p.Marca, p.Stock AS StockActual, p.StockMinimo, p.StockMaximo,
-		COALESCE(SUM(i.Cant), 0) AS CantidadVendidaUltimoMes,
-		CASE 
-			-- Si el stock está por debajo del mínimo, calcula cuánto reponer
-			WHEN p.Stock < p.StockMinimo THEN p.StockMaximo - p.Stock
-			-- Si el stock está en un rango cercano al mínimo, también calcula cuánto reponer
-			WHEN p.Stock >= p.StockMinimo AND p.Stock <= p.StockMinimo * 1.2 THEN p.StockMaximo - p.Stock
-			ELSE 0
-		END AS CantidadAReponer
-	FROM 
-		Productos p
-		LEFT JOIN  Item_Factura i ON p.CodigoProducto = i.CodigoProducto
-		LEFT JOIN Facturas f ON i.NumFactura = f.NumFactura
-	WHERE 
-		CONVERT(datetime, f.Fecha, 120) >= DATEADD(MONTH, -1, GETDATE()) 
-		GROUP BY 
-		p.CodigoProducto, p.Modelo, p.Descripcion, p.Marca, p.Color, p.Stock, p.StockMinimo, p.StockMaximo
-	ORDER BY CantidadAReponer DESC, p.CodigoProducto;
+    SELECT 
+        p.CodigoProducto, p.Modelo, p.Marca,
+        p.Stock AS StockActual, p.StockMinimo, p.StockMaximo,
+        ISNULL(SUM(f.Cant), 0) AS CantidadVendidaUltimoMes,
+        -- Cantidad a reponer
+        CASE
+            WHEN p.Stock <= p.StockMinimo THEN 
+			--Calcula la cantidad más grande entre lo que falta para llegar al stock mínimo y la cantidad vendida en el último mes con un 10% extra
+                CEILING(LEAST(
+                        p.StockMaximo - p.Stock, -- No superar el stock máximo
+                        GREATEST(p.StockMinimo - p.Stock, ISNULL(SUM(f.Cant) * 1.1, 0)) -- Reponer lo necesario
+                    ))
+            ELSE 0
+        END AS CantidadAReponer
+    FROM Productos p
+    LEFT JOIN Item_Factura f ON p.CodigoProducto = f.CodigoProducto
+    LEFT JOIN Facturas fact ON f.NumFactura = fact.NumFactura AND fact.Fecha >= DATEADD(MONTH, -1, GETDATE())
+    GROUP BY  p.CodigoProducto, p.Modelo, p.Marca, p.Stock, p.StockMinimo, p.StockMaximo;
 END
 GO
 
@@ -1151,7 +1150,6 @@ BEGIN
 	)
 	SELECT 
 		p.CodigoProducto, p.Modelo, p.Marca, p.Stock AS StockActual,
-		v.CantidadVendidaUltimos7Dias,
 		v.CantidadVendidaUltimos7Dias AS PrediccionSemana, --prediccion para la propxima semana
 		v.CantidadVendidaUltimos7Dias * 4 AS PrediccionMes --prediccion para el proximo mes
 	FROM 
