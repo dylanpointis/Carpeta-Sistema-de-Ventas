@@ -28,7 +28,7 @@ namespace BLL
 
 
             //reduce el stock
-            foreach (var item in factura.listaProductosAgregados)
+            foreach (var item in factura.obtenerListaItems())
             {
                 bllProducto.ModificarStock(item.producto, item.producto.Stock - item.cantidad);
             }
@@ -43,7 +43,7 @@ namespace BLL
 
         public void RegistrarItemFactura(BEFactura factura)
         {
-            foreach (BEItemFactura item in factura.listaProductosAgregados)
+            foreach (BEItemFactura item in factura.obtenerListaItems())
             {
                 dalFac.RegistrarItemFactura(factura, item);
             }

@@ -164,7 +164,6 @@ namespace Carpeta_Sistema_de_Ventas
             txtNumTransaccion.Enabled = true;
             txtNumTransaccion.Text = _factura.cobro.NumTransaccionBancaria.ToString();
             cmbMetodoPago.Enabled = true;
-            txtAliasMP.Enabled = true;
             cmbMarcaTarjeta.Enabled = true;
             txtCantCuotas.Enabled = true;
             txtComentarioAdicional.Enabled = true;

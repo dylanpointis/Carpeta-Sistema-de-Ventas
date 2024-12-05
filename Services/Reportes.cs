@@ -229,7 +229,7 @@ namespace Services
 
             string filas = "";
             double subtotalfactura = 0;
-            foreach (BEItemFactura item in fac.listaProductosAgregados)
+            foreach (BEItemFactura item in fac.obtenerListaItems())
             {
                 BEProducto prod = item.producto;
                 int cantidad = item.cantidad;

@@ -17,13 +17,41 @@ namespace BE
  
 
 
-        public List<BEItemFactura> listaProductosAgregados{ get; set; }
+        private List<BEItemFactura> listaProductosAgregados{ get; set; }
         public BECliente clienteFactura { get; set; }
 
 
         public BEFactura()
         {
             listaProductosAgregados = new List<BEItemFactura>();
+        }
+
+        public List<BEItemFactura> obtenerListaItems()
+        {
+            return listaProductosAgregados;
+        }
+
+        public int cantidadItems()
+        {
+            return listaProductosAgregados.Count;
+        }
+
+        public void AgregarItem(BEItemFactura item)
+        {
+            BEItemFactura itemEncontrado = listaProductosAgregados.FirstOrDefault(i => i.producto.CodigoProducto == item.producto.CodigoProducto);
+            if(itemEncontrado == null)
+                listaProductosAgregados.Add(item);
+        }
+        
+        public void QuitarItem(BEItemFactura item)
+        {
+            BEItemFactura itemEncontrado = listaProductosAgregados.FirstOrDefault(i => i.producto.CodigoProducto == i.producto.CodigoProducto);
+            if(itemEncontrado != null)
+                listaProductosAgregados.Remove(item);
+        }
+        public void RestablecerListaProductos(List<BEItemFactura> nuevaLista)
+        {
+            listaProductosAgregados = nuevaLista;
         }
 
         public double CalcularMonto()

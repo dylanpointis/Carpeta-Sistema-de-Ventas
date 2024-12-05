@@ -112,7 +112,7 @@ namespace DAL
                 BEProducto prod = new BEProducto(Convert.ToInt64(rowitem[2]), rowitem[6].ToString(), null, null, null, Convert.ToDouble(rowitem[4]),0,0, 0, 0,true);
                 int cant = Convert.ToInt32(rowitem[3]);
 
-                fac.listaProductosAgregados.Add(new BEItemFactura(prod, cant));
+                fac.AgregarItem(new BEItemFactura(prod, cant));
             }
 
             return fac;

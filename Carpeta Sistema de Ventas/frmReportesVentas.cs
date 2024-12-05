@@ -167,7 +167,7 @@ namespace Carpeta_Sistema_de_Ventas
                 facturaSeleccionada = bllFactura.TraerItemsFactura(facturaSeleccionada);
 
                 double subtotal = 0;
-                foreach (BEItemFactura item in facturaSeleccionada.listaProductosAgregados)
+                foreach (BEItemFactura item in facturaSeleccionada.obtenerListaItems())
                 {
                     BEProducto prod = item.producto;
                     int cantidad = item.cantidad;

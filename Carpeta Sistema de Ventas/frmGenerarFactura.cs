@@ -84,9 +84,9 @@ namespace Carpeta_Sistema_de_Ventas
         private void ActualizarGrillaProductos()
         {
             grillaProductosAgregados.Rows.Clear();
-            if (_factura.listaProductosAgregados.Count() > 0)
+            if (_factura.cantidadItems() > 0)
             {
-                foreach (BEItemFactura item in _factura.listaProductosAgregados)
+                foreach (BEItemFactura item in _factura.obtenerListaItems())
                 {
                     BEProducto prod = item.producto;
                     int cantidad = item.cantidad;
@@ -135,9 +135,9 @@ namespace Carpeta_Sistema_de_Ventas
             if(_factura.clienteFactura != null)
             {
                 lblNombreCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblNombreCliente")} " + _factura.clienteFactura.Nombre;
-                lblApellidoCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblApellidoCliente")}: " + _factura.clienteFactura.Apellido;
-                lblMailCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblMailCliente")}: " + _factura.clienteFactura.Mail;
-                lblDNICliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblDNICliente")}: " + _factura.clienteFactura.DniCliente.ToString();
+                lblApellidoCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblApellidoCliente")} " + _factura.clienteFactura.Apellido;
+                lblMailCliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblMailCliente")} " + _factura.clienteFactura.Mail;
+                lblDNICliente.Text = $"{IdiomaManager.GetInstance().ConseguirTexto("lblDNICliente")} " + _factura.clienteFactura.DniCliente.ToString();
             }
         }
 
@@ -197,7 +197,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnCobrarVenta_Click(object sender, EventArgs e)
         {
-            if(_factura.listaProductosAgregados.Count > 0 && _factura.clienteFactura != null)
+            if(_factura.cantidadItems() > 0 && _factura.clienteFactura != null)
             {
                 _factura.Fecha = DateTime.Now;
 
@@ -223,7 +223,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnFinalizar_Click_1(object sender, EventArgs e)
         {
-            if(_factura.listaProductosAgregados.Count >0 && _factura.clienteFactura!= null && _factura.cobro != null)
+            if(_factura.cantidadItems() >0 && _factura.clienteFactura!= null && _factura.cobro != null)
             {
                 DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaFinalizar"), IdiomaManager.GetInstance().ConseguirTexto("btnFinalizar"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

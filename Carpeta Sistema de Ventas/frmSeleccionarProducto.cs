@@ -25,7 +25,7 @@ namespace Carpeta_Sistema_de_Ventas
         public frmSeleccionarProducto(BEFactura factura)
         {
             _factura = factura;
-            listaProductosInicial = new List<BEItemFactura>(_factura.listaProductosAgregados); // hace una copia de la lista incial al entrar al form
+            listaProductosInicial = new List<BEItemFactura>(_factura.obtenerListaItems()); // hace una copia de la lista incial al entrar al form
             InitializeComponent();
 
 
@@ -43,7 +43,7 @@ namespace Carpeta_Sistema_de_Ventas
             ArmarColumnasTabla();
             ActualizarGrilla();
 
-            if (_factura.listaProductosAgregados.Count == 0) { btnConfirmar.Enabled = false; }
+            if (_factura.cantidadItems() == 0) { btnConfirmar.Enabled = false; }
         }
 
         
@@ -70,7 +70,7 @@ namespace Carpeta_Sistema_de_Ventas
                             if ((cantStock - Convert.ToInt32(cantIngresada) >= 0))
                             {
                                 //chequea si no ingreso una cantidad mayor al stock disponible.
-                                _factura.listaProductosAgregados.Add(new BEItemFactura(producto, Convert.ToInt32(cantIngresada)));
+                                _factura.AgregarItem(new BEItemFactura(producto, Convert.ToInt32(cantIngresada)));
                                 ActualizarGrilla();
                                 btnConfirmar.Enabled = true;
                             }
@@ -90,19 +90,19 @@ namespace Carpeta_Sistema_de_Ventas
             if (grillaProductosAgregados.SelectedRows.Count > 0)
             {
                 long codigoProducto = Convert.ToInt64(grillaProductosAgregados.CurrentRow.Cells[0].Value);
-                var productoAEliminar = _factura.listaProductosAgregados.FirstOrDefault(p => p.producto.CodigoProducto == codigoProducto);
+                var productoAEliminar = _factura.obtenerListaItems().FirstOrDefault(p => p.producto.CodigoProducto == codigoProducto);
 
-                _factura.listaProductosAgregados.Remove(productoAEliminar);
+                _factura.QuitarItem(productoAEliminar);
                 ActualizarGrilla();
 
-                if (_factura.listaProductosAgregados.Count == 0)
+                if (_factura.cantidadItems() == 0)
                     btnConfirmar.Enabled = false;
             }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if(_factura.listaProductosAgregados.Count > 0)
+            if(_factura.cantidadItems() > 0)
             {
                 DialogResult resultado = MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("deseaConfirmar"), IdiomaManager.GetInstance().ConseguirTexto("confirmarProductos"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -160,9 +160,9 @@ namespace Carpeta_Sistema_de_Ventas
 
 
             grillaProductosAgregados.Rows.Clear();
-            if (_factura.listaProductosAgregados.Count() > 0)
+            if (_factura.cantidadItems() > 0)
             {
-                foreach (var item in _factura.listaProductosAgregados)
+                foreach (var item in _factura.obtenerListaItems())
                 {
                     BEProducto prod = item.producto;
                     int cantidad = item.cantidad;
@@ -192,7 +192,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            _factura.listaProductosAgregados = listaProductosInicial; //Si cancela resetea la lista de productos a como estaba
+            _factura.RestablecerListaProductos(listaProductosInicial); //Si cancela resetea la lista de productos a como estaba
             ActualizarLabelsTotal();
             this.Close();
         }
@@ -200,7 +200,7 @@ namespace Carpeta_Sistema_de_Ventas
 
         private bool YaEstaElProductoAgregado(long idProd)
         {
-            foreach (var item in _factura.listaProductosAgregados)
+            foreach (var item in _factura.obtenerListaItems())
             {
                 BEProducto prod = item.producto;
                 int cantidad = item.cantidad;
