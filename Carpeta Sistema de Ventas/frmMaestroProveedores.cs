@@ -190,10 +190,7 @@ namespace Carpeta_Sistema_de_Ventas
                             string cuit = grillaProveedores.CurrentRow.Cells[0].Value.ToString();
 
                             bllProv.EliminarProveedor(cuit);
-
-                            //bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente eliminado", 3));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         }
                     }
                     if (modoOperacion == EnumModoAplicar.Modificar)

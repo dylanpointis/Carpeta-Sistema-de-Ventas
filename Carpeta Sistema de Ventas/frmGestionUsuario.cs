@@ -47,7 +47,6 @@ namespace Carpeta_Sistema_de_Ventas
 
         BLLUsuario bllUsuario = new BLLUsuario();
         BLLFamilia bllFamilia = new BLLFamilia();
-        BLLEvento bllEvento = new BLLEvento();
 
         List<Familia> listaRoles = new List<Familia>();
         List<BEUsuario> lstUsuarios = null;

@@ -60,9 +60,6 @@ namespace Carpeta_Sistema_de_Ventas
                     bllRespaldo.RealizarBackUp(txtBackupRuta.Text);
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoBackUp"),"", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtBackupRuta.Text = "";
-
-                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Respaldos", "Backup realizado", 1));
-
                 }
                 catch (Exception ex)
                 {
@@ -95,9 +92,6 @@ namespace Carpeta_Sistema_de_Ventas
                     bllRespaldo.RealizarRestore(txtRestoreRuta.Text);
                     MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoRestore"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtRestoreRuta.Text = "";
-
-
-                    bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Respaldos", "Restore realizado", 1));
                 }
                 catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorRestore") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); } 
                 }

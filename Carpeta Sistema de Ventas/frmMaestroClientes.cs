@@ -190,8 +190,6 @@ namespace Carpeta_Sistema_de_Ventas
                             int dniCliente = Convert.ToInt32(grillaClientes.CurrentRow.Cells[0].Value);
 
                             bllCliente.EliminarCliente(dniCliente);
-
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente eliminado", 3));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             
                         }
@@ -205,7 +203,6 @@ namespace Carpeta_Sistema_de_Ventas
                             cliente.BorradoLogico = true;
                             bllCliente.ModificarCliente(cliente);
 
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente modificado", 4));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("noSePuedeModificar"), "", MessageBoxButtons.OK, MessageBoxIcon.Warning); } //No se puede modificar a un cliente deshabilitado
@@ -220,7 +217,6 @@ namespace Carpeta_Sistema_de_Ventas
 
                             bllCliente.HabilitarCliente(dni);
 
-                            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente habilitado", 2));
                             MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exito"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }

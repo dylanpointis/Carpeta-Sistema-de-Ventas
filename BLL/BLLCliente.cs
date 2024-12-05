@@ -20,18 +20,21 @@ namespace BLL
         public void EliminarCliente(int dniCliente)
         {
             dalCliente.EliminarCliente(dniCliente);
+            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente eliminado", 3));
             bllDV.PersistirDV(dalCliente.TraerListaCliente());
         }
 
         public void HabilitarCliente(int dni)
         {
             dalCliente.HabilitarCliente(dni);
+            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente habilitado", 2));
             bllDV.PersistirDV(dalCliente.TraerListaCliente());
         }
 
         public void ModificarCliente(BECliente cliente)
         {
-            dalCliente.ModificarCliente(cliente);
+            dalCliente.ModificarCliente(cliente); 
+            bllEvento.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Clientes", "Cliente modificado", 4));
             bllDV.PersistirDV(dalCliente.TraerListaCliente());
         }
 

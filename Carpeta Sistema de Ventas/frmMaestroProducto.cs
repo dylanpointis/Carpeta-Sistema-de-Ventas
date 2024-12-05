@@ -18,7 +18,6 @@ namespace Carpeta_Sistema_de_Ventas
     {
         List<BEProducto> listaProd = new List<BEProducto> ();
         BLLProducto bllProducto = new BLLProducto();
-        BLLEvento bllEv = new BLLEvento();
         EnumModoAplicar modoOperacion;
         public frmMaestroProducto()
         {

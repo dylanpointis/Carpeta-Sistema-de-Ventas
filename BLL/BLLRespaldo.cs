@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BLL
     public class BLLRespaldo
     {
         private DALRespaldo dalRespaldo = new DALRespaldo();
-
+        private BLLEvento bllEv = new BLLEvento();
         public void RealizarBackUp(string ruta)
         {
             string nombreArchivo = $"AltaGama.BackUp_{DateTime.Now.ToString("ddMMyy_HHmm")}.bak";
@@ -18,11 +19,13 @@ namespace BLL
            
 
             dalRespaldo.RealizarBackUp(rutaCompleta);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Respaldos", "Backup realizado", 1));
         }
 
         public void RealizarRestore(string ruta)
         {
             dalRespaldo.RealizarRestore(ruta);
+            bllEv.RegistrarEvento(new Evento(SessionManager.GetInstance.ObtenerUsuario().NombreUsuario, "Respaldos", "Restore realizado", 1));
         }
     }
 }

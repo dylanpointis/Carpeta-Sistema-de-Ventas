@@ -59,7 +59,6 @@ namespace Carpeta_Sistema_de_Ventas
                     {
                         bllRespaldo.RealizarRestore(ruta);
                         MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("exitoRestore"), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        bllEvento.RegistrarEvento(new Evento(NombreUsuarioAdmin, "Respaldos", "Restore realizado", 1));
                     }
                     catch (Exception ex) { MessageBox.Show(IdiomaManager.GetInstance().ConseguirTexto("errorRestore") + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
